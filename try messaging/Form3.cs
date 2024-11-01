@@ -36,7 +36,7 @@ namespace try_messaging
             SendEmail(tenantEmail, "Verification Code", $"Your verification code is: {verificationCode}");
 
             // Open the form for changing password and pass the verification code and tenant ID
-            Form4 form4 = new Form4(verificationCode, tenantId); // Pass the verification code and tenant ID
+            changepassword form4 = new changepassword(verificationCode, tenantId); // Pass the verification code and tenant ID
             form4.Show();
             this.Hide(); // Optionally hide the current form
         }
