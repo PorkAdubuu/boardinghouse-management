@@ -25,7 +25,7 @@ namespace try_messaging
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 form4 = new Form2();
+            TenantLoginForm form4 = new TenantLoginForm();
             form4.Show(); this.Hide();  
 
         }

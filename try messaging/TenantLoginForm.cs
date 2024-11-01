@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace try_messaging
 {
-    public partial class Form2 : Form
+    public partial class TenantLoginForm : Form
     {
-        public Form2()
+        public TenantLoginForm()
         {
             InitializeComponent();
         }

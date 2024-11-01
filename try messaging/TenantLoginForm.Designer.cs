@@ -1,6 +1,6 @@
 ﻿namespace try_messaging
 {
-    partial class Form2
+    partial class TenantLoginForm
     {
         /// <summary>
         /// Required designer variable.
