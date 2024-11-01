@@ -8,9 +8,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace try_messaging
 {
-    public partial class Form1 : Form
+    public partial class startingwindow : Form
     {
-        public Form1()
+        public startingwindow()
         {
             InitializeComponent();
         }
