@@ -4,12 +4,12 @@ using MySql.Data.MySqlClient;
 
 namespace try_messaging
 {
-    public partial class Form4 : Form
+    public partial class changepassword : Form
     {
         private string verificationCode; // To store the verification code
         private int currentTenantId; // To store the tenant's ID
 
-        public Form4(string verificationCode, int tenantId) // Change parameter to accept int tenantId
+        public changepassword(string verificationCode, int tenantId) // Change parameter to accept int tenantId
         {
             InitializeComponent();
             this.verificationCode = verificationCode; // Store the received verification code

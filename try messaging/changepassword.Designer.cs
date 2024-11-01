@@ -1,6 +1,6 @@
 ﻿namespace try_messaging
 {
-    partial class Form4
+    partial class changepassword
     {
         /// <summary>
         /// Required designer variable.
