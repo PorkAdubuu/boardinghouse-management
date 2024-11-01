@@ -19,7 +19,7 @@ namespace try_messaging
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5();
+            tenantmanagement form5 = new tenantmanagement();
             form5.Show();
             this.Hide();
         }
