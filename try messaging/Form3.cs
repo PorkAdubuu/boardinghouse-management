@@ -38,7 +38,7 @@ namespace try_messaging
             // Open the form for changing password and pass the verification code and tenant ID
             changepassword form4 = new changepassword(verificationCode, tenantId); // Pass the verification code and tenant ID
             form4.Show();
-            this.Hide(); // Optionally hide the current form
+            this.Hide(); 
         }
 
         private string GenerateVerificationCode()
@@ -61,10 +61,10 @@ namespace try_messaging
 
                     using (MailMessage mailMessage = new MailMessage())
                     {
-                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); // Your email
+                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); // email
                         mailMessage.Subject = subject;
                         mailMessage.Body = body;
-                        mailMessage.IsBodyHtml = false; // HTML or plain text
+                        mailMessage.IsBodyHtml = false; 
                         mailMessage.To.Add(toAddress); // Add recipient email
 
                         // Send the email
@@ -85,6 +85,11 @@ namespace try_messaging
             tenantcomform tenantcomform = new tenantcomform(tenantId);
             tenantcomform.Show();
             this.Hide();
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -75,6 +75,7 @@
             this.Controls.Add(this.button1);
             this.Name = "adminsideform";
             this.Text = "adminsideform";
+            this.Load += new System.EventHandler(this.adminsideform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

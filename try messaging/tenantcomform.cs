@@ -32,7 +32,7 @@ namespace try_messaging
         {
             messageRefreshTimer = new Timer();
             messageRefreshTimer.Interval = 5000; // Set the timer interval to 5 seconds (5000 milliseconds)
-            messageRefreshTimer.Tick += MessageRefreshTimer_Tick; // Attach the tick event handler
+            messageRefreshTimer.Tick += MessageRefreshTimer_Tick; 
             messageRefreshTimer.Start(); // Start the timer
         }
 
@@ -43,7 +43,7 @@ namespace try_messaging
 
         private void LoadAdminUsernames()
         {
-            // Logic to load admin usernames (if needed)
+            
         }
 
         private void sendBtn_Click(object sender, EventArgs e)
@@ -132,7 +132,7 @@ namespace try_messaging
 
         private void adminlistCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // No need to handle admin selection, since there is only one admin
+            
         }
 
         private void conversationBox_TextChanged(object sender, EventArgs e) { }
@@ -147,8 +147,13 @@ namespace try_messaging
 
             public override string ToString()
             {
-                return Username; // This is what will be shown in the ComboBox
+                return Username; 
             }
+        }
+
+        private void tenantcomform_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

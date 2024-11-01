@@ -68,5 +68,10 @@ namespace try_messaging
                 }
             }
         }
+
+        private void changepassword_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
