@@ -123,6 +123,11 @@
       <DependentUpon>adminsideform.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <Compile Include="startingwindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +174,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="adminsideform.resx">
       <DependentUpon>adminsideform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="startingwindow.resx">
       <DependentUpon>startingwindow.cs</DependentUpon>

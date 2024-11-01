@@ -65,7 +65,7 @@ namespace try_messaging
                 progressBar.Visible = false;
                 progressBar.Style = ProgressBarStyle.Blocks; // Reset to default style
                 sendingLabel.Visible = false;
-                MessageBox.Show("Email sent successfully!");
+                MessageBox.Show("Email sent successfully!"); 
             }
         }
 

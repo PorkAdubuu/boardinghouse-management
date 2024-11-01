@@ -344,6 +344,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1084, 611);
             this.Controls.Add(this.sendingLabel);
@@ -374,8 +375,10 @@
             this.Controls.Add(this.lnameText);
             this.Controls.Add(this.textBox1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "tenantmanagement";
-            this.Text = "Form5";
+            this.Text = "BoardMate";
             this.Load += new System.EventHandler(this.tenantmanagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).EndInit();
