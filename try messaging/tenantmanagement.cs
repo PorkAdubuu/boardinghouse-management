@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace try_messaging
 {
-    public partial class Form5 : Form
+    public partial class tenantmanagement : Form
     {
-        public Form5()
+        public tenantmanagement()
         {
             InitializeComponent();
         }
