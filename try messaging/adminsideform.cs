@@ -33,6 +33,10 @@ namespace try_messaging
 
         
         }
-        
+
+        private void adminsideform_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

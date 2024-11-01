@@ -29,5 +29,10 @@ namespace try_messaging
             form4.Show(); this.Hide();  
 
         }
+
+        private void startingwindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

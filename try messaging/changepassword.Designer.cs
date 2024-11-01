@@ -77,7 +77,7 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "new password";
             // 
-            // Form4
+            // changepassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,8 +87,9 @@
             this.Controls.Add(this.newpasswordText);
             this.Controls.Add(this.changepasswordBtn);
             this.Controls.Add(this.verificationText);
-            this.Name = "Form4";
+            this.Name = "changepassword";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.changepassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

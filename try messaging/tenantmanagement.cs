@@ -21,15 +21,19 @@ namespace try_messaging
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Generate the username based on nameText and roomText
+            string username = $"{lnameText.Text}_{roomText.Text}";
+            usernameText.Text = username; // Set the username in the usernameText TextBox
+            passwordText.Text = GenerateRandomPassword(12);
             // Get data from text boxes and date picker
-            string lastname = lnameText.Text; // Replace with your actual TextBox name
-            string firstname = fnameText.Text; // Replace with your actual TextBox name
-            int age = int.Parse(ageText.Text); // Make sure to validate the input
-            DateTime birthdate = birthdatePicker.Value; // Replace with your actual DateTimePicker name
-            int roomnumber = int.Parse(roomText.Text); // Make sure to validate the input
-            string email = textBox1.Text; // Email TextBox
-            string username = usernameText.Text; // Username TextBox
-            string password = passwordText.Text; // Password TextBox
+            string lastname = lnameText.Text; 
+            string firstname = fnameText.Text; 
+            int age = int.Parse(ageText.Text); 
+            DateTime birthdate = birthdatePicker.Value; 
+            int roomnumber = int.Parse(roomText.Text); 
+            string email = textBox1.Text; 
+            username = usernameText.Text; 
+            string password = passwordText.Text; 
 
             // Insert tenant into the database
             DatabaseConnection db = new DatabaseConnection();
@@ -38,7 +42,7 @@ namespace try_messaging
             // Send the email
             SendEmail(
                 email,
-                "Test Email",
+                "BOARDMATE login credentials",
                 $"Hello,\n\nHere are your temporary credentials:\n\nUsername: {username}\nPassword: {password}\n\nPlease update your password after logging in.\n\nBest regards,\nYour Boarding House Management System"
             );
         }
@@ -52,12 +56,12 @@ namespace try_messaging
 
                 using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)) // Use port 587
                 {
-                    smtpClient.Credentials = new NetworkCredential("boardinghouse24@gmail.com", "cjzvmzmwrspxxkxh"); // Your email and app password
+                    smtpClient.Credentials = new NetworkCredential("boardinghouse24@gmail.com", "cjzvmzmwrspxxkxh"); //email and app password
                     smtpClient.EnableSsl = true; // Enable SSL
 
                     using (MailMessage mailMessage = new MailMessage())
                     {
-                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); // Your email
+                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); 
                         mailMessage.Subject = subject;
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = false; // HTML or plain text
@@ -99,10 +103,7 @@ namespace try_messaging
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            // Generate the username based on nameText and roomText
-            string username = $"{lnameText.Text}_{roomText.Text}";
-            usernameText.Text = username; // Set the username in the usernameText TextBox
-            passwordText.Text = GenerateRandomPassword(12);
+            
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -110,6 +111,11 @@ namespace try_messaging
             TenantLoginForm form2 = new TenantLoginForm();
             form2.Show();
             this.Hide();
+        }
+
+        private void tenantmanagement_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
