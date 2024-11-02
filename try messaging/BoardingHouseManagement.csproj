@@ -129,11 +129,11 @@
     <Compile Include="TenantLoginForm.Designer.cs">
       <DependentUpon>TenantLoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="tenant_dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="tenant_dashboard.Designer.cs">
+      <DependentUpon>tenant_dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="changepassword.cs">
       <SubType>Form</SubType>
@@ -167,8 +167,8 @@
     <EmbeddedResource Include="TenantLoginForm.resx">
       <DependentUpon>TenantLoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="tenant_dashboard.resx">
+      <DependentUpon>tenant_dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="changepassword.resx">
       <DependentUpon>changepassword.cs</DependentUpon>

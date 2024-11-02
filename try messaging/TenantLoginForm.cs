@@ -23,7 +23,7 @@ namespace try_messaging
             if (tenantId > 0) // Check if tenant ID is valid
             {
                 MessageBox.Show("Login successful!"); // Inform the user about successful login
-                Form3 form3 = new Form3(tenantId); // Pass tenant ID to Form3
+                tenant_dashboard form3 = new tenant_dashboard(tenantId); // Pass tenant ID to Form3
                 form3.Show();
                 this.Hide();
             }
