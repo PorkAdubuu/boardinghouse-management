@@ -50,7 +50,7 @@
             // 
             // sendBtn
             // 
-            this.sendBtn.Location = new System.Drawing.Point(639, 321);
+            this.sendBtn.Location = new System.Drawing.Point(639, 308);
             this.sendBtn.Name = "sendBtn";
             this.sendBtn.Size = new System.Drawing.Size(49, 23);
             this.sendBtn.TabIndex = 2;
@@ -60,7 +60,8 @@
             // 
             // typeMessage
             // 
-            this.typeMessage.Location = new System.Drawing.Point(314, 321);
+            this.typeMessage.BackColor = System.Drawing.Color.SeaShell;
+            this.typeMessage.Location = new System.Drawing.Point(314, 308);
             this.typeMessage.Name = "typeMessage";
             this.typeMessage.Size = new System.Drawing.Size(319, 50);
             this.typeMessage.TabIndex = 3;
@@ -69,7 +70,7 @@
             // 
             // conversationBox
             // 
-            this.conversationBox.BackColor = System.Drawing.Color.White;
+            this.conversationBox.BackColor = System.Drawing.Color.SeaShell;
             this.conversationBox.Location = new System.Drawing.Point(314, 106);
             this.conversationBox.Name = "conversationBox";
             this.conversationBox.ReadOnly = true;
@@ -84,7 +85,7 @@
             this.tenantlistsGrid.AllowUserToDeleteRows = false;
             this.tenantlistsGrid.AllowUserToResizeColumns = false;
             this.tenantlistsGrid.AllowUserToResizeRows = false;
-            this.tenantlistsGrid.BackgroundColor = System.Drawing.Color.White;
+            this.tenantlistsGrid.BackgroundColor = System.Drawing.Color.SeaShell;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -112,7 +113,7 @@
             this.tenantlistsGrid.RowHeadersVisible = false;
             this.tenantlistsGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tenantlistsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tenantlistsGrid.Size = new System.Drawing.Size(143, 265);
+            this.tenantlistsGrid.Size = new System.Drawing.Size(143, 252);
             this.tenantlistsGrid.StandardTab = true;
             this.tenantlistsGrid.TabIndex = 11;
             this.tenantlistsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tenantlistsGrid_CellContentClick);
@@ -121,6 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tenantlistsGrid);
             this.Controls.Add(this.conversationBox);
