@@ -121,7 +121,7 @@ namespace try_messaging
                     }
                 }
 
-                MessageBox.Show("Email sent successfully!");
+                MessageBox.Show("Verification code has been sent successfully!");
             }
             catch (Exception ex)
             {

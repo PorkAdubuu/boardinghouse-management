@@ -111,14 +111,14 @@ namespace try_messaging
             string email = textBox1.Text;
             string username = usernameText.Text;
             string password = passwordText.Text;
-            string contact = contactText.Text; // Get contact number from contactText
-            string gender = genderCombo.SelectedItem.ToString(); // Get gender from genderCombo
+            string contact = contactText.Text; 
+            string gender = genderCombo.SelectedItem.ToString(); 
 
             // Insert tenant into the database
             DatabaseConnection db = new DatabaseConnection();
             db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender);
 
-            // Prepare email content
+            //email content
             string tenantName = $"{firstname} {lastname}"; // Combine firstname and lastname for tenant's name
             string subject = "Welcome to the Boarding House Community!";
             string body = $"Dear {tenantName},\n\n" +
@@ -127,7 +127,7 @@ namespace try_messaging
                           $"Account Details:\n" +
                           $"Username: {username}\n" +
                           $"Password: {password}\n\n" +
-                          $"**Notice:** These are temporary credentials. Please change your password after logging in.\n\n" + // Added notice
+                          $"**Notice:** These are temporary credentials. Please change your password after logging in.\n\n" + 
                           $"Login Instructions:\n" +
                           $"Visit the Boarding House Management System login Application:\n" +
                           $"Click on \"Login\" to access your account\n\n" +
@@ -183,23 +183,23 @@ namespace try_messaging
         private void ClearFields()
         {
             // Clear text boxes
-            lnameText.Text = string.Empty;        // Last name
-            fnameText.Text = string.Empty;        // First name
-            ageText.Text = string.Empty;          // Age
-            roomText.Text = string.Empty;         // Room number
-            textBox1.Text = string.Empty;         // Email
-            usernameText.Text = string.Empty;     // Username
-            passwordText.Text = string.Empty;     // Password
-            contactText.Text = string.Empty;      // Contact number
+            lnameText.Text = string.Empty;        
+            fnameText.Text = string.Empty;        
+            ageText.Text = string.Empty;          
+            roomText.Text = string.Empty;         
+            textBox1.Text = string.Empty;         
+            usernameText.Text = string.Empty;     
+            passwordText.Text = string.Empty;     
+            contactText.Text = string.Empty;      
 
-            // Reset the gender combo box to the default (first item, or you can set it to empty if you prefer)
+            
             if (genderCombo.Items.Count > 0)
             {
-                genderCombo.SelectedIndex = 0;    // Set to the first item
+                genderCombo.SelectedIndex = 0;    
             }
 
             // Clear the email generator RichTextBox
-            emailgeneratorRich.Text = string.Empty; // Clear email content display
+            emailgeneratorRich.Text = string.Empty; 
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
