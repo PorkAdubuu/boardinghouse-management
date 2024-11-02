@@ -56,10 +56,12 @@
             this.generateBtn = new System.Windows.Forms.PictureBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.sendingLabel = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sendbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateBtn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // fnameText
@@ -340,6 +342,18 @@
             this.sendingLabel.Text = "Sending.......";
             this.sendingLabel.Visible = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(12, 563);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(34, 36);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 64;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // tenantmanagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,6 +361,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1084, 611);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.sendingLabel);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.generateBtn);
@@ -384,6 +399,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sendbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateBtn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,5 +433,6 @@
         private System.Windows.Forms.PictureBox generateBtn;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label sendingLabel;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

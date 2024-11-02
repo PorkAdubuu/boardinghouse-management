@@ -201,5 +201,12 @@ namespace try_messaging
             // Clear the email generator RichTextBox
             emailgeneratorRich.Text = string.Empty; // Clear email content display
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            admin_dashboard admindashboard = new admin_dashboard();
+            admindashboard.Show();
+            this.Hide();
+        }
     }
 }
