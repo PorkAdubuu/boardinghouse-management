@@ -2,28 +2,36 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace try_messaging
 {
     public partial class admincomform : Form
     {
         private string connectionString = "Server=localhost;Database=boardinghouse_practice_db;Uid=root;Pwd=;"; // Update with your database connection string
-        private Timer messageRefreshTimer; // Declare a timer
-        private int? selectedTenantId = null; // Nullable int to store the selected tenant ID
+        private Timer messageRefreshTimer; // Declare a timer for conversationBox
+        private Timer notificationRefreshTimer; // Timer for notification updates
+        private int? selectedTenantId = null; 
 
 
         public admincomform()
         {
             InitializeComponent();
-            InitializeTimer(); // Initialize the timer
+            InitializeTimer(); 
             this.CenterToScreen();
         }
 
         private void InitializeTimer()
         {
+            //for messages
             messageRefreshTimer = new Timer();
-            messageRefreshTimer.Interval = 3000; // Set the timer interval to 5 seconds (5000 milliseconds)
+            messageRefreshTimer.Interval = 3000; // Set the timer 3 secs
             messageRefreshTimer.Tick += MessageRefreshTimer_Tick; // Attach the tick event handler
+            // for notificaiton
+            notificationRefreshTimer = new Timer();
+            notificationRefreshTimer.Interval = 3000; // 3 secs
+            notificationRefreshTimer.Tick += NotificationRefreshTimer_Tick;
+            notificationRefreshTimer.Start(); // Start the timer 
         }
 
         private void admincomform_Load(object sender, EventArgs e)
@@ -81,7 +89,46 @@ namespace try_messaging
                 }
             }
         }
+        private void NotificationRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
 
+                    // Query to get tenant IDs with unread messages
+                    MySqlCommand cmd = new MySqlCommand(
+                        "SELECT DISTINCT sender_id FROM combined_messages WHERE sender_type = 'tenant' AND is_read = 0", conn);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    // Reset all rows to default color first
+                    foreach (DataGridViewRow row in tenantlistsGrid.Rows)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White;
+                    }
+
+                    // Highlight rows with unread messages
+                    while (reader.Read())
+                    {
+                        int unreadTenantId = reader.GetInt32("sender_id");
+
+                        foreach (DataGridViewRow row in tenantlistsGrid.Rows)
+                        {
+                            if (Convert.ToInt32(row.Cells["tenid"].Value) == unreadTenantId)
+                            {
+                                row.DefaultCellStyle.BackColor = Color.LightYellow; // Set color for unread messages
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error checking unread messages: " + ex.Message);
+                }
+            }
+        }
 
         private void MessageRefreshTimer_Tick(object sender, EventArgs e)
         {
