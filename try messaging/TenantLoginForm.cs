@@ -33,5 +33,9 @@ namespace try_messaging
             }
         }
 
+        private void TenantLoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

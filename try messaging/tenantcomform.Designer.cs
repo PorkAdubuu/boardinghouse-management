@@ -36,8 +36,13 @@
             // 
             // conversationBox
             // 
+
             this.conversationBox.BackColor = System.Drawing.Color.White;
             this.conversationBox.Location = new System.Drawing.Point(200, 97);
+
+            this.conversationBox.BackColor = System.Drawing.Color.SeaShell;
+            this.conversationBox.Location = new System.Drawing.Point(199, 124);
+
             this.conversationBox.Name = "conversationBox";
             this.conversationBox.ReadOnly = true;
             this.conversationBox.Size = new System.Drawing.Size(319, 183);
@@ -47,7 +52,12 @@
             // 
             // typeMessage
             // 
+
             this.typeMessage.Location = new System.Drawing.Point(200, 303);
+
+            this.typeMessage.BackColor = System.Drawing.Color.SeaShell;
+            this.typeMessage.Location = new System.Drawing.Point(199, 322);
+
             this.typeMessage.Name = "typeMessage";
             this.typeMessage.Size = new System.Drawing.Size(319, 50);
             this.typeMessage.TabIndex = 11;
@@ -56,7 +66,11 @@
             // 
             // sendBtn
             // 
+
             this.sendBtn.Location = new System.Drawing.Point(525, 303);
+
+            this.sendBtn.Location = new System.Drawing.Point(524, 322);
+
             this.sendBtn.Name = "sendBtn";
             this.sendBtn.Size = new System.Drawing.Size(49, 23);
             this.sendBtn.TabIndex = 10;
@@ -68,7 +82,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             this.label1.Location = new System.Drawing.Point(271, 57);
+
+            this.label1.Location = new System.Drawing.Point(267, 79);
+
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(186, 25);
             this.label1.TabIndex = 9;
@@ -78,6 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.conversationBox);
             this.Controls.Add(this.typeMessage);

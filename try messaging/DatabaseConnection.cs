@@ -15,52 +15,56 @@ namespace try_messaging
             return "Server=localhost;Database=boardinghouse_practice_db;Uid=root;Pwd=;";
         }
 
-        public void InsertTenant(string lastname, string firstname, int age, DateTime birthdate, int roomnumber, string email, string username, string password)
+        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender)
+{
+    // Update your query to include the new columns
+    string query = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender) VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender);";
+    string query2 = "INSERT INTO tenants_accounts (tenid, username, password) VALUES (LAST_INSERT_ID(), @username, @password);"; // Use LAST_INSERT_ID() to get the last inserted tenid
+
+    using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
+    {
+        connection.Open();
+
+        using (MySqlCommand command = new MySqlCommand(query, connection))
         {
-            string query = "INSERT INTO tenants_details (lastname, firstname, age, birthdate, roomnumber, email) VALUES (@lastname, @firstname, @age, @birthdate, @roomnumber, @email);";
-            string query2 = "INSERT INTO tenants_accounts (tenid, username, password) VALUES (LAST_INSERT_ID(), @username, @password);"; // Use LAST_INSERT_ID() to get the last inserted tenid
+            // Add parameters to prevent SQL injection
+            command.Parameters.AddWithValue("@lastname", lastname);
+            command.Parameters.AddWithValue("@firstname", firstname);
+            command.Parameters.AddWithValue("@age", age);
+            command.Parameters.AddWithValue("@roomnumber", roomnumber);
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@contact", contact); // Add contact parameter
+            command.Parameters.AddWithValue("@gender", gender); // Add gender parameter
 
-            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
+            try
             {
-                connection.Open();
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    // Add parameters to prevent SQL injection
-                    command.Parameters.AddWithValue("@lastname", lastname);
-                    command.Parameters.AddWithValue("@firstname", firstname);
-                    command.Parameters.AddWithValue("@age", age);
-                    command.Parameters.AddWithValue("@birthdate", birthdate);
-                    command.Parameters.AddWithValue("@roomnumber", roomnumber);
-                    command.Parameters.AddWithValue("@email", email);
-
-                    try
-                    {
-                        command.ExecuteNonQuery(); // Execute the first query
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error inserting data: " + ex.Message);
-                        return;
-                    }
-                }
-
-                using (MySqlCommand command2 = new MySqlCommand(query2, connection))
-                {
-                    command2.Parameters.AddWithValue("@username", username);
-                    command2.Parameters.AddWithValue("@password", password);
-
-                    try
-                    {
-                        command2.ExecuteNonQuery(); // Execute the second query
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error inserting data into accounts: " + ex.Message);
-                    }
-                }
+                command.ExecuteNonQuery(); // Execute the first query
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inserting data: " + ex.Message);
+                return;
             }
         }
+
+        using (MySqlCommand command2 = new MySqlCommand(query2, connection))
+        {
+            command2.Parameters.AddWithValue("@username", username);
+            command2.Parameters.AddWithValue("@password", password);
+
+            try
+            {
+                command2.ExecuteNonQuery(); // Execute the second query
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inserting data into accounts: " + ex.Message);
+            }
+        }
+    }
+}
+
+
 
         public bool ValidateLogin(string username, string password)
         {

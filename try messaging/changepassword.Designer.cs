@@ -38,18 +38,18 @@
             // 
             // verificationText
             // 
-            this.verificationText.Location = new System.Drawing.Point(325, 142);
+            this.verificationText.Location = new System.Drawing.Point(325, 102);
             this.verificationText.Name = "verificationText";
             this.verificationText.Size = new System.Drawing.Size(100, 20);
             this.verificationText.TabIndex = 0;
             // 
             // changepasswordBtn
             // 
-            this.changepasswordBtn.Location = new System.Drawing.Point(336, 222);
+            this.changepasswordBtn.Location = new System.Drawing.Point(325, 222);
             this.changepasswordBtn.Name = "changepasswordBtn";
             this.changepasswordBtn.Size = new System.Drawing.Size(75, 23);
             this.changepasswordBtn.TabIndex = 1;
-            this.changepasswordBtn.Text = "button1";
+            this.changepasswordBtn.Text = "change password";
             this.changepasswordBtn.UseVisualStyleBackColor = true;
             this.changepasswordBtn.Click += new System.EventHandler(this.changepasswordBtn_Click);
             // 
@@ -63,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(244, 142);
+            this.label1.Location = new System.Drawing.Point(244, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 3;
@@ -80,7 +80,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(485, 138);
+            this.button1.Location = new System.Drawing.Point(289, 138);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 23);
             this.button1.TabIndex = 5;

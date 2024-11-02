@@ -13,12 +13,18 @@ namespace try_messaging
         public startingwindow()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             adminsideform adminsideform = new adminsideform();
             adminsideform.Show();
+            this.Hide();
+            */
+            admin_dashboard admin_Dashboard = new admin_dashboard();
+            admin_Dashboard.Show();
             this.Hide();
 
         }
@@ -32,6 +38,7 @@ namespace try_messaging
 
         private void startingwindow_Load(object sender, EventArgs e)
         {
+            
 
         }
     }
