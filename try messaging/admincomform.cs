@@ -9,11 +9,14 @@ namespace try_messaging
     {
         private string connectionString = "Server=localhost;Database=boardinghouse_practice_db;Uid=root;Pwd=;"; // Update with your database connection string
         private Timer messageRefreshTimer; // Declare a timer
+        private int? selectedTenantId = null; // Nullable int to store the selected tenant ID
+
 
         public admincomform()
         {
             InitializeComponent();
             InitializeTimer(); // Initialize the timer
+            this.CenterToScreen();
         }
 
         private void InitializeTimer()
@@ -28,7 +31,7 @@ namespace try_messaging
             LoadTenantList();
         }
 
-        // Method to load tenant names into the ComboBox
+        // Method to load tenant names and room numbers into the DataGridView
         private void LoadTenantList()
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -36,17 +39,41 @@ namespace try_messaging
                 try
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(
-                        "SELECT CONCAT(firstname, ' ', lastname) AS FullName, roomnumber, tenid FROM tenants_details", conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
 
-                    tenantlistCombo.Items.Clear();
-                    while (reader.Read())
+                    // Modified query to include a check for unread messages
+                    MySqlCommand cmd = new MySqlCommand(
+                        "SELECT CONCAT(firstname, ' ', lastname, ' (Room ', roomnumber, ')') AS DisplayText, tenid, " +
+                        "(SELECT COUNT(*) FROM combined_messages WHERE sender_id = tenants_details.tenid AND sender_type = 'tenant' AND is_read = 0) AS UnreadCount " +
+                        "FROM tenants_details", conn);
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable tenantTable = new DataTable();
+                    adapter.Fill(tenantTable);
+
+                    tenantlistsGrid.DataSource = tenantTable;
+                    tenantlistsGrid.Columns["tenid"].Visible = false; // Hide the tenant ID column
+
+                    tenantlistsGrid.Columns["DisplayText"].HeaderText = "              Tenants\n        (Name & Room)";
+                    tenantlistsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Adjust the column width
+
+                    tenantlistsGrid.ClearSelection();
+
+                    // Check for unread messages and apply color formatting
+                    foreach (DataGridViewRow row in tenantlistsGrid.Rows)
                     {
-                        // Format display to include full name and room number
-                        string displayText = $"{reader["FullName"]} (Room {reader["roomnumber"]})";
-                        tenantlistCombo.Items.Add(new ComboBoxItem(displayText, reader["tenid"].ToString()));
+                        int unreadCount = Convert.ToInt32(row.Cells["UnreadCount"].Value);
+
+                        if (unreadCount > 0)
+                        {
+                            row.DefaultCellStyle.BackColor = System.Drawing.Color.LightYellow; // Highlight color for unread messages
+                        }
+                        else
+                        {
+                            row.DefaultCellStyle.BackColor = System.Drawing.Color.White; // Default color
+                        }
                     }
+
+                    tenantlistsGrid.Columns["UnreadCount"].Visible = false; // Hide the unread count column after processing
                 }
                 catch (Exception ex)
                 {
@@ -55,72 +82,63 @@ namespace try_messaging
             }
         }
 
-        private void tenantlistCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Clear the conversationBox when a new tenant is selected
-            conversationBox.Clear();
-            LoadConversation();
-            messageRefreshTimer.Start(); // Start the timer when a tenant is selected
-        }
 
         private void MessageRefreshTimer_Tick(object sender, EventArgs e)
         {
-            // Refresh the conversation
-            LoadConversation();
+            if (tenantlistsGrid.SelectedRows.Count > 0)
+            {
+                int tenantId = Convert.ToInt32(tenantlistsGrid.SelectedRows[0].Cells["tenid"].Value);
+                LoadConversation(tenantId); // Refresh the conversation for the selected tenant
+            }
         }
 
         // Load the conversation for the selected tenant
-        private void LoadConversation()
+        private void LoadConversation(int tenantId)
         {
-            if (tenantlistCombo.SelectedItem is ComboBoxItem selectedTenant)
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                int tenantId = int.Parse(selectedTenant.Value);
-
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                try
                 {
-                    try
+                    conn.Open();
+
+                    // Mark messages as read
+                    MySqlCommand updateCmd = new MySqlCommand(
+                        "UPDATE combined_messages SET is_read = 1 WHERE sender_id = @tenantId AND sender_type = 'tenant' AND is_read = 0", conn);
+                    updateCmd.Parameters.AddWithValue("@tenantId", tenantId);
+                    updateCmd.ExecuteNonQuery();
+
+                    // Query to select messages along with timestamp
+                    MySqlCommand cmd = new MySqlCommand(
+                        "SELECT sender_type, message, timestamp FROM combined_messages " +
+                        "WHERE (sender_id = @tenantId AND sender_type = 'tenant') OR " +
+                        "(recipient_id = @tenantId AND sender_type = 'admin')", conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    conversationBox.Clear();
+
+                    while (reader.Read())
                     {
-                        conn.Open();
+                        string senderType = reader["sender_type"].ToString();
+                        string message = reader["message"].ToString();
+                        DateTime timestamp = Convert.ToDateTime(reader["timestamp"]);
 
-                        // Mark messages as read
-                        MySqlCommand updateCmd = new MySqlCommand(
-                            "UPDATE combined_messages SET is_read = 1 WHERE sender_id = @tenantId AND sender_type = 'tenant' AND is_read = 0", conn);
-                        updateCmd.Parameters.AddWithValue("@tenantId", tenantId);
-                        updateCmd.ExecuteNonQuery();
-
-                        // Query to select messages along with timestamp
-                        MySqlCommand cmd = new MySqlCommand(
-                            "SELECT sender_type, message, timestamp FROM combined_messages " +
-                            "WHERE (sender_id = @tenantId AND sender_type = 'tenant') OR " +
-                            "(recipient_id = @tenantId AND sender_type = 'admin')", conn);
-                        cmd.Parameters.AddWithValue("@tenantId", tenantId);
-
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        conversationBox.Clear();
-
-                        while (reader.Read())
+                        // Set color based on sender type
+                        if (senderType == "admin")
                         {
-                            string senderType = reader["sender_type"].ToString();
-                            string message = reader["message"].ToString();
-                            DateTime timestamp = Convert.ToDateTime(reader["timestamp"]);
-
-                            // Set color based on sender type
-                            if (senderType == "admin")
-                            {
-                                conversationBox.SelectionColor = System.Drawing.Color.Blue; // Admin messages in blue
-                                conversationBox.AppendText($"You: {message}\n(Sent at: {timestamp})\n\n");
-                            }
-                            else
-                            {
-                                conversationBox.SelectionColor = System.Drawing.Color.Green; // Tenant messages in green
-                                conversationBox.AppendText($"{senderType}: {message}\n(Sent at: {timestamp})\n\n");
-                            }
+                            conversationBox.SelectionColor = System.Drawing.Color.Blue; // Admin messages in blue
+                            conversationBox.AppendText($"You: {message}\n(Sent at: {timestamp})\n\n");
+                        }
+                        else
+                        {
+                            conversationBox.SelectionColor = System.Drawing.Color.Green; // Tenant messages in green
+                            conversationBox.AppendText($"{senderType}: {message}\n(Sent at: {timestamp})\n\n");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading conversation: " + ex.Message);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading conversation: " + ex.Message);
                 }
             }
             // Scroll to the bottom of the conversationBox
@@ -130,9 +148,9 @@ namespace try_messaging
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
-            if (tenantlistCombo.SelectedItem is ComboBoxItem selectedTenant)
+            if (selectedTenantId.HasValue) // Check if a tenant has been selected
             {
-                int tenantId = int.Parse(selectedTenant.Value);
+                int tenantId = selectedTenantId.Value;
                 string messageText = typeMessage.Text.Trim();
 
                 if (!string.IsNullOrEmpty(messageText))
@@ -152,12 +170,12 @@ namespace try_messaging
                             // Insert into combined_messages table
                             cmd = new MySqlCommand("INSERT INTO combined_messages (sender_id, sender_type, recipient_id, message) VALUES (@senderId, 'admin', @recipientId, @message)", conn);
                             cmd.Parameters.AddWithValue("@senderId", /* Admin ID */ 1); // Replace with actual admin ID
-                            cmd.Parameters.AddWithValue("@recipientId", tenantId); // This should be the selected tenant ID
+                            cmd.Parameters.AddWithValue("@recipientId", tenantId); // Use the selected tenant ID
                             cmd.Parameters.AddWithValue("@message", messageText);
                             cmd.ExecuteNonQuery();
 
                             typeMessage.Clear();
-                            LoadConversation(); // Refresh the conversation box
+                            LoadConversation(tenantId); // Refresh the conversation box
                             conversationBox.SelectionStart = conversationBox.Text.Length;
                             conversationBox.ScrollToCaret();
 
@@ -179,6 +197,7 @@ namespace try_messaging
             }
         }
 
+
         private void conversationBox_TextChanged(object sender, EventArgs e)
         {
             // Empty tool code preserved
@@ -193,6 +212,40 @@ namespace try_messaging
         {
             // Empty tool code preserved
         }
+
+        private void tenantlistsGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure a valid row is selected
+            {
+                DataGridViewRow row = tenantlistsGrid.Rows[e.RowIndex];
+                selectedTenantId = Convert.ToInt32(row.Cells["tenid"].Value); // Store tenant ID
+
+                // Mark messages as read in the database for the selected tenant
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        conn.Open();
+                        MySqlCommand updateCmd = new MySqlCommand(
+                            "UPDATE combined_messages SET is_read = 1 WHERE sender_id = @tenantId AND sender_type = 'tenant' AND is_read = 0", conn);
+                        updateCmd.Parameters.AddWithValue("@tenantId", selectedTenantId);
+                        updateCmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating read status: " + ex.Message);
+                    }
+                }
+
+                // Change the background color of the selected row back to default after marking as read
+                row.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+
+                LoadConversation((int)selectedTenantId); // Load conversation for the selected tenant
+                messageRefreshTimer.Start(); // Start the timer when a tenant is selected
+            }
+        }
+
+
     }
 
     // Helper class for ComboBox items

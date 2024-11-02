@@ -31,5 +31,12 @@ namespace try_messaging
             tenantmanagement.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            admincomform admincomform = new admincomform();
+            admincomform.Show();
+            this.Hide();
+        }
     }
 }

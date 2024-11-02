@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.sendBtn = new System.Windows.Forms.Button();
             this.typeMessage = new System.Windows.Forms.RichTextBox();
             this.conversationBox = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.messagesentlabel = new System.Windows.Forms.Label();
-            this.tenantlistCombo = new System.Windows.Forms.ComboBox();
+            this.tenantlistsGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.tenantlistsGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -49,7 +50,7 @@
             // 
             // sendBtn
             // 
-            this.sendBtn.Location = new System.Drawing.Point(702, 321);
+            this.sendBtn.Location = new System.Drawing.Point(639, 321);
             this.sendBtn.Name = "sendBtn";
             this.sendBtn.Size = new System.Drawing.Size(49, 23);
             this.sendBtn.TabIndex = 2;
@@ -59,7 +60,7 @@
             // 
             // typeMessage
             // 
-            this.typeMessage.Location = new System.Drawing.Point(377, 321);
+            this.typeMessage.Location = new System.Drawing.Point(314, 321);
             this.typeMessage.Name = "typeMessage";
             this.typeMessage.Size = new System.Drawing.Size(319, 50);
             this.typeMessage.TabIndex = 3;
@@ -68,7 +69,8 @@
             // 
             // conversationBox
             // 
-            this.conversationBox.Location = new System.Drawing.Point(377, 106);
+            this.conversationBox.BackColor = System.Drawing.Color.White;
+            this.conversationBox.Location = new System.Drawing.Point(314, 106);
             this.conversationBox.Name = "conversationBox";
             this.conversationBox.ReadOnly = true;
             this.conversationBox.Size = new System.Drawing.Size(319, 183);
@@ -76,43 +78,51 @@
             this.conversationBox.Text = "";
             this.conversationBox.TextChanged += new System.EventHandler(this.conversationBox_TextChanged);
             // 
-            // label2
+            // tenantlistsGrid
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "tenant lists";
-            // 
-            // messagesentlabel
-            // 
-            this.messagesentlabel.AutoSize = true;
-            this.messagesentlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messagesentlabel.Location = new System.Drawing.Point(374, 302);
-            this.messagesentlabel.Name = "messagesentlabel";
-            this.messagesentlabel.Size = new System.Drawing.Size(44, 16);
-            this.messagesentlabel.TabIndex = 7;
-            this.messagesentlabel.Text = "label3";
-            this.messagesentlabel.Click += new System.EventHandler(this.messagesentlabel_Click);
-            // 
-            // tenantlistCombo
-            // 
-            this.tenantlistCombo.FormattingEnabled = true;
-            this.tenantlistCombo.Location = new System.Drawing.Point(73, 135);
-            this.tenantlistCombo.Name = "tenantlistCombo";
-            this.tenantlistCombo.Size = new System.Drawing.Size(159, 21);
-            this.tenantlistCombo.TabIndex = 8;
-            this.tenantlistCombo.SelectedIndexChanged += new System.EventHandler(this.tenantlistCombo_SelectedIndexChanged);
+            this.tenantlistsGrid.AllowUserToAddRows = false;
+            this.tenantlistsGrid.AllowUserToDeleteRows = false;
+            this.tenantlistsGrid.AllowUserToResizeColumns = false;
+            this.tenantlistsGrid.AllowUserToResizeRows = false;
+            this.tenantlistsGrid.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tenantlistsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.tenantlistsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tenantlistsGrid.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tenantlistsGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tenantlistsGrid.EnableHeadersVisualStyles = false;
+            this.tenantlistsGrid.GridColor = System.Drawing.Color.White;
+            this.tenantlistsGrid.Location = new System.Drawing.Point(119, 106);
+            this.tenantlistsGrid.MultiSelect = false;
+            this.tenantlistsGrid.Name = "tenantlistsGrid";
+            this.tenantlistsGrid.ReadOnly = true;
+            this.tenantlistsGrid.RowHeadersVisible = false;
+            this.tenantlistsGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.tenantlistsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tenantlistsGrid.Size = new System.Drawing.Size(143, 265);
+            this.tenantlistsGrid.StandardTab = true;
+            this.tenantlistsGrid.TabIndex = 11;
+            this.tenantlistsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tenantlistsGrid_CellContentClick);
             // 
             // admincomform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tenantlistCombo);
-            this.Controls.Add(this.messagesentlabel);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tenantlistsGrid);
             this.Controls.Add(this.conversationBox);
             this.Controls.Add(this.typeMessage);
             this.Controls.Add(this.sendBtn);
@@ -120,6 +130,7 @@
             this.Name = "admincomform";
             this.Text = "admincomform";
             this.Load += new System.EventHandler(this.admincomform_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tenantlistsGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,8 +142,6 @@
         private System.Windows.Forms.Button sendBtn;
         private System.Windows.Forms.RichTextBox typeMessage;
         private System.Windows.Forms.RichTextBox conversationBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label messagesentlabel;
-        private System.Windows.Forms.ComboBox tenantlistCombo;
+        private System.Windows.Forms.DataGridView tenantlistsGrid;
     }
 }

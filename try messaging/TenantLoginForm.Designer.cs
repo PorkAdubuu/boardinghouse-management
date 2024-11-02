@@ -77,7 +77,7 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "password";
             // 
-            // Form2
+            // TenantLoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,8 +87,9 @@
             this.Controls.Add(this.passwordInput);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.usernameInput);
-            this.Name = "Form2";
+            this.Name = "TenantLoginForm";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.TenantLoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
