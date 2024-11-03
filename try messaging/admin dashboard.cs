@@ -58,11 +58,11 @@ namespace try_messaging
             // Change the image in the PictureBox based on whether there are new messages
             if (hasNewMessages)
             {
-                mail_icon.Image = Image.FromFile("C:\\Users\\Dokaebi\\source\\repos\\OOP Final project\\boardinghouse-management-jamecerPC\\try messaging\\images\\mail_notif.png"); // Set to the notification icon
+                mail_icon.Image = Properties.Resources.mail_notif; // Set to the notification icon
             }
             else
             {
-                mail_icon.Image = Image.FromFile("C:\\Users\\Dokaebi\\source\\repos\\OOP Final project\\boardinghouse-management-jamecerPC\\try messaging\\images\\mail_default.png"); // Set to the default icon
+                mail_icon.Image = Properties.Resources.mail_default; // Set to the default icon
             }
         }
 

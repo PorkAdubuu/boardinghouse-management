@@ -202,6 +202,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="tenantcomform.resx">
       <DependentUpon>tenantcomform.cs</DependentUpon>
@@ -221,8 +222,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\mail_default.png" />
-    <Content Include="images\mail_notif.png" />
+    <None Include="Resources\mail with notif.png" />
+    <None Include="Resources\mail default %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
