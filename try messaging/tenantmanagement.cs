@@ -21,6 +21,8 @@ namespace try_messaging
             this.CenterToScreen();
             // Set background color
             this.BackColor = ColorTranslator.FromHtml("#ffffff");
+
+            
         }
 
         private async Task SendEmail(string toAddress, string subject, string body)

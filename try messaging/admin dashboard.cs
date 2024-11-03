@@ -1,24 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using MySql.Data.MySqlClient; // Ensure this namespace is included
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace try_messaging
 {
     public partial class admin_dashboard : Form
     {
+        private Timer messageCheckTimer; // Timer to check for new messages
+        private DatabaseConnection dbConnection; 
+
         public admin_dashboard()
         {
             InitializeComponent();
             this.CenterToScreen();
-            //color
-            this.BackColor = ColorTranslator.FromHtml("#ffffff");
+            this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
+            dbConnection = new DatabaseConnection(); // Initialize the DatabaseConnection
+            InitializeMessageCheckTimer(); // Initialize the timer
+            CheckForNewMessages();
         }
+
+        private void InitializeMessageCheckTimer()
+        {
+            messageCheckTimer = new Timer();
+            messageCheckTimer.Interval = 3000; // Set interval to 3 seconds
+            messageCheckTimer.Tick += MessageCheckTimer_Tick; // Attach the tick event handler
+            messageCheckTimer.Start(); // Start the timer
+        }
+
+        private void MessageCheckTimer_Tick(object sender, EventArgs e)
+        {
+            CheckForNewMessages(); // Check for new messages every tick
+        }
+
+        private void CheckForNewMessages()
+        {
+            bool hasNewMessages = false;
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString())) // Use the database connection
+            {
+                try
+                {
+                    conn.Open();
+                    // Check for unread messages
+                    MySqlCommand cmd = new MySqlCommand(
+                        "SELECT COUNT(*) FROM combined_messages WHERE sender_type = 'tenant' AND is_read = 0", conn);
+
+                    int unreadCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    hasNewMessages = unreadCount > 0; // Set to true if there are unread messages
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error checking for new messages: " + ex.Message);
+                }
+            }
+
+            // Change the image in the PictureBox based on whether there are new messages
+            if (hasNewMessages)
+            {
+                mail_icon.Image = Image.FromFile("C:\\Users\\Dokaebi\\source\\repos\\OOP Final project\\boardinghouse-management-jamecerPC\\try messaging\\images\\mail_notif.png"); // Set to the notification icon
+            }
+            else
+            {
+                mail_icon.Image = Image.FromFile("C:\\Users\\Dokaebi\\source\\repos\\OOP Final project\\boardinghouse-management-jamecerPC\\try messaging\\images\\mail_default.png"); // Set to the default icon
+            }
+        }
+
         private void LoadFormInPanel(Form childForm)
         {
             // Clear existing controls in the panel
@@ -37,9 +84,10 @@ namespace try_messaging
             childForm.BringToFront();
             childForm.Show();
         }
+
         private void admin_dashboard_Load(object sender, EventArgs e)
         {
-
+            // Initial load actions can be performed here if needed
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,13 +100,29 @@ namespace try_messaging
         private void button2_Click(object sender, EventArgs e)
         {
             admincomform admincomform = new admincomform();
-            
             LoadFormInPanel(admincomform);
         }
 
         private void displayPanel_Paint(object sender, PaintEventArgs e)
         {
+            // Painting logic if needed
+        }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            // Logic for picture box 2 click
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            // Logic for picture box 4 click
+        }
+
+        private void mail_icon_Click(object sender, EventArgs e)
+        {
+            admincomform admincomform1 = new admincomform();
+            LoadFormInPanel(admincomform1);
+            
         }
     }
 }

@@ -19,6 +19,8 @@ namespace try_messaging
             InitializeComponent();
             InitializeTimer(); 
             this.CenterToScreen();
+            this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
+            LoadTenantList();
         }
 
         private void InitializeTimer()
