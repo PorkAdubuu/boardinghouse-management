@@ -8,18 +8,44 @@ namespace try_messaging
     public partial class admin_dashboard : Form
     {
         private Timer messageCheckTimer; // Timer to check for new messages
-        private DatabaseConnection dbConnection; 
+        private DatabaseConnection dbConnection;
+        private int adminID;
 
-        public admin_dashboard()
+        public admin_dashboard(int adminID)
         {
             InitializeComponent();
             this.CenterToScreen();
+            this.adminID = adminID;
             this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
             dbConnection = new DatabaseConnection(); // Initialize the DatabaseConnection
             InitializeMessageCheckTimer(); // Initialize the timer
             CheckForNewMessages();
-        }
+            LoadAdminName();
 
+
+            adminNameLabel.BorderStyle = BorderStyle.None;
+            adminNameLabel.BackColor = System.Drawing.ColorTranslator.FromHtml("#f7f7f7");
+            adminNameLabel.TextAlign = HorizontalAlignment.Right;
+            this.Controls.Add(adminNameLabel);
+
+            this.ActiveControl = null;
+
+            // Make sure the TextBox does not gain focus
+            adminNameLabel.TabStop = false;
+
+        }
+        private void LoadAdminName()
+        {
+            string adminName = dbConnection.GetAdminName(adminID);
+            if (!string.IsNullOrEmpty(adminName))
+            {
+                adminNameLabel.Text = adminName; // Display the name in the label
+            }
+            else
+            {
+                MessageBox.Show("Failed to load admin name.");
+            }
+        }
         private void InitializeMessageCheckTimer()
         {
             messageCheckTimer = new Timer();
@@ -92,7 +118,7 @@ namespace try_messaging
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tenantmanagement tenantmanagement = new tenantmanagement();
+            tenantmanagement tenantmanagement = new tenantmanagement(adminID);
             tenantmanagement.Show();
             this.Hide();
         }
@@ -123,6 +149,13 @@ namespace try_messaging
             admincomform admincomform1 = new admincomform();
             LoadFormInPanel(admincomform1);
             
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            adminLoginForm adminLoginForm = new adminLoginForm();
+            adminLoginForm.Show();
+            this.Close();
         }
     }
 }

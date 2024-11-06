@@ -13,32 +13,36 @@ namespace try_messaging
         public startingwindow()
         {
             InitializeComponent();
+            this.CenterToScreen();
             
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            /*
-            adminsideform adminsideform = new adminsideform();
-            adminsideform.Show();
-            this.Hide();
-            */
-            admin_dashboard admin_Dashboard = new admin_dashboard();
-            admin_Dashboard.Show();
-            this.Hide();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            TenantLoginForm form4 = new TenantLoginForm();
-            form4.Show(); this.Hide();  
-
-        }
-
+        } 
         private void startingwindow_Load(object sender, EventArgs e)
         {
             
+
+        }
+
+        private void userBtn_Click(object sender, EventArgs e)
+        {
+            TenantLoginForm form4 = new TenantLoginForm();
+            form4.Show(); this.Hide();
+        }
+
+        private void adminBtn_Click(object sender, EventArgs e)
+        {
+            
+            adminLoginForm adminLoginForm = new adminLoginForm();
+            adminLoginForm.Show();
+            this.Hide();
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }

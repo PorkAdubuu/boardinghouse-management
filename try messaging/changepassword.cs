@@ -8,35 +8,19 @@ namespace try_messaging
 {
     public partial class changepassword : Form
     {
-        private string verificationCode; // To store the verification code
+        
         private int currentTenantId; // To store the tenant's ID
         private int tenantId;
 
-        public changepassword(string verificationCode, int tenantId) // Change parameter to accept int tenantId
+        public changepassword(int tenantId) // Change parameter to accept int tenantId
         {
             InitializeComponent();
             this.tenantId = tenantId;
-            this.verificationCode = verificationCode; // Store the received verification code
+            
             this.currentTenantId = tenantId; // Store the tenant's ID for password update
         }
 
-        private void changepasswordBtn_Click(object sender, EventArgs e)
-        {
-            // Get the input from the text boxes
-            string enteredCode = verificationText.Text;
-            string newPassword = newpasswordText.Text;
-
-            // Validate the verification code
-            if (enteredCode == verificationCode)
-            {
-                // Update the password in the database
-                UpdatePassword(newPassword);
-            }
-            else
-            {
-                MessageBox.Show("Invalid verification code. Please try again.");
-            }
-        }
+        
 
         private void UpdatePassword(string newPassword)
         {
@@ -56,9 +40,7 @@ namespace try_messaging
 
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Password changed successfully!");
-                            this.Close(); // Close the form after successful change
+                        {                           
                         }
                         else
                         {
@@ -78,61 +60,95 @@ namespace try_messaging
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void submitPassBtn_Click(object sender, EventArgs e)
         {
-            DatabaseConnection db = new DatabaseConnection();
-            string tenantEmail = db.GetTenantEmail(tenantId); // Get the actual email from the database
+            // Get the input from the text boxes
+            string currentPassword = currentPassText.Text;
+            string newPassword = newpasswordText.Text;
+            string confirmPassword = confirmPassText.Text;
 
-            if (string.IsNullOrEmpty(tenantEmail))
+            // Check if the current password matches the password in the database
+            if (CheckCurrentPassword(currentPassword))
             {
-                MessageBox.Show("Email not found for the given tenant ID.");
-                return; // Exit if email is not found
+                // Check if the new password and confirm password match
+                if (newPassword == confirmPassword)
+                {
+                    // Update the password in the database
+                    UpdatePassword(newPassword);
+
+                    // Display a success message
+                    MessageBox.Show("Password updated successfully, please log in again.");
+
+                    // Close the tenant_dashboard form
+                    foreach (Form openForm in Application.OpenForms)
+                    {
+                        if (openForm is tenant_dashboard)
+                        {
+                            openForm.Close();
+                            break;
+                        }
+                    }
+
+                    // Show the tenantLoginForm
+                    TenantLoginForm loginForm = new TenantLoginForm();
+                    loginForm.Show();
+
+                    // Close the changepassword form itself
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("New password and confirm password do not match.");
+                }
             }
-
-            // Generate the verification code
-            verificationCode = GenerateVerificationCode();
-
-            // Send the verification code via email
-            SendEmail(tenantEmail, "Verification Code", $"Your verification code is: {verificationCode}");
+            else
+            {
+                MessageBox.Show("Current password is incorrect.");
+            }
         }
 
-        private void SendEmail(string toAddress, string subject, string body)
+        private bool CheckCurrentPassword(string enteredPassword)
         {
-            try
+            // Query the tenants_accounts table to get the current password based on tenantId
+            string query = "SELECT password FROM tenants_accounts WHERE tenid = @tenantId";
+
+            // Create an instance of DatabaseConnection to get the connection string
+            DatabaseConnection db = new DatabaseConnection();
+
+            using (var connection = new MySqlConnection(db.GetConnectionString()))
             {
-                // Set the security protocol
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Use TLS 1.2
-
-                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)) // Use port 587
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
                 {
-                    smtpClient.Credentials = new NetworkCredential("boardinghouse24@gmail.com", "cjzvmzmwrspxxkxh"); // Your email and app password
-                    smtpClient.EnableSsl = true; // Enable SSL
+                    command.Parameters.AddWithValue("@tenantId", tenantId); 
 
-                    using (MailMessage mailMessage = new MailMessage())
+                    var result = command.ExecuteScalar();
+                    if (result != null && result.ToString() == enteredPassword)
                     {
-                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); // email
-                        mailMessage.Subject = subject;
-                        mailMessage.Body = body;
-                        mailMessage.IsBodyHtml = false;
-                        mailMessage.To.Add(toAddress); // Add recipient email
-
-                        // Send the email
-                        smtpClient.Send(mailMessage);
+                        return true; // Password matches
+                    }
+                    else
+                    {
+                        return false; // Password does not match
                     }
                 }
-
-                MessageBox.Show("Verification code has been sent successfully!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error sending email: " + ex.Message); // Detailed error message
             }
         }
 
-        private string GenerateVerificationCode()
+        private void showPassword_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            return random.Next(100000, 999999).ToString(); // Generates a random 6-digit code
+            if (currentPassText.PasswordChar == '*' || newpasswordText.PasswordChar == '*' || confirmPassText.PasswordChar == '*')
+            {
+                currentPassText.PasswordChar = '\0';
+                newpasswordText.PasswordChar = '\0';
+                confirmPassText.PasswordChar = '\0';
+            }
+            else
+            {
+                currentPassText.PasswordChar = '*';
+                newpasswordText.PasswordChar = '*';
+                confirmPassText.PasswordChar = '*';
+            }
         }
     }
 }

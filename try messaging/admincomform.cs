@@ -41,6 +41,8 @@ namespace try_messaging
             LoadTenantList();
         }
 
+
+
         // Method to load tenant names and room numbers into the DataGridView
         private void LoadTenantList()
         {
@@ -210,15 +212,18 @@ namespace try_messaging
                         {
                             conn.Open();
 
+                            // Get the logged-in admin's ID from GlobalSettings
+                            int adminId = GlobalSettings.LoggedInAdminId;  // Use the dynamic admin ID
+
                             // Insert into admin_messages table
                             MySqlCommand cmd = new MySqlCommand("INSERT INTO admin_messages (admin_id, message) VALUES (@adminId, @message)", conn);
-                            cmd.Parameters.AddWithValue("@adminId", /* Admin ID */ 1); // Replace with actual admin ID
+                            cmd.Parameters.AddWithValue("@adminId", adminId); // Use the dynamic admin ID
                             cmd.Parameters.AddWithValue("@message", messageText);
                             cmd.ExecuteNonQuery();
 
                             // Insert into combined_messages table
                             cmd = new MySqlCommand("INSERT INTO combined_messages (sender_id, sender_type, recipient_id, message) VALUES (@senderId, 'admin', @recipientId, @message)", conn);
-                            cmd.Parameters.AddWithValue("@senderId", /* Admin ID */ 1); // Replace with actual admin ID
+                            cmd.Parameters.AddWithValue("@senderId", adminId); // Use the dynamic admin ID
                             cmd.Parameters.AddWithValue("@recipientId", tenantId); // Use the selected tenant ID
                             cmd.Parameters.AddWithValue("@message", messageText);
                             cmd.ExecuteNonQuery();
@@ -245,6 +250,7 @@ namespace try_messaging
                 MessageBox.Show("Please select a tenant.");
             }
         }
+
 
 
         private void conversationBox_TextChanged(object sender, EventArgs e)

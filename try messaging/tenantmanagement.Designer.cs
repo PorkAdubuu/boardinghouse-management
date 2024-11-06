@@ -290,10 +290,10 @@
             // clearBtn
             // 
             this.clearBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.clearBtn.Image = ((System.Drawing.Image)(resources.GetObject("clearBtn.Image")));
+            this.clearBtn.Image = global::try_messaging.Properties.Resources.CANCEL_BUTT;
             this.clearBtn.Location = new System.Drawing.Point(470, 413);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(200, 51);
+            this.clearBtn.Size = new System.Drawing.Size(200, 45);
             this.clearBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.clearBtn.TabIndex = 58;
             this.clearBtn.TabStop = false;
@@ -302,10 +302,10 @@
             // sendbutton
             // 
             this.sendbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sendbutton.Image = ((System.Drawing.Image)(resources.GetObject("sendbutton.Image")));
-            this.sendbutton.Location = new System.Drawing.Point(192, 484);
+            this.sendbutton.Image = global::try_messaging.Properties.Resources.GENERATE_AND_SEND_BUTT;
+            this.sendbutton.Location = new System.Drawing.Point(192, 479);
             this.sendbutton.Name = "sendbutton";
-            this.sendbutton.Size = new System.Drawing.Size(478, 51);
+            this.sendbutton.Size = new System.Drawing.Size(478, 45);
             this.sendbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.sendbutton.TabIndex = 59;
             this.sendbutton.TabStop = false;
@@ -314,10 +314,10 @@
             // generateBtn
             // 
             this.generateBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.generateBtn.Image = ((System.Drawing.Image)(resources.GetObject("generateBtn.Image")));
+            this.generateBtn.Image = global::try_messaging.Properties.Resources.GENERATE_BUTT;
             this.generateBtn.Location = new System.Drawing.Point(192, 413);
             this.generateBtn.Name = "generateBtn";
-            this.generateBtn.Size = new System.Drawing.Size(200, 51);
+            this.generateBtn.Size = new System.Drawing.Size(200, 45);
             this.generateBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.generateBtn.TabIndex = 61;
             this.generateBtn.TabStop = false;

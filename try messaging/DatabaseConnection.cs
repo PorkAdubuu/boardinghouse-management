@@ -64,11 +64,59 @@ namespace try_messaging
     }
 }
 
+        public string GetAdminName(int adminId)
+        {
+            string adminName = string.Empty;
+            string query = "SELECT name FROM admin_accounts WHERE admin_id = @adminId";
+
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@adminId", adminId);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            adminName = result.ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error retrieving admin name: " + ex.Message);
+                    }
+                }
+            }
+
+            return adminName;
+        }
 
 
         public bool ValidateLogin(string username, string password)
         {
             string query = "SELECT COUNT(*) FROM tenants_accounts WHERE username = @username AND password = @password;";
+
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+
+                    // Execute the query and check if any record is found
+                    int userCount = Convert.ToInt32(command.ExecuteScalar());
+                    return userCount > 0; // Return true if user exists
+                }
+            }
+        }
+        public bool ValidateLoginAdmin(string username, string password)
+        {
+            string query = "SELECT COUNT(*) FROM admin_accounts WHERE username = @username AND password = @password;";
 
             using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
@@ -133,6 +181,28 @@ namespace try_messaging
                 }
             }
             return tenantId; // Return the tenant ID
+        }
+        public int GetAdminId(string username, string password)
+        {
+            int adminId = 0; // Default value if not found
+            string query = "SELECT admin_id FROM admin_accounts WHERE username = @username AND password = @password;";
+
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+                    connection.Open();
+
+                    object results = command.ExecuteScalar();
+                    if (results != null)
+                    {
+                        adminId = Convert.ToInt32(results);
+                    }
+                }
+            }
+            return adminId; // Return the admin ID
         }
     }
 }

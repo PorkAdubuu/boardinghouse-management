@@ -15,14 +15,17 @@ namespace try_messaging
 {
     public partial class tenantmanagement : Form
     {
-        public tenantmanagement()
+        private int adminID;
+        public tenantmanagement(int adminID)
         {
             InitializeComponent();
             this.CenterToScreen();
             // Set background color
             this.BackColor = ColorTranslator.FromHtml("#ffffff");
+            this.adminID = adminID;
 
-            
+
+
         }
 
         private async Task SendEmail(string toAddress, string subject, string body)
@@ -206,7 +209,7 @@ namespace try_messaging
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            admin_dashboard admindashboard = new admin_dashboard();
+            admin_dashboard admindashboard = new admin_dashboard(adminID);
             admindashboard.Show();
             this.Hide();
         }

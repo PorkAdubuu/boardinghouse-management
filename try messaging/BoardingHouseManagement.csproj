@@ -116,13 +116,20 @@
     <Compile Include="adminLoginForm.Designer.cs">
       <DependentUpon>adminLoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="adminsideform.cs">
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="ImagePreviewDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="adminsideform.Designer.cs">
-      <DependentUpon>adminsideform.cs</DependentUpon>
+    <Compile Include="ImagePreviewDialog.Designer.cs">
+      <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="Personal_information_tenant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personal_information_tenant.Designer.cs">
+      <DependentUpon>Personal_information_tenant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,14 +173,32 @@
     <Compile Include="tenantcomform.Designer.cs">
       <DependentUpon>tenantcomform.cs</DependentUpon>
     </Compile>
+    <Compile Include="tenant_profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tenant_profile.Designer.cs">
+      <DependentUpon>tenant_profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="verificaitoncode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="verificaitoncode.Designer.cs">
+      <DependentUpon>verificaitoncode.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="admin dashboard.resx">
       <DependentUpon>admin dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admincomform.resx">
       <DependentUpon>admincomform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="adminsideform.resx">
-      <DependentUpon>adminsideform.cs</DependentUpon>
+    <EmbeddedResource Include="adminLoginForm.resx">
+      <DependentUpon>adminLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagePreviewDialog.resx">
+      <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personal_information_tenant.resx">
+      <DependentUpon>Personal_information_tenant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -207,6 +232,12 @@
     <EmbeddedResource Include="tenantcomform.resx">
       <DependentUpon>tenantcomform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="tenant_profile.resx">
+      <DependentUpon>tenant_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="verificaitoncode.resx">
+      <DependentUpon>verificaitoncode.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -224,6 +255,60 @@
   <ItemGroup>
     <None Include="Resources\mail with notif.png" />
     <None Include="Resources\mail default %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BG white pink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo-real.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGIN BUTTON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GENERATE BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CANCEL BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GENERATE AND SEND BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ADMIN BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\USER BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXIT APP BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UPLOAD BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUBMIT BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UPDATE BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\REMOVE BUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultProfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOG OUT BUTT.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

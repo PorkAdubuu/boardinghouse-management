@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace try_messaging
@@ -7,38 +8,53 @@ namespace try_messaging
     public partial class tenantcomform : Form
     {
         private int currentTenantId; // Store the current tenant's ID
-        private string connectionString; // Connection string to the database
-
-        // Hardcoded admin details
-        private const int AdminId = 1; // Hardcoded admin ID
-        private const string AdminUsername = "JohnnySins"; // Hardcoded admin username
-
+        private DatabaseConnection dbConnection; // Database connection handler
         private Timer messageRefreshTimer; // Declare a timer
+
+        
 
         public tenantcomform(int tenantId) // Pass tenant ID to the constructor
         {
             InitializeComponent();
             currentTenantId = tenantId;
+            dbConnection = new DatabaseConnection();
+            MarkMessagesAsRead();
+            LoadMessages();
+            InitializeTimer();
+        }
 
-            DatabaseConnection db = new DatabaseConnection();
-            connectionString = db.GetConnectionString();
-
-            LoadAdminUsernames(); // Load the single admin into the combo box
-            LoadMessages(); // Load messages on form initialization
-            InitializeTimer(); // Initialize the timer
+        private void MarkMessagesAsRead()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(
+                        "UPDATE combined_messages SET is_read = 1 WHERE sender_type = 'admin' AND is_read = 0", conn);
+                    cmd.ExecuteNonQuery(); // Execute the update command
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating message status: " + ex.Message);
+                }
+            }
         }
 
         private void InitializeTimer()
         {
             messageRefreshTimer = new Timer();
             messageRefreshTimer.Interval = 5000; // Set the timer interval to 5 seconds (5000 milliseconds)
-            messageRefreshTimer.Tick += MessageRefreshTimer_Tick; 
+            messageRefreshTimer.Tick += MessageRefreshTimer_Tick;
             messageRefreshTimer.Start(); // Start the timer
         }
 
         private void MessageRefreshTimer_Tick(object sender, EventArgs e)
         {
-            LoadMessages(); // Refresh messages on timer tick
+            if (!this.IsDisposed && conversationBox.IsHandleCreated)
+            {
+                LoadMessages(); // Refresh messages on timer tick
+            }
         }
 
         private void LoadAdminUsernames()
@@ -56,7 +72,7 @@ namespace try_messaging
                 return;
             }
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(dbConnection.GetConnectionString()))
             {
                 string query = "INSERT INTO combined_messages (sender_id, sender_type, message) VALUES (@senderId, @senderType, @message)";
                 MySqlCommand command = new MySqlCommand(query, connection);
@@ -84,15 +100,15 @@ namespace try_messaging
         private void LoadMessages()
         {
             conversationBox.Clear();
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(dbConnection.GetConnectionString()))
             {
                 string query = @"
-        SELECT sender_type, message, timestamp 
-        FROM combined_messages 
-        WHERE 
-            (sender_id = @tenantId AND sender_type = 'tenant') OR 
-            (recipient_id = @tenantId AND sender_type = 'admin') 
-        ORDER BY timestamp ASC;";
+                SELECT sender_type, message, timestamp 
+                FROM combined_messages 
+                WHERE 
+                    (sender_id = @tenantId AND sender_type = 'tenant') OR 
+                    (recipient_id = @tenantId AND sender_type = 'admin') 
+                ORDER BY timestamp ASC;";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@tenantId", currentTenantId);
@@ -130,9 +146,18 @@ namespace try_messaging
             conversationBox.ScrollToCaret();
         }
 
+        private void tenantcomform_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (messageRefreshTimer != null)
+            {
+                messageRefreshTimer.Stop();
+                messageRefreshTimer.Dispose();
+            }
+        }
+
         private void adminlistCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            // Handle changes in the admin list selection here if needed
         }
 
         private void conversationBox_TextChanged(object sender, EventArgs e) { }
@@ -147,13 +172,13 @@ namespace try_messaging
 
             public override string ToString()
             {
-                return Username; 
+                return Username;
             }
         }
 
         private void tenantcomform_Load(object sender, EventArgs e)
         {
-
+            // Code to execute on form load if needed
         }
     }
 }
