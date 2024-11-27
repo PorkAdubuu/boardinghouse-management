@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tenant_dashboard));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.displayPanel = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.mail_icon = new System.Windows.Forms.PictureBox();
@@ -37,11 +39,24 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tenantNameLabel = new System.Windows.Forms.TextBox();
+            this.dashboard_Btn = new System.Windows.Forms.PictureBox();
+            this.profile_Btn = new System.Windows.Forms.PictureBox();
+            this.payment_Btn = new System.Windows.Forms.PictureBox();
+            this.maintenance_Btn = new System.Windows.Forms.PictureBox();
+            this.timeLabel = new System.Windows.Forms.Label();
+            this.notification_Btn = new System.Windows.Forms.PictureBox();
+            this.notificationGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mail_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashboard_Btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile_Btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.payment_Btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maintenance_Btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notification_Btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // displayPanel
@@ -51,6 +66,7 @@
             this.displayPanel.Size = new System.Drawing.Size(885, 578);
             this.displayPanel.TabIndex = 4;
             this.displayPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.displayPanel_Paint);
+            this.displayPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.displayPanel_MouseClick);
             // 
             // pictureBox6
             // 
@@ -65,10 +81,10 @@
             // mail_icon
             // 
             this.mail_icon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mail_icon.Image = ((System.Drawing.Image)(resources.GetObject("mail_icon.Image")));
-            this.mail_icon.Location = new System.Drawing.Point(964, 19);
+            this.mail_icon.Image = global::try_messaging.Properties.Resources.mail;
+            this.mail_icon.Location = new System.Drawing.Point(960, 15);
             this.mail_icon.Name = "mail_icon";
-            this.mail_icon.Size = new System.Drawing.Size(25, 19);
+            this.mail_icon.Size = new System.Drawing.Size(29, 26);
             this.mail_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mail_icon.TabIndex = 50;
             this.mail_icon.TabStop = false;
@@ -128,6 +144,117 @@
             this.tenantNameLabel.Size = new System.Drawing.Size(135, 20);
             this.tenantNameLabel.TabIndex = 54;
             // 
+            // dashboard_Btn
+            // 
+            this.dashboard_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dashboard_Btn.Image = global::try_messaging.Properties.Resources.dashboard_plain_butt__2_;
+            this.dashboard_Btn.Location = new System.Drawing.Point(35, 154);
+            this.dashboard_Btn.Name = "dashboard_Btn";
+            this.dashboard_Btn.Size = new System.Drawing.Size(151, 44);
+            this.dashboard_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.dashboard_Btn.TabIndex = 58;
+            this.dashboard_Btn.TabStop = false;
+            this.dashboard_Btn.Click += new System.EventHandler(this.dashboard_Btn_Click_1);
+            // 
+            // profile_Btn
+            // 
+            this.profile_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.profile_Btn.Image = global::try_messaging.Properties.Resources.profile_plain_butt__1_;
+            this.profile_Btn.Location = new System.Drawing.Point(35, 209);
+            this.profile_Btn.Name = "profile_Btn";
+            this.profile_Btn.Size = new System.Drawing.Size(151, 44);
+            this.profile_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.profile_Btn.TabIndex = 59;
+            this.profile_Btn.TabStop = false;
+            this.profile_Btn.Click += new System.EventHandler(this.profile_Btn_Click);
+            // 
+            // payment_Btn
+            // 
+            this.payment_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.payment_Btn.Image = global::try_messaging.Properties.Resources.payment_plain_butt;
+            this.payment_Btn.Location = new System.Drawing.Point(35, 264);
+            this.payment_Btn.Name = "payment_Btn";
+            this.payment_Btn.Size = new System.Drawing.Size(151, 44);
+            this.payment_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.payment_Btn.TabIndex = 60;
+            this.payment_Btn.TabStop = false;
+            this.payment_Btn.Click += new System.EventHandler(this.payment_Btn_Click);
+            // 
+            // maintenance_Btn
+            // 
+            this.maintenance_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.maintenance_Btn.Image = global::try_messaging.Properties.Resources.maintenance_plain_butt_11;
+            this.maintenance_Btn.Location = new System.Drawing.Point(35, 319);
+            this.maintenance_Btn.Name = "maintenance_Btn";
+            this.maintenance_Btn.Size = new System.Drawing.Size(151, 44);
+            this.maintenance_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.maintenance_Btn.TabIndex = 61;
+            this.maintenance_Btn.TabStop = false;
+            this.maintenance_Btn.Click += new System.EventHandler(this.maintenance_Btn_Click);
+            // 
+            // timeLabel
+            // 
+            this.timeLabel.AutoSize = true;
+            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeLabel.ForeColor = System.Drawing.Color.Black;
+            this.timeLabel.Location = new System.Drawing.Point(282, 27);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(230, 20);
+            this.timeLabel.TabIndex = 62;
+            this.timeLabel.Text = "MMMM dd, yyyy hh:mm:ss tt";
+            // 
+            // notification_Btn
+            // 
+            this.notification_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.notification_Btn.Image = global::try_messaging.Properties.Resources.bell;
+            this.notification_Btn.Location = new System.Drawing.Point(915, 16);
+            this.notification_Btn.Name = "notification_Btn";
+            this.notification_Btn.Size = new System.Drawing.Size(29, 26);
+            this.notification_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.notification_Btn.TabIndex = 63;
+            this.notification_Btn.TabStop = false;
+            this.notification_Btn.Click += new System.EventHandler(this.notification_Btn_Click);
+            // 
+            // notificationGrid
+            // 
+            this.notificationGrid.AllowUserToAddRows = false;
+            this.notificationGrid.AllowUserToDeleteRows = false;
+            this.notificationGrid.AllowUserToResizeColumns = false;
+            this.notificationGrid.AllowUserToResizeRows = false;
+            this.notificationGrid.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.notificationGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.notificationGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.notificationGrid.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.notificationGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.notificationGrid.EnableHeadersVisualStyles = false;
+            this.notificationGrid.GridColor = System.Drawing.Color.White;
+            this.notificationGrid.Location = new System.Drawing.Point(800, 43);
+            this.notificationGrid.MultiSelect = false;
+            this.notificationGrid.Name = "notificationGrid";
+            this.notificationGrid.ReadOnly = true;
+            this.notificationGrid.RowHeadersVisible = false;
+            this.notificationGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.notificationGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.notificationGrid.Size = new System.Drawing.Size(143, 210);
+            this.notificationGrid.StandardTab = true;
+            this.notificationGrid.TabIndex = 12;
+            this.notificationGrid.Visible = false;
+            this.notificationGrid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notificationGrid_MouseClick);
+            // 
             // tenant_dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,23 +262,36 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.notificationGrid);
+            this.Controls.Add(this.mail_icon);
+            this.Controls.Add(this.timeLabel);
+            this.Controls.Add(this.notification_Btn);
+            this.Controls.Add(this.maintenance_Btn);
+            this.Controls.Add(this.payment_Btn);
+            this.Controls.Add(this.profile_Btn);
+            this.Controls.Add(this.dashboard_Btn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.profilePic);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tenantNameLabel);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.mail_icon);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.displayPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "tenant_dashboard";
-            this.Text = "Tenant Dashboard";
             this.Load += new System.EventHandler(this.Form3_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tenant_dashboard_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mail_icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dashboard_Btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile_Btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.payment_Btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maintenance_Btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notification_Btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +306,12 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox tenantNameLabel;
+        private System.Windows.Forms.PictureBox dashboard_Btn;
+        private System.Windows.Forms.PictureBox profile_Btn;
+        private System.Windows.Forms.PictureBox payment_Btn;
+        private System.Windows.Forms.PictureBox maintenance_Btn;
+        private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.PictureBox notification_Btn;
+        private System.Windows.Forms.DataGridView notificationGrid;
     }
 }

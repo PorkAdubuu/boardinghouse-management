@@ -3,6 +3,8 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Data.Common;
+using System.IO;
 
 namespace try_messaging
 {
@@ -19,7 +21,7 @@ namespace try_messaging
             InitializeComponent();
             InitializeTimer(); 
             this.CenterToScreen();
-            this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
+            this.BackColor = Color.WhiteSmoke;
             LoadTenantList();
         }
 
@@ -65,7 +67,7 @@ namespace try_messaging
                     tenantlistsGrid.DataSource = tenantTable;
                     tenantlistsGrid.Columns["tenid"].Visible = false; // Hide the tenant ID column
 
-                    tenantlistsGrid.Columns["DisplayText"].HeaderText = "              Tenants\n        (Name & Room)";
+                    tenantlistsGrid.Columns["DisplayText"].HeaderText = "                            Tenants\n                       (Name & Room)";
                     tenantlistsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Adjust the column width
 
                     tenantlistsGrid.ClearSelection();
@@ -281,24 +283,50 @@ namespace try_messaging
                     try
                     {
                         conn.Open();
-                        MySqlCommand updateCmd = new MySqlCommand(
-                            "UPDATE combined_messages SET is_read = 1 WHERE sender_id = @tenantId AND sender_type = 'tenant' AND is_read = 0", conn);
-                        updateCmd.Parameters.AddWithValue("@tenantId", selectedTenantId);
-                        updateCmd.ExecuteNonQuery();
+
+                        // Query to fetch tenant's name and profile picture
+                        MySqlCommand cmd = new MySqlCommand(
+                            "SELECT CONCAT(firstname, ' ', lastname) AS FullName, profile_picture " +
+                            "FROM tenants_details WHERE tenid = @tenantId", conn);
+                        cmd.Parameters.AddWithValue("@tenantId", selectedTenantId);
+
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            // Update tenantName label
+                            tenantName.Text = reader["FullName"].ToString();
+
+                            // Update tenantProfile picture box
+                            if (reader["profile_picture"] != DBNull.Value)
+                            {
+                                byte[] imageBytes = (byte[])reader["profile_picture"];
+                                using (var ms = new System.IO.MemoryStream(imageBytes))
+                                {
+                                    tenantProfile.Image = Image.FromStream(ms);
+                                }
+                            }
+                            else
+                            {
+                                // Set a default image if no profile picture exists
+                                tenantProfile.Image = Properties.Resources.DefaultProfile;
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error updating read status: " + ex.Message);
+                        MessageBox.Show("Error loading tenant details: " + ex.Message);
                     }
                 }
 
                 // Change the background color of the selected row back to default after marking as read
                 row.DefaultCellStyle.BackColor = System.Drawing.Color.White;
 
-                LoadConversation((int)selectedTenantId); // Load conversation for the selected tenant
+                // Load the conversation for the selected tenant
+                LoadConversation((int)selectedTenantId);
                 messageRefreshTimer.Start(); // Start the timer when a tenant is selected
             }
         }
+
 
 
     }

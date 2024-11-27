@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using OxyPlot;
 
 namespace try_messaging
 {
@@ -25,12 +26,22 @@ namespace try_messaging
             contactText.BorderStyle = BorderStyle.None;
             emailText.BorderStyle = BorderStyle.None;
             ageText.BorderStyle = BorderStyle.None;
-            
+            roomText.BorderStyle = BorderStyle.None;
+            moveinText.BorderStyle = BorderStyle.None;
+            expirationText.BorderStyle = BorderStyle.None;
+            name1Text.BorderStyle = BorderStyle.None;
+            name2Text.BorderStyle = BorderStyle.None;
+            emergencyNo1Text.BorderStyle = BorderStyle.None;
+            emergencyNo2Text.BorderStyle = BorderStyle.None;
+
+
+
         }
 
         private void Personal_information_tenant_Load(object sender, EventArgs e)
         {
             LoadTenantInformation();
+            updateBtn.Visible = false;
         }
 
         private void LoadTenantInformation()
@@ -51,11 +62,17 @@ namespace try_messaging
                             // Combine first name and last name and set it in nameText
                             nameText.Text = $"{reader["firstname"].ToString()} {reader["lastname"].ToString()}";
                             ageText.Text = reader["age"].ToString();
-                            addressText.Text = $"Room {reader["roomnumber"].ToString()}"; // Assuming roomnumber is the address
+                            addressText.Text = reader["address"].ToString();
                             emailText.Text = reader["email"].ToString();
                             contactText.Text = reader["contact"].ToString();
                             emergencyNo1Text.Text = reader["emergency_contact1"].ToString();
                             emergencyNo2Text.Text = reader["emergency_contact2"].ToString();
+                            name1Text.Text = reader["emergency_name1"].ToString();
+                            name2Text.Text = reader["emergency_name2"].ToString();
+                            roomText.Text = reader["roomnumber"].ToString();
+                            moveinText.Text = Convert.ToDateTime(reader["movein_date"]).ToString("MM/dd/yyyy");
+                            expirationText.Text = Convert.ToDateTime(reader["expiration_date"]).ToString("MM/dd/yyyy");
+                            //add the profile 
                         }
                         else
                         {
@@ -81,12 +98,14 @@ namespace try_messaging
                 try
                 {
                     conn.Open();
-                    string query = "UPDATE tenants_details SET emergency_contact1 = @emergencyContact1, emergency_contact2 = @emergencyContact2 WHERE tenid = @tenantId";
+                    string query = "UPDATE tenants_details SET emergency_contact1 = @emergencyContact1, emergency_contact2 = @emergencyContact2, emergency_name1 = @name1Textt, emergency_name2 = @name2Textt WHERE tenid = @tenantId";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
 
                     // Set the parameters
                     cmd.Parameters.AddWithValue("@emergencyContact1", emergencyNo1Text.Text);
                     cmd.Parameters.AddWithValue("@emergencyContact2", emergencyNo2Text.Text);
+                    cmd.Parameters.AddWithValue("@name1Textt", name1Text.Text);
+                    cmd.Parameters.AddWithValue("@name2Textt", name2Text.Text);
                     cmd.Parameters.AddWithValue("@tenantId", tenantId);
 
                     // Execute the update command
@@ -104,6 +123,20 @@ namespace try_messaging
                 {
                     MessageBox.Show("Error updating emergency contacts: " + ex.Message);
                 }
+
+                edit_Btn.Image = Properties.Resources.edit;
+                name1Text.BorderStyle = BorderStyle.None;
+                name2Text.BorderStyle = BorderStyle.None;
+                emergencyNo1Text.BorderStyle = BorderStyle.None;
+                emergencyNo2Text.BorderStyle = BorderStyle.None;
+
+                name1Text.ReadOnly = true;
+                name2Text.ReadOnly = true;
+                emergencyNo1Text.ReadOnly = true;
+                emergencyNo2Text.ReadOnly = true;
+
+                updateBtn.Visible = false;
+
             }
         }
 
@@ -231,6 +264,36 @@ namespace try_messaging
             {
                 MessageBox.Show("No image selected to preview.");
             }
+        }
+
+        private void name1Text_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void name1Text_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void name2Text_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void edit_Btn_Click(object sender, EventArgs e)
+        {
+            updateBtn.Visible = !updateBtn.Visible;
+            name1Text.BorderStyle = BorderStyle.FixedSingle;
+            name2Text.BorderStyle = BorderStyle.FixedSingle;
+            emergencyNo1Text.BorderStyle = BorderStyle.FixedSingle;
+            emergencyNo2Text.BorderStyle = BorderStyle.FixedSingle;
+            edit_Btn.Image = Properties.Resources.done;
+
+            name1Text.ReadOnly = false;
+            name2Text.ReadOnly = false;
+            emergencyNo1Text.ReadOnly = false;
+            emergencyNo2Text.ReadOnly = false;
         }
     }
 }

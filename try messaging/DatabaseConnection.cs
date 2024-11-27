@@ -15,10 +15,10 @@ namespace try_messaging
             return "Server=localhost;Database=boardinghouse_practice_db;Uid=root;Pwd=;";
         }
 
-        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender)
+        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender, string address, string emergency_name1, string emergency_name2, string emergency_contact1, string emergency_contact2, DateTime movein_date, DateTime expiration_date)
 {
     // Update your query to include the new columns
-    string query = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender) VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender);";
+    string query = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, movein_date, expiration_date) VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender, @address, @emergency_name1, @emergency_name2, @emergency_contact1, @emergency_contact2, @movein_date, @expiration_date);";
     string query2 = "INSERT INTO tenants_accounts (tenid, username, password) VALUES (LAST_INSERT_ID(), @username, @password);"; // Use LAST_INSERT_ID() to get the last inserted tenid
 
     using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
@@ -35,6 +35,13 @@ namespace try_messaging
             command.Parameters.AddWithValue("@email", email);
             command.Parameters.AddWithValue("@contact", contact); // Add contact parameter
             command.Parameters.AddWithValue("@gender", gender); // Add gender parameter
+            command.Parameters.AddWithValue("@address", address);
+            command.Parameters.AddWithValue("@emergency_name1", emergency_name1);
+            command.Parameters.AddWithValue("@emergency_name2", emergency_name2);
+            command.Parameters.AddWithValue("@emergency_contact1", emergency_contact1);
+            command.Parameters.AddWithValue("@emergency_contact2", emergency_contact2);
+            command.Parameters.AddWithValue("@movein_date", movein_date);
+            command.Parameters.AddWithValue("@expiration_date", expiration_date);
 
             try
             {

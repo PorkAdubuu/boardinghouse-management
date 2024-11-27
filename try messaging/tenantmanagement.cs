@@ -21,7 +21,7 @@ namespace try_messaging
             InitializeComponent();
             this.CenterToScreen();
             // Set background color
-            this.BackColor = ColorTranslator.FromHtml("#ffffff");
+            this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
             this.adminID = adminID;
 
 
@@ -70,7 +70,8 @@ namespace try_messaging
                 progressBar.Visible = false;
                 progressBar.Style = ProgressBarStyle.Blocks; // Reset to default style
                 sendingLabel.Visible = false;
-                MessageBox.Show("Email sent successfully!"); 
+                MessageBox.Show("Email sent successfully!");
+                ClearFields();
             }
         }
 
@@ -98,16 +99,44 @@ namespace try_messaging
 
         private void tenantmanagement_Load(object sender, EventArgs e)
         {
-
+            genderCombo.SelectedIndex = 0;
         }
 
         private void emailgeneratorRich_TextChanged(object sender, EventArgs e)
         {
 
         }
+        private bool ValidateFields()
+        {
+            // Check if any of the required fields are empty or not selected
+            if (string.IsNullOrEmpty(lnameText.Text) ||
+                string.IsNullOrEmpty(fnameText.Text) ||
+                string.IsNullOrEmpty(ageText.Text) ||
+                string.IsNullOrEmpty(roomText.Text) ||
+                string.IsNullOrEmpty(textBox1.Text) ||    // Email field
+                string.IsNullOrEmpty(usernameText.Text) ||
+                string.IsNullOrEmpty(passwordText.Text) ||
+                string.IsNullOrEmpty(contactText.Text) ||
+                genderCombo.SelectedItem == null ||        // Gender combo box
+                string.IsNullOrEmpty(addText.Text) ||      // Address field
+                string.IsNullOrEmpty(emergency_contactt1.Text) ||
+                string.IsNullOrEmpty(emergency_number1.Text) ||
+                movein_datapicker.Value == DateTime.MinValue ||
+                expiration_datapicker.Value == DateTime.MinValue)
+            {
+                return false; // Validation failed
+            }
+            return true; // All fields are filled
+        }
 
         private async void sendbutton_Click(object sender, EventArgs e)
         {
+
+            if (!ValidateFields()) // Check if validation fails
+            {
+                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Prevent the email from being sent if validation fails
+            }
             // Get data from text boxes and date picker
             string lastname = lnameText.Text;
             string firstname = fnameText.Text;
@@ -118,10 +147,18 @@ namespace try_messaging
             string password = passwordText.Text;
             string contact = contactText.Text; 
             string gender = genderCombo.SelectedItem.ToString(); 
+            string address = addText.Text;
+            string emergency_name1 = emergency_contactt1.Text;
+            string emergency_name2 = emergency_contactt2.Text;
+            string emergency_contact1 = emergency_number1.Text;
+            string emergency_contact2 = emergency_number2.Text;
+            DateTime movein_date = movein_datapicker.Value;
+            DateTime expiration_date = expiration_datapicker.Value;
+
 
             // Insert tenant into the database
             DatabaseConnection db = new DatabaseConnection();
-            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender);
+            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, movein_date, expiration_date);
 
             //email content
             string tenantName = $"{firstname} {lastname}"; // Combine firstname and lastname for tenant's name
@@ -188,21 +225,27 @@ namespace try_messaging
         private void ClearFields()
         {
             // Clear text boxes
-            lnameText.Text = string.Empty;        
-            fnameText.Text = string.Empty;        
-            ageText.Text = string.Empty;          
-            roomText.Text = string.Empty;         
-            textBox1.Text = string.Empty;         
-            usernameText.Text = string.Empty;     
-            passwordText.Text = string.Empty;     
-            contactText.Text = string.Empty;      
+            lnameText.Text = string.Empty;
+            fnameText.Text = string.Empty;
+            ageText.Text = string.Empty;
+            roomText.Text = string.Empty;
+            textBox1.Text = string.Empty;
+            usernameText.Text = string.Empty;
+            passwordText.Text = string.Empty;
+            contactText.Text = string.Empty;
+            addText.Text = string.Empty; // Added for address field
+            emergency_contactt1.Text = string.Empty; // Added for emergency contact 1 name
+            emergency_contactt2.Text = string.Empty; // Added for emergency contact 2 name
+            emergency_number1.Text = string.Empty; // Added for emergency contact 1 number
+            emergency_number2.Text = string.Empty; // Added for emergency contact 2 number    
+            movein_datapicker.Value = DateTime.Now; // Reset to current date
+            expiration_datapicker.Value = DateTime.Now; // Reset to current date
 
-            
             if (genderCombo.Items.Count > 0)
             {
                 genderCombo.SelectedIndex = 0;    
             }
-
+            
             // Clear the email generator RichTextBox
             emailgeneratorRich.Text = string.Empty; 
         }
@@ -212,6 +255,46 @@ namespace try_messaging
             admin_dashboard admindashboard = new admin_dashboard(adminID);
             admindashboard.Show();
             this.Hide();
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
