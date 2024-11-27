@@ -21,6 +21,8 @@ namespace try_messaging
             InitializeComponent();
             dbConnection = new DatabaseConnection();
             this.tenantId = tenantId;
+
+            addressLabel.BorderStyle = BorderStyle.None;
         }
 
         private void tenant_account_profile_Load(object sender, EventArgs e)

@@ -59,7 +59,6 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
-            this.addressLabel = new System.Windows.Forms.Label();
             this.name1Label = new System.Windows.Forms.Label();
             this.phone1Label = new System.Windows.Forms.Label();
             this.name2Label = new System.Windows.Forms.Label();
@@ -73,6 +72,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.addressLabel = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -415,17 +415,6 @@
             this.phoneLabel.TabIndex = 35;
             this.phoneLabel.Text = "N/A";
             // 
-            // addressLabel
-            // 
-            this.addressLabel.AutoSize = true;
-            this.addressLabel.BackColor = System.Drawing.Color.White;
-            this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressLabel.Location = new System.Drawing.Point(86, 281);
-            this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(30, 16);
-            this.addressLabel.TabIndex = 36;
-            this.addressLabel.Text = "N/A";
-            // 
             // name1Label
             // 
             this.name1Label.AutoSize = true;
@@ -569,12 +558,22 @@
             this.label3.TabIndex = 49;
             this.label3.Text = "Account Analytics:";
             // 
+            // addressLabel
+            // 
+            this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addressLabel.Location = new System.Drawing.Point(84, 282);
+            this.addressLabel.Name = "addressLabel";
+            this.addressLabel.Size = new System.Drawing.Size(167, 49);
+            this.addressLabel.TabIndex = 50;
+            this.addressLabel.Text = "";
+            // 
             // tenant_account_profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 574);
+            this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox1);
@@ -588,7 +587,6 @@
             this.Controls.Add(this.name2Label);
             this.Controls.Add(this.phone1Label);
             this.Controls.Add(this.name1Label);
-            this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.phoneLabel);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.pictureBox5);
@@ -669,7 +667,6 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label phoneLabel;
-        private System.Windows.Forms.Label addressLabel;
         private System.Windows.Forms.Label name1Label;
         private System.Windows.Forms.Label phone1Label;
         private System.Windows.Forms.Label name2Label;
@@ -683,5 +680,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox addressLabel;
     }
 }
