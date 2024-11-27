@@ -13,7 +13,9 @@ namespace try_messaging
         private int tenantId; // Store the tenant's ID
         private DatabaseConnection dbConnection;
         private Timer messageCheckTimer;
-        private Form parentForm;
+        private Form parentForm;           
+        private Timer clockTimer;
+
 
         public tenant_dashboard(int tenantId)
         {
@@ -26,6 +28,28 @@ namespace try_messaging
             LoadTenantName(); // Load the tenant's name when the form is created
             LoadTenantProfilePicture(tenantId);
             this.CenterToScreen();
+
+            //load dashboard display
+            tenant_dashboard_display tenant_Dashboard_Display = new tenant_dashboard_display(tenantId);
+            LoadFormInPanel(tenant_Dashboard_Display);
+
+
+            dashboard_Btn.Click += dashboard_Btn_Click_1;
+            profile_Btn.Click += profile_Btn_Click;
+            payment_Btn.Click += Payment_Btn_Click;
+            maintenance_Btn.Click += maintenance_Btn_Click;
+
+            //timee
+            // Initialize the Timer
+            clockTimer = new Timer();
+            clockTimer.Interval = 1000; // 1 second
+            clockTimer.Tick += ClockTimer_Tick;
+
+            // Start the Timer
+            clockTimer.Start();
+
+            timeLabel.Text = DateTime.Now.ToString("MMMM dd, yyyy | hh:mm:ss tt");
+
 
 
 
@@ -47,6 +71,16 @@ namespace try_messaging
 
 
 
+        }
+        private void ClockTimer_Tick(object sender, EventArgs e)
+        {
+            // Update the label with the current time
+            timeLabel.Text = DateTime.Now.ToString("MMMM dd, yyyy | hh:mm:ss tt");
+        }
+
+        private void Payment_Btn_Click(object sender, EventArgs e)
+        {
+           
         }
 
         private void LoadTenantProfilePicture(int tenantId)
@@ -162,11 +196,11 @@ namespace try_messaging
             // Change the image in the PictureBox based on whether there are new messages
             if (hasNewMessages)
             {
-                mail_icon.Image = Properties.Resources.mail_notif; // Set to the notification icon
+                mail_icon.Image = Properties.Resources.communication; // Set to the notification icon
             }
             else
             {
-                mail_icon.Image = Properties.Resources.mail_default; // Set to the default icon
+                mail_icon.Image = Properties.Resources.mail; // Set to the default icon
             }
         }
 
@@ -203,7 +237,9 @@ namespace try_messaging
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            
+            dashboard_Btn_Click_1(dashboard_Btn, EventArgs.Empty);
+
+
         }
 
         private void displayPanel_Paint(object sender, PaintEventArgs e)
@@ -216,6 +252,11 @@ namespace try_messaging
             tenantcomform tenantcomform = new tenantcomform(tenantId);
             LoadFormInPanel(tenantcomform);
             MarkMessagesAsRead();
+
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
+            payment_Btn.Image = Properties.Resources.payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
         }
         private void MarkMessagesAsRead()
         {
@@ -241,6 +282,14 @@ namespace try_messaging
         {
             tenant_profile tenantProfile = new tenant_profile(verificationCode,tenantId); // Passing 'this' to tenant_profile
             LoadFormInPanel(tenantProfile);
+
+            // Change the image of the profile button
+            profile_Btn.Image = Properties.Resources.profile_pink_butt__1_;
+
+            // Reset the dashboard button to its default image
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            payment_Btn.Image = Properties.Resources.payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
         }
 
         
@@ -248,9 +297,126 @@ namespace try_messaging
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            TenantLoginForm tenantLoginForm1 = new TenantLoginForm();
-            tenantLoginForm1.Show();
+           startingwindow startingwindow = new startingwindow();
+            startingwindow.Show();
             this.Close();
+        }
+
+
+
+        private void dashboard_Btn_Click_1(object sender, EventArgs e)
+        {
+            
+            // Clear the panel and load the dashboard form
+            tenant_dashboard_display tenant_Dashboard_Display = new tenant_dashboard_display(tenantId);
+            LoadFormInPanel(tenant_Dashboard_Display);
+
+            // Change the image of the dashboard button
+            dashboard_Btn.Image = Properties.Resources.dashboard_pink_butt;
+
+            // Reset the profile button to its default image
+            profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
+            payment_Btn.Image = Properties.Resources.payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
+
+            notificationGrid.Visible = false;
+
+
+
+
+
+        }
+
+
+        private void profile_Btn_Click(object sender, EventArgs e)
+        {
+            displayPanel.Controls.Clear();
+            // Clear the panel and load the profile form
+            tenant_account_profile tenant_Account_Profile = new tenant_account_profile(tenantId);
+            LoadFormInPanel(tenant_Account_Profile);
+
+            // Change the image of the profile button
+            profile_Btn.Image = Properties.Resources.profile_pink_butt__1_;
+
+            // Reset the dashboard button to its default image
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            payment_Btn.Image = Properties.Resources.payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
+
+            notificationGrid.Visible = false;
+        }
+
+        private void payment_Btn_Click(object sender, EventArgs e)
+        {
+            // Clear the panel and load the profile form
+            
+
+            //code here the target form
+            
+
+            // Change the image of the profile button
+            payment_Btn.Image = Properties.Resources.payment_pink_butt;
+
+            // Reset the dashboard button to its default image
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
+            maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
+
+            notificationGrid.Visible = false;
+        }
+
+        private void maintenance_Btn_Click(object sender, EventArgs e)
+        {
+            // Clear the panel and load the profile form
+            
+
+            //code here the target form
+
+
+            // Change the image of the profile button
+            maintenance_Btn.Image = Properties.Resources.maintenance_pink_butt;
+
+            // Reset the dashboard button to its default image
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
+            payment_Btn.Image = Properties.Resources.payment_plain_butt;
+
+            notificationGrid.Visible = false;
+        }
+
+        private void notification_Btn_Click(object sender, EventArgs e)
+        {
+            notificationGrid.Visible = !notificationGrid.Visible;
+        }
+
+        private void tenant_dashboard_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Hide the grid if it is visible and the click is outside the grid
+            if (notificationGrid.Visible)
+            {
+                // Check if the click was outside the grid
+                if (!notificationGrid.Bounds.Contains(e.Location))
+                {
+                    notificationGrid.Visible = false;
+                }
+            }
+        }
+
+        private void notificationGrid_MouseClick(object sender, MouseEventArgs e)
+        {
+           
+        }
+
+        private void displayPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (notificationGrid.Visible)
+            {
+                // Check if the click was outside the grid
+                if (!notificationGrid.Bounds.Contains(e.Location))
+                {
+                    notificationGrid.Visible = false;
+                }
+            }
         }
     }
 }

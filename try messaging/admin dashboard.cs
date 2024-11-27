@@ -10,6 +10,7 @@ namespace try_messaging
         private Timer messageCheckTimer; // Timer to check for new messages
         private DatabaseConnection dbConnection;
         private int adminID;
+        private Timer clockTimer;
 
         public admin_dashboard(int adminID)
         {
@@ -33,6 +34,25 @@ namespace try_messaging
             // Make sure the TextBox does not gain focus
             adminNameLabel.TabStop = false;
 
+            //timee
+            // Initialize the Timer
+            clockTimer = new Timer();
+            clockTimer.Interval = 1000; // 1 second
+            clockTimer.Tick += ClockTimer_Tick;
+
+            // Start the Timer
+            clockTimer.Start();
+
+            timeLabel.Text = DateTime.Now.ToString("MMMM dd, yyyy | hh:mm:ss tt");
+
+            admin_dashboard_display admin_Dashboard_Display = new admin_dashboard_display();
+            LoadFormInPanel(admin_Dashboard_Display);
+
+        }
+        private void ClockTimer_Tick(object sender, EventArgs e)
+        {
+            // Update the label with the current time
+            timeLabel.Text = DateTime.Now.ToString("MMMM dd, yyyy | hh:mm:ss tt");
         }
         private void LoadAdminName()
         {
@@ -84,11 +104,11 @@ namespace try_messaging
             // Change the image in the PictureBox based on whether there are new messages
             if (hasNewMessages)
             {
-                mail_icon.Image = Properties.Resources.mail_notif; // Set to the notification icon
+                mail_icon.Image = Properties.Resources.communication; // Set to the notification icon
             }
             else
             {
-                mail_icon.Image = Properties.Resources.mail_default; // Set to the default icon
+                mail_icon.Image = Properties.Resources.mail; // Set to the default icon
             }
         }
 
@@ -114,6 +134,7 @@ namespace try_messaging
         private void admin_dashboard_Load(object sender, EventArgs e)
         {
             // Initial load actions can be performed here if needed
+            dashboard_Btn_Click(dashboard_Btn, EventArgs.Empty);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -148,14 +169,138 @@ namespace try_messaging
         {
             admincomform admincomform1 = new admincomform();
             LoadFormInPanel(admincomform1);
-            
+
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-            adminLoginForm adminLoginForm = new adminLoginForm();
+            startingwindow adminLoginForm = new startingwindow();
             adminLoginForm.Show();
             this.Close();
+        }
+
+        private void dashboard_Btn_Click(object sender, EventArgs e)
+        {
+            displayPanel.Controls.Clear();
+            // Clear the panel and load the dashboard form
+            admin_dashboard_display admin_Dashboard_Display = new admin_dashboard_display();
+            LoadFormInPanel(admin_Dashboard_Display);
+            // Change the image of the dashboard button
+            dashboard_Btn.Image = Properties.Resources.dashboard_pink_butt;
+
+            //plain 
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+            //notif out 
+            notificationGrid.Visible = false;
+        }
+
+        private void managetenant_Btn_Click(object sender, EventArgs e)
+        {
+            //to form
+            tenantmanagement tenantmanagement = new tenantmanagement(adminID);
+            LoadFormInPanel(tenantmanagement);
+
+            //transition
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_pink_butt;
+            //plain 
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+
+            //notif out 
+            notificationGrid.Visible = false;
+        }
+
+        private void manageHouse_Btn_Click(object sender, EventArgs e)
+        {
+            //to form
+
+            //transition
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_pink_butt;
+
+            //plain 
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+
+            //notif out 
+            notificationGrid.Visible = false;
+        }
+
+        private void payments_Btn_Click(object sender, EventArgs e)
+        {
+            //to form
+
+            //transition
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_pink_butt;
+
+            //plain 
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+
+            //notif out 
+            notificationGrid.Visible = false;
+        }
+
+        private void maintenance_Btn_Click(object sender, EventArgs e)
+        {
+            //to form
+
+            //transition
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_pink_butt;
+
+            //plain 
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+
+            //notif out 
+            notificationGrid.Visible = false;
+        }
+
+        private void analytics_Btn_Click(object sender, EventArgs e)
+        {
+            //to form
+
+            //transition
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_pink_butt;
+
+            //plain 
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            
+
+
+            //notif out 
+            notificationGrid.Visible = false;
+        }
+
+        private void notification_Btn_Click(object sender, EventArgs e)
+        {
+            notificationGrid.Visible = !notificationGrid.Visible;
         }
     }
 }

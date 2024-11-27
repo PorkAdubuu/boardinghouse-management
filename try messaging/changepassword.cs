@@ -89,11 +89,13 @@ namespace try_messaging
                         }
                     }
 
-                    // Show the tenantLoginForm
-                    TenantLoginForm loginForm = new TenantLoginForm();
-                    loginForm.Show();
+                    
+                    
 
                     // Close the changepassword form itself
+                    
+                    startingwindow startingwindow = new startingwindow();
+                    startingwindow.Show();
                     this.Close();
                 }
                 else

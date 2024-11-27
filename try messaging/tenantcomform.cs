@@ -21,6 +21,8 @@ namespace try_messaging
             MarkMessagesAsRead();
             LoadMessages();
             InitializeTimer();
+
+            //this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
         }
 
         private void MarkMessagesAsRead()
@@ -180,5 +182,23 @@ namespace try_messaging
         {
             // Code to execute on form load if needed
         }
+        private void typeMessage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !e.Shift)
+            {
+                // Disable Enter key
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Enter && e.Shift)
+            {
+                // Allow Shift+Enter to insert a new line
+                int cursorPosition = typeMessage.SelectionStart;
+                typeMessage.Text = typeMessage.Text.Insert(cursorPosition, "\n");
+                typeMessage.SelectionStart = cursorPosition + 1;
+                e.Handled = true;
+            }
+        }
+
+
     }
 }

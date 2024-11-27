@@ -121,26 +121,95 @@
   <data name="ADMIN_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ADMIN BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="admin_maintenance_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_maintenance pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_maintenance_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_maintenance plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_manage_house_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_manage house pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_manage_house_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_manage house plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_manage_tenant_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_manage tenant pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_manage_tenant_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_manage tenant plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_report_analytic_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_report&amp;analytic pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_report_analytic_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_report&amp;analytic plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_tenant_payment_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_tenant payment pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="admin_tenant_payment_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_tenant payment plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BG_white_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BG white pink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="birthday_cake" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\birthday-cake.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boarding_house_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boarding house icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CANCEL_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CANCEL BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="communication" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\communication.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dashboard_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dashboard pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dashboard_plain_butt__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dashboard plain butt (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DefaultProfile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DefaultProfile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="done" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\done.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="emergency_contents" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\emergency contents.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="EXIT_APP_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EXIT APP BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="expiration_date_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\expiration date icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GENERATE_AND_SEND_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GENERATE AND SEND BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GENERATE_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GENERATE BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gray_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gray line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="growth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\growth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,17 +226,86 @@
   <data name="LOG_OUT_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOG OUT BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="magnifying_glass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\magnifying-glass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="magnifying_glass__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\magnifying-glass (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mail_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mail default (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mail_notif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mail with notif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="maintenance_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maintenance pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="maintenance_plain_butt_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maintenance plain butt_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="move_in_date_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\move in date icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="notification__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\notification (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="payment_pink_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\payment pink butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="payment_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\payment plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pink_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pink bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pink_line__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pink line (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="posangBoang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\posangBoang.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profile_pink_butt__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profile pink butt (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profile_plain_butt__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profile plain butt (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="property__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\property (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="remaining_lease_expiration_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remaining lease expiration icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="REMOVE_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\REMOVE BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="room_house_pic__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\room house pic (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rounded_boxy_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rounded boxy bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rounded_boxy_bg__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rounded boxy bg (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smart_budgeting_pic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smart budgeting pic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SUBMIT_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SUBMIT BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="suitcase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\suitcase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="super_big_welcome_tenant_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\super big welcome tenant bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UPDATE_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UPDATE BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,5 +315,11 @@
   </data>
   <data name="USER_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\USER BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_admin_pink_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\welcome admin pink bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_tenant_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\welcome tenant text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
