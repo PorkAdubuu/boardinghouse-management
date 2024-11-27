@@ -306,7 +306,7 @@ namespace try_messaging
     // Helper class for ComboBox items
     public class ComboBoxItem
     {
-        public string Text { get; }
+        public string Text { get; } 
         public string Value { get; }
 
         public ComboBoxItem(string text, string value)
