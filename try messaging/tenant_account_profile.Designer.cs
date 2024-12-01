@@ -566,6 +566,7 @@
             this.addressLabel.Size = new System.Drawing.Size(167, 49);
             this.addressLabel.TabIndex = 50;
             this.addressLabel.Text = "";
+            this.addressLabel.TextChanged += new System.EventHandler(this.addressLabel_TextChanged);
             // 
             // tenant_account_profile
             // 

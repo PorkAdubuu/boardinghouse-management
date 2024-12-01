@@ -161,12 +161,13 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::try_messaging.Properties.Resources.BG_white_pink;
-            this.pictureBox1.Location = new System.Drawing.Point(-74, -13);
+            this.pictureBox1.Location = new System.Drawing.Point(-75, -18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1261, 722);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // startingwindow
             // 

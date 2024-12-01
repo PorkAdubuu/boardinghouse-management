@@ -146,6 +146,12 @@
       <DependentUpon>bulletinForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="EditBillsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBillsForm.Designer.cs">
+      <DependentUpon>EditBillsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="ImagePreviewDialog.cs">
       <SubType>Form</SubType>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="bulletinForm.resx">
       <DependentUpon>bulletinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBillsForm.resx">
+      <DependentUpon>EditBillsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImagePreviewDialog.resx">
       <DependentUpon>ImagePreviewDialog.cs</DependentUpon>

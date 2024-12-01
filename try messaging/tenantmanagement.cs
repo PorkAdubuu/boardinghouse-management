@@ -296,5 +296,15 @@ namespace try_messaging
         {
 
         }
+
+        private void movein_datapicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void expiration_datapicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

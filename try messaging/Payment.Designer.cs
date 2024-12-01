@@ -38,6 +38,19 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableforpayment = new System.Windows.Forms.DataGridView();
+            this.tenantID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenantName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Roomnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchbtn = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.analytics_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maintenance_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.payments_Btn)).BeginInit();
@@ -46,6 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashboard_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableforpayment)).BeginInit();
             this.SuspendLayout();
             // 
             // analytics_Btn
@@ -113,6 +128,7 @@
             this.dashboard_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.dashboard_Btn.TabIndex = 73;
             this.dashboard_Btn.TabStop = false;
+            this.dashboard_Btn.Click += new System.EventHandler(this.dashboard_Btn_Click);
             // 
             // pictureBox6
             // 
@@ -137,10 +153,126 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(281, 53);
+            this.panel1.Controls.Add(this.tableforpayment);
+            this.panel1.Location = new System.Drawing.Point(281, 85);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(885, 578);
+            this.panel1.Size = new System.Drawing.Size(885, 546);
             this.panel1.TabIndex = 80;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // tableforpayment
+            // 
+            this.tableforpayment.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tableforpayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableforpayment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tenantID,
+            this.tenantName,
+            this.Roomnum,
+            this.amount,
+            this.balance,
+            this.lastPay,
+            this.stats,
+            this.Action});
+            this.tableforpayment.Location = new System.Drawing.Point(2, 0);
+            this.tableforpayment.Name = "tableforpayment";
+            this.tableforpayment.RowHeadersVisible = false;
+            this.tableforpayment.Size = new System.Drawing.Size(880, 546);
+            this.tableforpayment.TabIndex = 0;
+            this.tableforpayment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableforpayment_CellContentClick);
+            // 
+            // tenantID
+            // 
+            this.tenantID.HeaderText = "ID";
+            this.tenantID.Name = "tenantID";
+            this.tenantID.Width = 50;
+            // 
+            // tenantName
+            // 
+            this.tenantName.HeaderText = "Name";
+            this.tenantName.Name = "tenantName";
+            this.tenantName.Width = 142;
+            // 
+            // Roomnum
+            // 
+            this.Roomnum.HeaderText = "Room Number";
+            this.Roomnum.Name = "Roomnum";
+            // 
+            // amount
+            // 
+            this.amount.HeaderText = "Amount";
+            this.amount.Name = "amount";
+            // 
+            // balance
+            // 
+            this.balance.HeaderText = "Balance";
+            this.balance.Name = "balance";
+            this.balance.Width = 120;
+            // 
+            // lastPay
+            // 
+            this.lastPay.HeaderText = "Last Payment";
+            this.lastPay.Name = "lastPay";
+            this.lastPay.Width = 145;
+            // 
+            // stats
+            // 
+            this.stats.HeaderText = "Status";
+            this.stats.Name = "stats";
+            this.stats.Width = 120;
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(290, 22);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(252, 30);
+            this.textBox1.TabIndex = 81;
+            // 
+            // searchbtn
+            // 
+            this.searchbtn.Location = new System.Drawing.Point(548, 30);
+            this.searchbtn.Name = "searchbtn";
+            this.searchbtn.Size = new System.Drawing.Size(62, 22);
+            this.searchbtn.TabIndex = 82;
+            this.searchbtn.Text = "Search";
+            this.searchbtn.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Pending",
+            "Paid"});
+            this.comboBox1.Location = new System.Drawing.Point(290, 57);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(137, 21);
+            this.comboBox1.TabIndex = 83;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.comboBox2.Location = new System.Drawing.Point(454, 57);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(137, 21);
+            this.comboBox2.TabIndex = 84;
             // 
             // Payment
             // 
@@ -148,6 +280,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.searchbtn);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.analytics_Btn);
@@ -167,7 +303,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dashboard_Btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tableforpayment)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,5 +321,18 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView tableforpayment;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button searchbtn;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenantID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenantName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Roomnum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn balance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastPay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stats;
+        private System.Windows.Forms.DataGridViewLinkColumn Action;
     }
 }

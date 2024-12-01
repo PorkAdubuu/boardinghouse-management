@@ -16,7 +16,7 @@ namespace try_messaging
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new startingwindow());
+            Application.Run(new Payment());
         }
     }
 }

@@ -93,5 +93,10 @@ namespace try_messaging
         {
 
         }
+
+        private void addressLabel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

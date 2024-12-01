@@ -373,6 +373,7 @@
             this.movein_datapicker.Name = "movein_datapicker";
             this.movein_datapicker.Size = new System.Drawing.Size(201, 20);
             this.movein_datapicker.TabIndex = 68;
+            this.movein_datapicker.ValueChanged += new System.EventHandler(this.movein_datapicker_ValueChanged);
             // 
             // label8
             // 
@@ -391,6 +392,7 @@
             this.expiration_datapicker.Name = "expiration_datapicker";
             this.expiration_datapicker.Size = new System.Drawing.Size(201, 20);
             this.expiration_datapicker.TabIndex = 70;
+            this.expiration_datapicker.ValueChanged += new System.EventHandler(this.expiration_datapicker_ValueChanged);
             // 
             // label9
             // 
