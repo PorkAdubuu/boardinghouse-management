@@ -161,6 +161,7 @@ namespace try_messaging
             this.timeLabel.Size = new System.Drawing.Size(230, 20);
             this.timeLabel.TabIndex = 63;
             this.timeLabel.Text = "MMMM dd, yyyy hh:mm:ss tt";
+            this.timeLabel.Click += new System.EventHandler(this.timeLabel_Click);
             // 
             // dashboard_Btn
             // 
