@@ -9,6 +9,7 @@ namespace try_messaging
     public static class GlobalSettings
     {
         public static int LoggedInAdminId { get; set; }  // Admin ID (already set)
+        public static int LoggedInTenantId { get; set; } = 0;
     }
     
 }

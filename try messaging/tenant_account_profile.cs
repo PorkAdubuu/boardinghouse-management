@@ -23,11 +23,14 @@ namespace try_messaging
             this.tenantId = tenantId;
 
             addressLabel.BorderStyle = BorderStyle.None;
+            boardingAddText.BorderStyle = BorderStyle.None;
+            
         }
 
         private void tenant_account_profile_Load(object sender, EventArgs e)
         {
             LoadTenantInformation();
+            LoadHOuseInformation();
         }
 
         private void LoadTenantInformation()
@@ -57,6 +60,9 @@ namespace try_messaging
                             name1Label.Text = reader["emergency_name1"].ToString().ToUpper();
                             name2Label.Text = reader["emergency_name2"].ToString().ToUpper();
                             roomLabel.Text = reader["roomnumber"].ToString().ToUpper();
+                            airconText.Text = reader["air_condition"].ToString().ToUpper(); 
+                            wifiText.Text = reader["wifi"].ToString().ToUpper();
+                            parkingText.Text = reader["parking"].ToString().ToUpper();
                             moveinLabel.Text = Convert.ToDateTime(reader["movein_date"]).ToString("MM/dd/yyyy");
                             expirationLabel.Text = Convert.ToDateTime(reader["expiration_date"]).ToString("MM/dd/yyyy");
 
@@ -87,6 +93,46 @@ namespace try_messaging
                 }
             }
         }
+
+        private void LoadHOuseInformation()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Get the house_name of the tenant from tenants_details
+                    string query = @"
+                SELECT bh.house_name, bh.location 
+                FROM boarding_houses bh
+                INNER JOIN tenants_details td ON td.house_name = bh.house_name
+                WHERE td.tenid = @tenantId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Set the house name and location to the corresponding controls
+                            houseNameText.Text = reader["house_name"].ToString().ToUpper();
+                            boardingAddText.Text = reader["location"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("House information not found for the tenant.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading house information: " + ex.Message);
+                }
+            }
+        }
+
 
 
         private void profilePic_Click(object sender, EventArgs e)

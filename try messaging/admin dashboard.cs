@@ -207,9 +207,8 @@ namespace try_messaging
 
         private void managetenant_Btn_Click(object sender, EventArgs e)
         {
-            //to form
-            tenantmanagement tenantmanagement = new tenantmanagement(adminID);
-            LoadFormInPanel(tenantmanagement);
+            tenantmanagementPanel tenantmanagementPanel = new tenantmanagementPanel(adminID);
+            LoadFormInPanel(tenantmanagementPanel);
 
             //transition
             managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_pink_butt;
@@ -227,6 +226,8 @@ namespace try_messaging
         private void manageHouse_Btn_Click(object sender, EventArgs e)
         {
             //to form
+            boardining_houses boardining_Houses = new boardining_houses();
+            LoadFormInPanel(boardining_Houses);
 
             //transition
             manageHouse_Btn.Image = Properties.Resources.admin_manage_house_pink_butt;
@@ -245,7 +246,8 @@ namespace try_messaging
         private void payments_Btn_Click(object sender, EventArgs e)
         {
             //to form
-
+            payment_admin payment_Admin = new payment_admin();
+            LoadFormInPanel(payment_Admin);
             //transition
             payments_Btn.Image = Properties.Resources.admin_tenant_payment_pink_butt;
 

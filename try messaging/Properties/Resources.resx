@@ -163,8 +163,17 @@
   <data name="birthday_cake" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\birthday-cake.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="boardinghousepicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boardinghousepicture.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boardinghousepicture2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boardinghousepicture2.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="boarding_house_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\boarding house icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Boarding_House_Policy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Boarding House Policy.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CANCEL_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CANCEL BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,6 +205,15 @@
   <data name="expiration_date_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\expiration date icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="flash__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flash (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="garage_car__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\garage-car (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gcash_QR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gcash QR.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="GENERATE_AND_SEND_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GENERATE AND SEND BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -216,6 +234,9 @@
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LOGIN_BUTTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOGIN BUTTON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -316,10 +337,16 @@
   <data name="USER_BUTT" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\USER BUTT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="water_tap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\water-tap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="welcome_admin_pink_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\welcome admin pink bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="welcome_tenant_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\welcome tenant text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wi_fi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi-fi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

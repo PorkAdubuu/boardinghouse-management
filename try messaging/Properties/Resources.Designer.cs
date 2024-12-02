@@ -221,6 +221,36 @@ namespace try_messaging.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Boarding_House_Policy {
+            get {
+                object obj = ResourceManager.GetObject("Boarding_House_Policy", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boardinghousepicture {
+            get {
+                object obj = ResourceManager.GetObject("boardinghousepicture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap boardinghousepicture2 {
+            get {
+                object obj = ResourceManager.GetObject("boardinghousepicture2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CANCEL_BUTT {
@@ -323,6 +353,36 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap flash__1_ {
+            get {
+                object obj = ResourceManager.GetObject("flash__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap garage_car__1_ {
+            get {
+                object obj = ResourceManager.GetObject("garage_car__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gcash_QR {
+            get {
+                object obj = ResourceManager.GetObject("gcash_QR", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GENERATE_AND_SEND_BUTT {
             get {
                 object obj = ResourceManager.GetObject("GENERATE_AND_SEND_BUTT", resourceCulture);
@@ -387,6 +447,16 @@ namespace try_messaging.Properties {
             get {
                 object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key__1_ {
+            get {
+                object obj = ResourceManager.GetObject("key__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -723,6 +793,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap water_tap {
+            get {
+                object obj = ResourceManager.GetObject("water_tap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap welcome_admin_pink_bg {
             get {
                 object obj = ResourceManager.GetObject("welcome_admin_pink_bg", resourceCulture);
@@ -736,6 +816,16 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap welcome_tenant_text {
             get {
                 object obj = ResourceManager.GetObject("welcome_tenant_text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wi_fi {
+            get {
+                object obj = ResourceManager.GetObject("wi_fi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

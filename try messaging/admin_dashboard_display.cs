@@ -130,6 +130,60 @@ namespace try_messaging
         private void admin_dashboard_display_Load(object sender, EventArgs e)
         {
             LoadAnnouncements();
+            LoadTotalTenant();
+            LoadTotalHouses();
         }
+
+        private void LoadTotalTenant()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to count the total number of tenants
+                    string query = "SELECT COUNT(*) AS TotalTenants FROM tenants_details";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    // Execute the query and retrieve the total count
+                    object result = cmd.ExecuteScalar();
+                    int totalTenants = result != null ? Convert.ToInt32(result) : 0;
+
+                    // Display the total number of tenants in the label
+                    totalTenantLabel.Text = totalTenants.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading total tenants: " + ex.Message);
+                }
+            }
+        }
+        private void LoadTotalHouses()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to count the total number of tenants
+                    string query = "SELECT COUNT(*) AS TotalTenants FROM boarding_houses";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    // Execute the query and retrieve the total count
+                    object result = cmd.ExecuteScalar();
+                    int totalTenants = result != null ? Convert.ToInt32(result) : 0;
+
+                    // Display the total number of tenants in the label
+                    totalHousesLabel.Text = totalTenants.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading total houses: " + ex.Message);
+                }
+            }
+        }
+
     }
 }
