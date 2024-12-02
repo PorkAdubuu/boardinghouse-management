@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.IO;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 
 
@@ -49,7 +50,8 @@ namespace try_messaging
             expirationText.BorderStyle = BorderStyle.None;
 
             LoadHOuseInformation();
-
+            LoadTenantBills();
+            LoadTenantLastTransactions();
 
 
 
@@ -224,6 +226,86 @@ namespace try_messaging
                 }
             }
         }
+
+        private void LoadTenantBills()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT total_bill
+                    FROM billing_table
+                    WHERE tenant_id = @tenantId AND status IN ('No payment', 'Pending', 'Declined')
+                    ORDER BY billing_id DESC LIMIT 1";  // Fetch the latest unpaid bill for the tenant
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Pass only tenant_id
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Set the bill values for the labels, formatted with thousand separators and 2 decimal points
+
+                            totalBill.Text = Convert.ToDecimal(reader["total_bill"]).ToString("N2");
+                           
+                        }
+                        else
+                        {
+
+
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading tenant bills: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void LoadTenantLastTransactions()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+            SELECT total_bill, date, status
+            FROM tenant_transaction_table
+            WHERE tenant_id = @tenantId
+            ORDER BY date DESC
+            LIMIT 1";  // Fetch only the latest transaction for the current tenant
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Use the tenantId of the logged-in tenant
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())  // Check if any data is returned
+                        {
+                            // Set the values for the labels
+                            amount.Text = Convert.ToDecimal(reader["total_bill"]).ToString("N2");
+                            datePaid.Text = Convert.ToDateTime(reader["date"]).ToString("MM/dd/yyyy"); // Correct column name
+                            paymentStatus.Text = reader["status"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No transaction found for this tenant.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading transactions: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
 
     }
 }

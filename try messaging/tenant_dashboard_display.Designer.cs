@@ -59,6 +59,11 @@
             this.expirationText = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.houseNameText = new System.Windows.Forms.Label();
+            this.totalBill = new System.Windows.Forms.Label();
+            this.dueDate = new System.Windows.Forms.Label();
+            this.amount = new System.Windows.Forms.Label();
+            this.datePaid = new System.Windows.Forms.Label();
+            this.paymentStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -393,11 +398,71 @@
             this.houseNameText.TabIndex = 38;
             this.houseNameText.Text = "N/A";
             // 
+            // totalBill
+            // 
+            this.totalBill.AutoSize = true;
+            this.totalBill.BackColor = System.Drawing.Color.White;
+            this.totalBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalBill.Location = new System.Drawing.Point(72, 451);
+            this.totalBill.Name = "totalBill";
+            this.totalBill.Size = new System.Drawing.Size(14, 16);
+            this.totalBill.TabIndex = 39;
+            this.totalBill.Text = "0";
+            // 
+            // dueDate
+            // 
+            this.dueDate.AutoSize = true;
+            this.dueDate.BackColor = System.Drawing.Color.White;
+            this.dueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dueDate.Location = new System.Drawing.Point(83, 478);
+            this.dueDate.Name = "dueDate";
+            this.dueDate.Size = new System.Drawing.Size(11, 16);
+            this.dueDate.TabIndex = 40;
+            this.dueDate.Text = "-";
+            // 
+            // amount
+            // 
+            this.amount.AutoSize = true;
+            this.amount.BackColor = System.Drawing.Color.White;
+            this.amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amount.Location = new System.Drawing.Point(343, 451);
+            this.amount.Name = "amount";
+            this.amount.Size = new System.Drawing.Size(62, 16);
+            this.amount.TabIndex = 41;
+            this.amount.Text = "00,000.00";
+            // 
+            // datePaid
+            // 
+            this.datePaid.AutoSize = true;
+            this.datePaid.BackColor = System.Drawing.Color.White;
+            this.datePaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePaid.Location = new System.Drawing.Point(356, 478);
+            this.datePaid.Name = "datePaid";
+            this.datePaid.Size = new System.Drawing.Size(11, 16);
+            this.datePaid.TabIndex = 42;
+            this.datePaid.Text = "-";
+            // 
+            // paymentStatus
+            // 
+            this.paymentStatus.AutoSize = true;
+            this.paymentStatus.BackColor = System.Drawing.Color.White;
+            this.paymentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentStatus.Location = new System.Drawing.Point(395, 504);
+            this.paymentStatus.Name = "paymentStatus";
+            this.paymentStatus.Size = new System.Drawing.Size(30, 16);
+            this.paymentStatus.TabIndex = 43;
+            this.paymentStatus.Text = "N/A";
+            // 
             // tenant_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
+            this.Controls.Add(this.paymentStatus);
+            this.Controls.Add(this.datePaid);
+            this.Controls.Add(this.amount);
+            this.Controls.Add(this.dueDate);
+            this.Controls.Add(this.totalBill);
             this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.expirationText);
             this.Controls.Add(this.moveinText);
@@ -481,5 +546,10 @@
         private System.Windows.Forms.Label expirationText;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label houseNameText;
+        private System.Windows.Forms.Label totalBill;
+        private System.Windows.Forms.Label dueDate;
+        private System.Windows.Forms.Label amount;
+        private System.Windows.Forms.Label datePaid;
+        private System.Windows.Forms.Label paymentStatus;
     }
 }
