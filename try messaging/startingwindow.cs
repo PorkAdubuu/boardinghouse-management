@@ -67,6 +67,7 @@ namespace try_messaging
             if (tenantId > 0) // Check if tenant ID is valid
             {
                 MessageBox.Show("Login successful!"); // Inform the user about successful login
+                GlobalSettings.LoggedInTenantId = tenantId; // Set the logged-in tenant ID
                 tenant_dashboard form3 = new tenant_dashboard(tenantId); // Pass tenant ID to Form3
                 form3.Show();
                 this.Hide();

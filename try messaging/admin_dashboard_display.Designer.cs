@@ -53,6 +53,8 @@
             this.announcementLog = new System.Windows.Forms.RichTextBox();
             this.annoucementText = new System.Windows.Forms.RichTextBox();
             this.announcement_Btn = new System.Windows.Forms.Button();
+            this.totalTenantLabel = new System.Windows.Forms.Label();
+            this.totalHousesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -298,11 +300,35 @@
             this.announcement_Btn.UseVisualStyleBackColor = false;
             this.announcement_Btn.Click += new System.EventHandler(this.announcement_Btn_Click);
             // 
+            // totalTenantLabel
+            // 
+            this.totalTenantLabel.AutoSize = true;
+            this.totalTenantLabel.BackColor = System.Drawing.Color.White;
+            this.totalTenantLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalTenantLabel.Location = new System.Drawing.Point(170, 235);
+            this.totalTenantLabel.Name = "totalTenantLabel";
+            this.totalTenantLabel.Size = new System.Drawing.Size(16, 18);
+            this.totalTenantLabel.TabIndex = 72;
+            this.totalTenantLabel.Text = "0";
+            // 
+            // totalHousesLabel
+            // 
+            this.totalHousesLabel.AutoSize = true;
+            this.totalHousesLabel.BackColor = System.Drawing.Color.White;
+            this.totalHousesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalHousesLabel.Location = new System.Drawing.Point(197, 266);
+            this.totalHousesLabel.Name = "totalHousesLabel";
+            this.totalHousesLabel.Size = new System.Drawing.Size(16, 18);
+            this.totalHousesLabel.TabIndex = 73;
+            this.totalHousesLabel.Text = "0";
+            // 
             // admin_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
+            this.Controls.Add(this.totalHousesLabel);
+            this.Controls.Add(this.totalTenantLabel);
             this.Controls.Add(this.announcement_Btn);
             this.Controls.Add(this.annoucementText);
             this.Controls.Add(this.announcementLog);
@@ -367,5 +393,7 @@
         private System.Windows.Forms.RichTextBox announcementLog;
         private System.Windows.Forms.RichTextBox annoucementText;
         private System.Windows.Forms.Button announcement_Btn;
+        private System.Windows.Forms.Label totalTenantLabel;
+        private System.Windows.Forms.Label totalHousesLabel;
     }
 }

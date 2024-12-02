@@ -222,6 +222,7 @@ namespace try_messaging
             childForm.BringToFront();
             childForm.Show();
         }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -249,14 +250,14 @@ namespace try_messaging
 
         private void mail_icon_Click(object sender, EventArgs e)
         {
+            
+            
             tenantcomform tenantcomform = new tenantcomform(tenantId);
-            LoadFormInPanel(tenantcomform);
+            tenantcomform.Show();
+
             MarkMessagesAsRead();
 
-            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
-            profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
-            payment_Btn.Image = Properties.Resources.payment_plain_butt;
-            maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
+            
         }
         private void MarkMessagesAsRead()
         {
@@ -284,12 +285,13 @@ namespace try_messaging
             LoadFormInPanel(tenantProfile);
 
             // Change the image of the profile button
-            profile_Btn.Image = Properties.Resources.profile_pink_butt__1_;
+            
 
             // Reset the dashboard button to its default image
             dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
             payment_Btn.Image = Properties.Resources.payment_plain_butt;
             maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
+            profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
         }
 
         
@@ -349,7 +351,8 @@ namespace try_messaging
         private void payment_Btn_Click(object sender, EventArgs e)
         {
             // Clear the panel and load the profile form
-            
+            tenant_payment tenant_Pyament = new tenant_payment(tenantId);
+            LoadFormInPanel(tenant_Pyament);    
 
             //code here the target form
             

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Data.Common;
 using System.IO;
+using System.Data.Odbc;
 
 namespace try_messaging
 {
@@ -41,8 +42,13 @@ namespace try_messaging
         private void admincomform_Load(object sender, EventArgs e)
         {
             LoadTenantList();
-        }
 
+            if (tenantlistsGrid.Rows.Count > 0)
+            {
+                tenantlistsGrid.Rows[0].Selected = true;
+                tenantlistsGrid_CellContentClick(this, new DataGridViewCellEventArgs(0, 0));
+            }
+        }
 
 
         // Method to load tenant names and room numbers into the DataGridView
@@ -327,9 +333,72 @@ namespace try_messaging
             }
         }
 
+        private void search_Btn_Click(object sender, EventArgs e)
+        {
+            // Get the search term from the searchBar textbox
+            string searchTerm = searchBar.Text.Trim();
+
+            // Only proceed if the search term is not empty
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                // Call a method to search the tenants in the database based on the search term
+                SearchTenants(searchTerm);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a search term.");
+            }
+        }
+        private void SearchTenants(string searchTerm)
+        {
+            // Create your SQL query to search the tenants and format the "name & room" in the DisplayText column
+            string query = "SELECT CONCAT(firstname, ' ', lastname, ' (Room ', roomnumber, ')') AS DisplayText, tenid " +
+                           "FROM tenants_details WHERE lastname LIKE @searchTerm OR firstname LIKE @searchTerm OR roomnumber LIKE @searchTerm";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    // Execute the query and store the result
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // Display the search results in the DataGridView
+                    tenantlistsGrid.DataSource = dt;
+
+                    // Set the column header to "Tenants (Name & Room)"
+                    tenantlistsGrid.Columns["DisplayText"].HeaderText = "                            Tenants\n                       (Name & Room)";
+
+                    // Hide the tenid column as we don't need it for display
+                    tenantlistsGrid.Columns["tenid"].Visible = false;
+
+                    // Adjust the column width to fit the data
+                    tenantlistsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                    // Optionally, select the first row after the search results are displayed
+                    if (tenantlistsGrid.Rows.Count > 0)
+                    {
+                        tenantlistsGrid.Rows[0].Selected = true;
+                        tenantlistsGrid_CellContentClick(this, new DataGridViewCellEventArgs(0, 0)); // Trigger the click event for the first row (optional)
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        
+
+
 
 
     }
+}
 
     // Helper class for ComboBox items
     public class ComboBoxItem

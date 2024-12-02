@@ -9,6 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
+using System.IO;
+
+
 
 namespace try_messaging
 {
@@ -30,7 +34,7 @@ namespace try_messaging
             LoadFormInPanel(bulletinForm);
             LoadTenantInformation();
 
-
+            
 
 
 
@@ -38,12 +42,17 @@ namespace try_messaging
 
         }
         
-       
+
         private void tenant_dashboard_display_Load(object sender, EventArgs e)
         {
             moveinText.BorderStyle = BorderStyle.None;
             expirationText.BorderStyle = BorderStyle.None;
-            
+
+            LoadHOuseInformation();
+
+
+
+
         }
         private void LoadTenantInformation()
         {
@@ -63,6 +72,8 @@ namespace try_messaging
                             moveinText.Text = Convert.ToDateTime(reader["movein_date"]).ToString("MM/dd/yyyy");
                             expirationText.Text = Convert.ToDateTime(reader["expiration_date"]).ToString("MM/dd/yyyy");
 
+                            // Load the house image from the boarding_houses table based on the house_name
+                            LoadBoardingHouseImage(reader["house_name"].ToString());
                         }
                         else
                         {
@@ -73,6 +84,77 @@ namespace try_messaging
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error loading tenant information: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadHOuseInformation()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Get the house_name of the tenant from tenants_details
+                    string query = @"
+                SELECT bh.house_name, bh.location 
+                FROM boarding_houses bh
+                INNER JOIN tenants_details td ON td.house_name = bh.house_name
+                WHERE td.tenid = @tenantId";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Set the house name and location to the corresponding controls
+                            houseNameText.Text = reader["house_name"].ToString().ToUpper();
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("House information not found for the tenant.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading house information: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadBoardingHouseImage(string houseName)
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT house_image FROM boarding_houses WHERE house_name = @houseName";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@houseName", houseName);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        byte[] imageBytes = (byte[])result;
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            boarding_image.Image = Image.FromStream(ms); // Set the image in the PictureBox
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("House image not found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading house image: " + ex.Message);
                 }
             }
         }

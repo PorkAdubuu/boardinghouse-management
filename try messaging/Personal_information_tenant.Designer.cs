@@ -89,7 +89,7 @@
             this.addressText.Location = new System.Drawing.Point(89, 190);
             this.addressText.Name = "addressText";
             this.addressText.ReadOnly = true;
-            this.addressText.Size = new System.Drawing.Size(204, 24);
+            this.addressText.Size = new System.Drawing.Size(699, 24);
             this.addressText.TabIndex = 12;
             this.addressText.TextChanged += new System.EventHandler(this.addressText_TextChanged);
             // 

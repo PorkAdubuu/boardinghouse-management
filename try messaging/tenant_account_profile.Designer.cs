@@ -66,13 +66,18 @@
             this.roomLabel = new System.Windows.Forms.Label();
             this.moveinLabel = new System.Windows.Forms.Label();
             this.expirationLabel = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.houseNameText = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.addressLabel = new System.Windows.Forms.RichTextBox();
+            this.boardingAddText = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.airconText = new System.Windows.Forms.Label();
+            this.wifiText = new System.Windows.Forms.Label();
+            this.parkingText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -123,7 +128,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(300, 251);
+            this.label1.Location = new System.Drawing.Point(288, 251);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 16);
             this.label1.TabIndex = 9;
@@ -134,7 +139,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(300, 284);
+            this.label2.Location = new System.Drawing.Point(288, 284);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 16);
             this.label2.TabIndex = 10;
@@ -167,7 +172,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(300, 218);
+            this.label6.Location = new System.Drawing.Point(288, 218);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 16);
             this.label6.TabIndex = 13;
@@ -178,7 +183,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.White;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 221);
+            this.label7.Location = new System.Drawing.Point(20, 231);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 16);
             this.label7.TabIndex = 14;
@@ -189,7 +194,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.White;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(17, 251);
+            this.label8.Location = new System.Drawing.Point(19, 260);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 16);
             this.label8.TabIndex = 15;
@@ -213,7 +218,7 @@
             this.label10.BackColor = System.Drawing.Color.White;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label10.Location = new System.Drawing.Point(14, 400);
+            this.label10.Location = new System.Drawing.Point(14, 386);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(171, 20);
             this.label10.TabIndex = 17;
@@ -224,7 +229,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.White;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(17, 431);
+            this.label11.Location = new System.Drawing.Point(17, 422);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 16);
             this.label11.TabIndex = 18;
@@ -235,7 +240,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.White;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(17, 458);
+            this.label12.Location = new System.Drawing.Point(17, 455);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(110, 16);
             this.label12.TabIndex = 19;
@@ -246,7 +251,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.White;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(17, 514);
+            this.label13.Location = new System.Drawing.Point(20, 520);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(110, 16);
             this.label13.TabIndex = 21;
@@ -257,7 +262,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.White;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(17, 487);
+            this.label14.Location = new System.Drawing.Point(17, 488);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 16);
             this.label14.TabIndex = 20;
@@ -269,7 +274,7 @@
             this.label15.BackColor = System.Drawing.Color.White;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label15.Location = new System.Drawing.Point(299, 183);
+            this.label15.Location = new System.Drawing.Point(287, 183);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(189, 20);
             this.label15.TabIndex = 22;
@@ -280,7 +285,7 @@
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.White;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(300, 314);
+            this.label16.Location = new System.Drawing.Point(288, 314);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(123, 16);
             this.label16.TabIndex = 23;
@@ -291,7 +296,7 @@
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.White;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(300, 344);
+            this.label17.Location = new System.Drawing.Point(288, 344);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(155, 16);
             this.label17.TabIndex = 24;
@@ -302,7 +307,7 @@
             this.addLabel.AutoSize = true;
             this.addLabel.BackColor = System.Drawing.Color.White;
             this.addLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLabel.Location = new System.Drawing.Point(17, 281);
+            this.addLabel.Location = new System.Drawing.Point(17, 291);
             this.addLabel.Name = "addLabel";
             this.addLabel.Size = new System.Drawing.Size(69, 16);
             this.addLabel.TabIndex = 25;
@@ -313,11 +318,11 @@
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.White;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(300, 373);
+            this.label19.Location = new System.Drawing.Point(288, 412);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(79, 16);
+            this.label19.Size = new System.Drawing.Size(97, 16);
             this.label19.TabIndex = 26;
-            this.label19.Text = "Amenities:";
+            this.label19.Text = "Air condition:";
             // 
             // pictureBox3
             // 
@@ -376,9 +381,9 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
-            this.pictureBox7.Location = new System.Drawing.Point(-2, 382);
+            this.pictureBox7.Location = new System.Drawing.Point(-2, 373);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(263, 180);
+            this.pictureBox7.Size = new System.Drawing.Size(263, 189);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 32;
             this.pictureBox7.TabStop = false;
@@ -386,9 +391,9 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
-            this.pictureBox8.Location = new System.Drawing.Point(277, 170);
+            this.pictureBox8.Location = new System.Drawing.Point(267, 170);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(233, 392);
+            this.pictureBox8.Size = new System.Drawing.Size(385, 392);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 33;
             this.pictureBox8.TabStop = false;
@@ -398,7 +403,7 @@
             this.emailLabel.AutoSize = true;
             this.emailLabel.BackColor = System.Drawing.Color.White;
             this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.Location = new System.Drawing.Point(67, 221);
+            this.emailLabel.Location = new System.Drawing.Point(76, 231);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(30, 16);
             this.emailLabel.TabIndex = 34;
@@ -409,7 +414,7 @@
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.BackColor = System.Drawing.Color.White;
             this.phoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneLabel.Location = new System.Drawing.Point(127, 251);
+            this.phoneLabel.Location = new System.Drawing.Point(135, 260);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(30, 16);
             this.phoneLabel.TabIndex = 35;
@@ -420,7 +425,7 @@
             this.name1Label.AutoSize = true;
             this.name1Label.BackColor = System.Drawing.Color.White;
             this.name1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name1Label.Location = new System.Drawing.Point(69, 431);
+            this.name1Label.Location = new System.Drawing.Point(75, 422);
             this.name1Label.Name = "name1Label";
             this.name1Label.Size = new System.Drawing.Size(30, 16);
             this.name1Label.TabIndex = 37;
@@ -431,7 +436,7 @@
             this.phone1Label.AutoSize = true;
             this.phone1Label.BackColor = System.Drawing.Color.White;
             this.phone1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phone1Label.Location = new System.Drawing.Point(127, 458);
+            this.phone1Label.Location = new System.Drawing.Point(133, 455);
             this.phone1Label.Name = "phone1Label";
             this.phone1Label.Size = new System.Drawing.Size(30, 16);
             this.phone1Label.TabIndex = 38;
@@ -442,7 +447,7 @@
             this.name2Label.AutoSize = true;
             this.name2Label.BackColor = System.Drawing.Color.White;
             this.name2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name2Label.Location = new System.Drawing.Point(69, 487);
+            this.name2Label.Location = new System.Drawing.Point(75, 488);
             this.name2Label.Name = "name2Label";
             this.name2Label.Size = new System.Drawing.Size(30, 16);
             this.name2Label.TabIndex = 39;
@@ -453,7 +458,7 @@
             this.phone2Label.AutoSize = true;
             this.phone2Label.BackColor = System.Drawing.Color.White;
             this.phone2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phone2Label.Location = new System.Drawing.Point(127, 514);
+            this.phone2Label.Location = new System.Drawing.Point(136, 520);
             this.phone2Label.Name = "phone2Label";
             this.phone2Label.Size = new System.Drawing.Size(30, 16);
             this.phone2Label.TabIndex = 40;
@@ -464,7 +469,7 @@
             this.roomLabel.AutoSize = true;
             this.roomLabel.BackColor = System.Drawing.Color.White;
             this.roomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roomLabel.Location = new System.Drawing.Point(404, 218);
+            this.roomLabel.Location = new System.Drawing.Point(392, 218);
             this.roomLabel.Name = "roomLabel";
             this.roomLabel.Size = new System.Drawing.Size(30, 16);
             this.roomLabel.TabIndex = 41;
@@ -475,7 +480,7 @@
             this.moveinLabel.AutoSize = true;
             this.moveinLabel.BackColor = System.Drawing.Color.White;
             this.moveinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveinLabel.Location = new System.Drawing.Point(403, 251);
+            this.moveinLabel.Location = new System.Drawing.Point(391, 251);
             this.moveinLabel.Name = "moveinLabel";
             this.moveinLabel.Size = new System.Drawing.Size(30, 16);
             this.moveinLabel.TabIndex = 42;
@@ -486,51 +491,29 @@
             this.expirationLabel.AutoSize = true;
             this.expirationLabel.BackColor = System.Drawing.Color.White;
             this.expirationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expirationLabel.Location = new System.Drawing.Point(426, 284);
+            this.expirationLabel.Location = new System.Drawing.Point(414, 284);
             this.expirationLabel.Name = "expirationLabel";
             this.expirationLabel.Size = new System.Drawing.Size(30, 16);
             this.expirationLabel.TabIndex = 43;
             this.expirationLabel.Text = "N/A";
             // 
-            // label27
+            // houseNameText
             // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.White;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(424, 314);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(30, 16);
-            this.label27.TabIndex = 44;
-            this.label27.Text = "N/A";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.White;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(456, 344);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(30, 16);
-            this.label28.TabIndex = 45;
-            this.label28.Text = "N/A";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.White;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(377, 373);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(30, 16);
-            this.label29.TabIndex = 46;
-            this.label29.Text = "N/A";
+            this.houseNameText.AutoSize = true;
+            this.houseNameText.BackColor = System.Drawing.Color.White;
+            this.houseNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.houseNameText.Location = new System.Drawing.Point(412, 314);
+            this.houseNameText.Name = "houseNameText";
+            this.houseNameText.Size = new System.Drawing.Size(30, 16);
+            this.houseNameText.TabIndex = 44;
+            this.houseNameText.Text = "N/A";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
-            this.pictureBox1.Location = new System.Drawing.Point(526, 170);
+            this.pictureBox1.Location = new System.Drawing.Point(658, 170);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(342, 392);
+            this.pictureBox1.Size = new System.Drawing.Size(199, 392);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 47;
             this.pictureBox1.TabStop = false;
@@ -539,9 +522,9 @@
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.White;
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(622, 284);
+            this.pictureBox9.Location = new System.Drawing.Point(676, 338);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(149, 145);
+            this.pictureBox9.Size = new System.Drawing.Size(159, 145);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox9.TabIndex = 48;
             this.pictureBox9.TabStop = false;
@@ -552,7 +535,7 @@
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label3.Location = new System.Drawing.Point(547, 183);
+            this.label3.Location = new System.Drawing.Point(670, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(157, 20);
             this.label3.TabIndex = 49;
@@ -560,12 +543,92 @@
             // 
             // addressLabel
             // 
+            this.addressLabel.BackColor = System.Drawing.Color.White;
             this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressLabel.Location = new System.Drawing.Point(84, 282);
+            this.addressLabel.Location = new System.Drawing.Point(85, 291);
             this.addressLabel.Name = "addressLabel";
+            this.addressLabel.ReadOnly = true;
             this.addressLabel.Size = new System.Drawing.Size(167, 49);
             this.addressLabel.TabIndex = 50;
             this.addressLabel.Text = "";
+            // 
+            // boardingAddText
+            // 
+            this.boardingAddText.BackColor = System.Drawing.Color.White;
+            this.boardingAddText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boardingAddText.Location = new System.Drawing.Point(440, 344);
+            this.boardingAddText.Name = "boardingAddText";
+            this.boardingAddText.ReadOnly = true;
+            this.boardingAddText.Size = new System.Drawing.Size(167, 35);
+            this.boardingAddText.TabIndex = 51;
+            this.boardingAddText.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label4.Location = new System.Drawing.Point(287, 386);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 20);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "Amenities:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(288, 432);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 16);
+            this.label5.TabIndex = 53;
+            this.label5.Text = "Wi-Fi:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.White;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(288, 452);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(64, 16);
+            this.label18.TabIndex = 54;
+            this.label18.Text = "Parking:";
+            // 
+            // airconText
+            // 
+            this.airconText.AutoSize = true;
+            this.airconText.BackColor = System.Drawing.Color.White;
+            this.airconText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.airconText.Location = new System.Drawing.Point(392, 412);
+            this.airconText.Name = "airconText";
+            this.airconText.Size = new System.Drawing.Size(30, 16);
+            this.airconText.TabIndex = 55;
+            this.airconText.Text = "N/A";
+            // 
+            // wifiText
+            // 
+            this.wifiText.AutoSize = true;
+            this.wifiText.BackColor = System.Drawing.Color.White;
+            this.wifiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wifiText.Location = new System.Drawing.Point(341, 432);
+            this.wifiText.Name = "wifiText";
+            this.wifiText.Size = new System.Drawing.Size(30, 16);
+            this.wifiText.TabIndex = 56;
+            this.wifiText.Text = "N/A";
+            // 
+            // parkingText
+            // 
+            this.parkingText.AutoSize = true;
+            this.parkingText.BackColor = System.Drawing.Color.White;
+            this.parkingText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.parkingText.Location = new System.Drawing.Point(358, 452);
+            this.parkingText.Name = "parkingText";
+            this.parkingText.Size = new System.Drawing.Size(30, 16);
+            this.parkingText.TabIndex = 57;
+            this.parkingText.Text = "N/A";
             // 
             // tenant_account_profile
             // 
@@ -573,13 +636,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 574);
+            this.Controls.Add(this.parkingText);
+            this.Controls.Add(this.wifiText);
+            this.Controls.Add(this.airconText);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.boardingAddText);
             this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label29);
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.label27);
+            this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.expirationLabel);
             this.Controls.Add(this.moveinLabel);
             this.Controls.Add(this.roomLabel);
@@ -674,12 +742,17 @@
         private System.Windows.Forms.Label roomLabel;
         private System.Windows.Forms.Label moveinLabel;
         private System.Windows.Forms.Label expirationLabel;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label houseNameText;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox addressLabel;
+        private System.Windows.Forms.RichTextBox boardingAddText;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label airconText;
+        private System.Windows.Forms.Label wifiText;
+        private System.Windows.Forms.Label parkingText;
     }
 }

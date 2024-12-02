@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient; // Make sure to include this namespace
+﻿using DocumentFormat.OpenXml.Office.Word;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.Wordprocessing;
+using MySql.Data.MySqlClient; // Make sure to include this namespace
 using System;
 using System.Data.SqlClient;
 using System.Net;
@@ -15,61 +18,127 @@ namespace try_messaging
             return "Server=localhost;Database=boardinghouse_practice_db;Uid=root;Pwd=;";
         }
 
-        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender, string address, string emergency_name1, string emergency_name2, string emergency_contact1, string emergency_contact2, DateTime movein_date, DateTime expiration_date)
-{
-    // Update your query to include the new columns
-    string query = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, movein_date, expiration_date) VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender, @address, @emergency_name1, @emergency_name2, @emergency_contact1, @emergency_contact2, @movein_date, @expiration_date);";
-    string query2 = "INSERT INTO tenants_accounts (tenid, username, password) VALUES (LAST_INSERT_ID(), @username, @password);"; // Use LAST_INSERT_ID() to get the last inserted tenid
-
-    using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
-    {
-        connection.Open();
-
-        using (MySqlCommand command = new MySqlCommand(query, connection))
+        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender, string address, string emergency_name1, string emergency_name2, string emergency_contact1, string emergency_contact2, string air_condition, string wifi, string parking, DateTime movein_date, DateTime expiration_date, string houseName)
         {
-            // Add parameters to prevent SQL injection
-            command.Parameters.AddWithValue("@lastname", lastname);
-            command.Parameters.AddWithValue("@firstname", firstname);
-            command.Parameters.AddWithValue("@age", age);
-            command.Parameters.AddWithValue("@roomnumber", roomnumber);
-            command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@contact", contact); // Add contact parameter
-            command.Parameters.AddWithValue("@gender", gender); // Add gender parameter
-            command.Parameters.AddWithValue("@address", address);
-            command.Parameters.AddWithValue("@emergency_name1", emergency_name1);
-            command.Parameters.AddWithValue("@emergency_name2", emergency_name2);
-            command.Parameters.AddWithValue("@emergency_contact1", emergency_contact1);
-            command.Parameters.AddWithValue("@emergency_contact2", emergency_contact2);
-            command.Parameters.AddWithValue("@movein_date", movein_date);
-            command.Parameters.AddWithValue("@expiration_date", expiration_date);
+            string houseIdQuery = "SELECT house_id FROM boarding_houses WHERE house_name = @houseName";
+            int houseId = 0;
 
-            try
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
-                command.ExecuteNonQuery(); // Execute the first query
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error inserting data: " + ex.Message);
-                return;
+                connection.Open();
+
+                // Step 1: Retrieve the house_id based on house_name
+                using (MySqlCommand houseIdCommand = new MySqlCommand(houseIdQuery, connection))
+                {
+                    houseIdCommand.Parameters.AddWithValue("@houseName", houseName);
+
+                    try
+                    {
+                        object result = houseIdCommand.ExecuteScalar();
+                        if (result != null)
+                        {
+                            houseId = Convert.ToInt32(result);
+                        }
+                        else
+                        {
+                            MessageBox.Show("House name not found.");
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error retrieving house ID: " + ex.Message);
+                        return;
+                    }
+                }
+
+                // Step 2: Insert tenant details including house_id
+                string tenantInsertQuery = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, air_condition, wifi, parking, movein_date, expiration_date, house_id, house_name) " +
+                                           "VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender, @address, @emergency_name1, @emergency_name2, @emergency_contact1, @emergency_contact2, @air_condition, @wifi, @parking, @movein_date, @expiration_date, @house_id, @houseName)";
+
+                // Step 3: Insert into tenants_accounts
+                string tenantAccountInsertQuery = "INSERT INTO tenants_accounts (tenid, username, password) VALUES (LAST_INSERT_ID(), @username, @password)"; // Use LAST_INSERT_ID() to get the last inserted tenid
+
+                using (MySqlCommand tenantCommand = new MySqlCommand(tenantInsertQuery, connection))
+                {
+                    tenantCommand.Parameters.AddWithValue("@lastname", lastname);
+                    tenantCommand.Parameters.AddWithValue("@firstname", firstname);
+                    tenantCommand.Parameters.AddWithValue("@age", age);
+                    tenantCommand.Parameters.AddWithValue("@roomnumber", roomnumber);
+                    tenantCommand.Parameters.AddWithValue("@email", email);
+                    tenantCommand.Parameters.AddWithValue("@contact", contact);
+                    tenantCommand.Parameters.AddWithValue("@gender", gender);
+                    tenantCommand.Parameters.AddWithValue("@address", address);
+                    tenantCommand.Parameters.AddWithValue("@emergency_name1", emergency_name1);
+                    tenantCommand.Parameters.AddWithValue("@emergency_name2", emergency_name2);
+                    tenantCommand.Parameters.AddWithValue("@emergency_contact1", emergency_contact1);
+                    tenantCommand.Parameters.AddWithValue("@emergency_contact2", emergency_contact2);
+                    tenantCommand.Parameters.AddWithValue("@air_condition", air_condition);
+                    tenantCommand.Parameters.AddWithValue("@wifi", wifi);
+                    tenantCommand.Parameters.AddWithValue("@parking", parking);
+                    tenantCommand.Parameters.AddWithValue("@movein_date", movein_date);
+                    tenantCommand.Parameters.AddWithValue("@expiration_date", expiration_date);
+                    tenantCommand.Parameters.AddWithValue("@house_id", houseId); // Include the house_id
+                    tenantCommand.Parameters.AddWithValue("@houseName", houseName);
+
+                    try
+                    {
+                        tenantCommand.ExecuteNonQuery(); // Execute the first query to insert tenant
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error inserting tenant: " + ex.Message);
+                        return;
+                    }
+                }
+
+                // Step 4: Insert into tenants_accounts table
+                using (MySqlCommand tenantAccountCommand = new MySqlCommand(tenantAccountInsertQuery, connection))
+                {
+                    tenantAccountCommand.Parameters.AddWithValue("@username", username);
+                    tenantAccountCommand.Parameters.AddWithValue("@password", password);
+
+                    try
+                    {
+                        tenantAccountCommand.ExecuteNonQuery(); // Execute the second query to insert tenant account
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error inserting tenant account: " + ex.Message);
+                    }
+                }
             }
         }
 
-        using (MySqlCommand command2 = new MySqlCommand(query2, connection))
-        {
-            command2.Parameters.AddWithValue("@username", username);
-            command2.Parameters.AddWithValue("@password", password);
 
-            try
+        public void InsertHouse(string house_name, string house_no, string location, int capacity)
+        {
+            string query = "INSERT INTO boarding_houses (house_name, house_no, location, capacity) VALUES (@house_name, @house_no, @location, @capacity);";
+
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
-                command2.ExecuteNonQuery(); // Execute the second query
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error inserting data into accounts: " + ex.Message);
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // Add parameters to prevent SQL injection
+                    command.Parameters.AddWithValue("@house_name", house_name);
+                    command.Parameters.AddWithValue("@house_no", house_no);
+                    command.Parameters.AddWithValue("@location", location);
+                    command.Parameters.AddWithValue("@capacity", capacity);
+
+                    try
+                    {
+                        command.ExecuteNonQuery(); // Execute the first query
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error inserting data: " + ex.Message);
+                        return;
+                    }
+                }
             }
         }
-    }
-}
 
         public string GetAdminName(int adminId)
         {
@@ -211,5 +280,110 @@ namespace try_messaging
             }
             return adminId; // Return the admin ID
         }
+
+        public bool IsEmailOrContactExists(string email, string contact)
+        {
+            bool exists = false;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM tenants_details WHERE email = @Email OR contact = @Contact";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Contact", contact);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        exists = count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking duplicates: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return exists;
+        }
+
+        public void InsertHouseWithPolicy(string houseName, string houseNo, string location, int capacity, byte[] policyFileData)
+        {
+            using (MySqlConnection conn = new MySqlConnection(GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO boarding_houses (house_name, house_no, location, capacity, policy)
+                             VALUES (@houseName, @houseNo, @location, @capacity, @policy)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@houseName", houseName);
+                    cmd.Parameters.AddWithValue("@houseNo", houseNo);
+                    cmd.Parameters.AddWithValue("@location", location);
+                    cmd.Parameters.AddWithValue("@capacity", capacity);
+                    cmd.Parameters.AddWithValue("@policy", policyFileData); // Insert the policy as a BLOB
+
+                    cmd.ExecuteNonQuery(); // Execute the query
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error inserting house details with policy: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public bool IsBoardingHouseAvailable(string houseName)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = "SELECT capacity, current_occupancy FROM boarding_houses WHERE house_name = @HouseName";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@HouseName", houseName);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int capacity = reader.GetInt32("capacity");
+                                int currentOccupancy = reader.GetInt32("current_occupancy");
+                                return currentOccupancy < capacity;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking boarding house capacity: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false; // Default to unavailable if error occurs
+        }
+
+        public void UpdateCurrentOccupancy(string houseName)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = "UPDATE boarding_houses SET current_occupancy = current_occupancy + 1 WHERE house_name = @HouseName";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@HouseName", houseName);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating boarding house occupancy: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+
+
     }
 }

@@ -35,7 +35,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.boarding_image = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
@@ -58,12 +58,13 @@
             this.moveinText = new System.Windows.Forms.Label();
             this.expirationText = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.houseNameText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.boarding_image)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -142,15 +143,15 @@
             this.pictureBox6.TabIndex = 10;
             this.pictureBox6.TabStop = false;
             // 
-            // pictureBox7
+            // boarding_image
             // 
-            this.pictureBox7.Image = global::try_messaging.Properties.Resources.room_house_pic__1_;
-            this.pictureBox7.Location = new System.Drawing.Point(21, 215);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(161, 117);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 11;
-            this.pictureBox7.TabStop = false;
+            this.boarding_image.Image = global::try_messaging.Properties.Resources.room_house_pic__1_;
+            this.boarding_image.Location = new System.Drawing.Point(21, 215);
+            this.boarding_image.Name = "boarding_image";
+            this.boarding_image.Size = new System.Drawing.Size(161, 117);
+            this.boarding_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.boarding_image.TabIndex = 11;
+            this.boarding_image.TabStop = false;
             // 
             // pictureBox11
             // 
@@ -352,6 +353,7 @@
             // moveinText
             // 
             this.moveinText.AutoSize = true;
+            this.moveinText.BackColor = System.Drawing.Color.White;
             this.moveinText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moveinText.Location = new System.Drawing.Point(352, 266);
             this.moveinText.Name = "moveinText";
@@ -362,6 +364,7 @@
             // expirationText
             // 
             this.expirationText.AutoSize = true;
+            this.expirationText.BackColor = System.Drawing.Color.White;
             this.expirationText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expirationText.Location = new System.Drawing.Point(377, 308);
             this.expirationText.Name = "expirationText";
@@ -379,11 +382,23 @@
             this.pictureBox4.TabIndex = 8;
             this.pictureBox4.TabStop = false;
             // 
+            // houseNameText
+            // 
+            this.houseNameText.AutoSize = true;
+            this.houseNameText.BackColor = System.Drawing.Color.White;
+            this.houseNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.houseNameText.Location = new System.Drawing.Point(365, 222);
+            this.houseNameText.Name = "houseNameText";
+            this.houseNameText.Size = new System.Drawing.Size(32, 18);
+            this.houseNameText.TabIndex = 38;
+            this.houseNameText.Text = "N/A";
+            // 
             // tenant_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
+            this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.expirationText);
             this.Controls.Add(this.moveinText);
             this.Controls.Add(this.announcementLog);
@@ -405,7 +420,7 @@
             this.Controls.Add(this.pictureBox13);
             this.Controls.Add(this.pictureBox12);
             this.Controls.Add(this.pictureBox11);
-            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.boarding_image);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -422,7 +437,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.boarding_image)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
@@ -442,7 +457,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox boarding_image;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox13;
@@ -465,5 +480,6 @@
         private System.Windows.Forms.Label moveinText;
         private System.Windows.Forms.Label expirationText;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label houseNameText;
     }
 }

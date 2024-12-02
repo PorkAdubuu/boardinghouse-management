@@ -10,12 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MySql.Data.MySqlClient;
+using System.Data.Common;
 
 namespace try_messaging
 {
     public partial class tenantmanagement : Form
     {
+        private DatabaseConnection dbConnection;
         private int adminID;
+        private string aircondition = "NO";
+        private string wifii = "NO";
+        private string parkingg = "NO";
         public tenantmanagement(int adminID)
         {
             InitializeComponent();
@@ -23,6 +29,7 @@ namespace try_messaging
             // Set background color
             this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
             this.adminID = adminID;
+            dbConnection = new DatabaseConnection();
 
 
 
@@ -72,6 +79,7 @@ namespace try_messaging
                 sendingLabel.Visible = false;
                 MessageBox.Show("Email sent successfully!");
                 ClearFields();
+                PopulateAvailableRooms();
             }
         }
 
@@ -100,6 +108,9 @@ namespace try_messaging
         private void tenantmanagement_Load(object sender, EventArgs e)
         {
             genderCombo.SelectedIndex = 0;
+
+            PopulateAvailableRooms();
+            PopulateBoardingHouses();
         }
 
         private void emailgeneratorRich_TextChanged(object sender, EventArgs e)
@@ -113,6 +124,7 @@ namespace try_messaging
                 string.IsNullOrEmpty(fnameText.Text) ||
                 string.IsNullOrEmpty(ageText.Text) ||
                 string.IsNullOrEmpty(roomText.Text) ||
+                string.IsNullOrEmpty(boardingCombo.Text) ||
                 string.IsNullOrEmpty(textBox1.Text) ||    // Email field
                 string.IsNullOrEmpty(usernameText.Text) ||
                 string.IsNullOrEmpty(passwordText.Text) ||
@@ -131,36 +143,58 @@ namespace try_messaging
 
         private async void sendbutton_Click(object sender, EventArgs e)
         {
-
             if (!ValidateFields()) // Check if validation fails
             {
                 MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Prevent the email from being sent if validation fails
             }
-            // Get data from text boxes and date picker
-            string lastname = lnameText.Text;
-            string firstname = fnameText.Text;
+            string selectedBoardingHouse = boardingCombo.Text;
+
+            // Check boarding house availability
+            DatabaseConnection db = new DatabaseConnection();
+            if (!db.IsBoardingHouseAvailable(selectedBoardingHouse))
+            {
+                MessageBox.Show("The selected boarding house has reached its capacity. Please choose a different house.", "Capacity Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if capacity is full
+            }
+            // Get data from text boxes
+            string lastname = lnameText.Text.ToUpper();
+            string firstname = fnameText.Text.ToUpper();
             int age = int.Parse(ageText.Text);
             int roomnumber = int.Parse(roomText.Text);
             string email = textBox1.Text;
             string username = usernameText.Text;
             string password = passwordText.Text;
-            string contact = contactText.Text; 
-            string gender = genderCombo.SelectedItem.ToString(); 
-            string address = addText.Text;
-            string emergency_name1 = emergency_contactt1.Text;
-            string emergency_name2 = emergency_contactt2.Text;
+            string contact = contactText.Text;
+            string gender = genderCombo.SelectedItem.ToString().ToUpper();
+            string address = addText.Text.ToUpper();
+            string emergency_name1 = emergency_contactt1.Text.ToUpper();
+            string emergency_name2 = emergency_contactt2.Text.ToUpper();
             string emergency_contact1 = emergency_number1.Text;
             string emergency_contact2 = emergency_number2.Text;
+            string air_condition = aircondition;
+            string wifi = wifii;
+            string parking = parkingg;
             DateTime movein_date = movein_datapicker.Value;
             DateTime expiration_date = expiration_datapicker.Value;
 
+            // Create a database connection
+            DatabaseConnection dbase = new DatabaseConnection();
+
+            // Check if email or contact already exists
+            if (db.IsEmailOrContactExists(email, contact))
+            {
+                MessageBox.Show("The email or contact number is already in use. Please use different values.",
+                                "Duplicate Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if duplicate data is found
+            }
 
             // Insert tenant into the database
-            DatabaseConnection db = new DatabaseConnection();
-            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, movein_date, expiration_date);
+            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, air_condition, wifi, parking, movein_date, expiration_date, selectedBoardingHouse);
 
-            //email content
+
+            db.UpdateCurrentOccupancy(selectedBoardingHouse);
+            // Email content
             string tenantName = $"{firstname} {lastname}"; // Combine firstname and lastname for tenant's name
             string subject = "Welcome to the Boarding House Community!";
             string body = $"Dear {tenantName},\n\n" +
@@ -169,11 +203,8 @@ namespace try_messaging
                           $"Account Details:\n" +
                           $"Username: {username}\n" +
                           $"Password: {password}\n\n" +
-                          $"**Notice:** These are temporary credentials. Please change your password after logging in.\n\n" + 
-                          $"Login Instructions:\n" +
-                          $"Visit the Boarding House Management System login Application:\n" +
-                          $"Click on \"Login\" to access your account\n\n" +
-                          $"Thank you for joining our community! We look forward to having you with us.\n\n" +
+                          $"**Notice:** These are temporary credentials. Please change your password after logging in.\n\n" +
+                          $"Thank you for joining our community!\n\n" +
                           $"Best regards,\n" +
                           $"Your Boarding House Management Team";
 
@@ -182,7 +213,153 @@ namespace try_messaging
 
             // Send the email
             await SendEmail(email, subject, body);
+
+            PopulateAvailableRooms();
         }
+
+        public bool IsEmailOrContactExists(string email, string contact)
+        {
+            bool exists = false;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection("YourConnectionStringHere"))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM tenants_details WHERE email = @Email OR contact = @Contact";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Contact", contact);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        exists = count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking duplicates: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return exists;
+        }
+
+
+
+        private void PopulateAvailableRooms()
+        {
+            if (string.IsNullOrEmpty(boardingCombo.Text))
+            {
+                roomText.DataSource = null; // Clear roomText if no house is selected
+                return;
+            }
+
+            string selectedBoardingHouse = boardingCombo.Text;
+
+            // Define room ranges based on boarding house capacity
+            List<int> allRooms = new List<int>();
+            int capacity = GetBoardingHouseCapacity(selectedBoardingHouse); // Get the capacity of the selected boarding house
+
+            if (capacity == 10)
+            {
+                // For capacity 10, rooms are 101-105 on the first floor, and 201-205 on the second floor
+                List<Tuple<int, int>> roomRanges = new List<Tuple<int, int>>
+        {
+            new Tuple<int, int>(101, 105), // First floor (101-105)
+            new Tuple<int, int>(201, 205)  // Second floor (201-205)
+        };
+
+                foreach (var range in roomRanges)
+                {
+                    for (int room = range.Item1; room <= range.Item2; room++)
+                    {
+                        allRooms.Add(room);
+                    }
+                }
+            }
+            else if (capacity == 20)
+            {
+                // For capacity 20, rooms are 101-110 on the first floor, and 201-210 on the second floor
+                List<Tuple<int, int>> roomRanges = new List<Tuple<int, int>>
+        {
+            new Tuple<int, int>(101, 110), // First floor (101-110)
+            new Tuple<int, int>(201, 210)  // Second floor (201-210)
+        };
+
+                foreach (var range in roomRanges)
+                {
+                    for (int room = range.Item1; room <= range.Item2; room++)
+                    {
+                        allRooms.Add(room);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid capacity for the selected boarding house.");
+                return;
+            }
+
+            // Query the database for taken rooms for the selected house
+            List<int> takenRooms = new List<int>();
+            string query = "SELECT roomnumber FROM tenants_details WHERE house_name = @HouseName";
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@HouseName", selectedBoardingHouse);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        takenRooms.Add(reader.GetInt32("roomnumber"));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error retrieving taken rooms: {ex.Message}");
+                }
+            }
+
+            // Filter available rooms by excluding taken rooms
+            List<int> availableRooms = allRooms.Except(takenRooms).ToList();
+
+            // Bind available rooms to the ComboBox
+            roomText.DataSource = availableRooms;
+
+            if (availableRooms.Count == 0)
+            {
+                MessageBox.Show($"No rooms are available for {selectedBoardingHouse}.", "No Rooms Available", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // This function retrieves the capacity of the selected boarding house from the database
+        private int GetBoardingHouseCapacity(string houseName)
+        {
+            int capacity = 0;
+            string query = "SELECT capacity FROM boarding_houses WHERE house_name = @HouseName";
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@HouseName", houseName);
+                    capacity = Convert.ToInt32(cmd.ExecuteScalar()); // Get capacity from the database
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error retrieving boarding house capacity: {ex.Message}");
+                }
+            }
+
+            return capacity;
+        }
+
+
+
 
         private void generateBtn_Click(object sender, EventArgs e)
         {
@@ -257,6 +434,37 @@ namespace try_messaging
             this.Hide();
         }
 
+        
+
+        private void PopulateBoardingHouses()
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(db.GetConnectionString()))
+                {
+                    conn.Open();
+                    string query = "SELECT house_name FROM boarding_houses";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        List<string> houseNames = new List<string>();
+
+                        while (reader.Read())
+                        {
+                            houseNames.Add(reader.GetString("house_name"));
+                        }
+
+                        boardingCombo.DataSource = houseNames;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error populating boarding houses: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void label18_Click(object sender, EventArgs e)
         {
 
@@ -295,6 +503,26 @@ namespace try_messaging
         private void label17_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void amenities1_CheckedChanged(object sender, EventArgs e)
+        {
+            aircondition = amenities1.Checked ? "YES" : "NO";
+        }
+
+        private void amenities2_CheckedChanged(object sender, EventArgs e)
+        {
+            wifii = amenities2.Checked ? "YES" : "NO";
+        }
+
+        private void amenities3_CheckedChanged(object sender, EventArgs e)
+        {
+            parkingg = amenities3.Checked ? "YES" : "NO";
+        }
+
+        private void boardingCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateAvailableRooms();
         }
     }
 }

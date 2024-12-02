@@ -21,6 +21,7 @@ namespace try_messaging
             MarkMessagesAsRead();
             LoadMessages();
             InitializeTimer();
+            this.CenterToParent();
 
             //this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
         }
