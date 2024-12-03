@@ -295,7 +295,7 @@ namespace try_messaging
                         }
                         else
                         {
-                            MessageBox.Show("No transaction found for this tenant.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
                         }
                     }
                 }
