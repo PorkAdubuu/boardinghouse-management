@@ -38,7 +38,14 @@
             this.confirm_Btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.roomNumberText = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.amountText = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -73,16 +80,16 @@
             // 
             // referenceText
             // 
-            this.referenceText.Location = new System.Drawing.Point(141, 328);
+            this.referenceText.Location = new System.Drawing.Point(203, 390);
             this.referenceText.Name = "referenceText";
-            this.referenceText.Size = new System.Drawing.Size(248, 20);
+            this.referenceText.Size = new System.Drawing.Size(103, 20);
             this.referenceText.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 328);
+            this.label3.Location = new System.Drawing.Point(74, 390);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 20);
             this.label3.TabIndex = 4;
@@ -91,18 +98,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 257);
+            this.label4.Location = new System.Drawing.Point(50, 336);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(290, 26);
+            this.label4.Size = new System.Drawing.Size(278, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Please enter the reference number orupload the screen shot\r\nof your transaction";
+            this.label4.Text = "Please enter the reference number on your gcash  receipt\r\n";
             // 
             // confirm_Btn
             // 
             this.confirm_Btn.BackColor = System.Drawing.Color.White;
             this.confirm_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.confirm_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirm_Btn.Location = new System.Drawing.Point(118, 364);
+            this.confirm_Btn.Location = new System.Drawing.Point(118, 524);
             this.confirm_Btn.Name = "confirm_Btn";
             this.confirm_Btn.Size = new System.Drawing.Size(159, 25);
             this.confirm_Btn.TabIndex = 6;
@@ -114,25 +121,88 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 298);
+            this.label1.Location = new System.Drawing.Point(74, 362);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 20);
+            this.label1.Size = new System.Drawing.Size(86, 20);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Room number";
+            this.label1.Text = "Room no.";
             // 
             // roomNumberText
             // 
-            this.roomNumberText.Location = new System.Drawing.Point(139, 300);
+            this.roomNumberText.BackColor = System.Drawing.Color.White;
+            this.roomNumberText.Location = new System.Drawing.Point(201, 364);
             this.roomNumberText.Name = "roomNumberText";
-            this.roomNumberText.Size = new System.Drawing.Size(250, 20);
+            this.roomNumberText.ReadOnly = true;
+            this.roomNumberText.Size = new System.Drawing.Size(105, 20);
             this.roomNumberText.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(149, 248);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 16);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "09124331187";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::try_messaging.Properties.Resources.gray_line;
+            this.pictureBox2.Location = new System.Drawing.Point(5, 305);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(406, 10);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(74, 469);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 20);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Amount";
+            // 
+            // amountText
+            // 
+            this.amountText.Location = new System.Drawing.Point(203, 469);
+            this.amountText.Name = "amountText";
+            this.amountText.Size = new System.Drawing.Size(103, 20);
+            this.amountText.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(50, 424);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(280, 26);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "For your payment information please enter the  amount on \r\nthe receipt\r\n";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(50, 264);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(269, 26);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Open your gcash application and Scan this QR foreasy \r\npayment process.";
             // 
             // tenant_paymentMODE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(414, 412);
+            this.ClientSize = new System.Drawing.Size(414, 574);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.amountText);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.roomNumberText);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.confirm_Btn);
@@ -142,13 +212,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.totalBill);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "tenant_paymentMODE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "tenant_paymentMODE";
             this.Load += new System.EventHandler(this.tenant_paymentMODE_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +236,11 @@
         private System.Windows.Forms.Button confirm_Btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox roomNumberText;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox amountText;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }

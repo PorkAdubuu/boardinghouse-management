@@ -463,6 +463,26 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap key__3_ {
+            get {
+                object obj = ResourceManager.GetObject("key__3_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key__4_ {
+            get {
+                object obj = ResourceManager.GetObject("key__4_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LOG_OUT_BUTT {
             get {
                 object obj = ResourceManager.GetObject("LOG_OUT_BUTT", resourceCulture);

@@ -119,6 +119,7 @@
             this.tenantList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tenantList.Location = new System.Drawing.Point(6, 59);
             this.tenantList.Name = "tenantList";
+            this.tenantList.ReadOnly = true;
             this.tenantList.RowHeadersVisible = false;
             this.tenantList.Size = new System.Drawing.Size(861, 441);
             this.tenantList.TabIndex = 74;
