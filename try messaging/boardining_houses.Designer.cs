@@ -78,6 +78,7 @@
             this.houseList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.houseList.Location = new System.Drawing.Point(6, 59);
             this.houseList.Name = "houseList";
+            this.houseList.ReadOnly = true;
             this.houseList.RowHeadersVisible = false;
             this.houseList.Size = new System.Drawing.Size(861, 219);
             this.houseList.TabIndex = 83;

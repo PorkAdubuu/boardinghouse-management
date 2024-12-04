@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.Common;
 using System.Drawing;
 using System.IO;
@@ -15,6 +16,8 @@ namespace try_messaging
         private Timer messageCheckTimer;
         private Form parentForm;           
         private Timer clockTimer;
+        private Timer notifCheckTimer;
+        private bool hasNewNotification = false;
 
 
         public tenant_dashboard(int tenantId)
@@ -25,6 +28,7 @@ namespace try_messaging
             InitializeMessageCheckTimer(); // Initialize the timer
             dbConnection = new DatabaseConnection();
             CheckForNewMessages();
+            CheckNewNotifications();
             LoadTenantName(); // Load the tenant's name when the form is created
             LoadTenantProfilePicture(tenantId);
             this.CenterToScreen();
@@ -66,12 +70,61 @@ namespace try_messaging
             // Make sure the TextBox does not gain focus
             tenantNameLabel.TabStop = false;
 
-
+            //notif timer 
+            // Initialize and configure the timer
+            notifCheckTimer = new Timer();
+            notifCheckTimer.Interval = 3000; // Check every 30 seconds
+            notifCheckTimer.Tick += NotifCheckTimer_Tick;
+            notifCheckTimer.Start();
 
 
 
 
         }
+        private void NotifCheckTimer_Tick(object sender, EventArgs e)
+        {
+            CheckNewNotifications();
+        }
+
+        private void CheckNewNotifications()
+        {
+            // Query to check if there are any new unread notifications for the tenant
+            string query = @"
+            SELECT COUNT(*) 
+            FROM tenant_notif 
+            WHERE tenant_id = @tenantId AND is_read = 0";  // Check for unread notifications (is_read = 0)
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                int newNotifications = Convert.ToInt32(cmd.ExecuteScalar());
+
+                // If there are new notifications, update the PictureBox image
+                if (newNotifications > 0)
+                {
+                    if (!hasNewNotification)
+                    {
+                        notification_Btn.Image = Properties.Resources.notification__2_; // New notification image
+                        hasNewNotification = true;
+                    }
+                }
+                else
+                {
+                    if (hasNewNotification)
+                    {
+                        notification_Btn.Image = Properties.Resources.bell; // Default bell image
+                        hasNewNotification = false;
+                    }
+                }
+            }
+        }
+
+
+
         private void ClockTimer_Tick(object sender, EventArgs e)
         {
             // Update the label with the current time
@@ -222,7 +275,25 @@ namespace try_messaging
             childForm.BringToFront();
             childForm.Show();
         }
-        
+        private void LoadNotifInPanel(Form childForm)
+        {
+            // Clear existing controls in the panel
+            notifPanel.Controls.Clear();
+
+            // Set up the child form's properties
+            childForm.TopLevel = false; // Make it a non-top-level form
+            childForm.FormBorderStyle = FormBorderStyle.None; // Remove the form border
+            childForm.Dock = DockStyle.Fill; // Make it fill the panel
+
+            // Add the form to the panel
+            notifPanel.Controls.Add(childForm);
+            notifPanel.Tag = childForm;
+
+            // Display the form
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -239,6 +310,8 @@ namespace try_messaging
         private void Form3_Load(object sender, EventArgs e)
         {
             dashboard_Btn_Click_1(dashboard_Btn, EventArgs.Empty);
+
+            LoadNotifications();
 
 
         }
@@ -321,7 +394,7 @@ namespace try_messaging
             payment_Btn.Image = Properties.Resources.payment_plain_butt;
             maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
 
-            notificationGrid.Visible = false;
+            notifPanel.Visible = false;
 
 
 
@@ -345,7 +418,7 @@ namespace try_messaging
             payment_Btn.Image = Properties.Resources.payment_plain_butt;
             maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
 
-            notificationGrid.Visible = false;
+            notifPanel.Visible = false;
         }
 
         private void payment_Btn_Click(object sender, EventArgs e)
@@ -365,7 +438,7 @@ namespace try_messaging
             profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
             maintenance_Btn.Image = Properties.Resources.maintenance_plain_butt_11;
 
-            notificationGrid.Visible = false;
+            notifPanel.Visible = false;
         }
 
         private void maintenance_Btn_Click(object sender, EventArgs e)
@@ -384,23 +457,176 @@ namespace try_messaging
             profile_Btn.Image = Properties.Resources.profile_plain_butt__1_;
             payment_Btn.Image = Properties.Resources.payment_plain_butt;
 
-            notificationGrid.Visible = false;
+            notifPanel.Visible = false;
         }
 
         private void notification_Btn_Click(object sender, EventArgs e)
         {
-            notificationGrid.Visible = !notificationGrid.Visible;
+            LoadNotifications();
+            if (notifPanel.Visible)
+            {
+                // If the notification panel is visible, it means we are closing it
+                // Mark notifications as read when the panel is being closed
+                MarkNotificationsAsRead();
+                
+                // Reset notification icon to default bell image
+                notification_Btn.Image = Properties.Resources.bell;
+
+                // Hide the notification panel
+                notifPanel.Visible = false;
+            }
+            else
+            {
+                // If the notification panel is not visible, we are opening it
+                notifPanel.Visible = true;
+                
+
+
+            }
+
         }
+        private void LoadNotifications()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+            SELECT 
+                notif_id, 
+                CONCAT(notif_type, ' | ', description, ' | ', DATE_FORMAT(notif_date, '%Y-%m-%d %h:%i %p')) AS Notification, 
+                is_read
+            FROM tenant_notif
+            WHERE tenant_id = @tenantId
+            ORDER BY notif_date DESC";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable notificationsTable = new DataTable();
+                    adapter.Fill(notificationsTable);
+
+                    // Hide `notif_id` and `is_read` columns
+                    notificationsTable.Columns.Remove("notif_id");
+
+                    // Bind the DataTable to the DataGridView
+                    this.notificationsTable.DataSource = notificationsTable;
+
+                    // Deselect all rows after binding
+                    this.notificationsTable.ClearSelection();
+
+                    // Format the DataGridView
+                    FormatDataGridView();
+
+                    // Highlight unread notifications
+                    HighlightUnreadRows();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading notifications: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        private void HighlightUnreadRows()
+        {
+            // Ensure DataGridView rows are loaded
+            if (notificationsTable.Rows.Count == 0)
+            {
+                return; // No data, exit
+            }
+
+            foreach (DataGridViewRow row in notificationsTable.Rows)
+            {
+                if (row.Cells["is_read"].Value != DBNull.Value)
+                {
+                    try
+                    {
+                        int isRead = Convert.ToInt32(row.Cells["is_read"].Value);
+
+                        // Debugging line to check values
+                        Console.WriteLine($"Row ID: {row.Index}, is_read: {isRead}");
+
+                        if (isRead == 0) // Unread notification
+                        {
+                            row.DefaultCellStyle.BackColor = Color.LightYellow; // Highlight unread notifications
+                            
+                        }
+                        else // Read notification
+                        {
+                            row.DefaultCellStyle.BackColor = Color.White; // Default color
+                            row.DefaultCellStyle.ForeColor = Color.Black; // Default text color for read notifications
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error processing row {row.Index}: {ex.Message}", "Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    // Debugging line for null or invalid values
+                    Console.WriteLine($"Row ID: {row.Index}, is_read value is NULL or invalid.");
+                }
+            }
+        }
+
+        private void FormatDataGridView()
+        {
+            // Hide the `is_read` column from being displayed
+            if (notificationsTable.Columns.Contains("is_read"))
+            {
+                notificationsTable.Columns["is_read"].Visible = false;
+            }
+
+            // Set header for the Notification column
+            notificationsTable.Columns["Notification"].HeaderText = "Notification Details";
+
+            notificationsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Automatically adjust column width
+            notificationsTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;  // Automatically adjust row height
+            notificationsTable.DefaultCellStyle.WrapMode = DataGridViewTriState.True;     // Enable text wrapping
+            notificationsTable.AllowUserToAddRows = false;
+            notificationsTable.ReadOnly = true;
+            notificationsTable.RowHeadersVisible = false;
+            notificationsTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            notificationsTable.MultiSelect = false;
+            notificationsTable.DefaultCellStyle.SelectionBackColor = Color.LightYellow;
+            notificationsTable.DefaultCellStyle.SelectionForeColor = notificationsTable.DefaultCellStyle.ForeColor;
+
+            // Optional: Set font or alignment if needed
+            notificationsTable.DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+        }
+
+        private void MarkNotificationsAsRead()
+        {
+            string updateQuery = @"
+            UPDATE tenant_notif 
+            SET is_read = 1  -- Mark notifications as read
+            WHERE tenant_id = @tenantId AND is_read = 0";  // Only update unread notifications (is_read = 0)
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(updateQuery, conn);
+                cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Pass the tenantId
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         private void tenant_dashboard_MouseClick(object sender, MouseEventArgs e)
         {
             // Hide the grid if it is visible and the click is outside the grid
-            if (notificationGrid.Visible)
+            if (notifPanel.Visible)
             {
                 // Check if the click was outside the grid
-                if (!notificationGrid.Bounds.Contains(e.Location))
+                if (!notifPanel.Bounds.Contains(e.Location))
                 {
-                    notificationGrid.Visible = false;
+                    notifPanel.Visible = false;
                 }
             }
         }
@@ -412,12 +638,12 @@ namespace try_messaging
 
         private void displayPanel_MouseClick(object sender, MouseEventArgs e)
         {
-            if (notificationGrid.Visible)
+            if (notifPanel.Visible)
             {
                 // Check if the click was outside the grid
-                if (!notificationGrid.Bounds.Contains(e.Location))
+                if (!notifPanel.Bounds.Contains(e.Location))
                 {
-                    notificationGrid.Visible = false;
+                    notifPanel.Visible = false;
                 }
             }
         }

@@ -30,7 +30,7 @@ namespace try_messaging
 
         private void tenant_lists_Load(object sender, EventArgs e)
         {
-         
+            this.tenantList.ClearSelection();
 
             sortCombo.Items.AddRange(new string[]
             {
@@ -133,9 +133,11 @@ namespace try_messaging
                     tenantList.DataSource = tenantTable;
 
                     // Customize DataGridView (Optional)
+                    
                     tenantList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     tenantList.AllowUserToAddRows = false;
                     tenantList.ReadOnly = true;
+                    tenantList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 }
                 catch (Exception ex)
                 {

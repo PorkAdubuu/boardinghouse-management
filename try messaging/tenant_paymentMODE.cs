@@ -69,7 +69,7 @@ namespace try_messaging
                 {
                     conn.Open();
                     string query = @"
-                    SELECT total_bill
+                    SELECT remaining_balance
                     FROM billing_table
                     WHERE tenant_id = @tenantId
                     ORDER BY billing_id DESC LIMIT 1";  // Fetch the latest bill for the tenant
@@ -82,7 +82,7 @@ namespace try_messaging
                         if (reader.Read())
                         {
                             // Set the bill values for the labels, formatted with thousand separators and 2 decimal points                          
-                            totalBill.Text = Convert.ToDecimal(reader["total_bill"]).ToString("N2");
+                            totalBill.Text = Convert.ToDecimal(reader["remaining_balance"]).ToString("N2");
 
                             
                         }
@@ -110,8 +110,16 @@ namespace try_messaging
                     return;
                 }
 
-                int roomNumber = Convert.ToInt32(roomNumberText.Text); // Get room number                
+                int roomNumber = Convert.ToInt32(roomNumberText.Text); // Get room number
                 string referenceNumber = referenceText.Text; // Payment reference number
+                decimal paymentAmount;
+
+                // Ensure that payment amount is a valid decimal value
+                if (!decimal.TryParse(amountText.Text, out paymentAmount))
+                {
+                    MessageBox.Show("Please enter a valid payment amount.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
                 {
@@ -162,12 +170,13 @@ namespace try_messaging
 
                             // Step 3: Log the transaction in tenant_transaction_table
                             string insertTransactionQuery = @"
-                            INSERT INTO tenant_transaction_table (tenant_id, total_bill, status, reference_number)
-                            VALUES (@tenantId, @totalBill, 'Pending', @referenceNumber)";
+                            INSERT INTO tenant_transaction_table (tenant_id, total_bill, status, reference_number, amount_paid)
+                            VALUES (@tenantId, @totalBill, 'Pending', @referenceNumber, @amount_paid)";
                             MySqlCommand cmdInsertTransaction = new MySqlCommand(insertTransactionQuery, conn, transaction);
                             cmdInsertTransaction.Parameters.AddWithValue("@tenantId", tenantId);
                             cmdInsertTransaction.Parameters.AddWithValue("@totalBill", totalBill);
                             cmdInsertTransaction.Parameters.AddWithValue("@referenceNumber", referenceNumber);
+                            cmdInsertTransaction.Parameters.AddWithValue("@amount_paid", paymentAmount);  // Use the correctly parsed value
 
                             cmdInsertTransaction.ExecuteNonQuery();
 
@@ -180,6 +189,17 @@ namespace try_messaging
                             cmdUpdateBillingStatus.Parameters.AddWithValue("@billingId", billingId);
 
                             cmdUpdateBillingStatus.ExecuteNonQuery();
+
+                            // Step 5: Insert notification into tenant_notif table with 'is_read' = 0 (unread)
+                            string insertNotifQuery = @"
+                            INSERT INTO tenant_notif (reason, description, notif_type, tenant_id, is_read)
+                            VALUES (NULL, @description, @notifType, @tenantId, 0)";  // Set is_read to 0 for unread
+                            MySqlCommand cmdInsertNotif = new MySqlCommand(insertNotifQuery, conn, transaction);
+                            cmdInsertNotif.Parameters.AddWithValue("@description", "Your payment is being reviewed and will be processed by the admin.");
+                            cmdInsertNotif.Parameters.AddWithValue("@notifType", "Payment Details");
+                            cmdInsertNotif.Parameters.AddWithValue("@tenantId", tenantId);
+
+                            cmdInsertNotif.ExecuteNonQuery();
 
                             // Commit the transaction
                             transaction.Commit();

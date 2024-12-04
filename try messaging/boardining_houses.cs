@@ -26,6 +26,7 @@ namespace try_messaging
         {
             InitializeComponent();
             dbConnection = new DatabaseConnection();
+            this.houseList.ClearSelection();
         }
 
         private void confirm_Btn_Click(object sender, EventArgs e)
@@ -94,7 +95,7 @@ namespace try_messaging
 
         private void boardining_houses_Load(object sender, EventArgs e)
         {
-            
+            this.houseList.ClearSelection();
 
             sortCombo.Items.AddRange(new string[]
             {
@@ -145,6 +146,8 @@ namespace try_messaging
                     houseList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     houseList.AllowUserToAddRows = false;
                     houseList.ReadOnly = true;
+                    houseList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells; // Automatically adjust row height
+
                 }
                 catch (Exception ex)
                 {
