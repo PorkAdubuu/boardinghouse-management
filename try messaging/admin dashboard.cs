@@ -265,7 +265,8 @@ namespace try_messaging
         private void maintenance_Btn_Click(object sender, EventArgs e)
         {
             //to form
-
+            admin_maintenance admin_Maintenance = new admin_maintenance();
+            LoadFormInPanel(admin_Maintenance);
             //transition
             maintenance_Btn.Image = Properties.Resources.admin_maintenance_pink_butt;
 
