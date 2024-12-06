@@ -126,7 +126,6 @@ namespace try_messaging
                                         room_number AS 'Room Number', 
                                         start_date AS 'Start Date', 
                                         end_date AS 'End Date', 
-                                        aircon_bill AS 'Aircon Bill', 
                                         wifi_bill AS 'Wi-Fi Bill', 
                                         parking_bill AS 'Parking Bill', 
                                         water_bill AS 'Water Bill', 

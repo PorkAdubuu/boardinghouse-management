@@ -78,7 +78,7 @@ namespace try_messaging
                 {
                     conn.Open();
                     string query = @"
-                SELECT aircon_bill, wifi_bill, parking_bill, water_bill, electric_bill, rent_bill, total_bill, amount_paid, start_date, end_date, issue_date, due_date, status
+                SELECT wifi_bill, parking_bill, water_bill, electric_bill, rent_bill, total_bill, amount_paid, start_date, end_date, issue_date, due_date, status
                 FROM billing_table
                 WHERE tenant_id = @tenantId AND status IN ('No payment', 'Pending', 'Declined', 'Paid')
                 ORDER BY billing_id DESC LIMIT 1";  // Fetch the latest unpaid bill for the tenant

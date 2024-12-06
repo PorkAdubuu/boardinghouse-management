@@ -73,11 +73,12 @@
             this.emergency_contactt2 = new System.Windows.Forms.TextBox();
             this.roomText = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.amenities1 = new System.Windows.Forms.CheckBox();
             this.amenities2 = new System.Windows.Forms.CheckBox();
             this.boardingCombo = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.amenities3 = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.birthDatePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sendbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateBtn)).BeginInit();
@@ -115,7 +116,7 @@
             // ageText
             // 
             this.ageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ageText.Location = new System.Drawing.Point(104, 140);
+            this.ageText.Location = new System.Drawing.Point(104, 174);
             this.ageText.Name = "ageText";
             this.ageText.Size = new System.Drawing.Size(191, 24);
             this.ageText.TabIndex = 33;
@@ -141,7 +142,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(104, 232);
+            this.textBox1.Location = new System.Drawing.Point(104, 266);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(191, 24);
             this.textBox1.TabIndex = 23;
@@ -173,7 +174,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label4.Location = new System.Drawing.Point(3, 140);
+            this.label4.Location = new System.Drawing.Point(3, 174);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(33, 18);
             this.label4.TabIndex = 47;
@@ -195,7 +196,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label13.Location = new System.Drawing.Point(3, 170);
+            this.label13.Location = new System.Drawing.Point(3, 204);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 18);
             this.label13.TabIndex = 49;
@@ -209,7 +210,7 @@
             "Male",
             "Female",
             "Other"});
-            this.genderCombo.Location = new System.Drawing.Point(104, 170);
+            this.genderCombo.Location = new System.Drawing.Point(104, 204);
             this.genderCombo.Name = "genderCombo";
             this.genderCombo.Size = new System.Drawing.Size(191, 26);
             this.genderCombo.TabIndex = 50;
@@ -219,7 +220,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label6.Location = new System.Drawing.Point(3, 202);
+            this.label6.Location = new System.Drawing.Point(3, 236);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 18);
             this.label6.TabIndex = 51;
@@ -228,7 +229,7 @@
             // contactText
             // 
             this.contactText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contactText.Location = new System.Drawing.Point(104, 202);
+            this.contactText.Location = new System.Drawing.Point(104, 236);
             this.contactText.Name = "contactText";
             this.contactText.Size = new System.Drawing.Size(191, 24);
             this.contactText.TabIndex = 52;
@@ -238,7 +239,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label14.Location = new System.Drawing.Point(3, 232);
+            this.label14.Location = new System.Drawing.Point(3, 266);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(45, 18);
             this.label14.TabIndex = 53;
@@ -406,7 +407,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label11.Location = new System.Drawing.Point(3, 262);
+            this.label11.Location = new System.Drawing.Point(3, 296);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 18);
             this.label11.TabIndex = 73;
@@ -415,7 +416,7 @@
             // addText
             // 
             this.addText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addText.Location = new System.Drawing.Point(104, 262);
+            this.addText.Location = new System.Drawing.Point(104, 296);
             this.addText.Name = "addText";
             this.addText.Size = new System.Drawing.Size(191, 24);
             this.addText.TabIndex = 72;
@@ -425,7 +426,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label17.Location = new System.Drawing.Point(2, 300);
+            this.label17.Location = new System.Drawing.Point(2, 334);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(190, 24);
             this.label17.TabIndex = 74;
@@ -437,7 +438,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label18.Location = new System.Drawing.Point(3, 341);
+            this.label18.Location = new System.Drawing.Point(3, 375);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(52, 18);
             this.label18.TabIndex = 76;
@@ -447,7 +448,7 @@
             // emergency_contactt1
             // 
             this.emergency_contactt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergency_contactt1.Location = new System.Drawing.Point(104, 341);
+            this.emergency_contactt1.Location = new System.Drawing.Point(104, 375);
             this.emergency_contactt1.Name = "emergency_contactt1";
             this.emergency_contactt1.Size = new System.Drawing.Size(191, 24);
             this.emergency_contactt1.TabIndex = 75;
@@ -455,7 +456,7 @@
             // emergency_number1
             // 
             this.emergency_number1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergency_number1.Location = new System.Drawing.Point(104, 371);
+            this.emergency_number1.Location = new System.Drawing.Point(104, 405);
             this.emergency_number1.Name = "emergency_number1";
             this.emergency_number1.Size = new System.Drawing.Size(191, 24);
             this.emergency_number1.TabIndex = 78;
@@ -466,7 +467,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label19.Location = new System.Drawing.Point(3, 371);
+            this.label19.Location = new System.Drawing.Point(3, 405);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(88, 18);
             this.label19.TabIndex = 77;
@@ -476,7 +477,7 @@
             // emergency_number2
             // 
             this.emergency_number2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergency_number2.Location = new System.Drawing.Point(104, 429);
+            this.emergency_number2.Location = new System.Drawing.Point(104, 463);
             this.emergency_number2.Name = "emergency_number2";
             this.emergency_number2.Size = new System.Drawing.Size(191, 24);
             this.emergency_number2.TabIndex = 82;
@@ -487,7 +488,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label20.Location = new System.Drawing.Point(3, 429);
+            this.label20.Location = new System.Drawing.Point(3, 463);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(88, 18);
             this.label20.TabIndex = 81;
@@ -499,7 +500,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label21.Location = new System.Drawing.Point(3, 399);
+            this.label21.Location = new System.Drawing.Point(3, 433);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(52, 18);
             this.label21.TabIndex = 80;
@@ -509,7 +510,7 @@
             // emergency_contactt2
             // 
             this.emergency_contactt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergency_contactt2.Location = new System.Drawing.Point(104, 399);
+            this.emergency_contactt2.Location = new System.Drawing.Point(104, 433);
             this.emergency_contactt2.Name = "emergency_contactt2";
             this.emergency_contactt2.Size = new System.Drawing.Size(191, 24);
             this.emergency_contactt2.TabIndex = 79;
@@ -534,21 +535,10 @@
             this.label22.TabIndex = 84;
             this.label22.Text = "Amenities:";
             // 
-            // amenities1
-            // 
-            this.amenities1.AutoSize = true;
-            this.amenities1.Location = new System.Drawing.Point(410, 200);
-            this.amenities1.Name = "amenities1";
-            this.amenities1.Size = new System.Drawing.Size(84, 17);
-            this.amenities1.TabIndex = 85;
-            this.amenities1.Text = "Air condition";
-            this.amenities1.UseVisualStyleBackColor = true;
-            this.amenities1.CheckedChanged += new System.EventHandler(this.amenities1_CheckedChanged);
-            // 
             // amenities2
             // 
             this.amenities2.AutoSize = true;
-            this.amenities2.Location = new System.Drawing.Point(410, 223);
+            this.amenities2.Location = new System.Drawing.Point(410, 205);
             this.amenities2.Name = "amenities2";
             this.amenities2.Size = new System.Drawing.Size(50, 17);
             this.amenities2.TabIndex = 86;
@@ -579,13 +569,32 @@
             // amenities3
             // 
             this.amenities3.AutoSize = true;
-            this.amenities3.Location = new System.Drawing.Point(410, 246);
+            this.amenities3.Location = new System.Drawing.Point(410, 228);
             this.amenities3.Name = "amenities3";
             this.amenities3.Size = new System.Drawing.Size(94, 17);
             this.amenities3.TabIndex = 89;
             this.amenities3.Text = "Parking space";
             this.amenities3.UseVisualStyleBackColor = true;
             this.amenities3.CheckedChanged += new System.EventHandler(this.amenities3_CheckedChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label24.Location = new System.Drawing.Point(3, 143);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(73, 18);
+            this.label24.TabIndex = 90;
+            this.label24.Text = "Birth Date";
+            // 
+            // birthDatePicker
+            // 
+            this.birthDatePicker.Location = new System.Drawing.Point(104, 143);
+            this.birthDatePicker.Name = "birthDatePicker";
+            this.birthDatePicker.Size = new System.Drawing.Size(191, 20);
+            this.birthDatePicker.TabIndex = 91;
+            this.birthDatePicker.ValueChanged += new System.EventHandler(this.birthDatePicker_ValueChanged);
             // 
             // tenantmanagement
             // 
@@ -594,11 +603,12 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 558);
+            this.Controls.Add(this.birthDatePicker);
+            this.Controls.Add(this.label24);
             this.Controls.Add(this.amenities3);
             this.Controls.Add(this.boardingCombo);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.amenities2);
-            this.Controls.Add(this.amenities1);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.roomText);
             this.Controls.Add(this.emergency_number2);
@@ -702,10 +712,11 @@
         private System.Windows.Forms.TextBox emergency_contactt2;
         private System.Windows.Forms.ComboBox roomText;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox amenities1;
         private System.Windows.Forms.CheckBox amenities2;
         private System.Windows.Forms.ComboBox boardingCombo;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.CheckBox amenities3;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.DateTimePicker birthDatePicker;
     }
 }
