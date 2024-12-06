@@ -29,7 +29,6 @@ namespace try_messaging
             this.CenterToParent();
 
 
-            airconditionBill.TextChanged += totalBIll_TextChanged;
             wifiBill.TextChanged += totalBIll_TextChanged;
             parkingBill.TextChanged += totalBIll_TextChanged;
             waterBill.TextChanged += totalBIll_TextChanged;
@@ -133,7 +132,7 @@ namespace try_messaging
 
         private async void confirm_Btn_Click(object sender, EventArgs e)
         {
-            if (roomCombo.SelectedItem == null || string.IsNullOrEmpty(airconditionBill.Text) ||
+            if (roomCombo.SelectedItem == null || 
             string.IsNullOrEmpty(wifiBill.Text) || string.IsNullOrEmpty(parkingBill.Text) ||
             string.IsNullOrEmpty(waterBill.Text) || string.IsNullOrEmpty(electricBill.Text))
             {
@@ -144,13 +143,12 @@ namespace try_messaging
             int roomNumber = int.Parse(roomCombo.SelectedItem.ToString());
             DateTime start = startDate.Value;
             DateTime end = endDate.Value;
-            decimal airconBill = decimal.Parse(airconditionBill.Text);
             decimal wifiBillValue = decimal.Parse(wifiBill.Text);
             decimal parkingBillValue = decimal.Parse(parkingBill.Text);
             decimal waterBillValue = decimal.Parse(waterBill.Text);
             decimal electricBillValue = decimal.Parse(electricBill.Text);
             decimal rentBills = decimal.Parse(rentBill.Text);  // Fixed rent value
-            decimal totalBills = rentBills + airconBill + wifiBillValue + parkingBillValue + waterBillValue + electricBillValue;  // Total bill calculation
+            decimal totalBills = rentBills + wifiBillValue + parkingBillValue + waterBillValue + electricBillValue;  // Total bill calculation
             int tenantID = int.Parse(tenant_ID.Text);
             totalBIll.Text = totalBills.ToString("F2");  // Display total bill with two decimal places
 
@@ -171,13 +169,13 @@ namespace try_messaging
 
                     // Step 1: Insert billing information
                     string query = @"INSERT INTO billing_table 
-                    (room_number, start_date, end_date, aircon_bill, wifi_bill, parking_bill, water_bill, electric_bill, rent_bill, total_bill, tenant_id)
-                    VALUES (@roomNumber, @startDate, @endDate, @airconBill, @wifiBill, @parkingBill, @waterBill, @electricBill, @rentBill, @totalBill, @tenantID)";
+                    (room_number, start_date, end_date, wifi_bill, parking_bill, water_bill, electric_bill, rent_bill, total_bill, tenant_id)
+                    VALUES (@roomNumber, @startDate, @endDate, @wifiBill, @parkingBill, @waterBill, @electricBill, @rentBill, @totalBill, @tenantID)";
                     MySqlCommand cmd = new MySqlCommand(query, conn, transaction);
                     cmd.Parameters.AddWithValue("@roomNumber", roomNumber);
                     cmd.Parameters.AddWithValue("@startDate", start);
                     cmd.Parameters.AddWithValue("@endDate", end);
-                    cmd.Parameters.AddWithValue("@airconBill", airconBill);
+
                     cmd.Parameters.AddWithValue("@wifiBill", wifiBillValue);
                     cmd.Parameters.AddWithValue("@parkingBill", parkingBillValue);
                     cmd.Parameters.AddWithValue("@waterBill", waterBillValue);
@@ -285,7 +283,6 @@ namespace try_messaging
         private void totalBIll_TextChanged(object sender, EventArgs e)
         {
             // Attempt to parse the values of each billing field
-            decimal airconBill = string.IsNullOrEmpty(airconditionBill.Text) ? 0 : decimal.Parse(airconditionBill.Text);
             decimal wifiBillValue = string.IsNullOrEmpty(wifiBill.Text) ? 0 : decimal.Parse(wifiBill.Text);
             decimal parkingBillValue = string.IsNullOrEmpty(parkingBill.Text) ? 0 : decimal.Parse(parkingBill.Text);
             decimal waterBillValue = string.IsNullOrEmpty(waterBill.Text) ? 0 : decimal.Parse(waterBill.Text);
@@ -293,7 +290,7 @@ namespace try_messaging
             decimal rentBills = string.IsNullOrEmpty(rentBill.Text) ? 3500 : decimal.Parse(rentBill.Text); // Rent is already set as default
 
             // Calculate the total bill
-            decimal totalBills = rentBills + airconBill + wifiBillValue + parkingBillValue + waterBillValue + electricBillValue;
+            decimal totalBills = rentBills + wifiBillValue + parkingBillValue + waterBillValue + electricBillValue;
 
             // Update the totalBill textbox in real-time
             totalBIll.Text = totalBills.ToString("F2");
@@ -306,7 +303,7 @@ namespace try_messaging
                 try
                 {
                     conn.Open();
-                    string query = "SELECT air_condition, wifi, parking FROM tenants_details WHERE roomnumber = @roomNumber";
+                    string query = "SELECT wifi, parking FROM tenants_details WHERE roomnumber = @roomNumber";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@roomNumber", roomNumber);
 
@@ -314,16 +311,8 @@ namespace try_messaging
                     {
                         if (reader.Read())
                         {
-                            // Set values for aircon, wifi, and parking bills based on the 'YES' values
-                            if (reader["air_condition"].ToString().ToUpper() == "YES")
-                            {
-                                airconditionBill.Text = "100";
-                            }
-                            else
-                            {
-                                airconditionBill.Text = "0";
-                            }
-
+                            // Set values for wifi, and parking bills based on the 'YES' values
+                            
                             if (reader["wifi"].ToString().ToUpper() == "YES")
                             {
                                 wifiBill.Text = "700";

@@ -134,9 +134,9 @@ namespace try_messaging
 
                             // Update the amount_paid by adding the paymentAmount to the existing amount_paid
                             string updateBillingQuery = @"
-            UPDATE billing_table 
-            SET amount_paid = amount_paid + @paymentAmount  -- This adds to the current value of amount_paid
-            WHERE billing_id = @billingId AND tenant_id = @tenantId";
+                            UPDATE billing_table 
+                            SET amount_paid = amount_paid + @paymentAmount  -- This adds to the current value of amount_paid
+                            WHERE billing_id = @billingId AND tenant_id = @tenantId";
 
                             MySqlCommand cmdUpdateBilling = new MySqlCommand(updateBillingQuery, conn, transaction);
                             cmdUpdateBilling.Parameters.AddWithValue("@paymentAmount", paymentAmount);
@@ -146,9 +146,9 @@ namespace try_messaging
 
                             // Archive the payment in the archive table
                             string archivePaymentQuery = @"
-            UPDATE payment_archive_table
-            SET total_bill = @paymentAmount
-            WHERE billing_id = @billingId AND tenant_id = @tenantId";
+                            UPDATE payment_archive_table
+                            SET total_bill = @paymentAmount
+                            WHERE billing_id = @billingId AND tenant_id = @tenantId";
 
                             MySqlCommand cmdArchivePayment = new MySqlCommand(archivePaymentQuery, conn, transaction);
                             cmdArchivePayment.Parameters.AddWithValue("@paymentAmount", paymentAmount);

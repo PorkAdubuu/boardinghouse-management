@@ -226,7 +226,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(594, 227);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(263, 165);
+            this.panel1.Size = new System.Drawing.Size(261, 165);
             this.panel1.TabIndex = 21;
             // 
             // label5
@@ -340,7 +340,7 @@
             this.announcementLog.Location = new System.Drawing.Point(594, 398);
             this.announcementLog.Name = "announcementLog";
             this.announcementLog.ReadOnly = true;
-            this.announcementLog.Size = new System.Drawing.Size(263, 129);
+            this.announcementLog.Size = new System.Drawing.Size(261, 129);
             this.announcementLog.TabIndex = 33;
             this.announcementLog.Text = "";
             // 

@@ -49,13 +49,11 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.addLabel = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.workLabel = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
@@ -75,19 +73,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.airconText = new System.Windows.Forms.Label();
             this.wifiText = new System.Windows.Forms.Label();
             this.parkingText = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // profilePic
@@ -251,7 +249,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.White;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(20, 520);
+            this.label13.Location = new System.Drawing.Point(15, 520);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(110, 16);
             this.label13.TabIndex = 21;
@@ -313,17 +311,6 @@
             this.addLabel.TabIndex = 25;
             this.addLabel.Text = "Address:";
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.White;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(288, 412);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(97, 16);
-            this.label19.TabIndex = 26;
-            this.label19.Text = "Air condition:";
-            // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.White;
@@ -377,16 +364,6 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 31;
             this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
-            this.pictureBox7.Location = new System.Drawing.Point(-2, 373);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(263, 189);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 32;
-            this.pictureBox7.TabStop = false;
             // 
             // pictureBox8
             // 
@@ -458,7 +435,7 @@
             this.phone2Label.AutoSize = true;
             this.phone2Label.BackColor = System.Drawing.Color.White;
             this.phone2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phone2Label.Location = new System.Drawing.Point(136, 520);
+            this.phone2Label.Location = new System.Drawing.Point(131, 520);
             this.phone2Label.Name = "phone2Label";
             this.phone2Label.Size = new System.Drawing.Size(30, 16);
             this.phone2Label.TabIndex = 40;
@@ -580,7 +557,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(288, 432);
+            this.label5.Location = new System.Drawing.Point(288, 421);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 16);
             this.label5.TabIndex = 53;
@@ -591,29 +568,18 @@
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.White;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(288, 452);
+            this.label18.Location = new System.Drawing.Point(288, 441);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(64, 16);
             this.label18.TabIndex = 54;
             this.label18.Text = "Parking:";
-            // 
-            // airconText
-            // 
-            this.airconText.AutoSize = true;
-            this.airconText.BackColor = System.Drawing.Color.White;
-            this.airconText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.airconText.Location = new System.Drawing.Point(392, 412);
-            this.airconText.Name = "airconText";
-            this.airconText.Size = new System.Drawing.Size(30, 16);
-            this.airconText.TabIndex = 55;
-            this.airconText.Text = "N/A";
             // 
             // wifiText
             // 
             this.wifiText.AutoSize = true;
             this.wifiText.BackColor = System.Drawing.Color.White;
             this.wifiText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wifiText.Location = new System.Drawing.Point(341, 432);
+            this.wifiText.Location = new System.Drawing.Point(341, 421);
             this.wifiText.Name = "wifiText";
             this.wifiText.Size = new System.Drawing.Size(30, 16);
             this.wifiText.TabIndex = 56;
@@ -624,11 +590,21 @@
             this.parkingText.AutoSize = true;
             this.parkingText.BackColor = System.Drawing.Color.White;
             this.parkingText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.parkingText.Location = new System.Drawing.Point(358, 452);
+            this.parkingText.Location = new System.Drawing.Point(358, 441);
             this.parkingText.Name = "parkingText";
             this.parkingText.Size = new System.Drawing.Size(30, 16);
             this.parkingText.TabIndex = 57;
             this.parkingText.Text = "N/A";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
+            this.pictureBox7.Location = new System.Drawing.Point(-2, 373);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(263, 189);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 32;
+            this.pictureBox7.TabStop = false;
             // 
             // tenant_account_profile
             // 
@@ -638,7 +614,6 @@
             this.ClientSize = new System.Drawing.Size(869, 574);
             this.Controls.Add(this.parkingText);
             this.Controls.Add(this.wifiText);
-            this.Controls.Add(this.airconText);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -661,7 +636,6 @@
             this.Controls.Add(this.workLabel);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.addLabel);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -694,10 +668,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -725,13 +699,11 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label addLabel;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label workLabel;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label phoneLabel;
@@ -751,8 +723,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label airconText;
         private System.Windows.Forms.Label wifiText;
         private System.Windows.Forms.Label parkingText;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }
