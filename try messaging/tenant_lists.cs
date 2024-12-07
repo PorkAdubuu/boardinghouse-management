@@ -30,7 +30,7 @@ namespace try_messaging
 
         private void tenant_lists_Load(object sender, EventArgs e)
         {
-         
+            this.tenantList.ClearSelection();
 
             sortCombo.Items.AddRange(new string[]
             {
@@ -112,7 +112,7 @@ namespace try_messaging
             emergency_contact1 AS 'emergency contact1',
             emergency_name2 AS 'emergency name2',
             emergency_contact2 AS 'emergency contact2',
-            air_condition AS 'air condition',
+            birth_date AS 'Birth date',
             wifi AS 'Wi-fi',
             parking AS 'Parking',
             house_name AS 'House name',
@@ -133,9 +133,11 @@ namespace try_messaging
                     tenantList.DataSource = tenantTable;
 
                     // Customize DataGridView (Optional)
+                    
                     tenantList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     tenantList.AllowUserToAddRows = false;
                     tenantList.ReadOnly = true;
+                    tenantList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 }
                 catch (Exception ex)
                 {

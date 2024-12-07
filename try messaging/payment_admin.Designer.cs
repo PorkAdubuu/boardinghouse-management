@@ -28,350 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tenant_ID = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.rentBill = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.totalBIll = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.confirm_Btn = new System.Windows.Forms.Button();
-            this.electricBill = new System.Windows.Forms.TextBox();
-            this.waterBill = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.kWhText = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.cubicText = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.parkingBill = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.wifiBill = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.airconditionBill = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.endDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.startDate = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.roomCombo = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label14 = new System.Windows.Forms.Label();
             this.tenantpaymentsTable = new System.Windows.Forms.DataGridView();
-            this.paymentStatus = new System.Windows.Forms.DataGridView();
+            this.paymentLogs = new System.Windows.Forms.DataGridView();
             this.label16 = new System.Windows.Forms.Label();
             this.accept_Btn = new System.Windows.Forms.Button();
             this.decline_Btn = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.sortCombo = new System.Windows.Forms.ComboBox();
+            this.search_Btn = new System.Windows.Forms.Button();
+            this.searchBar = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.billStatusTable = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.refresh_Btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tenantpaymentsTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentLogs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billStatusTable)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 20);
-            this.label1.TabIndex = 77;
-            this.label1.Text = "Billing Statement";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.tenant_ID);
-            this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.rentBill);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.totalBIll);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.confirm_Btn);
-            this.panel1.Controls.Add(this.electricBill);
-            this.panel1.Controls.Add(this.waterBill);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.kWhText);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.cubicText);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.parkingBill);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.wifiBill);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.airconditionBill);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.endDate);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.startDate);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.roomCombo);
-            this.panel1.Location = new System.Drawing.Point(2, 30);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(508, 258);
-            this.panel1.TabIndex = 89;
-            // 
-            // tenant_ID
-            // 
-            this.tenant_ID.Location = new System.Drawing.Point(140, 109);
-            this.tenant_ID.Name = "tenant_ID";
-            this.tenant_ID.Size = new System.Drawing.Size(120, 20);
-            this.tenant_ID.TabIndex = 117;
-            this.tenant_ID.TextChanged += new System.EventHandler(this.tenant_ID_TextChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(137, 87);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(80, 18);
-            this.label17.TabIndex = 116;
-            this.label17.Text = "Tenant ID";
-            // 
-            // rentBill
-            // 
-            this.rentBill.Location = new System.Drawing.Point(379, 91);
-            this.rentBill.Name = "rentBill";
-            this.rentBill.Size = new System.Drawing.Size(81, 20);
-            this.rentBill.TabIndex = 114;
-            this.rentBill.Text = "3500";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(288, 93);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(39, 18);
-            this.label15.TabIndex = 113;
-            this.label15.Text = "Rent";
-            // 
-            // totalBIll
-            // 
-            this.totalBIll.BackColor = System.Drawing.Color.White;
-            this.totalBIll.Location = new System.Drawing.Point(291, 170);
-            this.totalBIll.Name = "totalBIll";
-            this.totalBIll.ReadOnly = true;
-            this.totalBIll.Size = new System.Drawing.Size(118, 20);
-            this.totalBIll.TabIndex = 112;
-            this.totalBIll.TextChanged += new System.EventHandler(this.totalBIll_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(288, 141);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 18);
-            this.label10.TabIndex = 110;
-            this.label10.Text = "Total Bill";
-            // 
-            // confirm_Btn
-            // 
-            this.confirm_Btn.BackColor = System.Drawing.Color.White;
-            this.confirm_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.confirm_Btn.Location = new System.Drawing.Point(335, 218);
-            this.confirm_Btn.Name = "confirm_Btn";
-            this.confirm_Btn.Size = new System.Drawing.Size(125, 23);
-            this.confirm_Btn.TabIndex = 90;
-            this.confirm_Btn.Text = "Confirm";
-            this.confirm_Btn.UseVisualStyleBackColor = false;
-            this.confirm_Btn.Click += new System.EventHandler(this.confirm_Btn_Click);
-            // 
-            // electricBill
-            // 
-            this.electricBill.Location = new System.Drawing.Point(418, 62);
-            this.electricBill.Name = "electricBill";
-            this.electricBill.Size = new System.Drawing.Size(81, 20);
-            this.electricBill.TabIndex = 109;
-            // 
-            // waterBill
-            // 
-            this.waterBill.Location = new System.Drawing.Point(418, 36);
-            this.waterBill.Name = "waterBill";
-            this.waterBill.Size = new System.Drawing.Size(81, 20);
-            this.waterBill.TabIndex = 108;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(288, 65);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 18);
-            this.label11.TabIndex = 107;
-            this.label11.Text = "Electric ";
-            // 
-            // kWhText
-            // 
-            this.kWhText.Location = new System.Drawing.Point(379, 63);
-            this.kWhText.Name = "kWhText";
-            this.kWhText.Size = new System.Drawing.Size(33, 20);
-            this.kWhText.TabIndex = 106;
-            this.kWhText.TextChanged += new System.EventHandler(this.kWhText_TextChanged);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(288, 39);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(87, 18);
-            this.label12.TabIndex = 105;
-            this.label12.Text = "Water cubic";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(288, 10);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 18);
-            this.label13.TabIndex = 104;
-            this.label13.Text = "Utilities";
-            // 
-            // cubicText
-            // 
-            this.cubicText.Location = new System.Drawing.Point(379, 37);
-            this.cubicText.Name = "cubicText";
-            this.cubicText.Size = new System.Drawing.Size(33, 20);
-            this.cubicText.TabIndex = 103;
-            this.cubicText.TextChanged += new System.EventHandler(this.cubicText_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(10, 222);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 18);
-            this.label9.TabIndex = 102;
-            this.label9.Text = "Parking";
-            // 
-            // parkingBill
-            // 
-            this.parkingBill.Location = new System.Drawing.Point(101, 220);
-            this.parkingBill.Name = "parkingBill";
-            this.parkingBill.Size = new System.Drawing.Size(120, 20);
-            this.parkingBill.TabIndex = 101;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 196);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 18);
-            this.label8.TabIndex = 100;
-            this.label8.Text = "Wi-Fi";
-            // 
-            // wifiBill
-            // 
-            this.wifiBill.Location = new System.Drawing.Point(101, 194);
-            this.wifiBill.Name = "wifiBill";
-            this.wifiBill.Size = new System.Drawing.Size(120, 20);
-            this.wifiBill.TabIndex = 99;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(10, 170);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 18);
-            this.label7.TabIndex = 98;
-            this.label7.Text = "Aircondition";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 141);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 18);
-            this.label6.TabIndex = 97;
-            this.label6.Text = "Amenities";
-            // 
-            // airconditionBill
-            // 
-            this.airconditionBill.Location = new System.Drawing.Point(101, 168);
-            this.airconditionBill.Name = "airconditionBill";
-            this.airconditionBill.Size = new System.Drawing.Size(120, 20);
-            this.airconditionBill.TabIndex = 96;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 18);
-            this.label5.TabIndex = 95;
-            this.label5.Text = "To";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 18);
-            this.label4.TabIndex = 94;
-            this.label4.Text = "From";
-            // 
-            // endDate
-            // 
-            this.endDate.Location = new System.Drawing.Point(60, 63);
-            this.endDate.Name = "endDate";
-            this.endDate.Size = new System.Drawing.Size(200, 20);
-            this.endDate.TabIndex = 93;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 18);
-            this.label3.TabIndex = 92;
-            this.label3.Text = "Date of billing";
-            // 
-            // startDate
-            // 
-            this.startDate.Location = new System.Drawing.Point(60, 37);
-            this.startDate.Name = "startDate";
-            this.startDate.Size = new System.Drawing.Size(200, 20);
-            this.startDate.TabIndex = 91;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 18);
-            this.label2.TabIndex = 90;
-            this.label2.Text = "Room number";
-            // 
-            // roomCombo
-            // 
-            this.roomCombo.FormattingEnabled = true;
-            this.roomCombo.Location = new System.Drawing.Point(13, 108);
-            this.roomCombo.Name = "roomCombo";
-            this.roomCombo.Size = new System.Drawing.Size(121, 21);
-            this.roomCombo.TabIndex = 0;
-            this.roomCombo.SelectedIndexChanged += new System.EventHandler(this.roomCombo_SelectedIndexChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(512, 9);
+            this.label14.Location = new System.Drawing.Point(3, 9);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(148, 20);
             this.label14.TabIndex = 90;
@@ -380,29 +68,71 @@
             // tenantpaymentsTable
             // 
             this.tenantpaymentsTable.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tenantpaymentsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tenantpaymentsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tenantpaymentsTable.Location = new System.Drawing.Point(516, 30);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(65)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tenantpaymentsTable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tenantpaymentsTable.Location = new System.Drawing.Point(4, 32);
             this.tenantpaymentsTable.Name = "tenantpaymentsTable";
+            this.tenantpaymentsTable.ReadOnly = true;
             this.tenantpaymentsTable.RowHeadersVisible = false;
-            this.tenantpaymentsTable.Size = new System.Drawing.Size(347, 249);
+            this.tenantpaymentsTable.Size = new System.Drawing.Size(861, 214);
             this.tenantpaymentsTable.TabIndex = 91;
             this.tenantpaymentsTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tenantpaymentsTable_CellContentClick);
             // 
-            // paymentStatus
+            // paymentLogs
             // 
-            this.paymentStatus.BackgroundColor = System.Drawing.Color.White;
-            this.paymentStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.paymentStatus.Location = new System.Drawing.Point(2, 314);
-            this.paymentStatus.Name = "paymentStatus";
-            this.paymentStatus.RowHeadersVisible = false;
-            this.paymentStatus.Size = new System.Drawing.Size(861, 239);
-            this.paymentStatus.TabIndex = 92;
+            this.paymentLogs.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.paymentLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.paymentLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.paymentLogs.DefaultCellStyle = dataGridViewCellStyle4;
+            this.paymentLogs.Location = new System.Drawing.Point(343, 340);
+            this.paymentLogs.Name = "paymentLogs";
+            this.paymentLogs.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.paymentLogs.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.paymentLogs.RowHeadersVisible = false;
+            this.paymentLogs.Size = new System.Drawing.Size(522, 187);
+            this.paymentLogs.TabIndex = 92;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(2, 291);
+            this.label16.Location = new System.Drawing.Point(3, 284);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(136, 20);
             this.label16.TabIndex = 93;
@@ -412,7 +142,7 @@
             // 
             this.accept_Btn.BackColor = System.Drawing.Color.White;
             this.accept_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.accept_Btn.Location = new System.Drawing.Point(706, 285);
+            this.accept_Btn.Location = new System.Drawing.Point(85, 252);
             this.accept_Btn.Name = "accept_Btn";
             this.accept_Btn.Size = new System.Drawing.Size(72, 23);
             this.accept_Btn.TabIndex = 118;
@@ -424,7 +154,7 @@
             // 
             this.decline_Btn.BackColor = System.Drawing.Color.White;
             this.decline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.decline_Btn.Location = new System.Drawing.Point(600, 285);
+            this.decline_Btn.Location = new System.Drawing.Point(4, 252);
             this.decline_Btn.Name = "decline_Btn";
             this.decline_Btn.Size = new System.Drawing.Size(72, 23);
             this.decline_Btn.TabIndex = 119;
@@ -432,68 +162,161 @@
             this.decline_Btn.UseVisualStyleBackColor = false;
             this.decline_Btn.Click += new System.EventHandler(this.decline_Btn_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(65)))), ((int)(((byte)(94)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(740, 252);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.TabIndex = 118;
+            this.button1.Text = "Issue New Bill";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(637, 314);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 20);
+            this.label2.TabIndex = 123;
+            this.label2.Text = "sort by:";
+            // 
+            // sortCombo
+            // 
+            this.sortCombo.FormattingEnabled = true;
+            this.sortCombo.Location = new System.Drawing.Point(703, 313);
+            this.sortCombo.Name = "sortCombo";
+            this.sortCombo.Size = new System.Drawing.Size(121, 21);
+            this.sortCombo.TabIndex = 122;
+            // 
+            // search_Btn
+            // 
+            this.search_Btn.BackColor = System.Drawing.Color.White;
+            this.search_Btn.Location = new System.Drawing.Point(545, 311);
+            this.search_Btn.Name = "search_Btn";
+            this.search_Btn.Size = new System.Drawing.Size(75, 23);
+            this.search_Btn.TabIndex = 121;
+            this.search_Btn.Text = "Search";
+            this.search_Btn.UseVisualStyleBackColor = false;
+            // 
+            // searchBar
+            // 
+            this.searchBar.Location = new System.Drawing.Point(343, 314);
+            this.searchBar.Name = "searchBar";
+            this.searchBar.Size = new System.Drawing.Size(196, 20);
+            this.searchBar.TabIndex = 120;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Location = new System.Drawing.Point(793, 530);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(72, 23);
+            this.button2.TabIndex = 124;
+            this.button2.Text = "Export";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // billStatusTable
+            // 
+            this.billStatusTable.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.billStatusTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.billStatusTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.billStatusTable.DefaultCellStyle = dataGridViewCellStyle7;
+            this.billStatusTable.Location = new System.Drawing.Point(4, 307);
+            this.billStatusTable.Name = "billStatusTable";
+            this.billStatusTable.ReadOnly = true;
+            this.billStatusTable.RowHeadersVisible = false;
+            this.billStatusTable.Size = new System.Drawing.Size(333, 220);
+            this.billStatusTable.TabIndex = 125;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(339, 284);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 20);
+            this.label1.TabIndex = 126;
+            this.label1.Text = "Payment Fetails";
+            // 
+            // refresh_Btn
+            // 
+            this.refresh_Btn.BackColor = System.Drawing.Color.White;
+            this.refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.refresh_Btn.Location = new System.Drawing.Point(4, 530);
+            this.refresh_Btn.Name = "refresh_Btn";
+            this.refresh_Btn.Size = new System.Drawing.Size(72, 23);
+            this.refresh_Btn.TabIndex = 127;
+            this.refresh_Btn.Text = "Refresh";
+            this.refresh_Btn.UseVisualStyleBackColor = false;
+            this.refresh_Btn.Click += new System.EventHandler(this.refresh_Btn_Click);
+            // 
             // payment_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 556);
+            this.Controls.Add(this.refresh_Btn);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.billStatusTable);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.sortCombo);
+            this.Controls.Add(this.search_Btn);
+            this.Controls.Add(this.searchBar);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.decline_Btn);
             this.Controls.Add(this.accept_Btn);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.paymentStatus);
+            this.Controls.Add(this.paymentLogs);
             this.Controls.Add(this.tenantpaymentsTable);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
             this.Name = "payment_admin";
             this.Text = "payment_admin";
             this.Load += new System.EventHandler(this.payment_admin_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tenantpaymentsTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentLogs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billStatusTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker endDate;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker startDate;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox roomCombo;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox kWhText;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox cubicText;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox parkingBill;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox wifiBill;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox airconditionBill;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox electricBill;
-        private System.Windows.Forms.TextBox waterBill;
-        private System.Windows.Forms.Button confirm_Btn;
-        private System.Windows.Forms.TextBox rentBill;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox totalBIll;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView tenantpaymentsTable;
-        private System.Windows.Forms.DataGridView paymentStatus;
+        private System.Windows.Forms.DataGridView paymentLogs;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox tenant_ID;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button accept_Btn;
         private System.Windows.Forms.Button decline_Btn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox sortCombo;
+        private System.Windows.Forms.Button search_Btn;
+        private System.Windows.Forms.TextBox searchBar;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView billStatusTable;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button refresh_Btn;
     }
 }

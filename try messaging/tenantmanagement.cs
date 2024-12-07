@@ -19,6 +19,7 @@ namespace try_messaging
     {
         private DatabaseConnection dbConnection;
         private int adminID;
+        private int admin_Id;
         private string aircondition = "NO";
         private string wifii = "NO";
         private string parkingg = "NO";
@@ -29,6 +30,7 @@ namespace try_messaging
             // Set background color
             this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
             this.adminID = adminID;
+            this.admin_Id = admin_Id;
             dbConnection = new DatabaseConnection();
 
 
@@ -172,11 +174,12 @@ namespace try_messaging
             string emergency_name2 = emergency_contactt2.Text.ToUpper();
             string emergency_contact1 = emergency_number1.Text;
             string emergency_contact2 = emergency_number2.Text;
-            string air_condition = aircondition;
+            
             string wifi = wifii;
             string parking = parkingg;
             DateTime movein_date = movein_datapicker.Value;
             DateTime expiration_date = expiration_datapicker.Value;
+            DateTime birth_date = birthDatePicker.Value;
 
             // Create a database connection
             DatabaseConnection dbase = new DatabaseConnection();
@@ -190,7 +193,7 @@ namespace try_messaging
             }
 
             // Insert tenant into the database
-            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, air_condition, wifi, parking, movein_date, expiration_date, selectedBoardingHouse);
+            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, wifi, parking, movein_date, expiration_date, selectedBoardingHouse, birth_date);
 
 
             db.UpdateCurrentOccupancy(selectedBoardingHouse);
@@ -505,10 +508,7 @@ namespace try_messaging
 
         }
 
-        private void amenities1_CheckedChanged(object sender, EventArgs e)
-        {
-            aircondition = amenities1.Checked ? "YES" : "NO";
-        }
+        
 
         private void amenities2_CheckedChanged(object sender, EventArgs e)
         {
@@ -523,6 +523,31 @@ namespace try_messaging
         private void boardingCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateAvailableRooms();
+        }
+
+        private void birthDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            // Get the selected date
+            DateTime selectedDate = birthDatePicker.Value;
+
+            // Calculate the age
+            int age = CalculateAge(selectedDate);
+
+            // Display the age in the textbox
+            ageText.Text = age.ToString();
+        }
+        private int CalculateAge(DateTime birthDate)
+        {
+            // Get today's date
+            DateTime today = DateTime.Today;
+
+            // Calculate the age
+            int age = today.Year - birthDate.Year;
+
+            // Adjust the age if the birthday hasn't occurred yet this year
+            if (birthDate.Date > today.AddYears(-age)) age--;
+
+            return age;
         }
     }
 }

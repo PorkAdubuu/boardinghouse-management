@@ -151,11 +151,35 @@
     <Compile Include="admin dashboard.Designer.cs">
       <DependentUpon>admin dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="adminChangePasswordd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminChangePasswordd.Designer.cs">
+      <DependentUpon>adminChangePasswordd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminChangeProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminChangeProfile.Designer.cs">
+      <DependentUpon>adminChangeProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="admincomform.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="admincomform.Designer.cs">
       <DependentUpon>admincomform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminverificationCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminverificationCode.Designer.cs">
+      <DependentUpon>adminverificationCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin_account_profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin_account_profile.Designer.cs">
+      <DependentUpon>admin_account_profile.cs</DependentUpon>
     </Compile>
     <Compile Include="admin_dashboard_display.cs">
       <SubType>Form</SubType>
@@ -163,11 +187,11 @@
     <Compile Include="admin_dashboard_display.Designer.cs">
       <DependentUpon>admin_dashboard_display.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin_maintenance.cs">
+    <Compile Include="admin_issuebill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="admin_maintenance.Designer.cs">
-      <DependentUpon>admin_maintenance.cs</DependentUpon>
+    <Compile Include="admin_issuebill.Designer.cs">
+      <DependentUpon>admin_issuebill.cs</DependentUpon>
     </Compile>
     <Compile Include="boardining_houses.cs">
       <SubType>Form</SubType>
@@ -182,6 +206,12 @@
       <DependentUpon>bulletinForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="declineWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="declineWindow.Designer.cs">
+      <DependentUpon>declineWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="ImagePreviewDialog.cs">
       <SubType>Form</SubType>
@@ -307,20 +337,35 @@
     <EmbeddedResource Include="admin dashboard.resx">
       <DependentUpon>admin dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="adminChangePasswordd.resx">
+      <DependentUpon>adminChangePasswordd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminChangeProfile.resx">
+      <DependentUpon>adminChangeProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admincomform.resx">
       <DependentUpon>admincomform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminverificationCode.resx">
+      <DependentUpon>adminverificationCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin_account_profile.resx">
+      <DependentUpon>admin_account_profile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin_dashboard_display.resx">
       <DependentUpon>admin_dashboard_display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin_maintenance.resx">
-      <DependentUpon>admin_maintenance.cs</DependentUpon>
+    <EmbeddedResource Include="admin_issuebill.resx">
+      <DependentUpon>admin_issuebill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="boardining_houses.resx">
       <DependentUpon>boardining_houses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bulletinForm.resx">
       <DependentUpon>bulletinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="declineWindow.resx">
+      <DependentUpon>declineWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImagePreviewDialog.resx">
       <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
@@ -702,6 +747,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gcash QR.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key %284%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets')" />
