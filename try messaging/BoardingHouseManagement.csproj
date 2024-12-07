@@ -362,14 +362,13 @@
     <EmbeddedResource Include="admin_dashboard_display.resx">
       <DependentUpon>admin_dashboard_display.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="admin_maintenance.resx">
-      <DependentUpon>admin_maintenance.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="admin_issuebill.resx">
-      <DependentUpon>admin_issuebill.cs</DependentUpon>
->>>>>>> 93e70375fa50ad1b71d28f46c52a4e4e7a41ff02
-    </EmbeddedResource>
+<EmbeddedResource Include="admin_maintenance.resx">
+   <DependentUpon>admin_maintenance.cs</DependentUpon>
+</EmbeddedResource>
+<EmbeddedResource Include="admin_issuebill.resx">
+   <DependentUpon>admin_issuebill.cs</DependentUpon>
+</EmbeddedResource>
+
     <EmbeddedResource Include="boardining_houses.resx">
       <DependentUpon>boardining_houses.cs</DependentUpon>
     </EmbeddedResource>
