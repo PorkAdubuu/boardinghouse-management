@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.issueDate = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.dueDate = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.endDate = new System.Windows.Forms.Label();
@@ -61,8 +63,8 @@
             this.electricBill = new System.Windows.Forms.Label();
             this.waterBill = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.issueDate = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.billsTable = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentLog)).BeginInit();
@@ -75,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.billsTable)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -98,6 +101,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(378, 262);
             this.panel1.TabIndex = 0;
+            // 
+            // issueDate
+            // 
+            this.issueDate.AutoSize = true;
+            this.issueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issueDate.Location = new System.Drawing.Point(111, 75);
+            this.issueDate.Name = "issueDate";
+            this.issueDate.Size = new System.Drawing.Size(33, 20);
+            this.issueDate.TabIndex = 12;
+            this.issueDate.Text = "----";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(14, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Issue date:";
             // 
             // dueDate
             // 
@@ -220,7 +243,7 @@
             // 
             this.paymentLog.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(51)))), ((int)(((byte)(117)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GrayText;
@@ -233,7 +256,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(51)))), ((int)(((byte)(117)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.paymentLog.DefaultCellStyle = dataGridViewCellStyle2;
             this.paymentLog.Location = new System.Drawing.Point(388, 32);
@@ -243,8 +266,9 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
             this.paymentLog.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.paymentLog.Size = new System.Drawing.Size(477, 487);
+            this.paymentLog.Size = new System.Drawing.Size(477, 242);
             this.paymentLog.TabIndex = 93;
+            this.paymentLog.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.paymentLog_CellContentClick);
             // 
             // label16
             // 
@@ -280,7 +304,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::try_messaging.Properties.Resources.key__4_;
+            this.pictureBox3.Image = global::try_messaging.Properties.Resources.wi_fi__1_;
             this.pictureBox3.Location = new System.Drawing.Point(11, 19);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(45, 42);
@@ -311,7 +335,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::try_messaging.Properties.Resources.key__4_;
+            this.pictureBox1.Image = global::try_messaging.Properties.Resources.garage_car__2_;
             this.pictureBox1.Location = new System.Drawing.Point(13, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(45, 42);
@@ -364,7 +388,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::try_messaging.Properties.Resources.key__4_;
+            this.pictureBox5.Image = global::try_messaging.Properties.Resources.water_tap__1_;
             this.pictureBox5.Location = new System.Drawing.Point(13, 75);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(45, 42);
@@ -374,7 +398,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::try_messaging.Properties.Resources.key__4_;
+            this.pictureBox2.Image = global::try_messaging.Properties.Resources.flash__2_;
             this.pictureBox2.Location = new System.Drawing.Point(13, 19);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(45, 42);
@@ -416,25 +440,26 @@
             this.panel2.Size = new System.Drawing.Size(185, 129);
             this.panel2.TabIndex = 1;
             // 
-            // issueDate
+            // label6
             // 
-            this.issueDate.AutoSize = true;
-            this.issueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.issueDate.Location = new System.Drawing.Point(111, 75);
-            this.issueDate.Name = "issueDate";
-            this.issueDate.Size = new System.Drawing.Size(33, 20);
-            this.issueDate.TabIndex = 12;
-            this.issueDate.Text = "----";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(388, 279);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 20);
+            this.label6.TabIndex = 97;
+            this.label6.Text = "Active Bills";
             // 
-            // label7
+            // billsTable
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 75);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 20);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Issue date:";
+            this.billsTable.BackgroundColor = System.Drawing.Color.White;
+            this.billsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.billsTable.Location = new System.Drawing.Point(388, 302);
+            this.billsTable.Name = "billsTable";
+            this.billsTable.RowHeadersVisible = false;
+            this.billsTable.Size = new System.Drawing.Size(477, 213);
+            this.billsTable.TabIndex = 98;
+            this.billsTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.billsTable_CellContentClick_1);
             // 
             // tenant_payment
             // 
@@ -442,6 +467,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 556);
+            this.Controls.Add(this.billsTable);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.refresh_Btn);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
@@ -470,6 +497,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.billsTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -509,5 +537,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label issueDate;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView billsTable;
     }
 }

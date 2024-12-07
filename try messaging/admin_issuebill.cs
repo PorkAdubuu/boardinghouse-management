@@ -11,6 +11,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.IO;
 
 namespace try_messaging
 {
@@ -229,23 +232,48 @@ namespace try_messaging
         }
         private async Task SendEmailToTenantAsync(string tenantEmail, int roomNumber, DateTime start, DateTime end, decimal totalBill)
         {
+            sendingLabel.Text = "Sending email...";
+            sendingLabel.Visible = true;
+            progressBar.Visible = true;
+            progressBar.Style = ProgressBarStyle.Marquee;
             try
             {
+                // Constructing the file path by combining the folder path and the file name
+                string filePath = Path.Combine(
+                    @"C:\Users\Dokaebi\source\repos\OOP Final project\boardinghouse-management-jamecerPC\billgenereatedPDFs",
+                    $"Bill_{roomNumber}_{start.ToString("yyyyMMdd")}.pdf"
+                );
+
+                // Calling the GenerateBillPdf method with the generated file path
+                GenerateBillPdf(
+                    roomNumber,
+                    start,
+                    end,
+                    decimal.Parse(wifiBill.Text),
+                    decimal.Parse(parkingBill.Text),
+                    decimal.Parse(waterBill.Text),
+                    decimal.Parse(electricBill.Text),
+                    decimal.Parse(rentBill.Text),
+                    totalBill,
+                    filePath
+                );
+                DateTime dueDate = DateTime.Now.AddDays(7);
+                string dueDateFormatted = dueDate.ToString("yyyy-MM-dd");
                 string subject = "New Billing Update";
                 string body = $@"
                 Dear Tenant,
-            
+    
                 We have updated your billing information. Below are the details:
-            
+
                 Room Number: {roomNumber}
                 Billing Period: {start.ToShortDateString()} - {end.ToShortDateString()}
                 Total Bill: PHP {totalBill:F2}
-            
-                Please make your payment on time to avoid penalties.
-            
-                Thank you.
-            
-                Sincerely,
+
+                Please note that your payment is due by: {dueDateFormatted}
+
+                Kindly ensure that the payment is made before the due date to avoid any late fees.
+
+                Thank you,
                 Boarding House Management";
 
                 using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)) // Gmail SMTP with port 587
@@ -261,17 +289,46 @@ namespace try_messaging
                         mailMessage.IsBodyHtml = false; // Use plain text
                         mailMessage.To.Add(tenantEmail); // Add recipient email
 
+                        // Attach the PDF file
+                        mailMessage.Attachments.Add(new Attachment(filePath));
+
                         // Send the email asynchronously
                         await smtpClient.SendMailAsync(mailMessage);
                     }
                 }
 
-                MessageBox.Show("Email notification sent to the tenant.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Email notification with bill PDF sent to the tenant.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to send email: " + ex.Message, "Email Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                sendingLabel.Visible = false;
+                progressBar.Visible = false;
+            }
+        }
+
+        private void GenerateBillPdf(int roomNumber, DateTime startDate, DateTime endDate, decimal wifiBill, decimal parkingBill, decimal waterBill, decimal electricBill, decimal rentBill, decimal totalBill, string filePath)
+        {
+            PdfDocument document = new PdfDocument();
+            PdfPage page = document.AddPage();
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+            XFont font = new XFont("Arial", 12);
+
+            gfx.DrawString("Billing Breakdown", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.TopCenter);
+
+            gfx.DrawString($"Room Number: {roomNumber}", font, XBrushes.Black, 20, 40);
+            gfx.DrawString($"Billing Period: {startDate.ToShortDateString()} - {endDate.ToShortDateString()}", font, XBrushes.Black, 20, 60);
+            gfx.DrawString($"Rent: PHP {rentBill:F2}", font, XBrushes.Black, 20, 80);
+            gfx.DrawString($"WiFi Bill: PHP {wifiBill:F2}", font, XBrushes.Black, 20, 100);
+            gfx.DrawString($"Parking Bill: PHP {parkingBill:F2}", font, XBrushes.Black, 20, 120);
+            gfx.DrawString($"Water Bill: PHP {waterBill:F2}", font, XBrushes.Black, 20, 140);
+            gfx.DrawString($"Electric Bill: PHP {electricBill:F2}", font, XBrushes.Black, 20, 160);
+            gfx.DrawString($"Total Bill: PHP {totalBill:F2}", font, XBrushes.Black, 20, 180);
+
+            document.Save(filePath);
         }
 
         private void ClearFormFields()
