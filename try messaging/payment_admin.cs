@@ -38,7 +38,12 @@ namespace try_messaging
             this.billStatusTable.ClearSelection();
             this.paymentLogs.ClearSelection();
         }
-
+        private void DeclineWindow_Closed()
+        {
+            LoadBillingData();
+            LoadBillStatus();
+            LoadPaymentsTable();
+        }
 
         private void LoadPaymentsTable()
         {
@@ -136,7 +141,8 @@ namespace try_messaging
                                         issue_date AS 'Issue Date',
                                         due_date as 'Due Date',
                                         status AS 'Status' 
-                                    FROM billing_table";
+                                    FROM billing_table
+                                    ORDER BY issue_date DESC";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
@@ -169,7 +175,8 @@ namespace try_messaging
                                         status AS 'Status',
                                         start_date AS 'Start Date', 
                                         end_date AS 'End Date'                                                                                
-                                    FROM billing_table";
+                                    FROM billing_table
+                                    ORDER BY issue_date DESC";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
@@ -275,9 +282,19 @@ namespace try_messaging
                         {
                             // Archive the payment with the remaining balance (total_bill - amount_paid)
                             string archiveQuery = @"
-                            INSERT INTO payment_archive_table (payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id, total_bill)
-                            SELECT payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id, @remainingBalance
-                            FROM payments_table WHERE payment_id = @paymentId";
+                            INSERT INTO payment_archive_table (payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id, total_bill, due_date)
+                            SELECT 
+                                p.payment_id, 
+                                p.reference_number, 
+                                p.date_of_payment, 
+                                p.tenant_id, 
+                                p.room_number, 
+                                p.billing_id, 
+                                @remainingBalance,
+                                b.due_date  -- Get the due_date from the billing_table
+                            FROM payments_table p
+                            JOIN billing_table b ON p.billing_id = b.billing_id  -- Join payments_table with billing_table on billing_id
+                            WHERE p.payment_id = @paymentId";
 
                             MySqlCommand archiveCmd = new MySqlCommand(archiveQuery, conn, transaction);
                             archiveCmd.Parameters.AddWithValue("@paymentId", paymentId);
@@ -318,6 +335,16 @@ namespace try_messaging
                             MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn, transaction);
                             deleteCmd.Parameters.AddWithValue("@paymentId", paymentId);
                             deleteCmd.ExecuteNonQuery();
+
+                            // Insert notification into admin_notif table
+                            string insertAdminNotifQuery = @"
+                            INSERT INTO admin_notif (notif_type, description, tenant_id, is_read)
+                            VALUES (@notifType, @description, @tenantId, 0)";
+                            MySqlCommand cmdInsertAdminNotif = new MySqlCommand(insertAdminNotifQuery, conn, transaction);
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@notifType", "Payment Accepted");
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@description", $"Payment has been accepted. Please review their payment records.");
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@tenantId", tenantID);
+                            cmdInsertAdminNotif.ExecuteNonQuery();
 
                             // Commit transaction
                             transaction.Commit();
@@ -380,6 +407,25 @@ namespace try_messaging
                         return;
                     }
 
+                    // Step 2.5: Retrieve the room number associated with the tenant_id
+                    
+                    string roomQuery = "SELECT roomnumber FROM tenants_details WHERE tenid = @tenantId";
+                    MySqlCommand roomCmd = new MySqlCommand(roomQuery, conn);
+                    roomCmd.Parameters.AddWithValue("@tenantId", selectedTenantId);
+
+                    int roomNumber = 0; // Change to int to match the database type
+                    using (MySqlDataReader roomReader = roomCmd.ExecuteReader())
+                    {
+                        if (roomReader.Read())
+                        {
+                            roomNumber = roomReader.GetInt32("roomnumber"); // Retrieve as int
+                        }
+                        else
+                        {
+                            MessageBox.Show("Room number not found for the selected tenant.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
                     // Step 3: Process the payment with a transaction
                     using (MySqlTransaction transaction = conn.BeginTransaction())
                     {
@@ -412,6 +458,19 @@ namespace try_messaging
                             deleteCmd.Parameters.AddWithValue("@paymentId", paymentId);
                             deleteCmd.ExecuteNonQuery();
 
+                          
+
+                            
+
+                            // Insert notification into admin_notif table
+                            string insertAdminNotifQuery = @"
+                            INSERT INTO admin_notif (notif_type, description, tenant_id, is_read)
+                            VALUES (@notifType, @description, @tenantId, 0)";
+                            MySqlCommand cmdInsertAdminNotif = new MySqlCommand(insertAdminNotifQuery, conn, transaction);
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@notifType", "Payment Declined");
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@description", $"Payment from room {roomNumber} has been declined. Please review their payment records.");
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@tenantId", selectedTenantId);
+                            cmdInsertAdminNotif.ExecuteNonQuery();
                             // Commit transaction
                             transaction.Commit();
                             
@@ -467,21 +526,37 @@ namespace try_messaging
         {
             if (tenantpaymentsTable.SelectedRows.Count > 0)
             {
-                // Get the selected row's payment_id and tenant_id (assuming they're part of the selected row)
-                int paymentId = Convert.ToInt32(tenantpaymentsTable.SelectedRows[0].Cells["payment_id"].Value);
-                int tenantId = Convert.ToInt32(tenantpaymentsTable.SelectedRows[0].Cells["tenant_id"].Value);
+                // Show a confirmation dialog
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to decline this payment? NOTE: This action cannot be undone.",
+                    "Confirm Decline",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                // Create an instance of declineWindow and pass the tenantId
-                declineWindow declineWindow = new declineWindow(tenantId, paymentId, selectedBillingId);
-                declineWindow.Show();
-            }
-            if (selectedPaymentId > 0)
-            {
-                ArchivePaymentDecline(selectedPaymentId);  // Method to archive payment and update status
+                if (result == DialogResult.Yes)
+                {
+                    // Get the selected row's payment_id and tenant_id (assuming they're part of the selected row)
+                    int paymentId = Convert.ToInt32(tenantpaymentsTable.SelectedRows[0].Cells["payment_id"].Value);
+                    int tenantId = Convert.ToInt32(tenantpaymentsTable.SelectedRows[0].Cells["tenant_id"].Value);
+
+                    // Create an instance of declineWindow and pass the tenantId
+                    declineWindow declineWindow = new declineWindow(tenantId, paymentId, selectedBillingId);
+                    declineWindow.DeclineWindowClosed += DeclineWindow_Closed;
+                    declineWindow.Show();
+
+                    if (selectedPaymentId > 0)
+                    {
+                        ArchivePaymentDecline(selectedPaymentId);  // Method to archive payment and update status
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Payment decline process canceled.", "Cancellation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Please select a payment to accept.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a payment to Decline.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

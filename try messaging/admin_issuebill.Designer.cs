@@ -62,12 +62,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.roomCombo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.sendingLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.sendingLabel);
+            this.panel1.Controls.Add(this.progressBar);
             this.panel1.Controls.Add(this.confrimRate_Btn);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.rateKwhText);
@@ -102,7 +106,7 @@
             this.panel1.Controls.Add(this.roomCombo);
             this.panel1.Location = new System.Drawing.Point(5, 29);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(508, 365);
+            this.panel1.Size = new System.Drawing.Size(508, 401);
             this.panel1.TabIndex = 91;
             // 
             // confrimRate_Btn
@@ -405,12 +409,31 @@
             this.label1.TabIndex = 90;
             this.label1.Text = "Billing Statement";
             // 
+            // sendingLabel
+            // 
+            this.sendingLabel.AutoSize = true;
+            this.sendingLabel.Location = new System.Drawing.Point(208, 361);
+            this.sendingLabel.Name = "sendingLabel";
+            this.sendingLabel.Size = new System.Drawing.Size(67, 13);
+            this.sendingLabel.TabIndex = 125;
+            this.sendingLabel.Text = "Sending.......";
+            this.sendingLabel.Visible = false;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(159, 380);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(153, 10);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 124;
+            this.progressBar.Visible = false;
+            // 
             // admin_issuebill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(521, 400);
+            this.ClientSize = new System.Drawing.Size(521, 433);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Name = "admin_issuebill";
@@ -459,5 +482,7 @@
         private System.Windows.Forms.TextBox rateCubicText;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button confrimRate_Btn;
+        private System.Windows.Forms.Label sendingLabel;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

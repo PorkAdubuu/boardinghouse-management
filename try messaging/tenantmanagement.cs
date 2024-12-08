@@ -150,6 +150,14 @@ namespace try_messaging
                 MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Prevent the email from being sent if validation fails
             }
+            string email = textBox1.Text;
+
+            // Validate email format
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if email is invalid
+            }
             string selectedBoardingHouse = boardingCombo.Text;
 
             // Check boarding house availability
@@ -164,7 +172,7 @@ namespace try_messaging
             string firstname = fnameText.Text.ToUpper();
             int age = int.Parse(ageText.Text);
             int roomnumber = int.Parse(roomText.Text);
-            string email = textBox1.Text;
+            email = textBox1.Text;
             string username = usernameText.Text;
             string password = passwordText.Text;
             string contact = contactText.Text;
@@ -174,6 +182,7 @@ namespace try_messaging
             string emergency_name2 = emergency_contactt2.Text.ToUpper();
             string emergency_contact1 = emergency_number1.Text;
             string emergency_contact2 = emergency_number2.Text;
+            int pax_number = int.Parse(paxText.Text);
             
             string wifi = wifii;
             string parking = parkingg;
@@ -193,7 +202,7 @@ namespace try_messaging
             }
 
             // Insert tenant into the database
-            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, wifi, parking, movein_date, expiration_date, selectedBoardingHouse, birth_date);
+            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, wifi, parking, movein_date, expiration_date, selectedBoardingHouse, birth_date, pax_number);
 
 
             db.UpdateCurrentOccupancy(selectedBoardingHouse);
@@ -218,6 +227,19 @@ namespace try_messaging
             await SendEmail(email, subject, body);
 
             PopulateAvailableRooms();
+        }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                // Use Regex to validate email format
+                var emailRegex = new System.Text.RegularExpressions.Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                return emailRegex.IsMatch(email);
+            }
+            catch
+            {
+                return false; // Return false if any exception occurs
+            }
         }
 
         public bool IsEmailOrContactExists(string email, string contact)

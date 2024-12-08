@@ -55,6 +55,19 @@
             this.announcement_Btn = new System.Windows.Forms.Button();
             this.totalTenantLabel = new System.Windows.Forms.Label();
             this.totalHousesLabel = new System.Windows.Forms.Label();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.issuedBillText = new System.Windows.Forms.Label();
+            this.noPaymentText = new System.Windows.Forms.Label();
+            this.dueText = new System.Windows.Forms.Label();
+            this.paidText = new System.Windows.Forms.Label();
+            this.totalIncomeText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -65,6 +78,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -149,9 +166,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(262, 171);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(136, 20);
+            this.label9.Size = new System.Drawing.Size(179, 20);
             this.label9.TabIndex = 35;
-            this.label9.Text = "Payment Status";
+            this.label9.Text = "Maintenance reports:";
             // 
             // label2
             // 
@@ -169,13 +186,17 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(275, 388);
+            this.chart1.Location = new System.Drawing.Point(266, 390);
             this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(42)))), ((int)(((byte)(156))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(61)))), ((int)(((byte)(99)))))};
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(288, 138);
+            this.chart1.Size = new System.Drawing.Size(289, 138);
             this.chart1.TabIndex = 61;
             this.chart1.Text = "chart1";
             // 
@@ -185,9 +206,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(1, 350);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 20);
+            this.label1.Size = new System.Drawing.Size(133, 20);
             this.label1.TabIndex = 62;
-            this.label1.Text = "Maintenance Report";
+            this.label1.Text = "Payment status";
             // 
             // pictureBox7
             // 
@@ -305,7 +326,7 @@
             this.totalTenantLabel.AutoSize = true;
             this.totalTenantLabel.BackColor = System.Drawing.Color.White;
             this.totalTenantLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalTenantLabel.Location = new System.Drawing.Point(170, 235);
+            this.totalTenantLabel.Location = new System.Drawing.Point(161, 235);
             this.totalTenantLabel.Name = "totalTenantLabel";
             this.totalTenantLabel.Size = new System.Drawing.Size(16, 18);
             this.totalTenantLabel.TabIndex = 72;
@@ -316,17 +337,173 @@
             this.totalHousesLabel.AutoSize = true;
             this.totalHousesLabel.BackColor = System.Drawing.Color.White;
             this.totalHousesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalHousesLabel.Location = new System.Drawing.Point(197, 266);
+            this.totalHousesLabel.Location = new System.Drawing.Point(188, 266);
             this.totalHousesLabel.Name = "totalHousesLabel";
             this.totalHousesLabel.Size = new System.Drawing.Size(16, 18);
             this.totalHousesLabel.TabIndex = 73;
             this.totalHousesLabel.Text = "0";
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackColor = System.Drawing.Color.White;
+            this.pictureBox10.Image = global::try_messaging.Properties.Resources.bill;
+            this.pictureBox10.Location = new System.Drawing.Point(17, 392);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 74;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.BackColor = System.Drawing.Color.White;
+            this.pictureBox11.Image = global::try_messaging.Properties.Resources.credit_card;
+            this.pictureBox11.Location = new System.Drawing.Point(17, 425);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 75;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.BackColor = System.Drawing.Color.White;
+            this.pictureBox12.Image = global::try_messaging.Properties.Resources.payment;
+            this.pictureBox12.Location = new System.Drawing.Point(17, 458);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 76;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.BackColor = System.Drawing.Color.White;
+            this.pictureBox13.Image = global::try_messaging.Properties.Resources.paid;
+            this.pictureBox13.Location = new System.Drawing.Point(17, 491);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox13.TabIndex = 77;
+            this.pictureBox13.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(48, 399);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 18);
+            this.label8.TabIndex = 78;
+            this.label8.Text = "Issued Bills:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(48, 432);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 18);
+            this.label10.TabIndex = 79;
+            this.label10.Text = "No payment:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(48, 465);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 18);
+            this.label11.TabIndex = 80;
+            this.label11.Text = "Due:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(48, 498);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 18);
+            this.label12.TabIndex = 81;
+            this.label12.Text = "Paid:";
+            // 
+            // issuedBillText
+            // 
+            this.issuedBillText.AutoSize = true;
+            this.issuedBillText.BackColor = System.Drawing.Color.White;
+            this.issuedBillText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issuedBillText.Location = new System.Drawing.Point(145, 399);
+            this.issuedBillText.Name = "issuedBillText";
+            this.issuedBillText.Size = new System.Drawing.Size(16, 18);
+            this.issuedBillText.TabIndex = 82;
+            this.issuedBillText.Text = "0";
+            // 
+            // noPaymentText
+            // 
+            this.noPaymentText.AutoSize = true;
+            this.noPaymentText.BackColor = System.Drawing.Color.White;
+            this.noPaymentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noPaymentText.Location = new System.Drawing.Point(149, 432);
+            this.noPaymentText.Name = "noPaymentText";
+            this.noPaymentText.Size = new System.Drawing.Size(16, 18);
+            this.noPaymentText.TabIndex = 83;
+            this.noPaymentText.Text = "0";
+            // 
+            // dueText
+            // 
+            this.dueText.AutoSize = true;
+            this.dueText.BackColor = System.Drawing.Color.White;
+            this.dueText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dueText.Location = new System.Drawing.Point(89, 465);
+            this.dueText.Name = "dueText";
+            this.dueText.Size = new System.Drawing.Size(16, 18);
+            this.dueText.TabIndex = 84;
+            this.dueText.Text = "0";
+            // 
+            // paidText
+            // 
+            this.paidText.AutoSize = true;
+            this.paidText.BackColor = System.Drawing.Color.White;
+            this.paidText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paidText.Location = new System.Drawing.Point(92, 498);
+            this.paidText.Name = "paidText";
+            this.paidText.Size = new System.Drawing.Size(16, 18);
+            this.paidText.TabIndex = 85;
+            this.paidText.Text = "0";
+            // 
+            // totalIncomeText
+            // 
+            this.totalIncomeText.AutoSize = true;
+            this.totalIncomeText.BackColor = System.Drawing.Color.White;
+            this.totalIncomeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalIncomeText.Location = new System.Drawing.Point(156, 297);
+            this.totalIncomeText.Name = "totalIncomeText";
+            this.totalIncomeText.Size = new System.Drawing.Size(16, 18);
+            this.totalIncomeText.TabIndex = 86;
+            this.totalIncomeText.Text = "0";
             // 
             // admin_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
+            this.Controls.Add(this.totalIncomeText);
+            this.Controls.Add(this.paidText);
+            this.Controls.Add(this.dueText);
+            this.Controls.Add(this.noPaymentText);
+            this.Controls.Add(this.issuedBillText);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.pictureBox13);
+            this.Controls.Add(this.pictureBox12);
+            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.totalHousesLabel);
             this.Controls.Add(this.totalTenantLabel);
             this.Controls.Add(this.announcement_Btn);
@@ -364,6 +541,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,5 +576,18 @@
         private System.Windows.Forms.Button announcement_Btn;
         private System.Windows.Forms.Label totalTenantLabel;
         private System.Windows.Forms.Label totalHousesLabel;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label issuedBillText;
+        private System.Windows.Forms.Label noPaymentText;
+        private System.Windows.Forms.Label dueText;
+        private System.Windows.Forms.Label paidText;
+        private System.Windows.Forms.Label totalIncomeText;
     }
 }

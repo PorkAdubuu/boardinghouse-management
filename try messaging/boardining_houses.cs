@@ -282,26 +282,39 @@ namespace try_messaging
 
         private void DeleteHouse()
         {
-            
             if (selectedhouse_id > 0)
             {
-                string deleteQuery = "DELETE FROM boarding_houses WHERE house_id = @house_id";
-
                 using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
                 {
                     try
                     {
                         conn.Open();
-                        MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
-                        cmd.Parameters.AddWithValue("@house_id", selectedhouse_id);
 
-                        int rowsAffected = cmd.ExecuteNonQuery();
+                        // Check if the current occupancy is zero
+                        string checkOccupancyQuery = "SELECT current_occupancy FROM boarding_houses WHERE house_id = @house_id";
+                        MySqlCommand checkCmd = new MySqlCommand(checkOccupancyQuery, conn);
+                        checkCmd.Parameters.AddWithValue("@house_id", selectedhouse_id);
+
+                        int currentOccupancy = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (currentOccupancy > 0)
+                        {
+                            MessageBox.Show("Cannot delete the boarding house because it is currently occupied.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        // Proceed with deletion if occupancy is zero
+                        string deleteQuery = "DELETE FROM boarding_houses WHERE house_id = @house_id";
+                        MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn);
+                        deleteCmd.Parameters.AddWithValue("@house_id", selectedhouse_id);
+
+                        int rowsAffected = deleteCmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("House deleted successfully.");
                             // Optionally, refresh the display or data grid view
-                            LoadBoardingHouseDetails(); 
+                            LoadBoardingHouseDetails();
                         }
                         else
                         {
@@ -319,6 +332,7 @@ namespace try_messaging
                 MessageBox.Show("No house selected.");
             }
         }
+
 
         private void houseList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
