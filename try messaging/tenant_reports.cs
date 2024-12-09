@@ -20,7 +20,10 @@ namespace try_messaging
         {
             LoadBoardingHouses();
             LoadTenantsArchive();
-            houseCombo.SelectedIndex = 0;
+            if (houseCombo.Items.Count > 0)
+            {
+                houseCombo.SelectedIndex = 0; // Select the first item
+            }
 
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy"; // Display Year only
