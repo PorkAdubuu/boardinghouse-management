@@ -36,7 +36,10 @@ namespace try_messaging
         private void admin_income_report_Load(object sender, EventArgs e)
         {
             LoadBoardingHouses();
-            houseCombo.SelectedIndex = 0;
+            if (houseCombo.Items.Count > 0)
+            {
+                houseCombo.SelectedIndex = 0; // Select the first item
+            }
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MMMM yyyy"; // Display Month and Year only
             dateTimePicker1.ShowUpDown = true; // Removes the calendar dropdown
