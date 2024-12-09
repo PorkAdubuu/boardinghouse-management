@@ -14,6 +14,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -300,6 +315,12 @@
     <Compile Include="bulletinForm.Designer.cs">
       <DependentUpon>bulletinForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangePassword_admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword_admin.Designer.cs">
+      <DependentUpon>ChangePassword_admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="ColumnItem.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="declineWindow.cs">
@@ -314,12 +335,24 @@
     <Compile Include="edit_tenant.Designer.cs">
       <DependentUpon>edit_tenant.cs</DependentUpon>
     </Compile>
+    <Compile Include="forgotPass_window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forgotPass_window.Designer.cs">
+      <DependentUpon>forgotPass_window.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="ImagePreviewDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImagePreviewDialog.Designer.cs">
       <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="newPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newPassword.Designer.cs">
+      <DependentUpon>newPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordPromptForm.cs">
       <SubType>Form</SubType>
@@ -344,6 +377,18 @@
     </Compile>
     <Compile Include="report_analytics_panel.Designer.cs">
       <DependentUpon>report_analytics_panel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resetPassword_code.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resetPassword_code.Designer.cs">
+      <DependentUpon>resetPassword_code.cs</DependentUpon>
+    </Compile>
+    <Compile Include="resetPassword_code_admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resetPassword_code_admin.Designer.cs">
+      <DependentUpon>resetPassword_code_admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -472,14 +517,23 @@
     <EmbeddedResource Include="bulletinForm.resx">
       <DependentUpon>bulletinForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChangePassword_admin.resx">
+      <DependentUpon>ChangePassword_admin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="declineWindow.resx">
       <DependentUpon>declineWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="edit_tenant.resx">
       <DependentUpon>edit_tenant.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forgotPass_window.resx">
+      <DependentUpon>forgotPass_window.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImagePreviewDialog.resx">
       <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newPassword.resx">
+      <DependentUpon>newPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasswordPromptForm.resx">
       <DependentUpon>PasswordPromptForm.cs</DependentUpon>
@@ -492,6 +546,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="report_analytics_panel.resx">
       <DependentUpon>report_analytics_panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resetPassword_code.resx">
+      <DependentUpon>resetPassword_code.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resetPassword_code_admin.resx">
+      <DependentUpon>resetPassword_code_admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -891,6 +951,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\garage-car %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets')" />

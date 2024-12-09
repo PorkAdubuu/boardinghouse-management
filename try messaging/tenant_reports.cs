@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace try_messaging
 {
-    public partial class tenant_reports : Form
+    public partial class tenant : Form
     {
         private DatabaseConnection dbConnection;
 
-        public tenant_reports()
+        public tenant()
         {
             InitializeComponent();
             dbConnection = new DatabaseConnection();

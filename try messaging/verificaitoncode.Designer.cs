@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(verificaitoncode));
             this.verificationText = new System.Windows.Forms.TextBox();
             this.vcodeBtn = new System.Windows.Forms.Button();
             this.SubmitCodeBtn = new System.Windows.Forms.Button();
@@ -70,8 +71,8 @@
             this.Controls.Add(this.SubmitCodeBtn);
             this.Controls.Add(this.vcodeBtn);
             this.Controls.Add(this.verificationText);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "verificaitoncode";
-            this.Text = "verificaitoncode";
             this.Load += new System.EventHandler(this.verificaitoncode_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

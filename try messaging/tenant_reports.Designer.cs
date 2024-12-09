@@ -1,6 +1,6 @@
 ﻿namespace try_messaging
 {
-    partial class tenant_reports
+    partial class tenant
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tenant));
             this.houseCombo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -174,7 +175,7 @@
             this.dateTimePicker1.TabIndex = 88;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // tenant_reports
+            // tenant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -188,7 +189,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.houseCombo);
             this.Controls.Add(this.label3);
-            this.Name = "tenant_reports";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "tenant";
             this.Text = "tenant_reports";
             this.Load += new System.EventHandler(this.tenant_reports_Load);
             this.panel1.ResumeLayout(false);
