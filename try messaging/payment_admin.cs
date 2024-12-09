@@ -37,6 +37,8 @@ namespace try_messaging
             this.tenantpaymentsTable.ClearSelection();
             this.billStatusTable.ClearSelection();
             this.paymentLogs.ClearSelection();
+
+            sortCombo.Items.AddRange(new string[] { "No payment", "Pending", "Declined", "Paid", "Overdue" });
         }
         private void DeclineWindow_Closed()
         {
@@ -282,7 +284,7 @@ namespace try_messaging
                         {
                             // Archive the payment with the remaining balance (total_bill - amount_paid)
                             string archiveQuery = @"
-                            INSERT INTO payment_archive_table (payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id, total_bill, due_date)
+                            INSERT INTO payment_archive_table (payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id, total_bill, due_date, boardinghouse)
                             SELECT 
                                 p.payment_id, 
                                 p.reference_number, 
@@ -291,9 +293,11 @@ namespace try_messaging
                                 p.room_number, 
                                 p.billing_id, 
                                 @remainingBalance,
-                                b.due_date  -- Get the due_date from the billing_table
+                                b.due_date,  -- Get the due_date from the billing_table
+                                t.house_name  -- Get the house_name from tenants_details table based on tenant_id
                             FROM payments_table p
                             JOIN billing_table b ON p.billing_id = b.billing_id  -- Join payments_table with billing_table on billing_id
+                            JOIN tenants_details t ON p.tenant_id = t.tenid  -- Join payments_table with tenants_details table to get house_name
                             WHERE p.payment_id = @paymentId";
 
                             MySqlCommand archiveCmd = new MySqlCommand(archiveQuery, conn, transaction);
@@ -374,18 +378,20 @@ namespace try_messaging
                 {
                     conn.Open();
 
-                    // Step 1: Get the related billing_id
-                    string selectQuery = "SELECT billing_id FROM payments_table WHERE payment_id = @paymentId";
+                    // Step 1: Get the related billing_id and tenant_id
+                    string selectQuery = "SELECT billing_id, tenant_id FROM payments_table WHERE payment_id = @paymentId";
                     MySqlCommand selectCmd = new MySqlCommand(selectQuery, conn);
                     selectCmd.Parameters.AddWithValue("@paymentId", paymentId);
 
                     int billingId = 0;
+                    int tenantId = 0;
 
                     using (MySqlDataReader reader = selectCmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
                             billingId = reader.GetInt32("billing_id");
+                            tenantId = reader.GetInt32("tenant_id");
                         }
                         else
                         {
@@ -403,42 +409,36 @@ namespace try_messaging
                     if (count > 0)
                     {
                         // If the billing_id already exists, do nothing and return
-                        
                         return;
                     }
 
-                    // Step 2.5: Retrieve the room number associated with the tenant_id
-                    
-                    string roomQuery = "SELECT roomnumber FROM tenants_details WHERE tenid = @tenantId";
+                    // Step 2.5: Retrieve the room number and boardinghouse name from the billing_table
+                    string roomQuery = "SELECT room_number, boardinghouse FROM billing_table WHERE billing_id = @billingId";
                     MySqlCommand roomCmd = new MySqlCommand(roomQuery, conn);
-                    roomCmd.Parameters.AddWithValue("@tenantId", selectedTenantId);
+                    roomCmd.Parameters.AddWithValue("@billingId", billingId);
 
                     int roomNumber = 0; // Change to int to match the database type
+                    string boardinghouseName = string.Empty; // To store the boardinghouse name
                     using (MySqlDataReader roomReader = roomCmd.ExecuteReader())
                     {
                         if (roomReader.Read())
                         {
-                            roomNumber = roomReader.GetInt32("roomnumber"); // Retrieve as int
+                            roomNumber = roomReader.GetInt32("room_number"); // Retrieve as int
+                            boardinghouseName = roomReader.GetString("boardinghouse"); // Retrieve boardinghouse name
                         }
                         else
                         {
-                            MessageBox.Show("Room number not found for the selected tenant.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Room number or boardinghouse not found for the selected billing record.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                     }
+
                     // Step 3: Process the payment with a transaction
                     using (MySqlTransaction transaction = conn.BeginTransaction())
                     {
                         try
                         {
-                            // Archive the payment
-                            string archiveQuery = @"
-                    INSERT INTO payment_archive_table (payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id)
-                    SELECT payment_id, reference_number, date_of_payment, tenant_id, room_number, billing_id
-                    FROM payments_table WHERE payment_id = @paymentId";
-                            MySqlCommand archiveCmd = new MySqlCommand(archiveQuery, conn, transaction);
-                            archiveCmd.Parameters.AddWithValue("@paymentId", paymentId);
-                            archiveCmd.ExecuteNonQuery();
+                            
 
                             // Update the status in billing_table
                             string updateQuery = "UPDATE billing_table SET status = 'Declined' WHERE billing_id = @billingId";
@@ -449,7 +449,7 @@ namespace try_messaging
                             // Update the status in tenant_transaction_table to 'Declined'
                             string updateQueryTransaction = "UPDATE tenant_transaction_table SET status = 'Declined' WHERE tenant_id = @tenantId AND status = 'Pending'";
                             MySqlCommand updateCmdTransaction = new MySqlCommand(updateQueryTransaction, conn, transaction);
-                            updateCmdTransaction.Parameters.AddWithValue("@tenantId", selectedTenantId);
+                            updateCmdTransaction.Parameters.AddWithValue("@tenantId", tenantId);
                             updateCmdTransaction.ExecuteNonQuery();
 
                             // Delete the payment from payments_table after archiving
@@ -458,22 +458,18 @@ namespace try_messaging
                             deleteCmd.Parameters.AddWithValue("@paymentId", paymentId);
                             deleteCmd.ExecuteNonQuery();
 
-                          
-
-                            
-
                             // Insert notification into admin_notif table
                             string insertAdminNotifQuery = @"
-                            INSERT INTO admin_notif (notif_type, description, tenant_id, is_read)
-                            VALUES (@notifType, @description, @tenantId, 0)";
+                    INSERT INTO admin_notif (notif_type, description, tenant_id, is_read)
+                    VALUES (@notifType, @description, @tenantId, 0)";
                             MySqlCommand cmdInsertAdminNotif = new MySqlCommand(insertAdminNotifQuery, conn, transaction);
                             cmdInsertAdminNotif.Parameters.AddWithValue("@notifType", "Payment Declined");
                             cmdInsertAdminNotif.Parameters.AddWithValue("@description", $"Payment from room {roomNumber} has been declined. Please review their payment records.");
-                            cmdInsertAdminNotif.Parameters.AddWithValue("@tenantId", selectedTenantId);
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@tenantId", tenantId);
                             cmdInsertAdminNotif.ExecuteNonQuery();
+
                             // Commit transaction
                             transaction.Commit();
-                            
                         }
                         catch (Exception ex)
                         {
@@ -488,6 +484,7 @@ namespace try_messaging
                 }
             }
         }
+
 
 
 
@@ -571,6 +568,139 @@ namespace try_messaging
             LoadBillingData();
             LoadBillStatus();
             LoadPaymentsTable();
+        }
+
+        private void searchBar_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = searchBar.Text.Trim(); // Get the text from the search bar
+
+            // Query to search the paymentLogs table
+            string query = @"
+        SELECT 
+            billing_id, 
+            room_number, 
+            start_date, 
+            end_date, 
+            aircon_bill, 
+            wifi_bill, 
+            parking_bill, 
+            water_bill, 
+            electric_bill, 
+            rent_bill, 
+            total_bill, 
+            amount_paid, 
+            issue_date, 
+            due_date, 
+            remaining_balance, 
+            status, 
+            tenant_id
+        FROM billing_table
+        WHERE 
+            room_number LIKE @searchText OR 
+            status LIKE @searchText OR 
+            tenant_id LIKE @searchText OR 
+            billing_id LIKE @searchText";
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        // Use '%' for partial matches in SQL LIKE
+                        cmd.Parameters.AddWithValue("@searchText", $"%{searchText}%");
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable searchResults = new DataTable();
+                            adapter.Fill(searchResults);
+
+                            // Display the results in a DataGridView
+                            paymentLogs.DataSource = searchResults;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error searching payment logs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void sortCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedOption = sortCombo.SelectedItem.ToString(); // Get selected sorting option
+            string query = @"
+        SELECT 
+             billing_id AS 'ID', 
+            room_number AS 'Room Number', 
+            start_date AS 'Start Date', 
+            end_date AS 'End Date', 
+            aircon_bill AS 'Aircon Bill', 
+            wifi_bill AS 'WiFi Bill', 
+            parking_bill AS 'Parking Bill', 
+            water_bill AS 'Water Bill', 
+            electric_bill AS 'Electric Bill', 
+            rent_bill AS 'Rent Bill', 
+            total_bill AS 'Total Bill', 
+            amount_paid AS 'Amount Paid', 
+            issue_date AS 'Issue Date', 
+            due_date AS 'Due Date', 
+            remaining_balance AS 'Remaining Balance', 
+            status AS 'Status', 
+            tenant_id AS 'Tenant ID',
+            CASE 
+                WHEN due_date < CURRENT_DATE() AND status NOT IN ('Paid') THEN 'Overdue'
+                ELSE status
+            END AS calculated_status
+        FROM billing_table";
+
+            // Add sorting logic based on selected option
+            switch (selectedOption)
+            {
+                case "No payment":
+                    query += " WHERE status = 'No payment' ORDER BY due_date ASC";
+                    break;
+                case "Pending":
+                    query += " WHERE status = 'Pending' ORDER BY due_date ASC";
+                    break;
+                case "Declined":
+                    query += " WHERE status = 'Declined' ORDER BY due_date ASC";
+                    break;
+                case "Paid":
+                    query += " WHERE status = 'Paid' ORDER BY due_date DESC";
+                    break;
+                case "Overdue":
+                    query += " WHERE due_date < CURRENT_DATE() AND status NOT IN ('Paid') ORDER BY due_date ASC";
+                    break;
+                default:
+                    query += " ORDER BY due_date ASC"; // Default to sorting by due date
+                    break;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable resultTable = new DataTable();
+                            adapter.Fill(resultTable);
+
+                            // Bind the result to the DataGridView
+                            paymentLogs.DataSource = resultTable;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading sorted data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

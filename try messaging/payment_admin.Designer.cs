@@ -44,9 +44,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.sortCombo = new System.Windows.Forms.ComboBox();
-            this.search_Btn = new System.Windows.Forms.Button();
             this.searchBar = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.billStatusTable = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.refresh_Btn = new System.Windows.Forms.Button();
@@ -164,9 +162,9 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(65)))), ((int)(((byte)(94)))));
+            this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(740, 252);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 23);
@@ -179,7 +177,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(637, 314);
+            this.label2.Location = new System.Drawing.Point(570, 314);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 20);
             this.label2.TabIndex = 123;
@@ -188,20 +186,11 @@
             // sortCombo
             // 
             this.sortCombo.FormattingEnabled = true;
-            this.sortCombo.Location = new System.Drawing.Point(703, 313);
+            this.sortCombo.Location = new System.Drawing.Point(636, 313);
             this.sortCombo.Name = "sortCombo";
             this.sortCombo.Size = new System.Drawing.Size(121, 21);
             this.sortCombo.TabIndex = 122;
-            // 
-            // search_Btn
-            // 
-            this.search_Btn.BackColor = System.Drawing.Color.White;
-            this.search_Btn.Location = new System.Drawing.Point(545, 311);
-            this.search_Btn.Name = "search_Btn";
-            this.search_Btn.Size = new System.Drawing.Size(75, 23);
-            this.search_Btn.TabIndex = 121;
-            this.search_Btn.Text = "Search";
-            this.search_Btn.UseVisualStyleBackColor = false;
+            this.sortCombo.SelectedIndexChanged += new System.EventHandler(this.sortCombo_SelectedIndexChanged);
             // 
             // searchBar
             // 
@@ -209,17 +198,7 @@
             this.searchBar.Name = "searchBar";
             this.searchBar.Size = new System.Drawing.Size(196, 20);
             this.searchBar.TabIndex = 120;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(793, 530);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 23);
-            this.button2.TabIndex = 124;
-            this.button2.Text = "Export";
-            this.button2.UseVisualStyleBackColor = false;
+            this.searchBar.TextChanged += new System.EventHandler(this.searchBar_TextChanged);
             // 
             // billStatusTable
             // 
@@ -279,10 +258,8 @@
             this.Controls.Add(this.refresh_Btn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.billStatusTable);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.sortCombo);
-            this.Controls.Add(this.search_Btn);
             this.Controls.Add(this.searchBar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.decline_Btn);
@@ -312,9 +289,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox sortCombo;
-        private System.Windows.Forms.Button search_Btn;
         private System.Windows.Forms.TextBox searchBar;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView billStatusTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button refresh_Btn;

@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.search_Btn = new System.Windows.Forms.Button();
@@ -39,6 +43,7 @@
             this.export_Btn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.houseCombo = new System.Windows.Forms.ComboBox();
+            this.update_Btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tenantList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,14 +121,42 @@
             // tenantList
             // 
             this.tenantList.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tenantList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tenantList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tenantList.DefaultCellStyle = dataGridViewCellStyle2;
             this.tenantList.Location = new System.Drawing.Point(6, 59);
             this.tenantList.Name = "tenantList";
             this.tenantList.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tenantList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tenantList.RowHeadersVisible = false;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tenantList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.tenantList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tenantList.Size = new System.Drawing.Size(861, 441);
             this.tenantList.TabIndex = 74;
             this.tenantList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tenantList_CellClick);
+            this.tenantList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tenantList_CellContentClick);
             // 
             // export_Btn
             // 
@@ -155,12 +188,24 @@
             this.houseCombo.TabIndex = 76;
             this.houseCombo.SelectedIndexChanged += new System.EventHandler(this.houseCombo_SelectedIndexChanged);
             // 
+            // update_Btn
+            // 
+            this.update_Btn.BackColor = System.Drawing.Color.White;
+            this.update_Btn.Location = new System.Drawing.Point(219, 506);
+            this.update_Btn.Name = "update_Btn";
+            this.update_Btn.Size = new System.Drawing.Size(75, 23);
+            this.update_Btn.TabIndex = 78;
+            this.update_Btn.Text = "Update";
+            this.update_Btn.UseVisualStyleBackColor = false;
+            this.update_Btn.Click += new System.EventHandler(this.update_Btn_Click);
+            // 
             // tenant_lists
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 578);
+            this.Controls.Add(this.update_Btn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.houseCombo);
             this.Controls.Add(this.export_Btn);
@@ -194,5 +239,6 @@
         private System.Windows.Forms.Button export_Btn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox houseCombo;
+        private System.Windows.Forms.Button update_Btn;
     }
 }
