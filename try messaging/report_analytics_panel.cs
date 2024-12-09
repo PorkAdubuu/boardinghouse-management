@@ -52,7 +52,7 @@ namespace try_messaging
             }
             else if (manageSelection.SelectedItem.ToString() == "Tenant Report")
             {
-                tenant_reports tenant_Reports = new tenant_reports();
+                tenant tenant_Reports = new tenant();
                 LoadFormInPanel(tenant_Reports);
             }
             else if (manageSelection.SelectedItem.ToString() == "Bills Report")
