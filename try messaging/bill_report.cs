@@ -189,26 +189,35 @@ namespace try_messaging
 
         private void houseCombo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string selectedHouse = houseCombo.SelectedItem.ToString();
-            string statusFilter = statusCombo.SelectedItem?.ToString() ?? string.Empty;
-            string dateFilter = dateTimePicker1.Value.ToString("yyyy-MM"); // Get the selected year and month
-            LoadBillsData(selectedHouse, statusFilter, dateFilter);
+            if (houseCombo.SelectedItem != null)
+            {
+                string selectedHouse = houseCombo.SelectedItem.ToString();
+                string statusFilter = statusCombo.SelectedItem?.ToString() ?? string.Empty;
+                string dateFilter = dateTimePicker1.Value.ToString("yyyy-MM"); // Get the selected year and month
+                LoadBillsData(selectedHouse, statusFilter, dateFilter);
+            }
         }
 
         private void statusCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedHouse = houseCombo.SelectedItem.ToString();
-            string statusFilter = statusCombo.SelectedItem?.ToString() ?? string.Empty;
-            string dateFilter = dateTimePicker1.Value.ToString("yyyy-MM"); // Get the selected year and month
-            LoadBillsData(selectedHouse, statusFilter, dateFilter);
+            if (houseCombo.SelectedItem != null && statusCombo.SelectedItem != null)
+            {
+                string selectedHouse = houseCombo.SelectedItem.ToString();
+                string statusFilter = statusCombo.SelectedItem.ToString();
+                string dateFilter = dateTimePicker1.Value.ToString("yyyy-MM"); // Get the selected year and month
+                LoadBillsData(selectedHouse, statusFilter, dateFilter);
+            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            string selectedHouse = houseCombo.SelectedItem.ToString();
-            string statusFilter = statusCombo.SelectedItem?.ToString() ?? string.Empty;
-            string dateFilter = dateTimePicker1.Value.ToString("yyyy-MM"); // Get the selected year and month
-            LoadBillsData(selectedHouse, statusFilter, dateFilter);
+            if (houseCombo.SelectedItem != null)
+            {
+                string selectedHouse = houseCombo.SelectedItem.ToString();
+                string statusFilter = statusCombo.SelectedItem?.ToString() ?? string.Empty;
+                string dateFilter = dateTimePicker1.Value.ToString("yyyy-MM"); // Get the selected year and month
+                LoadBillsData(selectedHouse, statusFilter, dateFilter);
+            }
         }
 
         private void export_Btn_Click(object sender, EventArgs e)
