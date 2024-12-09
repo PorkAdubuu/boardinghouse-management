@@ -376,6 +376,8 @@ namespace try_messaging
         private void analytics_Btn_Click(object sender, EventArgs e)
         {
             //to form
+            report_analytics_panel report_Analytics_Panel = new report_analytics_panel();
+            LoadFormInPanel(report_Analytics_Panel);
 
             //transition
             analytics_Btn.Image = Properties.Resources.admin_report_analytic_pink_butt;

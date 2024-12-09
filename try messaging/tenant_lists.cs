@@ -48,6 +48,12 @@ namespace try_messaging
             LoadTenantDetails();
 
             LoadHouseCombo();
+            tenantList.ReadOnly = true;
+            
+            //configure table
+            
+            
+
         }
 
         private void LoadHouseCombo()
@@ -137,7 +143,10 @@ namespace try_messaging
                     
                     tenantList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     tenantList.AllowUserToAddRows = false;
+                    tenantList.AllowUserToDeleteRows = false;
+                    tenantList.AllowUserToAddRows = false;
                     tenantList.ReadOnly = true;
+
                     tenantList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 }
                 catch (Exception ex)
@@ -581,6 +590,48 @@ namespace try_messaging
         {
             string selectedHouse = houseCombo.SelectedItem.ToString();
             LoadTenantDetails("tenid", selectedHouse); // Reload tenant details filtered by selected house
+        }
+
+        private void update_Btn_Click(object sender, EventArgs e)
+        {
+
+            // Show the password prompt form
+            using (PasswordPromptForm passwordPrompt = new PasswordPromptForm())
+            {
+                if (passwordPrompt.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the entered password
+                    string adminPassword = passwordPrompt.AdminPassword;
+
+                    // Verify the admin password
+                    if (VerifyAdminPassword(adminPassword))
+                    {
+                        // Proceed with the update logic
+                        edit_tenant edit_Tenant = new edit_tenant(selectedTenantId);
+                        edit_Tenant.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid admin password. Update canceled.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            
+        }
+
+        private void tenantList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the clicked cell is within the data rows, not header row
+            if (e.RowIndex >= 0)
+            {
+                // Get the tenant ID from the clicked row (assuming "ID" is the first column)
+                int tenantId = Convert.ToInt32(tenantList.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Store the selected tenant ID in a variable (use it later for passing to edit form)
+                selectedTenantId = tenantId;
+
+                
+            }
         }
     }
 }

@@ -84,7 +84,7 @@ namespace try_messaging
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred while updating the chart: " + ex.Message);
+                    //MessageBox.Show("An error occurred while updating the chart: " + ex.Message);
                 }
             }
         }

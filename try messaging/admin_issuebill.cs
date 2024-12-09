@@ -105,6 +105,12 @@ namespace try_messaging
             {
                 tenant_ID.Clear(); // If no matching tenant found, clear the textbox
             }
+
+            if (roomCombo.SelectedItem != null)
+            {
+                selectedRoomNumber = Convert.ToInt32(roomCombo.SelectedItem);
+                LoadTenantBills(selectedRoomNumber);
+            }
         }
 
         private void cubicText_TextChanged(object sender, EventArgs e)
@@ -135,9 +141,9 @@ namespace try_messaging
 
         private async void confirm_Btn_Click(object sender, EventArgs e)
         {
-            if (roomCombo.SelectedItem == null || 
-            string.IsNullOrEmpty(wifiBill.Text) || string.IsNullOrEmpty(parkingBill.Text) ||
-            string.IsNullOrEmpty(waterBill.Text) || string.IsNullOrEmpty(electricBill.Text))
+            if (roomCombo.SelectedItem == null ||
+                string.IsNullOrEmpty(wifiBill.Text) || string.IsNullOrEmpty(parkingBill.Text) ||
+                string.IsNullOrEmpty(waterBill.Text) || string.IsNullOrEmpty(electricBill.Text))
             {
                 MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -170,15 +176,27 @@ namespace try_messaging
                     conn.Open();
                     transaction = conn.BeginTransaction();
 
-                    // Step 1: Insert billing information
-                    string query = @"INSERT INTO billing_table 
-                    (room_number, start_date, end_date, wifi_bill, parking_bill, water_bill, electric_bill, rent_bill, total_bill, tenant_id)
-                    VALUES (@roomNumber, @startDate, @endDate, @wifiBill, @parkingBill, @waterBill, @electricBill, @rentBill, @totalBill, @tenantID)";
+                    // Step 1: Fetch boarding house name from tenants_details based on tenant_id
+                    string boardingHouseQuery = "SELECT house_name FROM tenants_details WHERE tenid = @tenantID";
+                    MySqlCommand cmdFetchBoardingHouse = new MySqlCommand(boardingHouseQuery, conn, transaction);
+                    cmdFetchBoardingHouse.Parameters.AddWithValue("@tenantID", tenantID);
+                    string boardingHouseName = cmdFetchBoardingHouse.ExecuteScalar()?.ToString();
+
+                    if (string.IsNullOrEmpty(boardingHouseName))
+                    {
+                        MessageBox.Show("Boarding house name not found for the tenant.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Step 2: Insert billing information with boardinghouse value
+                    string query = @"
+            INSERT INTO billing_table 
+            (room_number, start_date, end_date, wifi_bill, parking_bill, water_bill, electric_bill, rent_bill, total_bill, tenant_id, boardinghouse)
+            VALUES (@roomNumber, @startDate, @endDate, @wifiBill, @parkingBill, @waterBill, @electricBill, @rentBill, @totalBill, @tenantID, @boardinghouse)";
                     MySqlCommand cmd = new MySqlCommand(query, conn, transaction);
                     cmd.Parameters.AddWithValue("@roomNumber", roomNumber);
                     cmd.Parameters.AddWithValue("@startDate", start);
                     cmd.Parameters.AddWithValue("@endDate", end);
-
                     cmd.Parameters.AddWithValue("@wifiBill", wifiBillValue);
                     cmd.Parameters.AddWithValue("@parkingBill", parkingBillValue);
                     cmd.Parameters.AddWithValue("@waterBill", waterBillValue);
@@ -186,20 +204,21 @@ namespace try_messaging
                     cmd.Parameters.AddWithValue("@rentBill", rentBills);
                     cmd.Parameters.AddWithValue("@totalBill", totalBills);
                     cmd.Parameters.AddWithValue("@tenantID", tenantID);
+                    cmd.Parameters.AddWithValue("@boardinghouse", boardingHouseName);  // Insert the fetched boarding house name
 
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        // Step 2: Insert notification into tenant_notif table
+                        // Step 3: Insert notification into tenant_notif table
                         string insertNotifQuery = @"
-                        INSERT INTO tenant_notif (reason, description, notif_type, tenant_id)
-                        VALUES (NULL, @description, @notifType, @tenantId)";
+                INSERT INTO tenant_notif (reason, description, notif_type, tenant_id)
+                VALUES (NULL, @description, @notifType, @tenantId)";
                         MySqlCommand cmdInsertNotif = new MySqlCommand(insertNotifQuery, conn, transaction);
                         cmdInsertNotif.Parameters.AddWithValue("@description", "Your bill has been updated. Please pay on time.");
                         cmdInsertNotif.Parameters.AddWithValue("@notifType", "New Bill Alert");
                         cmdInsertNotif.Parameters.AddWithValue("@tenantId", tenantID);
                         cmdInsertNotif.ExecuteNonQuery();
 
-                        // Step 3: Fetch tenant email
+                        // Step 4: Fetch tenant email
                         string fetchEmailQuery = "SELECT email FROM tenants_details WHERE tenid = @tenantID";
                         MySqlCommand cmdFetchEmail = new MySqlCommand(fetchEmailQuery, conn, transaction);
                         cmdFetchEmail.Parameters.AddWithValue("@tenantID", tenantID);
@@ -230,6 +249,7 @@ namespace try_messaging
                 }
             }
         }
+
         private async Task SendEmailToTenantAsync(string tenantEmail, int roomNumber, DateTime start, DateTime end, decimal totalBill)
         {
             sendingLabel.Text = "Sending email...";

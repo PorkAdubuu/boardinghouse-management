@@ -212,19 +212,56 @@ namespace try_messaging
                             cmdUpdateBilling.Parameters.AddWithValue("@tenantId", tenantId);
                             cmdUpdateBilling.ExecuteNonQuery();
 
-                            // Archive the payment and update the due_date
-                            string archivePaymentQuery = @"
-                            UPDATE payment_archive_table
-                            SET 
-                                total_bill = @paymentAmount,
-                                due_date = (SELECT due_date FROM billing_table WHERE billing_id = @billingId)
+                            // Check if the payment already exists in the payment_archive_table
+                            string checkPaymentQuery = @"
+                            SELECT COUNT(*) 
+                            FROM payment_archive_table 
                             WHERE billing_id = @billingId AND tenant_id = @tenantId";
 
-                            MySqlCommand cmdArchivePayment = new MySqlCommand(archivePaymentQuery, conn, transaction);
-                            cmdArchivePayment.Parameters.AddWithValue("@paymentAmount", paymentAmount);
-                            cmdArchivePayment.Parameters.AddWithValue("@billingId", billingId);
-                            cmdArchivePayment.Parameters.AddWithValue("@tenantId", tenantId);
-                            cmdArchivePayment.ExecuteNonQuery();
+                            MySqlCommand cmdCheckPayment = new MySqlCommand(checkPaymentQuery, conn, transaction);
+                            cmdCheckPayment.Parameters.AddWithValue("@billingId", billingId);
+                            cmdCheckPayment.Parameters.AddWithValue("@tenantId", tenantId);
+                            int paymentCount = Convert.ToInt32(cmdCheckPayment.ExecuteScalar());
+
+                            if (paymentCount > 0)
+                            {
+                                // Archive the payment and update the due_date if payment already exists
+                                string archivePaymentQuery = @"
+                                UPDATE payment_archive_table
+                                SET 
+                                    total_bill = IFNULL(total_bill, 0) + @paymentAmount,  -- Add paymentAmount if total_bill exists, or set it if total_bill is NULL
+                                    due_date = (SELECT due_date FROM billing_table WHERE billing_id = @billingId)
+                                WHERE billing_id = @billingId AND tenant_id = @tenantId";
+
+                                MySqlCommand cmdArchivePayment = new MySqlCommand(archivePaymentQuery, conn, transaction);
+                                cmdArchivePayment.Parameters.AddWithValue("@paymentAmount", paymentAmount);
+                                cmdArchivePayment.Parameters.AddWithValue("@billingId", billingId);
+                                cmdArchivePayment.Parameters.AddWithValue("@tenantId", tenantId);
+                                cmdArchivePayment.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                // Insert new record into payment_archive_table if no existing billing_id
+                                string insertPaymentQuery = @"
+                                INSERT INTO payment_archive_table (billing_id, tenant_id, total_bill, due_date, boardinghouse, room_number)
+                                SELECT 
+                                    @billingId, 
+                                    @tenantId, 
+                                    @paymentAmount, 
+                                    due_date, 
+                                    boardinghouse,  -- Fetch boardinghouse name from billing_table using billing_id
+                                    room_number  -- Fetch room_number from billing_table
+                                FROM billing_table 
+                                WHERE billing_id = @billingId";
+
+                                MySqlCommand cmdInsertPayment = new MySqlCommand(insertPaymentQuery, conn, transaction);
+                                cmdInsertPayment.Parameters.AddWithValue("@paymentAmount", paymentAmount);
+                                cmdInsertPayment.Parameters.AddWithValue("@billingId", billingId);
+                                cmdInsertPayment.Parameters.AddWithValue("@tenantId", tenantId);
+                                cmdInsertPayment.ExecuteNonQuery();
+                            }
+
+
 
 
                         }
