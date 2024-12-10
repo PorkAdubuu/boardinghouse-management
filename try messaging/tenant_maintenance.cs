@@ -9,7 +9,7 @@ namespace try_messaging
 {
     public partial class tenant_maintenance : Form
     {
-        private int tenantId; // Store the tenant's ID // Replace with actual tenant ID retrieval logic
+        private int tenantId; // Store the tenant's ID
         private string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
 
         public tenant_maintenance(int tenantId)
@@ -94,11 +94,11 @@ namespace try_messaging
             stretchedImage.Dispose();
         }
 
-        private void submitRequestButton_Click(object sender, EventArgs e)
+        private async void submitRequestButton_Click(object sender, EventArgs e)
         {
             string maintenanceType = typeCombo.SelectedItem?.ToString();
             string description = descriptionTextBox1.Text;
-            DateTime requestDate = dateTimePicker1.Value;
+            DateTime requestDate = dateTimePicker1.Value; // Use for request_date
             byte[] imageData = ConvertImageToBytes();
 
             if (string.IsNullOrEmpty(maintenanceType) || string.IsNullOrEmpty(description))
@@ -109,27 +109,48 @@ namespace try_messaging
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                MySqlTransaction transaction = null;
+
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO maintenance_requests (tenant_id, maintenance_type, description, request_date, image_data) " +
-                                   "VALUES (@tenantId, @maintenanceType, @description, @requestDate, @imageData)";
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    transaction = connection.BeginTransaction();
+
+                    // Insert maintenance request
+                    string query = "INSERT INTO maintenance_requests (tenant_id, maintenance_type, description, request_date, dateInspection, image_data, status) " +
+                                   "VALUES (@tenantId, @maintenanceType, @description, @requestDate, @dateInspection, @imageData, @status)";
+                    using (MySqlCommand command = new MySqlCommand(query, connection, transaction))
                     {
                         command.Parameters.AddWithValue("@tenantId", tenantId);
                         command.Parameters.AddWithValue("@maintenanceType", maintenanceType);
                         command.Parameters.AddWithValue("@description", description);
                         command.Parameters.AddWithValue("@requestDate", requestDate);
+                        command.Parameters.AddWithValue("@dateInspection", DBNull.Value); // Set as NULL for now
                         command.Parameters.AddWithValue("@imageData", imageData ?? (object)DBNull.Value);
-
+                        command.Parameters.AddWithValue("@status", "Pending"); // Default status
                         command.ExecuteNonQuery();
                     }
+
+                    // Insert notification into admin_notif table
+                    string insertNotifQuery = @"
+                    INSERT INTO admin_notif (reason, description, notif_type)
+                    VALUES (NULL, @description, @notifType)";
+                    using (MySqlCommand cmdInsertNotif = new MySqlCommand(insertNotifQuery, connection, transaction))
+                    {
+                        cmdInsertNotif.Parameters.AddWithValue("@description", "A maintenance request has been submitted by a tenant.");
+                        cmdInsertNotif.Parameters.AddWithValue("@notifType", "Maintenance Request Submitted");
+                        cmdInsertNotif.ExecuteNonQuery();
+                    }
+
+                    // Commit transaction
+                    transaction.Commit();
 
                     MessageBox.Show("Maintenance request submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadTenantRequests(tenantId); // Reload tenant requests after submission
                 }
                 catch (Exception ex)
                 {
+                    transaction?.Rollback();
                     MessageBox.Show($"Error submitting request: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -170,7 +191,8 @@ namespace try_messaging
 
         private void LoadTenantRequests(int tenantId)
         {
-            string query = "SELECT request_id, maintenance_type, description, request_date, status FROM maintenance_requests WHERE tenant_id = @tenantId";
+            string query = "SELECT request_id, maintenance_type, description, request_date, dateInspection, status " +
+                           "FROM maintenance_requests WHERE tenant_id = @tenantId";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -184,10 +206,20 @@ namespace try_messaging
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     trackRequests.DataSource = dataTable;
+
+                    // Format the DataGridView
                     trackRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     trackRequests.AllowUserToResizeColumns = false;
                     trackRequests.AllowUserToResizeRows = false;
                     trackRequests.RowHeadersVisible = false;
+
+                    // Optional: Rename or adjust columns for clarity
+                    trackRequests.Columns["request_id"].HeaderText = "Request ID";
+                    trackRequests.Columns["maintenance_type"].HeaderText = "Type";
+                    trackRequests.Columns["description"].HeaderText = "Description";
+                    trackRequests.Columns["request_date"].HeaderText = "Request Date";
+                    trackRequests.Columns["dateInspection"].HeaderText = "Inspection Date"; // Fetch this from the database
+                    trackRequests.Columns["status"].HeaderText = "Status";
                 }
                 catch (Exception ex)
                 {

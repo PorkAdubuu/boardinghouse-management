@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using System.Windows.Forms.DataVisualization.Charting;
 namespace try_messaging
 {
     public partial class admin_dashboard_display : Form
@@ -18,6 +18,77 @@ namespace try_messaging
             annoucementText.Text = "Enter announcement here...";
             annoucementText.ForeColor = Color.Gray;
         }
+        
+        private void UpdatePieChart()
+        {
+            // Create a new database connection
+            string connectionString = dbConnection.GetConnectionString(); // Replace with your actual connection string
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to count paid and unpaid bills
+                    string query = @"
+                        SELECT 
+                            COUNT(*) AS TotalBills,
+                            SUM(CASE WHEN status = 'Paid' THEN 1 ELSE 0 END) AS PaidCount,
+                            SUM(CASE WHEN status IN ('No payment', 'Pending', 'Declined') THEN 1 ELSE 0 END) AS UnpaidCount
+                        FROM billing_table";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        // Execute query and get result
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int totalBills = reader.GetInt32("TotalBills");
+                                int paidCount = reader.GetInt32("PaidCount");
+                                int unpaidCount = reader.GetInt32("UnpaidCount");
+
+                                // Check if there are any bills to avoid division by zero
+                                if (totalBills == 0)
+                                {
+                                    MessageBox.Show("No bills found in the database.");
+                                    return;
+                                }
+
+                                // Calculate the percentages for paid and unpaid bills
+                                double paidPercentage = (double)paidCount / totalBills * 1;
+                                double unpaidPercentage = (double)unpaidCount / totalBills * 1;
+
+                                // Update the pie chart data
+                                chart1.Series.Clear();
+                                Series pieSeries = chart1.Series.Add("Payment Status");
+                                pieSeries.ChartType = SeriesChartType.Pie;
+
+                                // Add the data points (Paid and Unpaid)
+                                pieSeries.Points.Clear();
+                                pieSeries.Points.AddXY("Paid", paidPercentage);
+                                pieSeries.Points.AddXY("Unpaid", unpaidPercentage);
+
+                                // Optional: Add chart title
+                                chart1.Titles.Clear();
+                                chart1.Titles.Add("Bill Payment Status");
+
+                                // Optional: Format data labels
+                                pieSeries.IsValueShownAsLabel = true;
+                                pieSeries.LabelFormat = "#0%"; // Show percentage
+                                pieSeries.LabelForeColor = Color.White;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("An error occurred while updating the chart: " + ex.Message);
+                }
+            }
+        }
+
 
         private void annoucementText_Enter(object sender, EventArgs e)
         {
@@ -132,7 +203,92 @@ namespace try_messaging
             LoadAnnouncements();
             LoadTotalTenant();
             LoadTotalHouses();
+            UpdateBillingCounters();
+            UpdateTotalIncome();
+            UpdatePieChart();
         }
+
+        private void UpdateBillingCounters()
+        {
+            string connectionString = dbConnection.GetConnectionString(); // Replace with your actual connection string
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to get all counts with the new condition for "due" bills
+                    string query = @"
+                SELECT 
+                    COUNT(*) AS total_bills,
+                    SUM(CASE WHEN status IN ('No payment', 'Pending', 'Declined') THEN 1 ELSE 0 END) AS no_payment_count,
+                    SUM(CASE WHEN DATE(due_date) <= @today AND status != 'Paid' THEN 1 ELSE 0 END) AS due_today_count,
+                    SUM(CASE WHEN status = 'Paid' THEN 1 ELSE 0 END) AS paid_count
+                FROM billing_table";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@today", today);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Populate the text boxes
+                                issuedBillText.Text = reader["total_bills"].ToString();
+                                noPaymentText.Text = reader["no_payment_count"].ToString();
+                                dueText.Text = reader["due_today_count"].ToString();
+                                paidText.Text = reader["paid_count"].ToString();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating billing counters: " + ex.Message);
+                }
+            }
+        }
+
+        private void UpdateTotalIncome()
+        {
+            string connectionString = dbConnection.GetConnectionString(); // Replace with your actual connection string
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to calculate the total income from total_bill in payment_archive_table
+                    string query = "SELECT IFNULL(SUM(total_bill), 0) AS total_income FROM payment_archive_table";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        // Execute the query and get the result
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            // Format the result as currency and display in the textbox
+                            totalIncomeText.Text = Convert.ToDecimal(result).ToString("C2");
+                        }
+                        else
+                        {
+                            totalIncomeText.Text = "0.00";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while calculating total income: " + ex.Message);
+                }
+            }
+        }
+
+
 
         private void LoadTotalTenant()
         {

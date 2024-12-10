@@ -48,6 +48,12 @@ namespace try_messaging
             LoadTenantDetails();
 
             LoadHouseCombo();
+            tenantList.ReadOnly = true;
+            
+            //configure table
+            
+            
+
         }
 
         private void LoadHouseCombo()
@@ -105,6 +111,7 @@ namespace try_messaging
             age AS 'Age',
             gender AS 'Gender',
             roomnumber AS 'Room Number',
+            pax_number AS 'PAX number',
             email AS 'Email',
             contact AS 'Contact Number',
             address AS 'Address',
@@ -136,7 +143,10 @@ namespace try_messaging
                     
                     tenantList.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                     tenantList.AllowUserToAddRows = false;
+                    tenantList.AllowUserToDeleteRows = false;
+                    tenantList.AllowUserToAddRows = false;
                     tenantList.ReadOnly = true;
+
                     tenantList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 }
                 catch (Exception ex)
@@ -220,7 +230,7 @@ namespace try_messaging
         private void delete_Btn_Click(object sender, EventArgs e)
         {
             // Prompt user to confirm deletion
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this tenant?", "Confirm Deletion", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this tenant?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
@@ -234,17 +244,56 @@ namespace try_messaging
 
                     if (VerifyAdminPassword(enteredPassword))
                     {
-                        // Proceed with the deletion if password is correct
-                        DeleteTenant();
-                        
+                        // Proceed with the deletion if the password is correct
+                        int tenantId = selectedTenantId; // Replace this with your logic to get the selected tenant ID
+
+                        if (tenantId == 0)
+                        {
+                            MessageBox.Show("Please select a valid tenant to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        if (CheckRemainingBalance(tenantId))
+                        {
+                            MessageBox.Show("Tenant cannot be deleted because there are outstanding balances.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        // Delete the tenant
+                        DeleteTenant(tenantId);
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect admin password. Deletion aborted.");
+                        MessageBox.Show("Incorrect admin password. Deletion aborted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
         }
+        private bool CheckRemainingBalance(int tenantId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    string query = "SELECT COUNT(*) FROM billing_table WHERE tenant_id = @tenantId AND remaining_balance > 0.00";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0; // Return true if there are outstanding balances
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while checking the remaining balance: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return true; // Prevent deletion in case of an error
+                }
+            }
+        }
+
         private bool VerifyAdminPassword(string enteredPassword)
         {
             // Query to retrieve the admin password from the database
@@ -275,82 +324,77 @@ namespace try_messaging
             }
         }
 
-        private void DeleteTenant()
+        private void DeleteTenant(int tenantId)
         {
-            // Use the tenant ID that was selected from the DataGrid
-            if (selectedTenantId > 0)
-            {
-                string deleteQuery = "DELETE FROM tenants_details WHERE tenid = @tenantId";
-
-                // First, get the house_id of the tenant being deleted
-                int houseId = GetHouseIdForTenant(selectedTenantId);
-
-                using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
-                {
-                    try
-                    {
-                        conn.Open();
-
-                        // Begin transaction to ensure both delete and update happen together
-                        using (var transaction = conn.BeginTransaction())
-                        {
-                            MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
-                            cmd.Parameters.AddWithValue("@tenantId", selectedTenantId);
-                            cmd.Transaction = transaction;
-
-                            // Execute tenant deletion
-                            int rowsAffected = cmd.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                            {
-                                // Decrease occupancy for the associated house
-                                DecreaseHouseOccupancy(conn, houseId, transaction);
-
-                                // Commit transaction
-                                transaction.Commit();
-
-                                MessageBox.Show("Tenant deleted and occupancy updated successfully.");
-                                LoadTenantDetails(); // Reload tenant list
-                            }
-                            else
-                            {
-                                MessageBox.Show("Tenant not found.");
-                                transaction.Rollback(); // Rollback in case of failure
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No tenant selected.");
-            }
-        }
-
-        private int GetHouseIdForTenant(int tenantId)
-        {
-            string query = "SELECT house_id FROM tenants_details WHERE tenid = @tenantId";
-
             using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
             {
                 try
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+
+                    // Get the house_id for the tenant before deleting
+                    string getHouseIdQuery = "SELECT house_id FROM tenants_details WHERE tenid = @tenantId";
+                    MySqlCommand cmdGetHouseId = new MySqlCommand(getHouseIdQuery, conn);
+                    cmdGetHouseId.Parameters.AddWithValue("@tenantId", tenantId);
+                    int houseId = Convert.ToInt32(cmdGetHouseId.ExecuteScalar());
+
+                    if (houseId == 0)
+                    {
+                        MessageBox.Show("No house found for the tenant. Operation aborted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Start a transaction to ensure atomicity
+                    using (var transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Archive the tenant
+                            ArchiveTenant(tenantId);
+
+                            // Decrease the house occupancy
+                            DecreaseHouseOccupancy(conn, houseId, transaction);
+
+                            // Delete the tenant record
+                            string deleteQuery = "DELETE FROM tenants_details WHERE tenid = @tenantId";
+                            using (MySqlCommand cmdDelete = new MySqlCommand(deleteQuery, conn))
+                            {
+                                cmdDelete.Parameters.AddWithValue("@tenantId", tenantId);
+                                cmdDelete.Transaction = transaction;
+
+                                int rowsAffected = cmdDelete.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    // Commit the transaction
+                                    transaction.Commit();
+                                    MessageBox.Show("Tenant archived and deleted successfully. House occupancy updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    // Rollback transaction if tenant delete fails
+                                    transaction.Rollback();
+                                    MessageBox.Show("Failed to delete the tenant. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // Rollback transaction in case of error
+                            transaction.Rollback();
+                            MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred while fetching the house ID: " + ex.Message);
-                    return 0; // Return 0 if no house_id is found
+                    MessageBox.Show("An error occurred while deleting the tenant: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+
+
 
         private void DecreaseHouseOccupancy(MySqlConnection conn, int houseId, MySqlTransaction transaction)
         {
@@ -367,6 +411,87 @@ namespace try_messaging
             {
                 MessageBox.Show("An error occurred while updating the house occupancy: " + ex.Message);
                 throw; // Rethrow to roll back the transaction
+            }
+        }
+
+        private void ArchiveTenant(int tenantId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Get tenant details
+                    string selectQuery = @"
+                SELECT 
+                    tenid, lastname, firstname, age, birth_date, roomnumber, email, contact, gender,
+                    emergency_contact1, emergency_contact2, address, emergency_name1, emergency_name2,
+                    movein_date, expiration_date, wifi, parking, house_id, house_name, profile_picture
+                FROM tenants_details
+                WHERE tenid = @tenantId";
+
+                    MySqlCommand selectCmd = new MySqlCommand(selectQuery, conn);
+                    selectCmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    using (MySqlDataReader reader = selectCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Prepare archive query
+                            string insertQuery = @"
+                        INSERT INTO tenants_archive (
+                            tenid, lastname, firstname, age, birth_date, roomnumber, email, contact, gender,
+                            emergency_contact1, emergency_contact2, address, emergency_name1, emergency_name2,
+                            movein_date, expiration_date, wifi, parking, house_id, house_name, profile_picture, reason
+                        )
+                        VALUES (
+                            @tenid, @lastname, @firstname, @age, @birth_date, @roomnumber, @email, @contact, @gender,
+                            @emergency_contact1, @emergency_contact2, @address, @emergency_name1, @emergency_name2,
+                            @movein_date, @expiration_date, @wifi, @parking, @house_id, @house_name, @profile_picture, @reason
+                        )";
+
+                            MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
+
+                            // Add parameters for the archive query
+                            insertCmd.Parameters.AddWithValue("@tenid", reader["tenid"]);
+                            insertCmd.Parameters.AddWithValue("@lastname", reader["lastname"]);
+                            insertCmd.Parameters.AddWithValue("@firstname", reader["firstname"]);
+                            insertCmd.Parameters.AddWithValue("@age", reader["age"]);
+                            insertCmd.Parameters.AddWithValue("@birth_date", reader["birth_date"]);
+                            insertCmd.Parameters.AddWithValue("@roomnumber", reader["roomnumber"]);
+                            insertCmd.Parameters.AddWithValue("@email", reader["email"]);
+                            insertCmd.Parameters.AddWithValue("@contact", reader["contact"]);
+                            insertCmd.Parameters.AddWithValue("@gender", reader["gender"]);
+                            insertCmd.Parameters.AddWithValue("@emergency_contact1", reader["emergency_contact1"]);
+                            insertCmd.Parameters.AddWithValue("@emergency_contact2", reader["emergency_contact2"]);
+                            insertCmd.Parameters.AddWithValue("@address", reader["address"]);
+                            insertCmd.Parameters.AddWithValue("@emergency_name1", reader["emergency_name1"]);
+                            insertCmd.Parameters.AddWithValue("@emergency_name2", reader["emergency_name2"]);
+                            insertCmd.Parameters.AddWithValue("@movein_date", reader["movein_date"]);
+                            insertCmd.Parameters.AddWithValue("@expiration_date", reader["expiration_date"]);
+                            insertCmd.Parameters.AddWithValue("@wifi", reader["wifi"]);
+                            insertCmd.Parameters.AddWithValue("@parking", reader["parking"]);
+                            insertCmd.Parameters.AddWithValue("@house_id", reader["house_id"]);
+                            insertCmd.Parameters.AddWithValue("@house_name", reader["house_name"]);
+                            insertCmd.Parameters.AddWithValue("@profile_picture", reader["profile_picture"]);
+                            insertCmd.Parameters.AddWithValue("@reason", "Tenant removed by admin"); // Set a reason for archiving
+
+                            reader.Close(); // Close the reader before executing the insert command
+
+                            insertCmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tenant details not found for archiving.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while archiving the tenant: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw; // Re-throw the exception to handle it in the calling method
+                }
             }
         }
 
@@ -465,6 +590,48 @@ namespace try_messaging
         {
             string selectedHouse = houseCombo.SelectedItem.ToString();
             LoadTenantDetails("tenid", selectedHouse); // Reload tenant details filtered by selected house
+        }
+
+        private void update_Btn_Click(object sender, EventArgs e)
+        {
+
+            // Show the password prompt form
+            using (PasswordPromptForm passwordPrompt = new PasswordPromptForm())
+            {
+                if (passwordPrompt.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the entered password
+                    string adminPassword = passwordPrompt.AdminPassword;
+
+                    // Verify the admin password
+                    if (VerifyAdminPassword(adminPassword))
+                    {
+                        // Proceed with the update logic
+                        edit_tenant edit_Tenant = new edit_tenant(selectedTenantId);
+                        edit_Tenant.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid admin password. Update canceled.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            
+        }
+
+        private void tenantList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the clicked cell is within the data rows, not header row
+            if (e.RowIndex >= 0)
+            {
+                // Get the tenant ID from the clicked row (assuming "ID" is the first column)
+                int tenantId = Convert.ToInt32(tenantList.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Store the selected tenant ID in a variable (use it later for passing to edit form)
+                selectedTenantId = tenantId;
+
+                
+            }
         }
     }
 }

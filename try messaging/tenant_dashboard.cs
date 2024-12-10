@@ -648,5 +648,37 @@ namespace try_messaging
                 }
             }
         }
+
+        private void clear_Btn_Click(object sender, EventArgs e)
+        {
+            // Create a new database connection
+            string connectionString = dbConnection.GetConnectionString(); // Replace with your actual connection string
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to delete all records from the admin_notif table
+                    string query = "DELETE FROM tenant_notif";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        // Execute the DELETE query
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Notify the user of successful clearing
+                        MessageBox.Show($"{rowsAffected} notifications cleared successfully.", "Notifications Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        notifPanel.Visible = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any errors
+                    MessageBox.Show("An error occurred while clearing notifications: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

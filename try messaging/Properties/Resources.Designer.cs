@@ -113,6 +113,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap admin_manage_house_plain_butt__1_ {
+            get {
+                object obj = ResourceManager.GetObject("admin_manage_house_plain_butt__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap admin_manage_tenant_pink_butt {
             get {
                 object obj = ResourceManager.GetObject("admin_manage_tenant_pink_butt", resourceCulture);
@@ -203,6 +213,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bill {
+            get {
+                object obj = ResourceManager.GetObject("bill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap birthday_cake {
             get {
                 object obj = ResourceManager.GetObject("birthday_cake", resourceCulture);
@@ -266,6 +286,16 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap communication {
             get {
                 object obj = ResourceManager.GetObject("communication", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap credit_card {
+            get {
+                object obj = ResourceManager.GetObject("credit_card", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +383,9 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flash__1_ {
+        internal static System.Drawing.Bitmap flash__2_ {
             get {
-                object obj = ResourceManager.GetObject("flash__1_", resourceCulture);
+                object obj = ResourceManager.GetObject("flash__2_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +393,9 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap garage_car__1_ {
+        internal static System.Drawing.Bitmap garage_car__2_ {
             get {
-                object obj = ResourceManager.GetObject("garage_car__1_", resourceCulture);
+                object obj = ResourceManager.GetObject("garage_car__2_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -447,26 +477,6 @@ namespace try_messaging.Properties {
             get {
                 object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap key__1_ {
-            get {
-                object obj = ResourceManager.GetObject("key__1_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap key__3_ {
-            get {
-                object obj = ResourceManager.GetObject("key__3_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -606,6 +616,26 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap notification__2_ {
             get {
                 object obj = ResourceManager.GetObject("notification__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap paid {
+            get {
+                object obj = ResourceManager.GetObject("paid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap payment {
+            get {
+                object obj = ResourceManager.GetObject("payment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -813,9 +843,9 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap water_tap {
+        internal static System.Drawing.Bitmap water_tap__1_ {
             get {
-                object obj = ResourceManager.GetObject("water_tap", resourceCulture);
+                object obj = ResourceManager.GetObject("water_tap__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -843,9 +873,9 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wi_fi {
+        internal static System.Drawing.Bitmap wi_fi__1_ {
             get {
-                object obj = ResourceManager.GetObject("wi_fi", resourceCulture);
+                object obj = ResourceManager.GetObject("wi_fi__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

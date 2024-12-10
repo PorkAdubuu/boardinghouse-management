@@ -79,6 +79,8 @@
             this.amenities3 = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.birthDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.label25 = new System.Windows.Forms.Label();
+            this.paxText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sendbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateBtn)).BeginInit();
@@ -185,7 +187,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label5.Location = new System.Drawing.Point(308, 110);
+            this.label5.Location = new System.Drawing.Point(308, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 18);
             this.label5.TabIndex = 48;
@@ -360,7 +362,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(308, 140);
+            this.label3.Location = new System.Drawing.Point(308, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 18);
             this.label3.TabIndex = 67;
@@ -368,7 +370,7 @@
             // 
             // movein_datapicker
             // 
-            this.movein_datapicker.Location = new System.Drawing.Point(410, 141);
+            this.movein_datapicker.Location = new System.Drawing.Point(410, 174);
             this.movein_datapicker.Name = "movein_datapicker";
             this.movein_datapicker.Size = new System.Drawing.Size(201, 20);
             this.movein_datapicker.TabIndex = 68;
@@ -378,7 +380,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label8.Location = new System.Drawing.Point(308, 170);
+            this.label8.Location = new System.Drawing.Point(308, 203);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 18);
             this.label8.TabIndex = 69;
@@ -386,7 +388,7 @@
             // 
             // expiration_datapicker
             // 
-            this.expiration_datapicker.Location = new System.Drawing.Point(410, 174);
+            this.expiration_datapicker.Location = new System.Drawing.Point(410, 207);
             this.expiration_datapicker.Name = "expiration_datapicker";
             this.expiration_datapicker.Size = new System.Drawing.Size(201, 20);
             this.expiration_datapicker.TabIndex = 70;
@@ -519,7 +521,7 @@
             // roomText
             // 
             this.roomText.FormattingEnabled = true;
-            this.roomText.Location = new System.Drawing.Point(410, 111);
+            this.roomText.Location = new System.Drawing.Point(410, 144);
             this.roomText.Name = "roomText";
             this.roomText.Size = new System.Drawing.Size(201, 21);
             this.roomText.TabIndex = 83;
@@ -529,7 +531,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label22.Location = new System.Drawing.Point(310, 200);
+            this.label22.Location = new System.Drawing.Point(310, 233);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(76, 18);
             this.label22.TabIndex = 84;
@@ -538,7 +540,7 @@
             // amenities2
             // 
             this.amenities2.AutoSize = true;
-            this.amenities2.Location = new System.Drawing.Point(410, 205);
+            this.amenities2.Location = new System.Drawing.Point(410, 238);
             this.amenities2.Name = "amenities2";
             this.amenities2.Size = new System.Drawing.Size(50, 17);
             this.amenities2.TabIndex = 86;
@@ -569,7 +571,7 @@
             // amenities3
             // 
             this.amenities3.AutoSize = true;
-            this.amenities3.Location = new System.Drawing.Point(410, 228);
+            this.amenities3.Location = new System.Drawing.Point(410, 261);
             this.amenities3.Name = "amenities3";
             this.amenities3.Size = new System.Drawing.Size(94, 17);
             this.amenities3.TabIndex = 89;
@@ -596,6 +598,25 @@
             this.birthDatePicker.TabIndex = 91;
             this.birthDatePicker.ValueChanged += new System.EventHandler(this.birthDatePicker_ValueChanged);
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label25.Location = new System.Drawing.Point(308, 114);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(91, 18);
+            this.label25.TabIndex = 93;
+            this.label25.Text = "PAX number";
+            // 
+            // paxText
+            // 
+            this.paxText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paxText.Location = new System.Drawing.Point(410, 114);
+            this.paxText.Name = "paxText";
+            this.paxText.Size = new System.Drawing.Size(202, 24);
+            this.paxText.TabIndex = 92;
+            // 
             // tenantmanagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -603,6 +624,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 558);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.paxText);
             this.Controls.Add(this.birthDatePicker);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.amenities3);
@@ -718,5 +741,7 @@
         private System.Windows.Forms.CheckBox amenities3;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.DateTimePicker birthDatePicker;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox paxText;
     }
 }

@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tenant_account_profile));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.profilePic = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.nameLabel = new System.Windows.Forms.Label();
@@ -66,7 +68,6 @@
             this.expirationLabel = new System.Windows.Forms.Label();
             this.houseNameText = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.addressLabel = new System.Windows.Forms.RichTextBox();
             this.boardingAddText = new System.Windows.Forms.RichTextBox();
@@ -76,6 +77,7 @@
             this.wifiText = new System.Windows.Forms.Label();
             this.parkingText = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -84,8 +86,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // profilePic
@@ -495,17 +497,6 @@
             this.pictureBox1.TabIndex = 47;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.White;
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(676, 338);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(159, 145);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 48;
-            this.pictureBox9.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -606,12 +597,29 @@
             this.pictureBox7.TabIndex = 32;
             this.pictureBox7.TabStop = false;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(658, 206);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(199, 356);
+            this.chart1.TabIndex = 58;
+            this.chart1.Text = "chart1";
+            // 
             // tenant_account_profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 574);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.parkingText);
             this.Controls.Add(this.wifiText);
             this.Controls.Add(this.label18);
@@ -620,7 +628,6 @@
             this.Controls.Add(this.boardingAddText);
             this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.expirationLabel);
@@ -670,8 +677,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -716,7 +723,6 @@
         private System.Windows.Forms.Label expirationLabel;
         private System.Windows.Forms.Label houseNameText;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox addressLabel;
         private System.Windows.Forms.RichTextBox boardingAddText;
@@ -726,5 +732,6 @@
         private System.Windows.Forms.Label wifiText;
         private System.Windows.Forms.Label parkingText;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
