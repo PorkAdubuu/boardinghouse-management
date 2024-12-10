@@ -45,12 +45,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.nameText = new System.Windows.Forms.TextBox();
-            this.updateBtn = new System.Windows.Forms.PictureBox();
-            this.uploadBtn = new System.Windows.Forms.PictureBox();
-            this.updatePictureBtn = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.profilePicture = new System.Windows.Forms.PictureBox();
-            this.removeBtn = new System.Windows.Forms.PictureBox();
             this.name2Text = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -60,15 +56,14 @@
             this.label13 = new System.Windows.Forms.Label();
             this.expirationText = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.edit_Btn = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.name1Text = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.updateBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uploadBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.updatePictureBtn)).BeginInit();
+            this.upload_Btn1 = new System.Windows.Forms.Button();
+            this.remove_Btn1 = new System.Windows.Forms.Button();
+            this.update_Btn1 = new System.Windows.Forms.Button();
+            this.edit_Btn1 = new System.Windows.Forms.Button();
+            this.update_Btn2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.removeBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edit_Btn)).BeginInit();
             this.SuspendLayout();
             // 
             // contactText
@@ -198,7 +193,7 @@
             // 
             this.emergencyNo2Text.BackColor = System.Drawing.Color.White;
             this.emergencyNo2Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergencyNo2Text.Location = new System.Drawing.Point(131, 466);
+            this.emergencyNo2Text.Location = new System.Drawing.Point(131, 469);
             this.emergencyNo2Text.Name = "emergencyNo2Text";
             this.emergencyNo2Text.ReadOnly = true;
             this.emergencyNo2Text.Size = new System.Drawing.Size(101, 24);
@@ -229,42 +224,6 @@
             this.nameText.TabIndex = 13;
             this.nameText.TextChanged += new System.EventHandler(this.nameText_TextChanged);
             // 
-            // updateBtn
-            // 
-            this.updateBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.updateBtn.Image = global::try_messaging.Properties.Resources.UPDATE_BUTT;
-            this.updateBtn.Location = new System.Drawing.Point(133, 503);
-            this.updateBtn.Name = "updateBtn";
-            this.updateBtn.Size = new System.Drawing.Size(103, 25);
-            this.updateBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.updateBtn.TabIndex = 25;
-            this.updateBtn.TabStop = false;
-            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click_1);
-            // 
-            // uploadBtn
-            // 
-            this.uploadBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uploadBtn.Image = global::try_messaging.Properties.Resources.UPLOAD_BUTT;
-            this.uploadBtn.Location = new System.Drawing.Point(133, 7);
-            this.uploadBtn.Name = "uploadBtn";
-            this.uploadBtn.Size = new System.Drawing.Size(103, 25);
-            this.uploadBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.uploadBtn.TabIndex = 26;
-            this.uploadBtn.TabStop = false;
-            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
-            // 
-            // updatePictureBtn
-            // 
-            this.updatePictureBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.updatePictureBtn.Image = global::try_messaging.Properties.Resources.UPDATE_BUTT;
-            this.updatePictureBtn.Location = new System.Drawing.Point(252, 7);
-            this.updatePictureBtn.Name = "updatePictureBtn";
-            this.updatePictureBtn.Size = new System.Drawing.Size(103, 25);
-            this.updatePictureBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.updatePictureBtn.TabIndex = 27;
-            this.updatePictureBtn.TabStop = false;
-            this.updatePictureBtn.Click += new System.EventHandler(this.updatePictureBtn_Click);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -277,25 +236,13 @@
             // profilePicture
             // 
             this.profilePicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.profilePicture.Location = new System.Drawing.Point(252, 38);
+            this.profilePicture.Location = new System.Drawing.Point(236, 38);
             this.profilePicture.Name = "profilePicture";
             this.profilePicture.Size = new System.Drawing.Size(103, 100);
             this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.profilePicture.TabIndex = 29;
             this.profilePicture.TabStop = false;
             this.profilePicture.Click += new System.EventHandler(this.profilePicture_Click);
-            // 
-            // removeBtn
-            // 
-            this.removeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.removeBtn.Image = global::try_messaging.Properties.Resources.REMOVE_BUTT;
-            this.removeBtn.Location = new System.Drawing.Point(372, 7);
-            this.removeBtn.Name = "removeBtn";
-            this.removeBtn.Size = new System.Drawing.Size(103, 25);
-            this.removeBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.removeBtn.TabIndex = 30;
-            this.removeBtn.TabStop = false;
-            this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
             // 
             // name2Text
             // 
@@ -322,7 +269,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(9, 469);
+            this.label11.Location = new System.Drawing.Point(7, 472);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(16, 18);
             this.label11.TabIndex = 34;
@@ -388,18 +335,6 @@
             this.label14.TabIndex = 39;
             this.label14.Text = "Lease expiration:";
             // 
-            // edit_Btn
-            // 
-            this.edit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.edit_Btn.Image = global::try_messaging.Properties.Resources.edit;
-            this.edit_Btn.Location = new System.Drawing.Point(24, 503);
-            this.edit_Btn.Name = "edit_Btn";
-            this.edit_Btn.Size = new System.Drawing.Size(103, 25);
-            this.edit_Btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.edit_Btn.TabIndex = 41;
-            this.edit_Btn.TabStop = false;
-            this.edit_Btn.Click += new System.EventHandler(this.edit_Btn_Click);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -419,6 +354,76 @@
             this.name1Text.Size = new System.Drawing.Size(101, 24);
             this.name1Text.TabIndex = 43;
             // 
+            // upload_Btn1
+            // 
+            this.upload_Btn1.BackColor = System.Drawing.Color.White;
+            this.upload_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.upload_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upload_Btn1.ForeColor = System.Drawing.Color.Black;
+            this.upload_Btn1.Location = new System.Drawing.Point(139, 7);
+            this.upload_Btn1.Name = "upload_Btn1";
+            this.upload_Btn1.Size = new System.Drawing.Size(86, 28);
+            this.upload_Btn1.TabIndex = 125;
+            this.upload_Btn1.Text = "Upload";
+            this.upload_Btn1.UseVisualStyleBackColor = false;
+            this.upload_Btn1.Click += new System.EventHandler(this.upload_Btn1_Click);
+            // 
+            // remove_Btn1
+            // 
+            this.remove_Btn1.BackColor = System.Drawing.Color.White;
+            this.remove_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.remove_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.remove_Btn1.ForeColor = System.Drawing.Color.Black;
+            this.remove_Btn1.Location = new System.Drawing.Point(354, 7);
+            this.remove_Btn1.Name = "remove_Btn1";
+            this.remove_Btn1.Size = new System.Drawing.Size(86, 28);
+            this.remove_Btn1.TabIndex = 126;
+            this.remove_Btn1.Text = "Remove";
+            this.remove_Btn1.UseVisualStyleBackColor = false;
+            this.remove_Btn1.Click += new System.EventHandler(this.remove_Btn1_Click);
+            // 
+            // update_Btn1
+            // 
+            this.update_Btn1.BackColor = System.Drawing.Color.White;
+            this.update_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.update_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update_Btn1.ForeColor = System.Drawing.Color.Black;
+            this.update_Btn1.Location = new System.Drawing.Point(246, 7);
+            this.update_Btn1.Name = "update_Btn1";
+            this.update_Btn1.Size = new System.Drawing.Size(86, 28);
+            this.update_Btn1.TabIndex = 127;
+            this.update_Btn1.Text = "Update";
+            this.update_Btn1.UseVisualStyleBackColor = false;
+            this.update_Btn1.Click += new System.EventHandler(this.update_Btn1_Click);
+            // 
+            // edit_Btn1
+            // 
+            this.edit_Btn1.BackColor = System.Drawing.Color.White;
+            this.edit_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.edit_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edit_Btn1.ForeColor = System.Drawing.Color.Black;
+            this.edit_Btn1.Location = new System.Drawing.Point(23, 509);
+            this.edit_Btn1.Name = "edit_Btn1";
+            this.edit_Btn1.Size = new System.Drawing.Size(86, 28);
+            this.edit_Btn1.TabIndex = 129;
+            this.edit_Btn1.Text = "Edit";
+            this.edit_Btn1.UseVisualStyleBackColor = false;
+            this.edit_Btn1.Click += new System.EventHandler(this.edit_Btn1_Click);
+            // 
+            // update_Btn2
+            // 
+            this.update_Btn2.BackColor = System.Drawing.Color.White;
+            this.update_Btn2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.update_Btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update_Btn2.ForeColor = System.Drawing.Color.Black;
+            this.update_Btn2.Location = new System.Drawing.Point(115, 509);
+            this.update_Btn2.Name = "update_Btn2";
+            this.update_Btn2.Size = new System.Drawing.Size(86, 28);
+            this.update_Btn2.TabIndex = 128;
+            this.update_Btn2.Text = "Update";
+            this.update_Btn2.UseVisualStyleBackColor = false;
+            this.update_Btn2.Click += new System.EventHandler(this.update_Btn2_Click);
+            // 
             // Personal_information_tenant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,9 +431,13 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(830, 580);
+            this.Controls.Add(this.edit_Btn1);
+            this.Controls.Add(this.update_Btn2);
+            this.Controls.Add(this.update_Btn1);
+            this.Controls.Add(this.remove_Btn1);
+            this.Controls.Add(this.upload_Btn1);
             this.Controls.Add(this.name1Text);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.edit_Btn);
             this.Controls.Add(this.expirationText);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.moveinText);
@@ -438,12 +447,8 @@
             this.Controls.Add(this.name2Text);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.profilePicture);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.updatePictureBtn);
-            this.Controls.Add(this.uploadBtn);
-            this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.emergencyNo2Text);
             this.Controls.Add(this.emergencyNo1Text);
@@ -462,12 +467,7 @@
             this.Name = "Personal_information_tenant";
             this.Text = "Personal_information_tenant";
             this.Load += new System.EventHandler(this.Personal_information_tenant_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.updateBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uploadBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.updatePictureBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.removeBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edit_Btn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -491,12 +491,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox nameText;
-        private System.Windows.Forms.PictureBox updateBtn;
-        private System.Windows.Forms.PictureBox uploadBtn;
-        private System.Windows.Forms.PictureBox updatePictureBtn;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox profilePicture;
-        private System.Windows.Forms.PictureBox removeBtn;
         private System.Windows.Forms.TextBox name2Text;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
@@ -506,8 +502,12 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox expirationText;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.PictureBox edit_Btn;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox name1Text;
+        private System.Windows.Forms.Button upload_Btn1;
+        private System.Windows.Forms.Button remove_Btn1;
+        private System.Windows.Forms.Button update_Btn1;
+        private System.Windows.Forms.Button edit_Btn1;
+        private System.Windows.Forms.Button update_Btn2;
     }
 }

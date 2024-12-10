@@ -33,6 +33,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nopaymentCount = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.overdueCount = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.paidCount = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.billCount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.houseCombo = new System.Windows.Forms.ComboBox();
@@ -41,21 +47,15 @@
             this.export_Btn = new System.Windows.Forms.Button();
             this.billsDataGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.paidCount = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.overdueCount = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.statusCombo = new System.Windows.Forms.ComboBox();
-            this.nopaymentCount = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billsDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(70)))), ((int)(((byte)(84)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.panel1.Controls.Add(this.nopaymentCount);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.overdueCount);
@@ -69,6 +69,66 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(863, 74);
             this.panel1.TabIndex = 92;
+            // 
+            // nopaymentCount
+            // 
+            this.nopaymentCount.AutoSize = true;
+            this.nopaymentCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nopaymentCount.Location = new System.Drawing.Point(572, 27);
+            this.nopaymentCount.Name = "nopaymentCount";
+            this.nopaymentCount.Size = new System.Drawing.Size(21, 24);
+            this.nopaymentCount.TabIndex = 88;
+            this.nopaymentCount.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(438, 27);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 24);
+            this.label6.TabIndex = 87;
+            this.label6.Text = "No payment:";
+            // 
+            // overdueCount
+            // 
+            this.overdueCount.AutoSize = true;
+            this.overdueCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overdueCount.Location = new System.Drawing.Point(773, 27);
+            this.overdueCount.Name = "overdueCount";
+            this.overdueCount.Size = new System.Drawing.Size(21, 24);
+            this.overdueCount.TabIndex = 86;
+            this.overdueCount.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(670, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 24);
+            this.label7.TabIndex = 85;
+            this.label7.Text = "Overdue:";
+            // 
+            // paidCount
+            // 
+            this.paidCount.AutoSize = true;
+            this.paidCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paidCount.Location = new System.Drawing.Point(336, 27);
+            this.paidCount.Name = "paidCount";
+            this.paidCount.Size = new System.Drawing.Size(21, 24);
+            this.paidCount.TabIndex = 84;
+            this.paidCount.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(273, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 24);
+            this.label5.TabIndex = 83;
+            this.label5.Text = "Paid:";
             // 
             // billCount
             // 
@@ -119,7 +179,7 @@
             // 
             // export_Btn
             // 
-            this.export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(70)))), ((int)(((byte)(84)))));
+            this.export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.export_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.export_Btn.ForeColor = System.Drawing.Color.White;
             this.export_Btn.Location = new System.Drawing.Point(390, 511);
@@ -138,7 +198,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.billsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -147,7 +207,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.billsDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
@@ -163,7 +223,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.billsDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.billsDataGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.billsDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.billsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.billsDataGrid.Size = new System.Drawing.Size(863, 349);
@@ -178,46 +238,6 @@
             this.label1.Size = new System.Drawing.Size(160, 24);
             this.label1.TabIndex = 91;
             this.label1.Text = "Billing Summary";
-            // 
-            // paidCount
-            // 
-            this.paidCount.AutoSize = true;
-            this.paidCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paidCount.Location = new System.Drawing.Point(336, 27);
-            this.paidCount.Name = "paidCount";
-            this.paidCount.Size = new System.Drawing.Size(21, 24);
-            this.paidCount.TabIndex = 84;
-            this.paidCount.Text = "0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(273, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 24);
-            this.label5.TabIndex = 83;
-            this.label5.Text = "Paid:";
-            // 
-            // overdueCount
-            // 
-            this.overdueCount.AutoSize = true;
-            this.overdueCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.overdueCount.Location = new System.Drawing.Point(773, 27);
-            this.overdueCount.Name = "overdueCount";
-            this.overdueCount.Size = new System.Drawing.Size(21, 24);
-            this.overdueCount.TabIndex = 86;
-            this.overdueCount.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(670, 27);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 24);
-            this.label7.TabIndex = 85;
-            this.label7.Text = "Overdue:";
             // 
             // label8
             // 
@@ -242,26 +262,6 @@
             this.statusCombo.Size = new System.Drawing.Size(121, 21);
             this.statusCombo.TabIndex = 98;
             this.statusCombo.SelectedIndexChanged += new System.EventHandler(this.statusCombo_SelectedIndexChanged);
-            // 
-            // nopaymentCount
-            // 
-            this.nopaymentCount.AutoSize = true;
-            this.nopaymentCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nopaymentCount.Location = new System.Drawing.Point(572, 27);
-            this.nopaymentCount.Name = "nopaymentCount";
-            this.nopaymentCount.Size = new System.Drawing.Size(21, 24);
-            this.nopaymentCount.TabIndex = 88;
-            this.nopaymentCount.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(438, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 24);
-            this.label6.TabIndex = 87;
-            this.label6.Text = "No payment:";
             // 
             // bill_report
             // 

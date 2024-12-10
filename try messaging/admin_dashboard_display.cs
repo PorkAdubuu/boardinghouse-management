@@ -72,7 +72,7 @@ namespace try_messaging
 
                                 // Optional: Add chart title
                                 chart1.Titles.Clear();
-                                chart1.Titles.Add("Bill Payment Status");
+                                
 
                                 // Optional: Format data labels
                                 pieSeries.IsValueShownAsLabel = true;
