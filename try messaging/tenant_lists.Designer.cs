@@ -69,6 +69,7 @@
             // search_Btn
             // 
             this.search_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.search_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.search_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_Btn.ForeColor = System.Drawing.Color.White;
             this.search_Btn.Location = new System.Drawing.Point(208, 27);
@@ -101,6 +102,7 @@
             // refresh_Btn
             // 
             this.refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.refresh_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refresh_Btn.ForeColor = System.Drawing.Color.White;
             this.refresh_Btn.Location = new System.Drawing.Point(87, 504);
@@ -114,6 +116,7 @@
             // delete_Btn
             // 
             this.delete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.delete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.delete_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.delete_Btn.ForeColor = System.Drawing.Color.White;
             this.delete_Btn.Location = new System.Drawing.Point(6, 504);
@@ -167,6 +170,7 @@
             // export_Btn
             // 
             this.export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.export_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.export_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.export_Btn.ForeColor = System.Drawing.Color.White;
             this.export_Btn.Location = new System.Drawing.Point(785, 504);
@@ -199,6 +203,7 @@
             // update_Btn
             // 
             this.update_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.update_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.update_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.update_Btn.ForeColor = System.Drawing.Color.White;
             this.update_Btn.Location = new System.Drawing.Point(219, 504);

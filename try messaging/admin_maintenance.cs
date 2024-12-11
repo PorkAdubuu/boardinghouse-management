@@ -208,7 +208,7 @@ namespace try_messaging
                     // Show a message if no requests found
                     if (dataTable.Rows.Count == 0)
                     {
-                        MessageBox.Show("No maintenance requests found for the given filters.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
                     }
                 }
                 catch (Exception ex)

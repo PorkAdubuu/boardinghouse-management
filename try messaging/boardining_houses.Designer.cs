@@ -282,7 +282,7 @@
             this.policy_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.policy_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.policy_Btn.ForeColor = System.Drawing.Color.White;
-            this.policy_Btn.Location = new System.Drawing.Point(262, 25);
+            this.policy_Btn.Location = new System.Drawing.Point(262, 44);
             this.policy_Btn.Name = "policy_Btn";
             this.policy_Btn.Size = new System.Drawing.Size(77, 26);
             this.policy_Btn.TabIndex = 98;
@@ -296,7 +296,7 @@
             this.image_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.image_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.image_Btn.ForeColor = System.Drawing.Color.White;
-            this.image_Btn.Location = new System.Drawing.Point(262, 104);
+            this.image_Btn.Location = new System.Drawing.Point(262, 123);
             this.image_Btn.Name = "image_Btn";
             this.image_Btn.Size = new System.Drawing.Size(77, 26);
             this.image_Btn.TabIndex = 100;
@@ -354,7 +354,7 @@
             // 
             this.policyFileLabel.BackColor = System.Drawing.Color.White;
             this.policyFileLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.policyFileLabel.Location = new System.Drawing.Point(264, 70);
+            this.policyFileLabel.Location = new System.Drawing.Point(264, 74);
             this.policyFileLabel.Name = "policyFileLabel";
             this.policyFileLabel.ReadOnly = true;
             this.policyFileLabel.Size = new System.Drawing.Size(223, 29);
