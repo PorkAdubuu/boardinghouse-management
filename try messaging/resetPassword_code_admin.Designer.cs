@@ -37,7 +37,8 @@
             // confirm_Btn
             // 
             this.confirm_Btn.BackColor = System.Drawing.Color.White;
-            this.confirm_Btn.Location = new System.Drawing.Point(47, 81);
+            this.confirm_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.confirm_Btn.Location = new System.Drawing.Point(55, 81);
             this.confirm_Btn.Name = "confirm_Btn";
             this.confirm_Btn.Size = new System.Drawing.Size(75, 23);
             this.confirm_Btn.TabIndex = 8;
@@ -49,7 +50,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 11);
+            this.label1.Location = new System.Drawing.Point(28, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 20);
             this.label1.TabIndex = 7;
@@ -57,7 +58,7 @@
             // 
             // codeText
             // 
-            this.codeText.Location = new System.Drawing.Point(12, 46);
+            this.codeText.Location = new System.Drawing.Point(17, 46);
             this.codeText.Name = "codeText";
             this.codeText.Size = new System.Drawing.Size(154, 20);
             this.codeText.TabIndex = 6;

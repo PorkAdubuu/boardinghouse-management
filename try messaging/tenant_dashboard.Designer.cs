@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tenant_dashboard));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.displayPanel = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.mail_icon = new System.Windows.Forms.PictureBox();
@@ -225,9 +225,9 @@
             this.notificationsTable.MultiSelect = false;
             this.notificationsTable.Name = "notificationsTable";
             this.notificationsTable.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            this.notificationsTable.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            this.notificationsTable.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.notificationsTable.Size = new System.Drawing.Size(200, 237);
             this.notificationsTable.TabIndex = 65;
             // 
@@ -245,7 +245,7 @@
             // 
             this.clear_Btn.BackColor = System.Drawing.Color.White;
             this.clear_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.clear_Btn.Location = new System.Drawing.Point(62, 239);
+            this.clear_Btn.Location = new System.Drawing.Point(61, 239);
             this.clear_Btn.Name = "clear_Btn";
             this.clear_Btn.Size = new System.Drawing.Size(75, 23);
             this.clear_Btn.TabIndex = 66;

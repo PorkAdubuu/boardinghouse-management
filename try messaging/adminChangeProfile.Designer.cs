@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminChangeProfile));
             this.profile_picture = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             // 
             this.profile_picture.Location = new System.Drawing.Point(13, 13);
             this.profile_picture.Name = "profile_picture";
-            this.profile_picture.Size = new System.Drawing.Size(534, 397);
+            this.profile_picture.Size = new System.Drawing.Size(476, 397);
             this.profile_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.profile_picture.TabIndex = 0;
             this.profile_picture.TabStop = false;
@@ -48,7 +49,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(98, 416);
+            this.button1.Location = new System.Drawing.Point(111, 416);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(133, 23);
             this.button1.TabIndex = 1;
@@ -60,7 +61,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(261, 415);
+            this.button2.Location = new System.Drawing.Point(263, 415);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 23);
             this.button2.TabIndex = 2;
@@ -77,12 +78,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(561, 450);
+            this.ClientSize = new System.Drawing.Size(502, 450);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.profile_picture);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "adminChangeProfile";
-            this.Text = "adminChangeProfile";
             this.Load += new System.EventHandler(this.adminChangeProfile_Load);
             ((System.ComponentModel.ISupportInitialize)(this.profile_picture)).EndInit();
             this.ResumeLayout(false);

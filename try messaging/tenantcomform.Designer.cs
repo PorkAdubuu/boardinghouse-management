@@ -34,10 +34,10 @@
             this.conversationBox = new System.Windows.Forms.RichTextBox();
             this.typeMessage = new System.Windows.Forms.RichTextBox();
             this.sendBtn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.adminprofile = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adminprofile)).BeginInit();
             this.SuspendLayout();
             // 
             // conversationBox
@@ -75,15 +75,15 @@
             this.sendBtn.UseVisualStyleBackColor = false;
             this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 
-            // pictureBox2
+            // adminprofile
             // 
-            this.pictureBox2.Image = global::try_messaging.Properties.Resources.posangBoang;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(51, 45);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 15;
-            this.pictureBox2.TabStop = false;
+            this.adminprofile.Image = global::try_messaging.Properties.Resources.posangBoang;
+            this.adminprofile.Location = new System.Drawing.Point(3, 4);
+            this.adminprofile.Name = "adminprofile";
+            this.adminprofile.Size = new System.Drawing.Size(51, 45);
+            this.adminprofile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.adminprofile.TabIndex = 15;
+            this.adminprofile.TabStop = false;
             // 
             // label2
             // 
@@ -115,7 +115,7 @@
             this.ClientSize = new System.Drawing.Size(628, 425);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.adminprofile);
             this.Controls.Add(this.conversationBox);
             this.Controls.Add(this.typeMessage);
             this.Controls.Add(this.sendBtn);
@@ -125,7 +125,7 @@
             this.Name = "tenantcomform";
             this.Text = "Messenger";
             this.Load += new System.EventHandler(this.tenantcomform_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adminprofile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +135,7 @@
         private System.Windows.Forms.RichTextBox conversationBox;
         private System.Windows.Forms.RichTextBox typeMessage;
         private System.Windows.Forms.Button sendBtn;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox adminprofile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
     }

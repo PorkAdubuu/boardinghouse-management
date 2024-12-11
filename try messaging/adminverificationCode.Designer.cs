@@ -35,22 +35,26 @@
             // 
             // SubmitCodeBtn
             // 
+            this.SubmitCodeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.SubmitCodeBtn.ForeColor = System.Drawing.Color.White;
             this.SubmitCodeBtn.Location = new System.Drawing.Point(136, 65);
             this.SubmitCodeBtn.Name = "SubmitCodeBtn";
             this.SubmitCodeBtn.Size = new System.Drawing.Size(84, 23);
             this.SubmitCodeBtn.TabIndex = 109;
             this.SubmitCodeBtn.Text = "Submit code";
-            this.SubmitCodeBtn.UseVisualStyleBackColor = true;
+            this.SubmitCodeBtn.UseVisualStyleBackColor = false;
             this.SubmitCodeBtn.Click += new System.EventHandler(this.SubmitCodeBtn_Click);
             // 
             // vcodeBtn
             // 
+            this.vcodeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.vcodeBtn.ForeColor = System.Drawing.Color.White;
             this.vcodeBtn.Location = new System.Drawing.Point(45, 65);
             this.vcodeBtn.Name = "vcodeBtn";
             this.vcodeBtn.Size = new System.Drawing.Size(84, 23);
             this.vcodeBtn.TabIndex = 108;
             this.vcodeBtn.Text = "Send code";
-            this.vcodeBtn.UseVisualStyleBackColor = true;
+            this.vcodeBtn.UseVisualStyleBackColor = false;
             this.vcodeBtn.Click += new System.EventHandler(this.vcodeBtn_Click);
             // 
             // verificationText

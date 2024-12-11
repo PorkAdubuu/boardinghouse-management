@@ -93,6 +93,7 @@
             // submit_Btn
             // 
             this.submit_Btn.BackColor = System.Drawing.Color.White;
+            this.submit_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submit_Btn.Location = new System.Drawing.Point(137, 141);
             this.submit_Btn.Name = "submit_Btn";
             this.submit_Btn.Size = new System.Drawing.Size(75, 23);

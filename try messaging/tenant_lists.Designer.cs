@@ -68,10 +68,12 @@
             // 
             // search_Btn
             // 
-            this.search_Btn.BackColor = System.Drawing.Color.White;
-            this.search_Btn.Location = new System.Drawing.Point(208, 30);
+            this.search_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.search_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_Btn.ForeColor = System.Drawing.Color.White;
+            this.search_Btn.Location = new System.Drawing.Point(208, 27);
             this.search_Btn.Name = "search_Btn";
-            this.search_Btn.Size = new System.Drawing.Size(75, 23);
+            this.search_Btn.Size = new System.Drawing.Size(77, 26);
             this.search_Btn.TabIndex = 69;
             this.search_Btn.Text = "Search";
             this.search_Btn.UseVisualStyleBackColor = false;
@@ -98,10 +100,12 @@
             // 
             // refresh_Btn
             // 
-            this.refresh_Btn.BackColor = System.Drawing.Color.White;
-            this.refresh_Btn.Location = new System.Drawing.Point(87, 506);
+            this.refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.refresh_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh_Btn.ForeColor = System.Drawing.Color.White;
+            this.refresh_Btn.Location = new System.Drawing.Point(87, 504);
             this.refresh_Btn.Name = "refresh_Btn";
-            this.refresh_Btn.Size = new System.Drawing.Size(75, 23);
+            this.refresh_Btn.Size = new System.Drawing.Size(77, 26);
             this.refresh_Btn.TabIndex = 72;
             this.refresh_Btn.Text = "Refresh";
             this.refresh_Btn.UseVisualStyleBackColor = false;
@@ -109,10 +113,12 @@
             // 
             // delete_Btn
             // 
-            this.delete_Btn.BackColor = System.Drawing.Color.White;
-            this.delete_Btn.Location = new System.Drawing.Point(6, 506);
+            this.delete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.delete_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delete_Btn.ForeColor = System.Drawing.Color.White;
+            this.delete_Btn.Location = new System.Drawing.Point(6, 504);
             this.delete_Btn.Name = "delete_Btn";
-            this.delete_Btn.Size = new System.Drawing.Size(75, 23);
+            this.delete_Btn.Size = new System.Drawing.Size(77, 26);
             this.delete_Btn.TabIndex = 73;
             this.delete_Btn.Text = "Delete";
             this.delete_Btn.UseVisualStyleBackColor = false;
@@ -125,7 +131,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tenantList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -134,7 +140,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.tenantList.DefaultCellStyle = dataGridViewCellStyle2;
@@ -150,7 +156,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tenantList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tenantList.RowHeadersVisible = false;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.tenantList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tenantList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tenantList.Size = new System.Drawing.Size(861, 441);
@@ -160,10 +166,12 @@
             // 
             // export_Btn
             // 
-            this.export_Btn.BackColor = System.Drawing.Color.White;
-            this.export_Btn.Location = new System.Drawing.Point(785, 506);
+            this.export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.export_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_Btn.ForeColor = System.Drawing.Color.White;
+            this.export_Btn.Location = new System.Drawing.Point(785, 504);
             this.export_Btn.Name = "export_Btn";
-            this.export_Btn.Size = new System.Drawing.Size(75, 23);
+            this.export_Btn.Size = new System.Drawing.Size(77, 26);
             this.export_Btn.TabIndex = 75;
             this.export_Btn.Text = "Export";
             this.export_Btn.UseVisualStyleBackColor = false;
@@ -190,10 +198,12 @@
             // 
             // update_Btn
             // 
-            this.update_Btn.BackColor = System.Drawing.Color.White;
-            this.update_Btn.Location = new System.Drawing.Point(219, 506);
+            this.update_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.update_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update_Btn.ForeColor = System.Drawing.Color.White;
+            this.update_Btn.Location = new System.Drawing.Point(219, 504);
             this.update_Btn.Name = "update_Btn";
-            this.update_Btn.Size = new System.Drawing.Size(75, 23);
+            this.update_Btn.Size = new System.Drawing.Size(77, 26);
             this.update_Btn.TabIndex = 78;
             this.update_Btn.Text = "Update";
             this.update_Btn.UseVisualStyleBackColor = false;

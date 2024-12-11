@@ -328,6 +328,7 @@ namespace try_messaging
                             chart1.Series.Clear();
                             var series = chart1.Series.Add("Monthly Revenue");
                             series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column; // Bar graph
+                            chart1.Legends.Clear();
 
                             // Add data points to the chart
                             foreach (DataRow row in chartData.Rows)

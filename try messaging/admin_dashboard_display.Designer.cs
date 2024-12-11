@@ -68,6 +68,20 @@
             this.dueText = new System.Windows.Forms.Label();
             this.paidText = new System.Windows.Forms.Label();
             this.totalIncomeText = new System.Windows.Forms.Label();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.doneCount = new System.Windows.Forms.Label();
+            this.inprogressCount = new System.Windows.Forms.Label();
+            this.requestCount = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.MpendingCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -82,6 +96,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -115,7 +134,7 @@
             this.pictureBox5.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
             this.pictureBox5.Location = new System.Drawing.Point(1, 380);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(571, 155);
+            this.pictureBox5.Size = new System.Drawing.Size(259, 155);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 40;
             this.pictureBox5.TabStop = false;
@@ -164,7 +183,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(262, 171);
+            this.label9.Location = new System.Drawing.Point(262, 175);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(179, 20);
             this.label9.TabIndex = 35;
@@ -174,7 +193,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1, 171);
+            this.label2.Location = new System.Drawing.Point(1, 175);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(159, 20);
             this.label2.TabIndex = 34;
@@ -186,17 +205,17 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(266, 390);
+            this.chart1.Location = new System.Drawing.Point(276, 384);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(42)))), ((int)(((byte)(156))))),
-        System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(61)))), ((int)(((byte)(99)))))};
+        System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(30)))), ((int)(((byte)(147)))))};
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(289, 138);
+            this.chart1.Size = new System.Drawing.Size(290, 148);
             this.chart1.TabIndex = 61;
             this.chart1.Text = "chart1";
             // 
@@ -204,7 +223,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1, 350);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(1, 357);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 20);
             this.label1.TabIndex = 62;
@@ -486,11 +506,178 @@
             this.totalIncomeText.TabIndex = 86;
             this.totalIncomeText.Text = "0";
             // 
+            // pictureBox14
+            // 
+            this.pictureBox14.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
+            this.pictureBox14.Location = new System.Drawing.Point(266, 380);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(306, 155);
+            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox14.TabIndex = 87;
+            this.pictureBox14.TabStop = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(262, 357);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(179, 20);
+            this.label13.TabIndex = 88;
+            this.label13.Text = "Payment status chart";
+            // 
+            // doneCount
+            // 
+            this.doneCount.AutoSize = true;
+            this.doneCount.BackColor = System.Drawing.Color.White;
+            this.doneCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doneCount.Location = new System.Drawing.Point(368, 317);
+            this.doneCount.Name = "doneCount";
+            this.doneCount.Size = new System.Drawing.Size(16, 18);
+            this.doneCount.TabIndex = 99;
+            this.doneCount.Text = "0";
+            // 
+            // inprogressCount
+            // 
+            this.inprogressCount.AutoSize = true;
+            this.inprogressCount.BackColor = System.Drawing.Color.White;
+            this.inprogressCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inprogressCount.Location = new System.Drawing.Point(415, 284);
+            this.inprogressCount.Name = "inprogressCount";
+            this.inprogressCount.Size = new System.Drawing.Size(16, 18);
+            this.inprogressCount.TabIndex = 98;
+            this.inprogressCount.Text = "0";
+            // 
+            // requestCount
+            // 
+            this.requestCount.AutoSize = true;
+            this.requestCount.BackColor = System.Drawing.Color.White;
+            this.requestCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.requestCount.Location = new System.Drawing.Point(491, 218);
+            this.requestCount.Name = "requestCount";
+            this.requestCount.Size = new System.Drawing.Size(16, 18);
+            this.requestCount.TabIndex = 97;
+            this.requestCount.Text = "0";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.White;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(317, 317);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(53, 18);
+            this.label17.TabIndex = 96;
+            this.label17.Text = "Done:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.White;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(317, 284);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(100, 18);
+            this.label18.TabIndex = 95;
+            this.label18.Text = "In Progress:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.White;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(317, 251);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(73, 18);
+            this.label19.TabIndex = 94;
+            this.label19.Text = "Pending:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.White;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(317, 218);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(175, 18);
+            this.label20.TabIndex = 93;
+            this.label20.Text = "Maintenance Request:";
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.BackColor = System.Drawing.Color.White;
+            this.pictureBox15.Image = global::try_messaging.Properties.Resources.checklist;
+            this.pictureBox15.Location = new System.Drawing.Point(286, 310);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox15.TabIndex = 92;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.BackColor = System.Drawing.Color.White;
+            this.pictureBox16.Image = global::try_messaging.Properties.Resources.processing_time;
+            this.pictureBox16.Location = new System.Drawing.Point(286, 277);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox16.TabIndex = 91;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.BackColor = System.Drawing.Color.White;
+            this.pictureBox17.Image = global::try_messaging.Properties.Resources.file;
+            this.pictureBox17.Location = new System.Drawing.Point(286, 244);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox17.TabIndex = 90;
+            this.pictureBox17.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.BackColor = System.Drawing.Color.White;
+            this.pictureBox18.Image = global::try_messaging.Properties.Resources.service;
+            this.pictureBox18.Location = new System.Drawing.Point(286, 211);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox18.TabIndex = 89;
+            this.pictureBox18.TabStop = false;
+            // 
+            // MpendingCount
+            // 
+            this.MpendingCount.AutoSize = true;
+            this.MpendingCount.BackColor = System.Drawing.Color.White;
+            this.MpendingCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MpendingCount.Location = new System.Drawing.Point(388, 251);
+            this.MpendingCount.Name = "MpendingCount";
+            this.MpendingCount.Size = new System.Drawing.Size(16, 18);
+            this.MpendingCount.TabIndex = 100;
+            this.MpendingCount.Text = "0";
+            // 
             // admin_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
+            this.Controls.Add(this.MpendingCount);
+            this.Controls.Add(this.doneCount);
+            this.Controls.Add(this.inprogressCount);
+            this.Controls.Add(this.requestCount);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.pictureBox15);
+            this.Controls.Add(this.pictureBox16);
+            this.Controls.Add(this.pictureBox17);
+            this.Controls.Add(this.pictureBox18);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.totalIncomeText);
             this.Controls.Add(this.paidText);
             this.Controls.Add(this.dueText);
@@ -516,7 +703,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.chart1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
@@ -528,6 +714,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.pictureBox14);
             this.Name = "admin_dashboard_display";
             this.Text = "admin_dashboard_display";
             this.Load += new System.EventHandler(this.admin_dashboard_display_Load);
@@ -545,6 +732,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -589,5 +781,19 @@
         private System.Windows.Forms.Label dueText;
         private System.Windows.Forms.Label paidText;
         private System.Windows.Forms.Label totalIncomeText;
+        private System.Windows.Forms.PictureBox pictureBox14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label doneCount;
+        private System.Windows.Forms.Label inprogressCount;
+        private System.Windows.Forms.Label requestCount;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.PictureBox pictureBox16;
+        private System.Windows.Forms.PictureBox pictureBox17;
+        private System.Windows.Forms.PictureBox pictureBox18;
+        private System.Windows.Forms.Label MpendingCount;
     }
 }

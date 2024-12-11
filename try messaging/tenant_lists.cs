@@ -206,7 +206,7 @@ namespace try_messaging
 
             using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
             {
-                try
+                try 
                 {
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(query, conn);

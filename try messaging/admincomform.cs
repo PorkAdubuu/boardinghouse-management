@@ -42,12 +42,39 @@ namespace try_messaging
         private void admincomform_Load(object sender, EventArgs e)
         {
             LoadTenantList();
-
+            AddPlaceholder();
             if (tenantlistsGrid.Rows.Count > 0)
             {
                 tenantlistsGrid.Rows[0].Selected = true;
                 tenantlistsGrid_CellContentClick(this, new DataGridViewCellEventArgs(0, 0));
             }
+        }
+
+        private void AddPlaceholder()
+        {
+            // Set the initial placeholder text
+            typeMessage.Text = "Type your message here...";
+            typeMessage.ForeColor = Color.Gray;
+
+            // Handle GotFocus event to remove the placeholder
+            typeMessage.GotFocus += (sender, e) =>
+            {
+                if (typeMessage.Text == "Type your message here...")
+                {
+                    typeMessage.Text = string.Empty;
+                    typeMessage.ForeColor = Color.Black;
+                }
+            };
+
+            // Handle LostFocus event to restore the placeholder
+            typeMessage.LostFocus += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(typeMessage.Text))
+                {
+                    typeMessage.Text = "Type your message here...";
+                    typeMessage.ForeColor = Color.Gray;
+                }
+            };
         }
 
 

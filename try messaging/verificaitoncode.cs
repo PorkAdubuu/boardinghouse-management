@@ -21,7 +21,7 @@ namespace try_messaging
         public verificaitoncode(string verificationCode, int tenantId, tenant_profile parentForm)
         {
             InitializeComponent();
-            this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
+            
             this.tenantId = tenantId;
             this.verificationCode = verificationCode; // Store the received verification code
             this.currentTenantId = tenantId; // Store the tenant's ID for password update
@@ -46,8 +46,13 @@ namespace try_messaging
             // Send the verification code via email
             SendEmail(tenantEmail, "Verification Code", $"Your verification code is: {verificationCode}");
         }
-        private void SendEmail(string toAddress, string subject, string body)
+        private async void SendEmail(string toAddress, string subject, string body)
         {
+            sendingLabel.Text = "Sending code...";
+            sendingLabel.Visible = true;
+            progressBar.Visible = true;
+            progressBar.Style = ProgressBarStyle.Marquee; // Set to Marquee style for indefinite loading
+
             try
             {
                 // Set the security protocol
@@ -60,24 +65,33 @@ namespace try_messaging
 
                     using (MailMessage mailMessage = new MailMessage())
                     {
-                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); // email
+                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com"); // Sender email
                         mailMessage.Subject = subject;
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = false;
                         mailMessage.To.Add(toAddress); // Add recipient email
 
-                        // Send the email
-                        smtpClient.Send(mailMessage);
+                        // Send the email asynchronously
+                        await smtpClient.SendMailAsync(mailMessage);
                     }
                 }
 
-                MessageBox.Show("6-digit verification code has been sent your email");
+                // Indicate success
+                progressBar.Visible = false;
+                progressBar.Style = ProgressBarStyle.Blocks;
+                sendingLabel.Visible = false;
+                sendcode_Btn.Image = Properties.Resources.unlock;
+                MessageBox.Show("6-digit verification code has been sent to your email.");
+                sendcode_Btn.Visible = false;
+                this.BackColor = Color.White;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error sending email: " + ex.Message); // Detailed error message
             }
+            
         }
+
         private string GenerateVerificationCode()
         {
             Random random = new Random();
@@ -120,6 +134,25 @@ namespace try_messaging
         private void verificaitoncode_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void sendcode_Btn_Click(object sender, EventArgs e)
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            string tenantEmail = db.GetTenantEmail(tenantId); // Get the actual email from the database
+
+            if (string.IsNullOrEmpty(tenantEmail))
+            {
+                MessageBox.Show("Email not found for the given tenant ID.");
+                return; // Exit if email is not found
+            }
+
+
+            // Generate the verification code
+            verificationCode = GenerateVerificationCode();
+
+            // Send the verification code via email
+            SendEmail(tenantEmail, "Verification Code", $"Your verification code is: {verificationCode}");
         }
     }
 }

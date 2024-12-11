@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -285,17 +285,23 @@
     <Compile Include="admin_dashboard_display.Designer.cs">
       <DependentUpon>admin_dashboard_display.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin_income_report.cs">
+    <Compile Include="admin_maintenance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="admin_income_report.Designer.cs">
-      <DependentUpon>admin_income_report.cs</DependentUpon>
+    <Compile Include="admin_maintenance.Designer.cs">
+      <DependentUpon>admin_maintenance.cs</DependentUpon>
     </Compile>
     <Compile Include="admin_issuebill.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="admin_issuebill.Designer.cs">
       <DependentUpon>admin_issuebill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin_income_report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin_income_report.Designer.cs">
+      <DependentUpon>admin_income_report.cs</DependentUpon>
     </Compile>
     <Compile Include="bill_report.cs">
       <SubType>Form</SubType>
@@ -347,6 +353,18 @@
     </Compile>
     <Compile Include="ImagePreviewDialog.Designer.cs">
       <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRequestForm.Designer.cs">
+      <DependentUpon>MaintenanceRequestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="maintenance_report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="maintenance_report.Designer.cs">
+      <DependentUpon>maintenance_report.cs</DependentUpon>
     </Compile>
     <Compile Include="newPassword.cs">
       <SubType>Form</SubType>
@@ -451,6 +469,12 @@
     <Compile Include="tenant_lists.Designer.cs">
       <DependentUpon>tenant_lists.cs</DependentUpon>
     </Compile>
+    <Compile Include="tenant_maintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tenant_maintenance.Designer.cs">
+      <DependentUpon>tenant_maintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="tenant_payment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,11 +526,14 @@
     <EmbeddedResource Include="admin_dashboard_display.resx">
       <DependentUpon>admin_dashboard_display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin_income_report.resx">
-      <DependentUpon>admin_income_report.cs</DependentUpon>
+    <EmbeddedResource Include="admin_maintenance.resx">
+      <DependentUpon>admin_maintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin_issuebill.resx">
       <DependentUpon>admin_issuebill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin_income_report.resx">
+      <DependentUpon>admin_income_report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bill_report.resx">
       <DependentUpon>bill_report.cs</DependentUpon>
@@ -531,6 +558,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImagePreviewDialog.resx">
       <DependentUpon>ImagePreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaintenanceRequestForm.resx">
+      <DependentUpon>MaintenanceRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="maintenance_report.resx">
+      <DependentUpon>maintenance_report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newPassword.resx">
       <DependentUpon>newPassword.cs</DependentUpon>
@@ -593,6 +626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="tenant_lists.resx">
       <DependentUpon>tenant_lists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tenant_maintenance.resx">
+      <DependentUpon>tenant_maintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="tenant_payment.resx">
       <DependentUpon>tenant_payment.cs</DependentUpon>
@@ -963,6 +999,24 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\service.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checklist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\processing-time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\padlock %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets')" />

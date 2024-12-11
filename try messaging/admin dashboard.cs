@@ -358,7 +358,8 @@ namespace try_messaging
         private void maintenance_Btn_Click(object sender, EventArgs e)
         {
             //to form
-
+            admin_maintenance admin_Maintenance = new admin_maintenance();
+            LoadFormInPanel(admin_Maintenance);
             //transition
             maintenance_Btn.Image = Properties.Resources.admin_maintenance_pink_butt;
 
@@ -552,6 +553,16 @@ namespace try_messaging
         {
             admin_account_profile admin_Account_Profile = new admin_account_profile(verificationCode,adminId);
             LoadFormInPanel(admin_Account_Profile);
+
+            //plain 
+            managetenant_Btn.Image = Properties.Resources.admin_manage_tenant_plain_butt;
+            manageHouse_Btn.Image = Properties.Resources.admin_manage_house_plain_butt__1_;
+            payments_Btn.Image = Properties.Resources.admin_tenant_payment_plain_butt;
+            maintenance_Btn.Image = Properties.Resources.admin_maintenance_plain_butt;
+            analytics_Btn.Image = Properties.Resources.admin_report_analytic_plain_butt;
+            dashboard_Btn.Image = Properties.Resources.dashboard_plain_butt__2_;
+            //notif out 
+            notifPanel.Visible = false;
         }
 
         private void clearNotif_Btn_Click(object sender, EventArgs e)
