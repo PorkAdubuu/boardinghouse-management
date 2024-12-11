@@ -18,7 +18,7 @@ namespace try_messaging
             return "Server=localhost;Database=boardinghouse_practice_db;Uid=root;Pwd=;";
         }
 
-        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender, string address, string emergency_name1, string emergency_name2, string emergency_contact1, string emergency_contact2, string air_condition, string wifi, string parking, DateTime movein_date, DateTime expiration_date, string houseName)
+        public void InsertTenant(string lastname, string firstname, int age, int roomnumber, string email, string username, string password, string contact, string gender, string address, string emergency_name1, string emergency_name2, string emergency_contact1, string emergency_contact2, string wifi, string parking, DateTime movein_date, DateTime expiration_date, string houseName, DateTime birth_date)
         {
             string houseIdQuery = "SELECT house_id FROM boarding_houses WHERE house_name = @houseName";
             int houseId = 0;
@@ -53,8 +53,8 @@ namespace try_messaging
                 }
 
                 // Step 2: Insert tenant details including house_id
-                string tenantInsertQuery = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, air_condition, wifi, parking, movein_date, expiration_date, house_id, house_name) " +
-                                           "VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender, @address, @emergency_name1, @emergency_name2, @emergency_contact1, @emergency_contact2, @air_condition, @wifi, @parking, @movein_date, @expiration_date, @house_id, @houseName)";
+                string tenantInsertQuery = "INSERT INTO tenants_details (lastname, firstname, age, roomnumber, email, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, wifi, parking, movein_date, expiration_date, house_id, house_name, birth_date) " +
+                                           "VALUES (@lastname, @firstname, @age, @roomnumber, @email, @contact, @gender, @address, @emergency_name1, @emergency_name2, @emergency_contact1, @emergency_contact2, @wifi, @parking, @movein_date, @expiration_date, @house_id, @houseName, @birth_date)";
 
                 // Step 3: Insert into tenants_accounts
                 string tenantAccountInsertQuery = "INSERT INTO tenants_accounts (tenid, username, password) VALUES (LAST_INSERT_ID(), @username, @password)"; // Use LAST_INSERT_ID() to get the last inserted tenid
@@ -73,13 +73,14 @@ namespace try_messaging
                     tenantCommand.Parameters.AddWithValue("@emergency_name2", emergency_name2);
                     tenantCommand.Parameters.AddWithValue("@emergency_contact1", emergency_contact1);
                     tenantCommand.Parameters.AddWithValue("@emergency_contact2", emergency_contact2);
-                    tenantCommand.Parameters.AddWithValue("@air_condition", air_condition);
+                    
                     tenantCommand.Parameters.AddWithValue("@wifi", wifi);
                     tenantCommand.Parameters.AddWithValue("@parking", parking);
                     tenantCommand.Parameters.AddWithValue("@movein_date", movein_date);
                     tenantCommand.Parameters.AddWithValue("@expiration_date", expiration_date);
                     tenantCommand.Parameters.AddWithValue("@house_id", houseId); // Include the house_id
                     tenantCommand.Parameters.AddWithValue("@houseName", houseName);
+                    tenantCommand.Parameters.AddWithValue("@birth_date", birth_date);
 
                     try
                     {
@@ -143,7 +144,7 @@ namespace try_messaging
         public string GetAdminName(int adminId)
         {
             string adminName = string.Empty;
-            string query = "SELECT name FROM admin_accounts WHERE admin_id = @adminId";
+            string query = "SELECT CONCAT(lastname, ', ', firstname) FROM admin_details WHERE admin_details_id = @adminId";
 
             using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
@@ -157,7 +158,7 @@ namespace try_messaging
                         object result = command.ExecuteScalar();
                         if (result != null)
                         {
-                            adminName = result.ToString();
+                            adminName = result.ToString().ToUpper(); // Optionally, you can format it to uppercase.
                         }
                     }
                     catch (Exception ex)
@@ -169,6 +170,7 @@ namespace try_messaging
 
             return adminName;
         }
+
 
 
         public bool ValidateLogin(string username, string password)
@@ -235,6 +237,32 @@ namespace try_messaging
 
             return email; // Return the fetched email
         }
+        public string GetAdminEmail(int adminId)
+        {
+            string email = string.Empty;
+            string query = "SELECT email FROM admin_details WHERE admin_details_id = @adminId;";
+
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@adminId", adminId);
+                    try
+                    {
+                        email = command.ExecuteScalar() as string; // Retrieve the email
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error fetching email: " + ex.Message);
+                    }
+                }
+            }
+
+            return email; // Return the fetched email
+        }
+
 
         public int GetTenantId(string username, string password)
         {

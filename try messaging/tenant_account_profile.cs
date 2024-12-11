@@ -59,8 +59,7 @@ namespace try_messaging
                             phone2Label.Text = reader["emergency_contact2"].ToString().ToUpper();
                             name1Label.Text = reader["emergency_name1"].ToString().ToUpper();
                             name2Label.Text = reader["emergency_name2"].ToString().ToUpper();
-                            roomLabel.Text = reader["roomnumber"].ToString().ToUpper();
-                            airconText.Text = reader["air_condition"].ToString().ToUpper(); 
+                            roomLabel.Text = reader["roomnumber"].ToString().ToUpper(); 
                             wifiText.Text = reader["wifi"].ToString().ToUpper();
                             parkingText.Text = reader["parking"].ToString().ToUpper();
                             moveinLabel.Text = Convert.ToDateTime(reader["movein_date"]).ToString("MM/dd/yyyy");

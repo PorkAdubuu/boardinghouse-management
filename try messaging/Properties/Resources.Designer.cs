@@ -63,6 +63,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap aaaaaaaaaaaaaaa {
+            get {
+                object obj = ResourceManager.GetObject("aaaaaaaaaaaaaaa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ADMIN_BUTT {
             get {
                 object obj = ResourceManager.GetObject("ADMIN_BUTT", resourceCulture);
@@ -176,6 +186,16 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bbbbbbbbbbbbb {
+            get {
+                object obj = ResourceManager.GetObject("bbbbbbbbbbbbb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -456,6 +476,26 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap key__1_ {
             get {
                 object obj = ResourceManager.GetObject("key__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key__3_ {
+            get {
+                object obj = ResourceManager.GetObject("key__3_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key__4_ {
+            get {
+                object obj = ResourceManager.GetObject("key__4_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

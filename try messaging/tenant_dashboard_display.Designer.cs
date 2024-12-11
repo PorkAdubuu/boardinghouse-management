@@ -52,7 +52,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.announcementLog = new System.Windows.Forms.RichTextBox();
             this.moveinText = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.dueDate = new System.Windows.Forms.Label();
             this.amount = new System.Windows.Forms.Label();
             this.datePaid = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.paymentStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -100,7 +100,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::try_messaging.Properties.Resources.super_big_welcome_tenant_bg;
+            this.pictureBox1.Image = global::try_messaging.Properties.Resources.bbbbbbbbbbbbb;
             this.pictureBox1.Location = new System.Drawing.Point(1, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(624, 165);
@@ -227,7 +227,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(594, 227);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(263, 165);
+            this.panel1.Size = new System.Drawing.Size(261, 165);
             this.panel1.TabIndex = 21;
             // 
             // label5
@@ -328,17 +328,6 @@
             this.label12.TabIndex = 30;
             this.label12.Text = "Date Paid:";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.White;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(282, 502);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(116, 18);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "Payment Status:";
-            // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(637, 3);
@@ -352,7 +341,7 @@
             this.announcementLog.Location = new System.Drawing.Point(594, 398);
             this.announcementLog.Name = "announcementLog";
             this.announcementLog.ReadOnly = true;
-            this.announcementLog.Size = new System.Drawing.Size(263, 129);
+            this.announcementLog.Size = new System.Drawing.Size(261, 129);
             this.announcementLog.TabIndex = 33;
             this.announcementLog.Text = "";
             // 
@@ -406,9 +395,9 @@
             this.totalBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalBill.Location = new System.Drawing.Point(72, 451);
             this.totalBill.Name = "totalBill";
-            this.totalBill.Size = new System.Drawing.Size(14, 16);
+            this.totalBill.Size = new System.Drawing.Size(30, 16);
             this.totalBill.TabIndex = 39;
-            this.totalBill.Text = "0";
+            this.totalBill.Text = "N/A";
             // 
             // dueDate
             // 
@@ -417,9 +406,9 @@
             this.dueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dueDate.Location = new System.Drawing.Point(83, 478);
             this.dueDate.Name = "dueDate";
-            this.dueDate.Size = new System.Drawing.Size(11, 16);
+            this.dueDate.Size = new System.Drawing.Size(30, 16);
             this.dueDate.TabIndex = 40;
-            this.dueDate.Text = "-";
+            this.dueDate.Text = "N/A";
             // 
             // amount
             // 
@@ -428,9 +417,9 @@
             this.amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.amount.Location = new System.Drawing.Point(343, 451);
             this.amount.Name = "amount";
-            this.amount.Size = new System.Drawing.Size(62, 16);
+            this.amount.Size = new System.Drawing.Size(30, 16);
             this.amount.TabIndex = 41;
-            this.amount.Text = "00,000.00";
+            this.amount.Text = "N/A";
             // 
             // datePaid
             // 
@@ -439,9 +428,20 @@
             this.datePaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datePaid.Location = new System.Drawing.Point(356, 478);
             this.datePaid.Name = "datePaid";
-            this.datePaid.Size = new System.Drawing.Size(11, 16);
+            this.datePaid.Size = new System.Drawing.Size(30, 16);
             this.datePaid.TabIndex = 42;
-            this.datePaid.Text = "-";
+            this.datePaid.Text = "N/A";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(282, 502);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(116, 18);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "Payment Status:";
             // 
             // paymentStatus
             // 
@@ -540,7 +540,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.RichTextBox announcementLog;
         private System.Windows.Forms.Label moveinText;
@@ -551,6 +550,7 @@
         private System.Windows.Forms.Label dueDate;
         private System.Windows.Forms.Label amount;
         private System.Windows.Forms.Label datePaid;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label paymentStatus;
     }
 }

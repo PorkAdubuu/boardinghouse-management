@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient; // Ensure this namespace is included
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace try_messaging
@@ -9,14 +10,16 @@ namespace try_messaging
     {
         private Timer messageCheckTimer; // Timer to check for new messages
         private DatabaseConnection dbConnection;
-        private int adminID;
+        private int adminId;
         private Timer clockTimer;
+        private string verificationCode; // To store the verification code
 
-        public admin_dashboard(int adminID)
+        public admin_dashboard(int adminId)
         {
             InitializeComponent();
             this.CenterToScreen();
-            this.adminID = adminID;
+            this.adminId = adminId;
+
             this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
             dbConnection = new DatabaseConnection(); // Initialize the DatabaseConnection
             InitializeMessageCheckTimer(); // Initialize the timer
@@ -56,7 +59,7 @@ namespace try_messaging
         }
         private void LoadAdminName()
         {
-            string adminName = dbConnection.GetAdminName(adminID);
+            string adminName = dbConnection.GetAdminName(adminId);
             if (!string.IsNullOrEmpty(adminName))
             {
                 adminNameLabel.Text = adminName; // Display the name in the label
@@ -135,11 +138,47 @@ namespace try_messaging
         {
             // Initial load actions can be performed here if needed
             dashboard_Btn_Click(dashboard_Btn, EventArgs.Empty);
+            LoadAdminProfilePicture(adminId);
         }
+
+        private void LoadAdminProfilePicture(int adminId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT profile_picture FROM admin_details WHERE admin_details_id = @adminId";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@adminId", adminId);
+
+                    byte[] imageData = cmd.ExecuteScalar() as byte[];
+
+                    if (imageData != null && imageData.Length > 0)
+                    {
+                        // Convert byte array to image and display in PictureBox
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            profile_picture.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        // If no image found, use default image
+                        profile_picture.Image = Properties.Resources.DefaultProfile;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading profile picture: " + ex.Message);
+                }
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tenantmanagement tenantmanagement = new tenantmanagement(adminID);
+            tenantmanagement tenantmanagement = new tenantmanagement(adminId);
             tenantmanagement.Show();
             this.Hide();
         }
@@ -207,7 +246,7 @@ namespace try_messaging
 
         private void managetenant_Btn_Click(object sender, EventArgs e)
         {
-            tenantmanagementPanel tenantmanagementPanel = new tenantmanagementPanel(adminID);
+            tenantmanagementPanel tenantmanagementPanel = new tenantmanagementPanel(adminId);
             LoadFormInPanel(tenantmanagementPanel);
 
             //transition
@@ -303,6 +342,12 @@ namespace try_messaging
         private void notification_Btn_Click(object sender, EventArgs e)
         {
             notificationGrid.Visible = !notificationGrid.Visible;
+        }
+
+        private void profile_picture_Click(object sender, EventArgs e)
+        {
+            admin_account_profile admin_Account_Profile = new admin_account_profile(verificationCode,adminId);
+            LoadFormInPanel(admin_Account_Profile);
         }
     }
 }

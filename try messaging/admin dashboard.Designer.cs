@@ -44,26 +44,26 @@ namespace try_messaging
             this.logoutBtn = new System.Windows.Forms.PictureBox();
             this.timeLabel = new System.Windows.Forms.Label();
             this.dashboard_Btn = new System.Windows.Forms.PictureBox();
-            this.notificationGrid = new System.Windows.Forms.DataGridView();
             this.notification_Btn = new System.Windows.Forms.PictureBox();
             this.managetenant_Btn = new System.Windows.Forms.PictureBox();
             this.manageHouse_Btn = new System.Windows.Forms.PictureBox();
             this.payments_Btn = new System.Windows.Forms.PictureBox();
             this.maintenance_Btn = new System.Windows.Forms.PictureBox();
             this.analytics_Btn = new System.Windows.Forms.PictureBox();
+            this.notificationGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.profile_picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mail_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoutBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashboard_Btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notificationGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.notification_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managetenant_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.manageHouse_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.payments_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maintenance_Btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.analytics_Btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // displayPanel
@@ -76,6 +76,7 @@ namespace try_messaging
             // 
             // profile_picture
             // 
+            this.profile_picture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.profile_picture.Image = ((System.Drawing.Image)(resources.GetObject("profile_picture.Image")));
             this.profile_picture.Location = new System.Drawing.Point(1136, 14);
             this.profile_picture.Name = "profile_picture";
@@ -83,6 +84,7 @@ namespace try_messaging
             this.profile_picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.profile_picture.TabIndex = 8;
             this.profile_picture.TabStop = false;
+            this.profile_picture.Click += new System.EventHandler(this.profile_picture_Click);
             // 
             // label2
             // 
@@ -174,45 +176,6 @@ namespace try_messaging
             this.dashboard_Btn.TabStop = false;
             this.dashboard_Btn.Click += new System.EventHandler(this.dashboard_Btn_Click);
             // 
-            // notificationGrid
-            // 
-            this.notificationGrid.AllowUserToAddRows = false;
-            this.notificationGrid.AllowUserToDeleteRows = false;
-            this.notificationGrid.AllowUserToResizeColumns = false;
-            this.notificationGrid.AllowUserToResizeRows = false;
-            this.notificationGrid.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.notificationGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.notificationGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.notificationGrid.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.notificationGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.notificationGrid.EnableHeadersVisualStyles = false;
-            this.notificationGrid.GridColor = System.Drawing.Color.White;
-            this.notificationGrid.Location = new System.Drawing.Point(800, 43);
-            this.notificationGrid.MultiSelect = false;
-            this.notificationGrid.Name = "notificationGrid";
-            this.notificationGrid.ReadOnly = true;
-            this.notificationGrid.RowHeadersVisible = false;
-            this.notificationGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.notificationGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.notificationGrid.Size = new System.Drawing.Size(143, 210);
-            this.notificationGrid.StandardTab = true;
-            this.notificationGrid.TabIndex = 65;
-            this.notificationGrid.Visible = false;
-            // 
             // notification_Btn
             // 
             this.notification_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -285,10 +248,50 @@ namespace try_messaging
             this.analytics_Btn.TabStop = false;
             this.analytics_Btn.Click += new System.EventHandler(this.analytics_Btn_Click);
             // 
+            // notificationGrid
+            // 
+            this.notificationGrid.AllowUserToAddRows = false;
+            this.notificationGrid.AllowUserToDeleteRows = false;
+            this.notificationGrid.AllowUserToResizeColumns = false;
+            this.notificationGrid.AllowUserToResizeRows = false;
+            this.notificationGrid.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.notificationGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.notificationGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.notificationGrid.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.notificationGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.notificationGrid.EnableHeadersVisualStyles = false;
+            this.notificationGrid.GridColor = System.Drawing.Color.White;
+            this.notificationGrid.Location = new System.Drawing.Point(800, 43);
+            this.notificationGrid.MultiSelect = false;
+            this.notificationGrid.Name = "notificationGrid";
+            this.notificationGrid.ReadOnly = true;
+            this.notificationGrid.RowHeadersVisible = false;
+            this.notificationGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.notificationGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.notificationGrid.Size = new System.Drawing.Size(143, 210);
+            this.notificationGrid.StandardTab = true;
+            this.notificationGrid.TabIndex = 65;
+            this.notificationGrid.Visible = false;
+            // 
             // admin_dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.analytics_Btn);
@@ -309,6 +312,7 @@ namespace try_messaging
             this.Controls.Add(this.displayPanel);
             this.Controls.Add(this.pictureBox6);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "admin_dashboard";
             this.Text = "Admin Dashboard";
             this.Load += new System.EventHandler(this.admin_dashboard_Load);
@@ -318,13 +322,13 @@ namespace try_messaging
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoutBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashboard_Btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notificationGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.notification_Btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managetenant_Btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.manageHouse_Btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.payments_Btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maintenance_Btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.analytics_Btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notificationGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,12 +345,12 @@ namespace try_messaging
         private System.Windows.Forms.PictureBox logoutBtn;
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.PictureBox dashboard_Btn;
-        private System.Windows.Forms.DataGridView notificationGrid;
         private System.Windows.Forms.PictureBox notification_Btn;
         private System.Windows.Forms.PictureBox managetenant_Btn;
         private System.Windows.Forms.PictureBox manageHouse_Btn;
         private System.Windows.Forms.PictureBox payments_Btn;
         private System.Windows.Forms.PictureBox maintenance_Btn;
         private System.Windows.Forms.PictureBox analytics_Btn;
+        private System.Windows.Forms.DataGridView notificationGrid;
     }
 }

@@ -53,6 +53,9 @@ namespace try_messaging
             LoadTenantBills();
             LoadTenantLastTransactions();
 
+            LoadTotalPaid();
+            LoadAmountpaid();
+
 
 
         }
@@ -235,7 +238,7 @@ namespace try_messaging
                 {
                     conn.Open();
                     string query = @"
-                    SELECT total_bill
+                    SELECT total_bill, amount_paid, due_date
                     FROM billing_table
                     WHERE tenant_id = @tenantId AND status IN ('No payment', 'Pending', 'Declined')
                     ORDER BY billing_id DESC LIMIT 1";  // Fetch the latest unpaid bill for the tenant
@@ -248,9 +251,89 @@ namespace try_messaging
                         if (reader.Read())
                         {
                             // Set the bill values for the labels, formatted with thousand separators and 2 decimal points
+                            decimal totalBillFromDb = reader["total_bill"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["total_bill"]);
+                            decimal amountPaid = reader["amount_paid"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["amount_paid"]);
+                            decimal remainingBalance = totalBillFromDb - amountPaid; // Calculate the remaining balance
+                            totalBill.Text = remainingBalance.ToString("N2");
+                            amount.Text = Convert.ToDecimal(reader["amount_paid"]).ToString("N2");
+                            dueDate.Text = Convert.ToDateTime(reader["due_date"]).ToString("MM/dd/yyyy");
 
-                            totalBill.Text = Convert.ToDecimal(reader["total_bill"]).ToString("N2");
-                           
+                        }
+                        else
+                        {
+
+
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading tenant bills: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void LoadAmountpaid()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT amount_paid
+                    FROM tenant_transaction_table
+                    WHERE tenant_id = @tenantId
+                    ORDER BY date DESC";  // Fetch the latest unpaid bill for the tenant
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Pass only tenant_id
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            
+                            amount.Text = Convert.ToDecimal(reader["amount_paid"]).ToString("N2");
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading tenant bills: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void LoadTotalPaid()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT amount_paid
+                    FROM billing_table
+                    WHERE tenant_id = @tenantId AND status IN ('Paid')
+                    ORDER BY billing_id DESC LIMIT 1";  // Fetch the latest unpaid bill for the tenant
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Pass only tenant_id
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Set the bill values for the labels, formatted with thousand separators and 2 decimal points
+                            
+                            decimal amountPaid = reader["amount_paid"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["amount_paid"]);
+                            amount.Text = Convert.ToDecimal(reader["amount_paid"]).ToString("N2");
+
                         }
                         else
                         {
@@ -275,11 +358,13 @@ namespace try_messaging
                 {
                     conn.Open();
                     string query = @"
-            SELECT total_bill, date, status
-            FROM tenant_transaction_table
-            WHERE tenant_id = @tenantId
-            ORDER BY date DESC
-            LIMIT 1";  // Fetch only the latest transaction for the current tenant
+                    SELECT total_bill, date, status
+                    FROM tenant_transaction_table
+                    WHERE tenant_id = @tenantId
+                    ORDER BY date DESC
+                    LIMIT 1";  // Fetch only the latest transaction for the current tenant
+
+
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Use the tenantId of the logged-in tenant
@@ -289,7 +374,7 @@ namespace try_messaging
                         if (reader.Read())  // Check if any data is returned
                         {
                             // Set the values for the labels
-                            amount.Text = Convert.ToDecimal(reader["total_bill"]).ToString("N2");
+                            
                             datePaid.Text = Convert.ToDateTime(reader["date"]).ToString("MM/dd/yyyy"); // Correct column name
                             paymentStatus.Text = reader["status"].ToString();
                         }
