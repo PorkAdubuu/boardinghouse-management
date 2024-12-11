@@ -30,7 +30,7 @@
         {
             this.adminMaintenancePanel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.statusBox1 = new System.Windows.Forms.ComboBox();
+            this.statusCombo = new System.Windows.Forms.ComboBox();
             this.typeCombo = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.searchBar = new System.Windows.Forms.TextBox();
@@ -60,7 +60,7 @@
             // 
             this.adminMaintenancePanel1.BackColor = System.Drawing.Color.White;
             this.adminMaintenancePanel1.Controls.Add(this.label7);
-            this.adminMaintenancePanel1.Controls.Add(this.statusBox1);
+            this.adminMaintenancePanel1.Controls.Add(this.statusCombo);
             this.adminMaintenancePanel1.Controls.Add(this.typeCombo);
             this.adminMaintenancePanel1.Controls.Add(this.dateTimePicker1);
             this.adminMaintenancePanel1.Controls.Add(this.searchBar);
@@ -85,13 +85,14 @@
             this.label7.TabIndex = 102;
             this.label7.Text = "Date:";
             // 
-            // statusBox1
+            // statusCombo
             // 
-            this.statusBox1.FormattingEnabled = true;
-            this.statusBox1.Location = new System.Drawing.Point(24, 155);
-            this.statusBox1.Name = "statusBox1";
-            this.statusBox1.Size = new System.Drawing.Size(363, 21);
-            this.statusBox1.TabIndex = 101;
+            this.statusCombo.FormattingEnabled = true;
+            this.statusCombo.Location = new System.Drawing.Point(24, 155);
+            this.statusCombo.Name = "statusCombo";
+            this.statusCombo.Size = new System.Drawing.Size(363, 21);
+            this.statusCombo.TabIndex = 101;
+            this.statusCombo.SelectedIndexChanged += new System.EventHandler(this.statusCombo_SelectedIndexChanged);
             // 
             // typeCombo
             // 
@@ -108,6 +109,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(363, 20);
             this.dateTimePicker1.TabIndex = 98;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged_1);
             // 
             // searchBar
             // 
@@ -352,7 +354,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.ComboBox typeCombo;
-        private System.Windows.Forms.ComboBox statusBox1;
+        private System.Windows.Forms.ComboBox statusCombo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox resolvedRequests;
         private System.Windows.Forms.TextBox unopenedRequests;

@@ -17,6 +17,8 @@ namespace try_messaging
             InitializeComponent();
             this.Load += new EventHandler(tenant_maintenance_Load);
             this.tenantId = tenantId;
+            this.CenterToParent();
+            SetSearchBarPlaceholder();
         }
 
         private void tenant_maintenance_Load(object sender, EventArgs e)
@@ -116,18 +118,21 @@ namespace try_messaging
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
+                    // Generate a unique request number
+                    int newRequestNumber = GenerateUniqueRequestNumber();
+
                     // Insert maintenance request
-                    string query = "INSERT INTO maintenance_requests (tenant_id, maintenance_type, description, request_date, dateInspection, image_data, status) " +
-                                   "VALUES (@tenantId, @maintenanceType, @description, @requestDate, @dateInspection, @imageData, @status)";
+                    string query = "INSERT INTO maintenance_requests (tenant_id, maintenance_type, description, request_date, image_data, status, request_number) " +
+                                   "VALUES (@tenantId, @maintenanceType, @description, @requestDate, @imageData, @status, @requestNumber)";
                     using (MySqlCommand command = new MySqlCommand(query, connection, transaction))
                     {
                         command.Parameters.AddWithValue("@tenantId", tenantId);
                         command.Parameters.AddWithValue("@maintenanceType", maintenanceType);
                         command.Parameters.AddWithValue("@description", description);
                         command.Parameters.AddWithValue("@requestDate", requestDate);
-                        command.Parameters.AddWithValue("@dateInspection", DBNull.Value); // Set as NULL for now
-                        command.Parameters.AddWithValue("@imageData", imageData ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@imageData", imageData); // Change from LONGTEXT to MEDIUMBLOB
                         command.Parameters.AddWithValue("@status", "Pending"); // Default status
+                        command.Parameters.AddWithValue("@requestNumber", newRequestNumber); // Use new request number
                         command.ExecuteNonQuery();
                     }
 
@@ -191,8 +196,20 @@ namespace try_messaging
 
         private void LoadTenantRequests(int tenantId)
         {
-            string query = "SELECT request_id, maintenance_type, description, request_date, dateInspection, status " +
-                           "FROM maintenance_requests WHERE tenant_id = @tenantId";
+            string query = @"
+        SELECT 
+            request_id, 
+            request_number,
+            maintenance_type, 
+            description, 
+            request_date, 
+            CASE 
+                WHEN status = 'Declined' THEN NULL 
+                ELSE dateInspection 
+            END AS dateInspection, 
+            status 
+        FROM maintenance_requests 
+        WHERE tenant_id = @tenantId";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -213,12 +230,13 @@ namespace try_messaging
                     trackRequests.AllowUserToResizeRows = false;
                     trackRequests.RowHeadersVisible = false;
 
-                    // Optional: Rename or adjust columns for clarity
+                    // Rename or adjust columns for clarity
                     trackRequests.Columns["request_id"].HeaderText = "Request ID";
+                    trackRequests.Columns["request_number"].HeaderText = "Request Number"; // New column header
                     trackRequests.Columns["maintenance_type"].HeaderText = "Type";
                     trackRequests.Columns["description"].HeaderText = "Description";
                     trackRequests.Columns["request_date"].HeaderText = "Request Date";
-                    trackRequests.Columns["dateInspection"].HeaderText = "Inspection Date"; // Fetch this from the database
+                    trackRequests.Columns["dateInspection"].HeaderText = "Inspection Date"; // This will display empty if status is Declined
                     trackRequests.Columns["status"].HeaderText = "Status";
                 }
                 catch (Exception ex)
@@ -231,6 +249,95 @@ namespace try_messaging
         private void LoadRequests()
         {
             LoadTenantRequests(tenantId); // This function already loads tenant requests
+        }
+
+        private int GenerateUniqueRequestNumber()
+        {
+            Random random = new Random();
+            int requestNumber;
+            string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
+
+            do
+            {
+                requestNumber = random.Next(10000, 99999); // Generate a random number between 10000 and 99999
+            }
+            while (IsRequestNumberExists(requestNumber)); // Ensure the request number is unique
+
+            return requestNumber;
+        }
+
+        private bool IsRequestNumberExists(int requestNumber)
+        {
+            string query = "SELECT COUNT(*) FROM maintenance_requests WHERE request_number = @requestNumber";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@requestNumber", requestNumber);
+
+                connection.Open();
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0; // Returns true if the request number exists
+            }
+        }
+
+        private void requestSearchBar_TextChanged(object sender, EventArgs e)
+        {
+          string searchTerm = requestSearchBar.Text;
+
+            trackRequest(searchTerm);
+        }
+        private void trackRequest(string searchTerm)
+        {
+
+            string query = "SELECT request_id, request_number, maintenance_type, description, request_date, CASE WHEN status = 'Declined' THEN NULL ELSE dateInspection END AS dateInspection, status FROM maintenance_requests WHERE request_number LIKE @searchTerm"; // Modify the query as needed
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    // Create a data adapter to fill the DataTable
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    // Set the DataTable as the DataSource for the DataGridView
+                    trackRequests.DataSource = dataTable;
+
+                    
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions that may occur
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void SetSearchBarPlaceholder()
+        {
+            requestSearchBar.Text = "Search by request number...";
+            requestSearchBar.ForeColor = Color.Gray;
+        }
+
+        private void requestSearchBar_Enter(object sender, EventArgs e)
+        {
+            if (requestSearchBar.Text == "Search by request number...")
+            {
+                requestSearchBar.Text = "";
+                requestSearchBar.ForeColor = Color.Black;
+            }
+        }
+
+        private void requestSearchBar_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(requestSearchBar.Text))
+            {
+                SetSearchBarPlaceholder();
+            }
         }
     }
 }

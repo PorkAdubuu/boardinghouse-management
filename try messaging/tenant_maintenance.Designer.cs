@@ -45,12 +45,14 @@
             this.resetFormButton = new System.Windows.Forms.Button();
             this.submitRequestButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.requestSearchBar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackRequests)).BeginInit();
             this.tenantMaintenancePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // trackRequests
             // 
+            this.trackRequests.AllowUserToAddRows = false;
             this.trackRequests.BackgroundColor = System.Drawing.Color.White;
             this.trackRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.trackRequests.Location = new System.Drawing.Point(0, 397);
@@ -251,12 +253,25 @@
             this.label1.TabIndex = 94;
             this.label1.Text = "Track Requests:";
             // 
+            // requestSearchBar
+            // 
+            this.requestSearchBar.AcceptsReturn = true;
+            this.requestSearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.requestSearchBar.Location = new System.Drawing.Point(159, 367);
+            this.requestSearchBar.Name = "requestSearchBar";
+            this.requestSearchBar.Size = new System.Drawing.Size(245, 24);
+            this.requestSearchBar.TabIndex = 100;
+            this.requestSearchBar.TextChanged += new System.EventHandler(this.requestSearchBar_TextChanged);
+            this.requestSearchBar.Enter += new System.EventHandler(this.requestSearchBar_Enter);
+            this.requestSearchBar.Leave += new System.EventHandler(this.requestSearchBar_Leave);
+            // 
             // tenant_maintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 558);
+            this.Controls.Add(this.requestSearchBar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.descriptionTextBox1);
             this.Controls.Add(this.label8);
@@ -298,5 +313,6 @@
         private System.Windows.Forms.Button submitRequestButton;
         private System.Windows.Forms.Button resetFormButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox requestSearchBar;
     }
 }

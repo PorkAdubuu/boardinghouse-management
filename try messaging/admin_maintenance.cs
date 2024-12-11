@@ -60,8 +60,22 @@ namespace try_messaging
         private void admin_maintenance_Load(object sender, EventArgs e)
         {
             // Populate dropdowns with predefined types and statuses
-            typeCombo.Items.AddRange(new string[] { "Electrical", "Plumbing", "HVAC", "Furniture", "Appliances", "Structural", "Pest Control", "Internet/Networking", "Cleaning", "Security", "General Repairs" });
-            statusBox1.Items.AddRange(new string[] { "Done", "In Progress", "Pending", "Declined" });
+            typeCombo.Items.AddRange(new string[]
+            {
+                "Electrical",
+                "Plumbing",
+                "HVAC (Heating, Ventilation, and Air Conditioning)", // Updated entry
+                "Furniture",
+                "Appliances",
+                "Structural",
+                "Pest Control",
+                "Internet/Networking",
+                "Cleaning",
+                "Security",
+                "General Repairs"
+            });
+
+            statusCombo.Items.AddRange(new string[] { "Done", "In Progress", "Pending", "Declined" });
 
             // Set default values for date pickers
             dateTimePicker1.Value = DateTime.Now.AddMonths(-1); // Default to 1 month ago
@@ -73,7 +87,9 @@ namespace try_messaging
 
             // Load all requests
             LoadMaintenanceRequests();
+            UpdateSummaryStatistics();
         }
+
 
         private void typeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -88,19 +104,20 @@ namespace try_messaging
         {
             string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
             string query = @"SELECT 
-        mr.request_id, 
-        CONCAT(td.lastname, ', ', td.firstname) AS tenant_name, 
-        td.roomnumber, 
-        mr.maintenance_type, 
-        mr.description, 
-        mr.request_date, 
-        mr.dateInspection, 
-        mr.status
-     FROM 
-        maintenance_requests mr
-     INNER JOIN 
-        tenants_details td ON mr.tenant_id = td.tenid
-     WHERE 1=1";
+                mr.request_id, 
+                mr.request_number,
+                CONCAT(td.lastname, ', ', td.firstname) AS tenant_name, 
+                td.roomnumber, 
+                mr.maintenance_type, 
+                mr.description, 
+                mr.request_date, 
+                mr.dateInspection, 
+                COALESCE(mr.status, 'Pending') AS status  -- Set default status to 'Pending' if null
+             FROM 
+                maintenance_requests mr
+             INNER JOIN 
+                tenants_details td ON mr.tenant_id = td.tenid
+             WHERE 1=1";
 
             // Add filters to the query based on input
             if (!string.IsNullOrEmpty(searchKeyword))
@@ -143,6 +160,7 @@ namespace try_messaging
 
                     // Rename columns for better display
                     dataTable.Columns["request_id"].ColumnName = "Request ID";
+                    dataTable.Columns["request_number"].ColumnName = "Request Number";
                     dataTable.Columns["tenant_name"].ColumnName = "Tenant Name";
                     dataTable.Columns["roomnumber"].ColumnName = "Room Number";
                     dataTable.Columns["maintenance_type"].ColumnName = "Maintenance Type";
@@ -179,24 +197,44 @@ namespace try_messaging
             }
         }
 
-
-        private void UpdateSummaryStatistics(DataTable dataTable)
+        private void UpdateSummaryStatistics()
         {
-            // Update total requests
-            totalRequests.Text = dataTable.Rows.Count.ToString();
+            string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
+            string query = @"SELECT 
+                COUNT(*) AS totalRequests,
+                SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS unopenedRequests,
+                SUM(CASE WHEN status = 'Done' THEN 1 ELSE 0 END) AS resolvedRequests
+             FROM maintenance_requests";
 
-            // Update unopened requests
-            unopenedRequests.Text = dataTable.AsEnumerable().Count(row => row["Status"].ToString() == "Pending").ToString();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
 
-            // Update resolved requests
-            resolvedRequests.Text = dataTable.AsEnumerable().Count(row => row["Status"].ToString() == "Done").ToString();
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            totalRequests.Text = reader["totalRequests"].ToString();
+                            unopenedRequests.Text = reader["unopenedRequests"].ToString();
+                            resolvedRequests.Text = reader["resolvedRequests"].ToString();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating summary statistics: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void PerformSearch()
         {
             string searchKeyword = searchBar.Text.Trim(); // Trim whitespace
             string maintenanceType = typeCombo.SelectedItem?.ToString(); // Get selected maintenance type
-            string status = statusBox1.SelectedItem?.ToString(); // Get selected status
+            string status = statusCombo.SelectedItem?.ToString(); // Get selected status
             DateTime? startDate = dateTimePicker1.Value.Date; // Use date only
             
 
@@ -218,7 +256,15 @@ namespace try_messaging
 
             // Add filters to the query based on input
             if (!string.IsNullOrEmpty(searchKeyword))
-                query += " AND (mr.request_id LIKE @searchKeyword OR mr.maintenance_type LIKE @searchKeyword OR mr.description LIKE @searchKeyword OR mr.status LIKE @searchKeyword OR mr.dateInspection LIKE @searchKeyword)";
+                query += @" AND (
+                mr.request_id LIKE @searchKeyword 
+                OR mr.maintenance_type LIKE @searchKeyword 
+                OR mr.description LIKE @searchKeyword 
+                OR mr.status LIKE @searchKeyword 
+                OR mr.dateInspection LIKE @searchKeyword 
+                OR CONCAT(td.lastname, ', ', td.firstname) LIKE @searchKeyword 
+                OR td.roomnumber LIKE @searchKeyword)";
+
 
             if (!string.IsNullOrEmpty(maintenanceType))
                 query += " AND mr.maintenance_type = @maintenanceType";
@@ -396,6 +442,24 @@ namespace try_messaging
         private void searchBar_TextChanged_1(object sender, EventArgs e)
         {
             PerformSearch();
+        }
+
+        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected status
+            string selectedStatus = statusCombo.SelectedItem?.ToString();
+
+            // Call the method to load maintenance requests with the selected status as a filter
+            LoadMaintenanceRequests(searchKeyword: searchBar.Text.Trim(), status: selectedStatus);
+        }
+
+        private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
+        {
+            // Get the selected date from the DateTimePicker
+            DateTime selectedDate = dateTimePicker1.Value.Date;
+
+            // Call the method to load maintenance requests with the selected date as a filter
+            LoadMaintenanceRequests(searchKeyword: searchBar.Text.Trim(), startDate: selectedDate);
         }
     }
 }
