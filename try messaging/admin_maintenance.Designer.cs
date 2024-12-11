@@ -51,6 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.openButton = new System.Windows.Forms.Button();
+            this.markAsDone_Btn = new System.Windows.Forms.Button();
+            this.export_Btn = new System.Windows.Forms.Button();
             this.adminMaintenancePanel1.SuspendLayout();
             this.adminMaintenancePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maintenanceRequestList)).BeginInit();
@@ -203,7 +205,7 @@
             // totalRequests
             // 
             this.totalRequests.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalRequests.Location = new System.Drawing.Point(28, 65);
+            this.totalRequests.Location = new System.Drawing.Point(24, 68);
             this.totalRequests.Name = "totalRequests";
             this.totalRequests.Size = new System.Drawing.Size(363, 24);
             this.totalRequests.TabIndex = 103;
@@ -228,7 +230,7 @@
             this.label10.BackColor = System.Drawing.Color.White;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label10.Location = new System.Drawing.Point(26, 47);
+            this.label10.Location = new System.Drawing.Point(22, 47);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(112, 18);
             this.label10.TabIndex = 103;
@@ -269,6 +271,7 @@
             // 
             // maintenanceRequestList
             // 
+            this.maintenanceRequestList.AllowUserToAddRows = false;
             this.maintenanceRequestList.BackgroundColor = System.Drawing.Color.White;
             this.maintenanceRequestList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.maintenanceRequestList.Location = new System.Drawing.Point(12, 372);
@@ -303,13 +306,45 @@
             // 
             // openButton
             // 
-            this.openButton.Location = new System.Drawing.Point(395, 523);
+            this.openButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.openButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.openButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openButton.ForeColor = System.Drawing.Color.White;
+            this.openButton.Location = new System.Drawing.Point(12, 511);
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(75, 23);
+            this.openButton.Size = new System.Drawing.Size(81, 26);
             this.openButton.TabIndex = 92;
             this.openButton.Text = "Open";
-            this.openButton.UseVisualStyleBackColor = true;
+            this.openButton.UseVisualStyleBackColor = false;
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
+            // 
+            // markAsDone_Btn
+            // 
+            this.markAsDone_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.markAsDone_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.markAsDone_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.markAsDone_Btn.ForeColor = System.Drawing.Color.White;
+            this.markAsDone_Btn.Location = new System.Drawing.Point(99, 511);
+            this.markAsDone_Btn.Name = "markAsDone_Btn";
+            this.markAsDone_Btn.Size = new System.Drawing.Size(121, 26);
+            this.markAsDone_Btn.TabIndex = 126;
+            this.markAsDone_Btn.Text = "Mark as Done";
+            this.markAsDone_Btn.UseVisualStyleBackColor = false;
+            this.markAsDone_Btn.Click += new System.EventHandler(this.markAsDone_Btn_Click);
+            // 
+            // export_Btn
+            // 
+            this.export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.export_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.export_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_Btn.ForeColor = System.Drawing.Color.White;
+            this.export_Btn.Location = new System.Drawing.Point(763, 511);
+            this.export_Btn.Name = "export_Btn";
+            this.export_Btn.Size = new System.Drawing.Size(94, 26);
+            this.export_Btn.TabIndex = 127;
+            this.export_Btn.Text = "Export";
+            this.export_Btn.UseVisualStyleBackColor = false;
+            this.export_Btn.Click += new System.EventHandler(this.export_Btn_Click);
             // 
             // admin_maintenance
             // 
@@ -317,6 +352,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 558);
+            this.Controls.Add(this.export_Btn);
+            this.Controls.Add(this.markAsDone_Btn);
             this.Controls.Add(this.openButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.adminMaintenancePanel2);
@@ -363,5 +400,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button openButton;
+        private System.Windows.Forms.Button markAsDone_Btn;
+        private System.Windows.Forms.Button export_Btn;
     }
 }

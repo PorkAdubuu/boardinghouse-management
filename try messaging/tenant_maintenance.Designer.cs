@@ -55,10 +55,10 @@
             this.trackRequests.AllowUserToAddRows = false;
             this.trackRequests.BackgroundColor = System.Drawing.Color.White;
             this.trackRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.trackRequests.Location = new System.Drawing.Point(0, 397);
+            this.trackRequests.Location = new System.Drawing.Point(4, 397);
             this.trackRequests.Name = "trackRequests";
             this.trackRequests.RowHeadersVisible = false;
-            this.trackRequests.Size = new System.Drawing.Size(869, 149);
+            this.trackRequests.Size = new System.Drawing.Size(865, 149);
             this.trackRequests.TabIndex = 75;
             this.trackRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.trackRequests_CellContentClick);
             // 
@@ -182,11 +182,13 @@
             // 
             // uploadImageButton
             // 
-            this.uploadImageButton.BackColor = System.Drawing.Color.White;
+            this.uploadImageButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.uploadImageButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uploadImageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadImageButton.ForeColor = System.Drawing.Color.White;
             this.uploadImageButton.Location = new System.Drawing.Point(764, 92);
             this.uploadImageButton.Name = "uploadImageButton";
-            this.uploadImageButton.Size = new System.Drawing.Size(86, 23);
+            this.uploadImageButton.Size = new System.Drawing.Size(93, 26);
             this.uploadImageButton.TabIndex = 91;
             this.uploadImageButton.Text = "Upload";
             this.uploadImageButton.UseVisualStyleBackColor = false;
@@ -194,11 +196,13 @@
             // 
             // removeImageButton
             // 
-            this.removeImageButton.BackColor = System.Drawing.Color.White;
+            this.removeImageButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.removeImageButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.removeImageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeImageButton.ForeColor = System.Drawing.Color.White;
             this.removeImageButton.Location = new System.Drawing.Point(764, 146);
             this.removeImageButton.Name = "removeImageButton";
-            this.removeImageButton.Size = new System.Drawing.Size(86, 23);
+            this.removeImageButton.Size = new System.Drawing.Size(93, 26);
             this.removeImageButton.TabIndex = 92;
             this.removeImageButton.Text = "Remove";
             this.removeImageButton.UseVisualStyleBackColor = false;
@@ -220,11 +224,13 @@
             // 
             // resetFormButton
             // 
-            this.resetFormButton.BackColor = System.Drawing.Color.White;
+            this.resetFormButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.resetFormButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.resetFormButton.Location = new System.Drawing.Point(422, 254);
+            this.resetFormButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetFormButton.ForeColor = System.Drawing.Color.White;
+            this.resetFormButton.Location = new System.Drawing.Point(408, 254);
             this.resetFormButton.Name = "resetFormButton";
-            this.resetFormButton.Size = new System.Drawing.Size(125, 23);
+            this.resetFormButton.Size = new System.Drawing.Size(136, 26);
             this.resetFormButton.TabIndex = 95;
             this.resetFormButton.Text = "Reset Form";
             this.resetFormButton.UseVisualStyleBackColor = false;
@@ -232,11 +238,13 @@
             // 
             // submitRequestButton
             // 
-            this.submitRequestButton.BackColor = System.Drawing.Color.White;
+            this.submitRequestButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.submitRequestButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.submitRequestButton.Location = new System.Drawing.Point(280, 254);
+            this.submitRequestButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.submitRequestButton.ForeColor = System.Drawing.Color.White;
+            this.submitRequestButton.Location = new System.Drawing.Point(266, 254);
             this.submitRequestButton.Name = "submitRequestButton";
-            this.submitRequestButton.Size = new System.Drawing.Size(125, 23);
+            this.submitRequestButton.Size = new System.Drawing.Size(136, 26);
             this.submitRequestButton.TabIndex = 94;
             this.submitRequestButton.Text = "Submit Request";
             this.submitRequestButton.UseVisualStyleBackColor = false;
@@ -285,7 +293,6 @@
             this.Controls.Add(this.tenantMaintenancePanel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "tenant_maintenance";
-            this.Text = "tenant_maintenance";
             this.Load += new System.EventHandler(this.tenant_maintenance_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackRequests)).EndInit();
             this.tenantMaintenancePanel.ResumeLayout(false);

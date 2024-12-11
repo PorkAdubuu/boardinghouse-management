@@ -72,7 +72,7 @@
             this.export_Btn.ForeColor = System.Drawing.Color.White;
             this.export_Btn.Location = new System.Drawing.Point(790, 280);
             this.export_Btn.Name = "export_Btn";
-            this.export_Btn.Size = new System.Drawing.Size(77, 30);
+            this.export_Btn.Size = new System.Drawing.Size(77, 26);
             this.export_Btn.TabIndex = 84;
             this.export_Btn.Text = "Export";
             this.export_Btn.UseVisualStyleBackColor = false;
@@ -117,7 +117,7 @@
             this.delete_Btn.ForeColor = System.Drawing.Color.White;
             this.delete_Btn.Location = new System.Drawing.Point(9, 280);
             this.delete_Btn.Name = "delete_Btn";
-            this.delete_Btn.Size = new System.Drawing.Size(77, 30);
+            this.delete_Btn.Size = new System.Drawing.Size(77, 26);
             this.delete_Btn.TabIndex = 82;
             this.delete_Btn.Text = "Delete";
             this.delete_Btn.UseVisualStyleBackColor = false;
@@ -131,7 +131,7 @@
             this.refresh_Btn.ForeColor = System.Drawing.Color.White;
             this.refresh_Btn.Location = new System.Drawing.Point(90, 280);
             this.refresh_Btn.Name = "refresh_Btn";
-            this.refresh_Btn.Size = new System.Drawing.Size(77, 30);
+            this.refresh_Btn.Size = new System.Drawing.Size(77, 26);
             this.refresh_Btn.TabIndex = 81;
             this.refresh_Btn.Text = "Refresh";
             this.refresh_Btn.UseVisualStyleBackColor = false;
@@ -162,9 +162,9 @@
             this.search_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.search_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_Btn.ForeColor = System.Drawing.Color.White;
-            this.search_Btn.Location = new System.Drawing.Point(208, 26);
+            this.search_Btn.Location = new System.Drawing.Point(208, 28);
             this.search_Btn.Name = "search_Btn";
-            this.search_Btn.Size = new System.Drawing.Size(77, 30);
+            this.search_Btn.Size = new System.Drawing.Size(77, 26);
             this.search_Btn.TabIndex = 78;
             this.search_Btn.Text = "Search";
             this.search_Btn.UseVisualStyleBackColor = false;
@@ -254,9 +254,9 @@
             this.confirm_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.confirm_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirm_Btn.ForeColor = System.Drawing.Color.White;
-            this.confirm_Btn.Location = new System.Drawing.Point(286, 193);
+            this.confirm_Btn.Location = new System.Drawing.Point(292, 193);
             this.confirm_Btn.Name = "confirm_Btn";
-            this.confirm_Btn.Size = new System.Drawing.Size(164, 30);
+            this.confirm_Btn.Size = new System.Drawing.Size(106, 26);
             this.confirm_Btn.TabIndex = 94;
             this.confirm_Btn.Text = "Confirm";
             this.confirm_Btn.UseVisualStyleBackColor = false;
@@ -284,7 +284,7 @@
             this.policy_Btn.ForeColor = System.Drawing.Color.White;
             this.policy_Btn.Location = new System.Drawing.Point(262, 25);
             this.policy_Btn.Name = "policy_Btn";
-            this.policy_Btn.Size = new System.Drawing.Size(77, 30);
+            this.policy_Btn.Size = new System.Drawing.Size(77, 26);
             this.policy_Btn.TabIndex = 98;
             this.policy_Btn.Text = "Upload";
             this.policy_Btn.UseVisualStyleBackColor = false;
@@ -298,7 +298,7 @@
             this.image_Btn.ForeColor = System.Drawing.Color.White;
             this.image_Btn.Location = new System.Drawing.Point(262, 104);
             this.image_Btn.Name = "image_Btn";
-            this.image_Btn.Size = new System.Drawing.Size(77, 30);
+            this.image_Btn.Size = new System.Drawing.Size(77, 26);
             this.image_Btn.TabIndex = 100;
             this.image_Btn.Text = "Upload";
             this.image_Btn.UseVisualStyleBackColor = false;

@@ -147,7 +147,7 @@
             this.accept_Btn.ForeColor = System.Drawing.Color.White;
             this.accept_Btn.Location = new System.Drawing.Point(85, 249);
             this.accept_Btn.Name = "accept_Btn";
-            this.accept_Btn.Size = new System.Drawing.Size(77, 30);
+            this.accept_Btn.Size = new System.Drawing.Size(77, 26);
             this.accept_Btn.TabIndex = 118;
             this.accept_Btn.Text = "Accept";
             this.accept_Btn.UseVisualStyleBackColor = false;
@@ -161,7 +161,7 @@
             this.decline_Btn.ForeColor = System.Drawing.Color.White;
             this.decline_Btn.Location = new System.Drawing.Point(4, 249);
             this.decline_Btn.Name = "decline_Btn";
-            this.decline_Btn.Size = new System.Drawing.Size(77, 30);
+            this.decline_Btn.Size = new System.Drawing.Size(77, 26);
             this.decline_Btn.TabIndex = 119;
             this.decline_Btn.Text = "Decline";
             this.decline_Btn.UseVisualStyleBackColor = false;
@@ -173,9 +173,9 @@
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(740, 249);
+            this.button1.Location = new System.Drawing.Point(748, 249);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 30);
+            this.button1.Size = new System.Drawing.Size(117, 26);
             this.button1.TabIndex = 118;
             this.button1.Text = "Issue New Bill";
             this.button1.UseVisualStyleBackColor = false;
@@ -253,7 +253,7 @@
             this.refresh_Btn.ForeColor = System.Drawing.Color.White;
             this.refresh_Btn.Location = new System.Drawing.Point(4, 525);
             this.refresh_Btn.Name = "refresh_Btn";
-            this.refresh_Btn.Size = new System.Drawing.Size(77, 30);
+            this.refresh_Btn.Size = new System.Drawing.Size(77, 26);
             this.refresh_Btn.TabIndex = 127;
             this.refresh_Btn.Text = "Refresh";
             this.refresh_Btn.UseVisualStyleBackColor = false;

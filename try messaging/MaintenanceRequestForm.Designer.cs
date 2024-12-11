@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaintenanceRequestForm));
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,12 +51,17 @@
             this.dateInspection = new System.Windows.Forms.DateTimePicker();
             this.requestNumberForm = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.markAsDone_Btn = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.acceptPanel = new System.Windows.Forms.Panel();
+            this.declinePanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.acceptPanel.SuspendLayout();
+            this.declinePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label8
@@ -229,11 +235,13 @@
             // 
             // acceptButton
             // 
-            this.acceptButton.BackColor = System.Drawing.Color.White;
+            this.acceptButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.acceptButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.acceptButton.Location = new System.Drawing.Point(497, 159);
+            this.acceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acceptButton.ForeColor = System.Drawing.Color.White;
+            this.acceptButton.Location = new System.Drawing.Point(26, 122);
             this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(125, 23);
+            this.acceptButton.Size = new System.Drawing.Size(86, 26);
             this.acceptButton.TabIndex = 113;
             this.acceptButton.Text = "Accept";
             this.acceptButton.UseVisualStyleBackColor = false;
@@ -241,11 +249,13 @@
             // 
             // decline_Button
             // 
-            this.decline_Button.BackColor = System.Drawing.Color.White;
+            this.decline_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.decline_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.decline_Button.Location = new System.Drawing.Point(496, 333);
+            this.decline_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.decline_Button.ForeColor = System.Drawing.Color.White;
+            this.decline_Button.Location = new System.Drawing.Point(26, 122);
             this.decline_Button.Name = "decline_Button";
-            this.decline_Button.Size = new System.Drawing.Size(97, 23);
+            this.decline_Button.Size = new System.Drawing.Size(87, 26);
             this.decline_Button.TabIndex = 114;
             this.decline_Button.Text = "Decline";
             this.decline_Button.UseVisualStyleBackColor = false;
@@ -253,17 +263,18 @@
             // 
             // reasonDecline
             // 
-            this.reasonDecline.Location = new System.Drawing.Point(496, 251);
+            this.reasonDecline.Location = new System.Drawing.Point(26, 60);
             this.reasonDecline.Multiline = true;
             this.reasonDecline.Name = "reasonDecline";
             this.reasonDecline.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.reasonDecline.Size = new System.Drawing.Size(347, 78);
+            this.reasonDecline.Size = new System.Drawing.Size(347, 59);
             this.reasonDecline.TabIndex = 115;
             this.reasonDecline.TextChanged += new System.EventHandler(this.reasonDecline_TextChanged);
             // 
             // dateInspection
             // 
-            this.dateInspection.Location = new System.Drawing.Point(496, 133);
+            this.dateInspection.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateInspection.Location = new System.Drawing.Point(27, 60);
             this.dateInspection.Name = "dateInspection";
             this.dateInspection.Size = new System.Drawing.Size(204, 20);
             this.dateInspection.TabIndex = 119;
@@ -289,37 +300,17 @@
             this.label13.TabIndex = 121;
             this.label13.Text = "Request Number:";
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(64, 365);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(336, 152);
-            this.richTextBox1.TabIndex = 122;
-            this.richTextBox1.Text = "";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.White;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label15.Location = new System.Drawing.Point(494, 87);
+            this.label15.Location = new System.Drawing.Point(24, 17);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(226, 18);
             this.label15.TabIndex = 124;
             this.label15.Text = "Accept Maintenance Request";
-            // 
-            // markAsDone_Btn
-            // 
-            this.markAsDone_Btn.BackColor = System.Drawing.Color.White;
-            this.markAsDone_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.markAsDone_Btn.Location = new System.Drawing.Point(371, 523);
-            this.markAsDone_Btn.Name = "markAsDone_Btn";
-            this.markAsDone_Btn.Size = new System.Drawing.Size(125, 23);
-            this.markAsDone_Btn.TabIndex = 125;
-            this.markAsDone_Btn.Text = "Mark as Done";
-            this.markAsDone_Btn.UseVisualStyleBackColor = false;
-            this.markAsDone_Btn.Click += new System.EventHandler(this.markAsDone_Btn_Click);
             // 
             // label11
             // 
@@ -327,7 +318,7 @@
             this.label11.BackColor = System.Drawing.Color.White;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(493, 205);
+            this.label11.Location = new System.Drawing.Point(23, 17);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(231, 18);
             this.label11.TabIndex = 126;
@@ -339,7 +330,7 @@
             this.label10.BackColor = System.Drawing.Color.White;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label10.Location = new System.Drawing.Point(494, 109);
+            this.label10.Location = new System.Drawing.Point(25, 39);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(162, 18);
             this.label10.TabIndex = 127;
@@ -351,11 +342,57 @@
             this.label12.BackColor = System.Drawing.Color.White;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label12.Location = new System.Drawing.Point(493, 227);
+            this.label12.Location = new System.Drawing.Point(23, 39);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(64, 18);
             this.label12.TabIndex = 128;
             this.label12.Text = "Reason:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.White;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label14.Location = new System.Drawing.Point(25, 89);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(198, 30);
+            this.label14.TabIndex = 129;
+            this.label14.Text = "Note: Once you accept this request \r\nit will notify the tenant via E-mail.";
+            // 
+            // acceptPanel
+            // 
+            this.acceptPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.acceptPanel.Controls.Add(this.label14);
+            this.acceptPanel.Controls.Add(this.acceptButton);
+            this.acceptPanel.Controls.Add(this.label10);
+            this.acceptPanel.Controls.Add(this.dateInspection);
+            this.acceptPanel.Controls.Add(this.label15);
+            this.acceptPanel.Location = new System.Drawing.Point(21, 384);
+            this.acceptPanel.Name = "acceptPanel";
+            this.acceptPanel.Size = new System.Drawing.Size(409, 162);
+            this.acceptPanel.TabIndex = 130;
+            // 
+            // declinePanel
+            // 
+            this.declinePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.declinePanel.Controls.Add(this.label12);
+            this.declinePanel.Controls.Add(this.label11);
+            this.declinePanel.Controls.Add(this.reasonDecline);
+            this.declinePanel.Controls.Add(this.decline_Button);
+            this.declinePanel.Location = new System.Drawing.Point(436, 384);
+            this.declinePanel.Name = "declinePanel";
+            this.declinePanel.Size = new System.Drawing.Size(409, 162);
+            this.declinePanel.TabIndex = 131;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(464, 89);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(381, 270);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 132;
+            this.pictureBox1.TabStop = false;
             // 
             // MaintenanceRequestForm
             // 
@@ -363,18 +400,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(869, 558);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.markAsDone_Btn);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.requestNumberForm);
-            this.Controls.Add(this.dateInspection);
-            this.Controls.Add(this.reasonDecline);
-            this.Controls.Add(this.decline_Button);
-            this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.statusForm);
             this.Controls.Add(this.dateSubmittedForm);
             this.Controls.Add(this.descriptionForm);
@@ -391,9 +419,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
+            this.Controls.Add(this.acceptPanel);
+            this.Controls.Add(this.declinePanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MaintenanceRequestForm";
-            this.Text = "MaintenanceRequestForm";
             this.Load += new System.EventHandler(this.MaintenanceRequestForm_Load);
+            this.acceptPanel.ResumeLayout(false);
+            this.acceptPanel.PerformLayout();
+            this.declinePanel.ResumeLayout(false);
+            this.declinePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,11 +458,13 @@
         private System.Windows.Forms.DateTimePicker dateInspection;
         private System.Windows.Forms.TextBox requestNumberForm;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button markAsDone_Btn;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel acceptPanel;
+        private System.Windows.Forms.Panel declinePanel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

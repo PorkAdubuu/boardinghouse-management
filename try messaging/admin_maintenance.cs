@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,6 +10,8 @@ namespace try_messaging
 {
     public partial class admin_maintenance : Form
     {
+        private int selectedRequestId = 0;
+        private DatabaseConnection dbConnection;
         public admin_maintenance()
         {
             InitializeComponent();
@@ -55,6 +58,22 @@ namespace try_messaging
 
         private void maintenanceRequestList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                // Ensure the clicked cell is not a header or outside the valid range
+                if (e.RowIndex >= 0 && maintenanceRequestList.Columns[e.ColumnIndex].Name == "Request ID")
+                {
+                    // Retrieve the value of 'Request ID' from the clicked row
+                    selectedRequestId = Convert.ToInt32(maintenanceRequestList.Rows[e.RowIndex].Cells["Request ID"].Value);
+
+                    // Log or show the selected request_id for debugging
+                    Console.WriteLine($"Selected Request ID: {selectedRequestId}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error selecting request: " + ex.Message);
+            }
         }
 
         private void admin_maintenance_Load(object sender, EventArgs e)
@@ -104,20 +123,21 @@ namespace try_messaging
         {
             string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
             string query = @"SELECT 
-                mr.request_id, 
-                mr.request_number,
-                CONCAT(td.lastname, ', ', td.firstname) AS tenant_name, 
-                td.roomnumber, 
-                mr.maintenance_type, 
-                mr.description, 
-                mr.request_date, 
-                mr.dateInspection, 
-                COALESCE(mr.status, 'Pending') AS status  -- Set default status to 'Pending' if null
-             FROM 
-                maintenance_requests mr
-             INNER JOIN 
-                tenants_details td ON mr.tenant_id = td.tenid
-             WHERE 1=1";
+        mr.request_id, 
+        mr.request_number,
+        CONCAT(td.lastname, ', ', td.firstname) AS tenant_name, 
+        td.roomnumber, 
+        mr.maintenance_type, 
+        mr.description, 
+        mr.request_date, 
+        mr.dateInspection, 
+        mr.completion_date,  -- Include completion_date in the query
+        COALESCE(mr.status, 'Pending') AS status  -- Set default status to 'Pending' if null
+     FROM 
+        maintenance_requests mr
+     INNER JOIN 
+        tenants_details td ON mr.tenant_id = td.tenid
+     WHERE 1=1";
 
             // Add filters to the query based on input
             if (!string.IsNullOrEmpty(searchKeyword))
@@ -167,6 +187,7 @@ namespace try_messaging
                     dataTable.Columns["description"].ColumnName = "Description";
                     dataTable.Columns["request_date"].ColumnName = "Request Date";
                     dataTable.Columns["dateInspection"].ColumnName = "Date of Inspection";
+                    dataTable.Columns["completion_date"].ColumnName = "Completion Date";  // Rename completion_date column
                     dataTable.Columns["status"].ColumnName = "Status";
 
                     // Modify dateInspection values based on status
@@ -187,7 +208,7 @@ namespace try_messaging
                     // Show a message if no requests found
                     if (dataTable.Rows.Count == 0)
                     {
-                        MessageBox.Show("No maintenance requests found with the given filter.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("No maintenance requests found for the given filters.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
@@ -196,6 +217,7 @@ namespace try_messaging
                 }
             }
         }
+
 
         private void UpdateSummaryStatistics()
         {
@@ -317,7 +339,7 @@ namespace try_messaging
                     // Show a message if no requests found
                     if (dataTable.Rows.Count == 0)
                     {
-                        MessageBox.Show("No maintenance requests found with the given filter.", "No Results", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                       
                     }
                 }
                 catch (Exception ex)
@@ -460,6 +482,141 @@ namespace try_messaging
 
             // Call the method to load maintenance requests with the selected date as a filter
             LoadMaintenanceRequests(searchKeyword: searchBar.Text.Trim(), startDate: selectedDate);
+        }
+
+        private void markAsDone_Btn_Click(object sender, EventArgs e)
+        {
+            if (selectedRequestId <= 0)
+            {
+                MessageBox.Show("No request selected. Please select a request first.");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Check the current status of the request
+                    string checkStatusQuery = "SELECT status FROM maintenance_requests WHERE request_id = @requestId";
+                    using (MySqlCommand checkCmd = new MySqlCommand(checkStatusQuery, conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@requestId", selectedRequestId);
+                        string status = checkCmd.ExecuteScalar()?.ToString();
+
+                        // Validate the status
+                        if (status == "Done")
+                        {
+                            MessageBox.Show("This request is already marked as Done.");
+                            return;
+                        }
+
+                        if (status == "Declined")
+                        {
+                            MessageBox.Show("This request has been Declined and cannot be marked as Done.");
+                            return;
+                        }
+
+                        if (status != "In Progress")
+                        {
+                            MessageBox.Show("Only requests with status 'In Progress' can be marked as Done.");
+                            return;
+                        }
+                    }
+
+                    // Update the status to 'Done' and set the completion date
+                    string updateQuery = "UPDATE maintenance_requests SET status = 'Done', completion_date = CURDATE() WHERE request_id = @requestId";
+                    using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        updateCmd.Parameters.AddWithValue("@requestId", selectedRequestId);
+                        int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Request successfully marked as Done.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to update the request. Please try again.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
+
+        private void export_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the current date in MM_dd_yyyy format
+                string currentDate = DateTime.Now.ToString("MM_dd_yyyy");
+
+                // Open SaveFileDialog to choose the save location
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+                saveFileDialog.Title = "Save Excel File";
+                saveFileDialog.FileName = $"Maintenance request list_{currentDate}.xlsx"; // Default filename with current date
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Create an instance of Excel application
+                    var excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                    // Check if Excel is available
+                    if (excelApp == null)
+                    {
+                        MessageBox.Show("Excel is not installed on this machine.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Create a new workbook
+                    var workbooks = excelApp.Workbooks;
+                    var workbook = workbooks.Add();
+                    var worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+
+                    // Loop through DataGridView columns and set the column headers in Excel
+                    for (int i = 0; i < maintenanceRequestList.Columns.Count; i++)
+                    {
+                        worksheet.Cells[1, i + 1] = maintenanceRequestList.Columns[i].HeaderText; // Set headers in Excel (row 1)
+                        worksheet.Cells[1, i + 1].Font.Bold = true; // Make headers bold
+                    }
+
+                    // Loop through DataGridView rows and add data to Excel
+                    for (int rowIndex = 0; rowIndex < maintenanceRequestList.Rows.Count; rowIndex++)
+                    {
+                        for (int colIndex = 0; colIndex < maintenanceRequestList.Columns.Count; colIndex++)
+                        {
+                            if (maintenanceRequestList.Rows[rowIndex].Cells[colIndex].Value != null)
+                            {
+                                worksheet.Cells[rowIndex + 2, colIndex + 1] = maintenanceRequestList.Rows[rowIndex].Cells[colIndex].Value.ToString();
+                            }
+                        }
+                    }
+
+                    // Save the Excel file with the formatted filename
+                    workbook.SaveAs(saveFileDialog.FileName);
+
+                    // Close the workbook and Excel application
+                    workbook.Close();
+                    excelApp.Quit();
+
+                    // Release COM objects
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+                    // Inform the user that the file has been saved
+                    MessageBox.Show("Maintenance request list has been exported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error exporting to Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

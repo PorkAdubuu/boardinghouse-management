@@ -206,7 +206,64 @@ namespace try_messaging
             UpdateBillingCounters();
             UpdateTotalIncome();
             UpdatePieChart();
+            UpdateRequestCounts();
         }
+
+        private void UpdateRequestCounts()
+        {
+            try
+            {
+                // Define your connection string
+                string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Count for all requests with status "Pending" or "In Progress"
+                    string totalQuery = @"
+                SELECT COUNT(*) 
+                FROM maintenance_requests 
+                WHERE status IN ('Pending', 'In Progress')";
+                    MySqlCommand totalCommand = new MySqlCommand(totalQuery, connection);
+                    int requestCounts = Convert.ToInt32(totalCommand.ExecuteScalar());
+                    requestCount.Text = requestCounts.ToString(); // Update the total request count label
+
+                    // Count for requests with status "Pending"
+                    string pendingQuery = @"
+                SELECT COUNT(*) 
+                FROM maintenance_requests 
+                WHERE status = 'Pending'";
+                    MySqlCommand pendingCommand = new MySqlCommand(pendingQuery, connection);
+                    int pendingCount = Convert.ToInt32(pendingCommand.ExecuteScalar());
+                    MpendingCount.Text = pendingCount.ToString(); // Update the pending count label
+
+                    // Count for requests with status "In Progress"
+                    string inProgressQuery = @"
+                SELECT COUNT(*) 
+                FROM maintenance_requests 
+                WHERE status = 'In Progress'";
+                    MySqlCommand inProgressCommand = new MySqlCommand(inProgressQuery, connection);
+                    int inProgressCount = Convert.ToInt32(inProgressCommand.ExecuteScalar());
+                    inprogressCount.Text = inProgressCount.ToString(); // Update the in-progress count label
+
+                    // Count for requests with status "Done"
+                    string doneQuery = @"
+                SELECT COUNT(*) 
+                FROM maintenance_requests 
+                WHERE status = 'Done'";
+                    MySqlCommand doneCommand = new MySqlCommand(doneQuery, connection);
+                    int doneCounts = Convert.ToInt32(doneCommand.ExecuteScalar());
+                    doneCount.Text = doneCounts.ToString(); // Update the done count label
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating request counts: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void UpdateBillingCounters()
         {

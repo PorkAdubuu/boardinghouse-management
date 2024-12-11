@@ -70,9 +70,9 @@
             this.totalIncomeText = new System.Windows.Forms.Label();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.doneCount = new System.Windows.Forms.Label();
+            this.inprogressCount = new System.Windows.Forms.Label();
+            this.requestCount = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -81,7 +81,7 @@
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.MpendingCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -527,38 +527,38 @@
             this.label13.TabIndex = 88;
             this.label13.Text = "Payment status chart";
             // 
-            // label14
+            // doneCount
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(368, 317);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(16, 18);
-            this.label14.TabIndex = 99;
-            this.label14.Text = "0";
+            this.doneCount.AutoSize = true;
+            this.doneCount.BackColor = System.Drawing.Color.White;
+            this.doneCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.doneCount.Location = new System.Drawing.Point(368, 317);
+            this.doneCount.Name = "doneCount";
+            this.doneCount.Size = new System.Drawing.Size(16, 18);
+            this.doneCount.TabIndex = 99;
+            this.doneCount.Text = "0";
             // 
-            // label15
+            // inprogressCount
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.White;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(415, 284);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(16, 18);
-            this.label15.TabIndex = 98;
-            this.label15.Text = "0";
+            this.inprogressCount.AutoSize = true;
+            this.inprogressCount.BackColor = System.Drawing.Color.White;
+            this.inprogressCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inprogressCount.Location = new System.Drawing.Point(415, 284);
+            this.inprogressCount.Name = "inprogressCount";
+            this.inprogressCount.Size = new System.Drawing.Size(16, 18);
+            this.inprogressCount.TabIndex = 98;
+            this.inprogressCount.Text = "0";
             // 
-            // label16
+            // requestCount
             // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.White;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(491, 218);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(16, 18);
-            this.label16.TabIndex = 97;
-            this.label16.Text = "0";
+            this.requestCount.AutoSize = true;
+            this.requestCount.BackColor = System.Drawing.Color.White;
+            this.requestCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.requestCount.Location = new System.Drawing.Point(491, 218);
+            this.requestCount.Name = "requestCount";
+            this.requestCount.Size = new System.Drawing.Size(16, 18);
+            this.requestCount.TabIndex = 97;
+            this.requestCount.Text = "0";
             // 
             // label17
             // 
@@ -648,26 +648,26 @@
             this.pictureBox18.TabIndex = 89;
             this.pictureBox18.TabStop = false;
             // 
-            // label21
+            // MpendingCount
             // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.White;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(388, 251);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(16, 18);
-            this.label21.TabIndex = 100;
-            this.label21.Text = "0";
+            this.MpendingCount.AutoSize = true;
+            this.MpendingCount.BackColor = System.Drawing.Color.White;
+            this.MpendingCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MpendingCount.Location = new System.Drawing.Point(388, 251);
+            this.MpendingCount.Name = "MpendingCount";
+            this.MpendingCount.Size = new System.Drawing.Size(16, 18);
+            this.MpendingCount.TabIndex = 100;
+            this.MpendingCount.Text = "0";
             // 
             // admin_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.MpendingCount);
+            this.Controls.Add(this.doneCount);
+            this.Controls.Add(this.inprogressCount);
+            this.Controls.Add(this.requestCount);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label19);
@@ -783,9 +783,9 @@
         private System.Windows.Forms.Label totalIncomeText;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label doneCount;
+        private System.Windows.Forms.Label inprogressCount;
+        private System.Windows.Forms.Label requestCount;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
@@ -794,6 +794,6 @@
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.PictureBox pictureBox18;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label MpendingCount;
     }
 }

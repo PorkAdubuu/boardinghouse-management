@@ -28,8 +28,58 @@ namespace try_messaging
         private void MaintenanceRequestForm_Load(object sender, EventArgs e)
         {
             LoadMaintenanceRequestDetails();
+            UpdatePanelVisibility();
             
+
         }
+        private void UpdatePanelVisibility()
+        {
+            // Ensure the statusForm textbox is not null
+            if (statusForm == null)
+            {
+                MessageBox.Show("The statusForm textbox is not initialized.");
+                return;
+            }
+
+            string status = statusForm.Text.Trim();
+            if (!status.Equals("Pending", StringComparison.OrdinalIgnoreCase)) // If status is not "Pending"
+            {
+                // Non-Pending status - disable and set components to gray
+                acceptPanel.Visible = true;  // Panels still visible
+                declinePanel.Visible = true;
+
+                // Set panel colors to light gray (if needed, uncomment the following lines)
+                // acceptPanel.BackColor = Color.LightGray;
+                // declinePanel.BackColor = Color.LightGray;
+
+                // Set label styles
+                label15.ForeColor = Color.DarkGray;
+                label10.ForeColor = Color.DarkGray;
+                label14.ForeColor = Color.DarkGray;
+                label11.ForeColor = Color.DarkGray;
+                label12.ForeColor = Color.DarkGray;
+
+                // Disable buttons and change appearance
+                acceptButton.Enabled = false;
+                acceptButton.BackColor = Color.DarkGray;
+                acceptButton.Cursor = Cursors.No;
+
+                decline_Button.Enabled = false;
+                decline_Button.BackColor = Color.DarkGray;
+                decline_Button.Cursor = Cursors.No;
+
+                // Set RichTextBox to read-only and gray
+                reasonDecline.ReadOnly = true;
+                reasonDecline.BackColor = Color.DarkGray;
+
+                // Disable the DatePicker
+                dateInspection.Enabled = false;
+            }
+            
+
+        }
+
+
 
         private void LoadMaintenanceRequestDetails()
         {
@@ -40,23 +90,23 @@ namespace try_messaging
                 {
                     // SQL query to fetch maintenance request details
                     string query = @"SELECT 
-                            mr.request_id, 
-                            mr.request_number,
-                            td.email,  -- Fetch the tenant's email
-                            CONCAT(td.lastname, ', ', td.firstname) AS tenant_name, 
-                            td.roomnumber, 
-                            mr.maintenance_type, 
-                            mr.description, 
-                            mr.request_date, 
-                            mr.status,
-                            mr.dateInspection, 
-                            mr.image_data  -- Fetch the image data
-                        FROM 
-                            maintenance_requests mr
-                        INNER JOIN 
-                            tenants_details td ON mr.tenant_id = td.tenid
-                        WHERE 
-                            mr.request_id = @requestId";
+                    mr.request_id, 
+                    mr.request_number,
+                    td.email,  -- Fetch the tenant's email
+                    CONCAT(td.lastname, ', ', td.firstname) AS tenant_name, 
+                    td.roomnumber, 
+                    mr.maintenance_type, 
+                    mr.description, 
+                    mr.request_date, 
+                    mr.status,
+                    mr.dateInspection, 
+                    mr.image_data  -- Fetch the image data
+                FROM 
+                    maintenance_requests mr
+                INNER JOIN 
+                    tenants_details td ON mr.tenant_id = td.tenid
+                WHERE 
+                    mr.request_id = @requestId";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@requestId", requestId);
@@ -92,13 +142,12 @@ namespace try_messaging
                             byte[] imageData = (byte[])reader["image_data"];
                             using (MemoryStream ms = new MemoryStream(imageData))
                             {
-                                Image image = Image.FromStream(ms);
-                                Clipboard.SetDataObject(image); // Put the image into the clipboard
-                                richTextBox1.Paste(); // Paste the image into the RichTextBox
+                                pictureBox1.Image = Image.FromStream(ms); // Load the image into the PictureBox
                             }
                         }
                         else
                         {
+                            pictureBox1.Image = null; // Clear the PictureBox if no image data is found
                             MessageBox.Show("No image data found for this maintenance request.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -110,7 +159,8 @@ namespace try_messaging
             }
         }
 
-       
+
+
 
         private async Task SendEmail(string toAddress, string subject, string body)
         {
@@ -217,6 +267,7 @@ namespace try_messaging
                 UpdateRequestStatus("In progress");
 
                 MessageBox.Show("Maintenance request accepted and email sent.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadMaintenanceRequestDetails();
             }
             catch (Exception ex)
             {
@@ -325,6 +376,7 @@ namespace try_messaging
             SetStatusToDeclined(requestId);
 
             MessageBox.Show("Maintenance request declined and email sent.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadMaintenanceRequestDetails();
         }
         private void SetStatusToDeclined(int requestId)
         {
@@ -473,7 +525,7 @@ namespace try_messaging
 
         private void statusForm_TextChanged(object sender, EventArgs e)
         {
-            // This can be left empty since we're loading data on form load
+            UpdatePanelVisibility();
         }
 
         private void dateInspection_ValueChanged(object sender, EventArgs e)
@@ -483,61 +535,7 @@ namespace try_messaging
 
        
 
-        private void markAsDone_Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    // Check current status
-                    string checkStatusQuery = @"SELECT status FROM maintenance_requests WHERE request_id = @requestId";
-                    MySqlCommand checkStatusCommand = new MySqlCommand(checkStatusQuery, connection);
-                    checkStatusCommand.Parameters.AddWithValue("@requestId", requestId);
-
-                    object currentStatusObj = checkStatusCommand.ExecuteScalar();
-                    if (currentStatusObj != null)
-                    {
-                        string currentStatus = currentStatusObj.ToString();
-                        if (currentStatus == "Done")
-                        {
-                            MessageBox.Show("This request is already marked as 'Done'.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Request ID not found. Please check if the ID is valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Update the status column to 'Done' and set completion_date to today's date
-                    string updateQuery = @"UPDATE maintenance_requests 
-                                   SET status = 'Done', completion_date = @completionDate 
-                                   WHERE request_id = @requestId";
-                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection);
-                    updateCommand.Parameters.AddWithValue("@requestId", requestId);
-                    updateCommand.Parameters.AddWithValue("@completionDate", DateTime.Now); // Set to today's date
-
-                    int rowsAffected = updateCommand.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("The request status has been successfully updated to 'Done'.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No records were updated. Please check if the request ID is valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error setting request status to 'Done': " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
         private void sendEmailButton_Click(object sender, EventArgs e)
         {

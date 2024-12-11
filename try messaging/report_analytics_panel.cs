@@ -60,6 +60,11 @@ namespace try_messaging
                bill_report bill_Report = new bill_report();
                LoadFormInPanel(bill_Report);
             }
+            /*else if (manageSelection.SelectedItem.ToString() == "Maintenance Report")
+            {
+                maintenance_report maintenance_Report = new maintenance_report();
+                LoadFormInPanel(maintenance_Report);
+            }*/
         }
 
         

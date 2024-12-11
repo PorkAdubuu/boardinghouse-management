@@ -32,7 +32,7 @@ namespace try_messaging
             if (typeCombo.SelectedItem != null)
             {
                 string selectedType = typeCombo.SelectedItem.ToString();
-                MessageBox.Show($"You selected: {selectedType}", "Maintenance Request", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
@@ -138,8 +138,8 @@ namespace try_messaging
 
                     // Insert notification into admin_notif table
                     string insertNotifQuery = @"
-                    INSERT INTO admin_notif (reason, description, notif_type)
-                    VALUES (NULL, @description, @notifType)";
+                    INSERT INTO admin_notif (description, notif_type)
+                    VALUES (@description, @notifType)";
                     using (MySqlCommand cmdInsertNotif = new MySqlCommand(insertNotifQuery, connection, transaction))
                     {
                         cmdInsertNotif.Parameters.AddWithValue("@description", "A maintenance request has been submitted by a tenant.");
@@ -152,6 +152,7 @@ namespace try_messaging
 
                     MessageBox.Show("Maintenance request submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadTenantRequests(tenantId); // Reload tenant requests after submission
+                    ClearFields();
                 }
                 catch (Exception ex)
                 {
@@ -159,6 +160,18 @@ namespace try_messaging
                     MessageBox.Show($"Error submitting request: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void ClearFields()
+        {
+            // Clear the ComboBox selection
+            typeCombo.SelectedIndex = -1;
+
+            // Clear the TextBox
+            descriptionTextBox1.Text = string.Empty;
+
+            // Clear the RichTextBox
+            richTextBox1.Clear();
         }
 
         private void resetFormButton_Click(object sender, EventArgs e)
