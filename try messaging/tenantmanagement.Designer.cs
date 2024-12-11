@@ -280,9 +280,9 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(406, 511);
+            this.progressBar.Location = new System.Drawing.Point(352, 534);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(200, 10);
+            this.progressBar.Size = new System.Drawing.Size(188, 10);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 62;
             this.progressBar.Visible = false;
@@ -290,7 +290,7 @@
             // sendingLabel
             // 
             this.sendingLabel.AutoSize = true;
-            this.sendingLabel.Location = new System.Drawing.Point(487, 495);
+            this.sendingLabel.Location = new System.Drawing.Point(422, 518);
             this.sendingLabel.Name = "sendingLabel";
             this.sendingLabel.Size = new System.Drawing.Size(67, 13);
             this.sendingLabel.TabIndex = 63;
@@ -584,7 +584,7 @@
             this.generate_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.generate_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generate_Btn1.ForeColor = System.Drawing.Color.White;
-            this.generate_Btn1.Location = new System.Drawing.Point(410, 417);
+            this.generate_Btn1.Location = new System.Drawing.Point(352, 436);
             this.generate_Btn1.Name = "generate_Btn1";
             this.generate_Btn1.Size = new System.Drawing.Size(90, 32);
             this.generate_Btn1.TabIndex = 94;
@@ -598,7 +598,7 @@
             this.cancel_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancel_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel_Btn1.ForeColor = System.Drawing.Color.White;
-            this.cancel_Btn1.Location = new System.Drawing.Point(513, 417);
+            this.cancel_Btn1.Location = new System.Drawing.Point(455, 436);
             this.cancel_Btn1.Name = "cancel_Btn1";
             this.cancel_Btn1.Size = new System.Drawing.Size(90, 32);
             this.cancel_Btn1.TabIndex = 95;
@@ -612,7 +612,7 @@
             this.encode_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.encode_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.encode_Btn1.ForeColor = System.Drawing.Color.White;
-            this.encode_Btn1.Location = new System.Drawing.Point(410, 455);
+            this.encode_Btn1.Location = new System.Drawing.Point(352, 474);
             this.encode_Btn1.Name = "encode_Btn1";
             this.encode_Btn1.Size = new System.Drawing.Size(193, 32);
             this.encode_Btn1.TabIndex = 96;
