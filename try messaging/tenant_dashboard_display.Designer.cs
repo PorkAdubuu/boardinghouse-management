@@ -150,6 +150,7 @@
             // 
             // boarding_image
             // 
+            this.boarding_image.BackColor = System.Drawing.Color.White;
             this.boarding_image.Image = global::try_messaging.Properties.Resources.room_house_pic__1_;
             this.boarding_image.Location = new System.Drawing.Point(21, 215);
             this.boarding_image.Name = "boarding_image";

@@ -455,7 +455,8 @@ namespace try_messaging
         private void maintenance_Btn_Click(object sender, EventArgs e)
         {
             // Clear the panel and load the profile form
-            
+            tenant_maintenance tenant_Maintenance = new tenant_maintenance(tenantId);
+            LoadFormInPanel(tenant_Maintenance);
 
             //code here the target form
 
