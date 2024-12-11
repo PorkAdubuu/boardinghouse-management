@@ -114,7 +114,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.paymentLogs.DefaultCellStyle = dataGridViewCellStyle5;
-            this.paymentLogs.Location = new System.Drawing.Point(343, 340);
+            this.paymentLogs.Location = new System.Drawing.Point(343, 337);
             this.paymentLogs.Name = "paymentLogs";
             this.paymentLogs.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -133,7 +133,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(3, 284);
+            this.label16.Location = new System.Drawing.Point(3, 281);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(136, 20);
             this.label16.TabIndex = 93;
@@ -143,10 +143,11 @@
             // 
             this.accept_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.accept_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.accept_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accept_Btn.ForeColor = System.Drawing.Color.White;
-            this.accept_Btn.Location = new System.Drawing.Point(85, 252);
+            this.accept_Btn.Location = new System.Drawing.Point(85, 249);
             this.accept_Btn.Name = "accept_Btn";
-            this.accept_Btn.Size = new System.Drawing.Size(72, 23);
+            this.accept_Btn.Size = new System.Drawing.Size(77, 30);
             this.accept_Btn.TabIndex = 118;
             this.accept_Btn.Text = "Accept";
             this.accept_Btn.UseVisualStyleBackColor = false;
@@ -156,10 +157,11 @@
             // 
             this.decline_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.decline_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.decline_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.decline_Btn.ForeColor = System.Drawing.Color.White;
-            this.decline_Btn.Location = new System.Drawing.Point(4, 252);
+            this.decline_Btn.Location = new System.Drawing.Point(4, 249);
             this.decline_Btn.Name = "decline_Btn";
-            this.decline_Btn.Size = new System.Drawing.Size(72, 23);
+            this.decline_Btn.Size = new System.Drawing.Size(77, 30);
             this.decline_Btn.TabIndex = 119;
             this.decline_Btn.Text = "Decline";
             this.decline_Btn.UseVisualStyleBackColor = false;
@@ -169,10 +171,11 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(740, 252);
+            this.button1.Location = new System.Drawing.Point(740, 249);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.Size = new System.Drawing.Size(125, 30);
             this.button1.TabIndex = 118;
             this.button1.Text = "Issue New Bill";
             this.button1.UseVisualStyleBackColor = false;
@@ -182,7 +185,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(570, 314);
+            this.label2.Location = new System.Drawing.Point(570, 311);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 20);
             this.label2.TabIndex = 123;
@@ -191,7 +194,7 @@
             // sortCombo
             // 
             this.sortCombo.FormattingEnabled = true;
-            this.sortCombo.Location = new System.Drawing.Point(636, 313);
+            this.sortCombo.Location = new System.Drawing.Point(636, 310);
             this.sortCombo.Name = "sortCombo";
             this.sortCombo.Size = new System.Drawing.Size(121, 21);
             this.sortCombo.TabIndex = 122;
@@ -199,7 +202,7 @@
             // 
             // searchBar
             // 
-            this.searchBar.Location = new System.Drawing.Point(343, 314);
+            this.searchBar.Location = new System.Drawing.Point(343, 311);
             this.searchBar.Name = "searchBar";
             this.searchBar.Size = new System.Drawing.Size(196, 20);
             this.searchBar.TabIndex = 120;
@@ -225,7 +228,7 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.billStatusTable.DefaultCellStyle = dataGridViewCellStyle8;
-            this.billStatusTable.Location = new System.Drawing.Point(4, 307);
+            this.billStatusTable.Location = new System.Drawing.Point(4, 304);
             this.billStatusTable.Name = "billStatusTable";
             this.billStatusTable.ReadOnly = true;
             this.billStatusTable.RowHeadersVisible = false;
@@ -236,7 +239,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(339, 284);
+            this.label1.Location = new System.Drawing.Point(339, 281);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 20);
             this.label1.TabIndex = 126;
@@ -246,10 +249,11 @@
             // 
             this.refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             this.refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.refresh_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.refresh_Btn.ForeColor = System.Drawing.Color.White;
-            this.refresh_Btn.Location = new System.Drawing.Point(4, 530);
+            this.refresh_Btn.Location = new System.Drawing.Point(4, 525);
             this.refresh_Btn.Name = "refresh_Btn";
-            this.refresh_Btn.Size = new System.Drawing.Size(72, 23);
+            this.refresh_Btn.Size = new System.Drawing.Size(77, 30);
             this.refresh_Btn.TabIndex = 127;
             this.refresh_Btn.Text = "Refresh";
             this.refresh_Btn.UseVisualStyleBackColor = false;
