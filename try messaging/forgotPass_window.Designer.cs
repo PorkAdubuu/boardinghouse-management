@@ -38,7 +38,7 @@
             // 
             // emailText
             // 
-            this.emailText.Location = new System.Drawing.Point(34, 43);
+            this.emailText.Location = new System.Drawing.Point(41, 43);
             this.emailText.Name = "emailText";
             this.emailText.Size = new System.Drawing.Size(154, 20);
             this.emailText.TabIndex = 0;
@@ -56,7 +56,8 @@
             // sendcode_Btn
             // 
             this.sendcode_Btn.BackColor = System.Drawing.Color.White;
-            this.sendcode_Btn.Location = new System.Drawing.Point(75, 79);
+            this.sendcode_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sendcode_Btn.Location = new System.Drawing.Point(80, 79);
             this.sendcode_Btn.Name = "sendcode_Btn";
             this.sendcode_Btn.Size = new System.Drawing.Size(75, 23);
             this.sendcode_Btn.TabIndex = 2;
@@ -67,7 +68,7 @@
             // sendingLabel
             // 
             this.sendingLabel.AutoSize = true;
-            this.sendingLabel.Location = new System.Drawing.Point(83, 115);
+            this.sendingLabel.Location = new System.Drawing.Point(88, 115);
             this.sendingLabel.Name = "sendingLabel";
             this.sendingLabel.Size = new System.Drawing.Size(67, 13);
             this.sendingLabel.TabIndex = 65;
@@ -76,7 +77,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(34, 131);
+            this.progressBar.Location = new System.Drawing.Point(41, 131);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(141, 10);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;

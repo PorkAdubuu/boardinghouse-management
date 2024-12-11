@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.export_Btn = new System.Windows.Forms.Button();
             this.houseList = new System.Windows.Forms.DataGridView();
             this.delete_Btn = new System.Windows.Forms.Button();
@@ -65,10 +66,13 @@
             // 
             // export_Btn
             // 
-            this.export_Btn.BackColor = System.Drawing.Color.White;
-            this.export_Btn.Location = new System.Drawing.Point(792, 284);
+            this.export_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.export_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.export_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.export_Btn.ForeColor = System.Drawing.Color.White;
+            this.export_Btn.Location = new System.Drawing.Point(790, 280);
             this.export_Btn.Name = "export_Btn";
-            this.export_Btn.Size = new System.Drawing.Size(75, 23);
+            this.export_Btn.Size = new System.Drawing.Size(77, 30);
             this.export_Btn.TabIndex = 84;
             this.export_Btn.Text = "Export";
             this.export_Btn.UseVisualStyleBackColor = false;
@@ -81,7 +85,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.houseList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -90,7 +94,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.houseList.DefaultCellStyle = dataGridViewCellStyle2;
@@ -98,6 +102,8 @@
             this.houseList.Name = "houseList";
             this.houseList.ReadOnly = true;
             this.houseList.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.houseList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.houseList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.houseList.Size = new System.Drawing.Size(861, 219);
             this.houseList.TabIndex = 83;
@@ -105,10 +111,13 @@
             // 
             // delete_Btn
             // 
-            this.delete_Btn.BackColor = System.Drawing.Color.White;
-            this.delete_Btn.Location = new System.Drawing.Point(9, 284);
+            this.delete_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.delete_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.delete_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delete_Btn.ForeColor = System.Drawing.Color.White;
+            this.delete_Btn.Location = new System.Drawing.Point(9, 280);
             this.delete_Btn.Name = "delete_Btn";
-            this.delete_Btn.Size = new System.Drawing.Size(75, 23);
+            this.delete_Btn.Size = new System.Drawing.Size(77, 30);
             this.delete_Btn.TabIndex = 82;
             this.delete_Btn.Text = "Delete";
             this.delete_Btn.UseVisualStyleBackColor = false;
@@ -116,10 +125,13 @@
             // 
             // refresh_Btn
             // 
-            this.refresh_Btn.BackColor = System.Drawing.Color.White;
-            this.refresh_Btn.Location = new System.Drawing.Point(90, 284);
+            this.refresh_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.refresh_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.refresh_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh_Btn.ForeColor = System.Drawing.Color.White;
+            this.refresh_Btn.Location = new System.Drawing.Point(90, 280);
             this.refresh_Btn.Name = "refresh_Btn";
-            this.refresh_Btn.Size = new System.Drawing.Size(75, 23);
+            this.refresh_Btn.Size = new System.Drawing.Size(77, 30);
             this.refresh_Btn.TabIndex = 81;
             this.refresh_Btn.Text = "Refresh";
             this.refresh_Btn.UseVisualStyleBackColor = false;
@@ -146,10 +158,13 @@
             // 
             // search_Btn
             // 
-            this.search_Btn.BackColor = System.Drawing.Color.White;
-            this.search_Btn.Location = new System.Drawing.Point(208, 30);
+            this.search_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.search_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.search_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_Btn.ForeColor = System.Drawing.Color.White;
+            this.search_Btn.Location = new System.Drawing.Point(208, 26);
             this.search_Btn.Name = "search_Btn";
-            this.search_Btn.Size = new System.Drawing.Size(75, 23);
+            this.search_Btn.Size = new System.Drawing.Size(77, 30);
             this.search_Btn.TabIndex = 78;
             this.search_Btn.Text = "Search";
             this.search_Btn.UseVisualStyleBackColor = false;
@@ -235,10 +250,13 @@
             // 
             // confirm_Btn
             // 
-            this.confirm_Btn.BackColor = System.Drawing.Color.White;
-            this.confirm_Btn.Location = new System.Drawing.Point(287, 209);
+            this.confirm_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.confirm_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.confirm_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirm_Btn.ForeColor = System.Drawing.Color.White;
+            this.confirm_Btn.Location = new System.Drawing.Point(286, 193);
             this.confirm_Btn.Name = "confirm_Btn";
-            this.confirm_Btn.Size = new System.Drawing.Size(162, 23);
+            this.confirm_Btn.Size = new System.Drawing.Size(164, 30);
             this.confirm_Btn.TabIndex = 94;
             this.confirm_Btn.Text = "Confirm";
             this.confirm_Btn.UseVisualStyleBackColor = false;
@@ -260,10 +278,13 @@
             // 
             // policy_Btn
             // 
-            this.policy_Btn.BackColor = System.Drawing.Color.White;
-            this.policy_Btn.Location = new System.Drawing.Point(264, 44);
+            this.policy_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.policy_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.policy_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.policy_Btn.ForeColor = System.Drawing.Color.White;
+            this.policy_Btn.Location = new System.Drawing.Point(262, 25);
             this.policy_Btn.Name = "policy_Btn";
-            this.policy_Btn.Size = new System.Drawing.Size(75, 23);
+            this.policy_Btn.Size = new System.Drawing.Size(77, 30);
             this.policy_Btn.TabIndex = 98;
             this.policy_Btn.Text = "Upload";
             this.policy_Btn.UseVisualStyleBackColor = false;
@@ -271,10 +292,13 @@
             // 
             // image_Btn
             // 
-            this.image_Btn.BackColor = System.Drawing.Color.White;
-            this.image_Btn.Location = new System.Drawing.Point(264, 123);
+            this.image_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.image_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.image_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.image_Btn.ForeColor = System.Drawing.Color.White;
+            this.image_Btn.Location = new System.Drawing.Point(262, 104);
             this.image_Btn.Name = "image_Btn";
-            this.image_Btn.Size = new System.Drawing.Size(75, 23);
+            this.image_Btn.Size = new System.Drawing.Size(77, 30);
             this.image_Btn.TabIndex = 100;
             this.image_Btn.Text = "Upload";
             this.image_Btn.UseVisualStyleBackColor = false;

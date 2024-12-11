@@ -52,8 +52,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.addLabel = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.workLabel = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -67,8 +65,6 @@
             this.moveinLabel = new System.Windows.Forms.Label();
             this.expirationLabel = new System.Windows.Forms.Label();
             this.houseNameText = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.addressLabel = new System.Windows.Forms.RichTextBox();
             this.boardingAddText = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,16 +74,17 @@
             this.parkingText = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // profilePic
@@ -150,7 +147,7 @@
             this.ageLabel.AutoSize = true;
             this.ageLabel.BackColor = System.Drawing.Color.White;
             this.ageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ageLabel.Location = new System.Drawing.Point(419, 62);
+            this.ageLabel.Location = new System.Drawing.Point(317, 62);
             this.ageLabel.Name = "ageLabel";
             this.ageLabel.Size = new System.Drawing.Size(35, 18);
             this.ageLabel.TabIndex = 11;
@@ -205,7 +202,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.White;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(14, 183);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 20);
@@ -273,7 +270,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.White;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(287, 183);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(189, 20);
@@ -324,33 +321,11 @@
             this.pictureBox3.TabIndex = 27;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.Image = global::try_messaging.Properties.Resources.suitcase;
-            this.pictureBox4.Location = new System.Drawing.Point(259, 57);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(23, 23);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 28;
-            this.pictureBox4.TabStop = false;
-            // 
-            // workLabel
-            // 
-            this.workLabel.AutoSize = true;
-            this.workLabel.BackColor = System.Drawing.Color.White;
-            this.workLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workLabel.Location = new System.Drawing.Point(288, 60);
-            this.workLabel.Name = "workLabel";
-            this.workLabel.Size = new System.Drawing.Size(38, 20);
-            this.workLabel.TabIndex = 29;
-            this.workLabel.Text = "N/A";
-            // 
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.White;
             this.pictureBox5.Image = global::try_messaging.Properties.Resources.birthday_cake;
-            this.pictureBox5.Location = new System.Drawing.Point(384, 57);
+            this.pictureBox5.Location = new System.Drawing.Point(282, 57);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(23, 23);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -372,7 +347,7 @@
             this.pictureBox8.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
             this.pictureBox8.Location = new System.Drawing.Point(267, 170);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(385, 392);
+            this.pictureBox8.Size = new System.Drawing.Size(303, 392);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 33;
             this.pictureBox8.TabStop = false;
@@ -487,28 +462,6 @@
             this.houseNameText.TabIndex = 44;
             this.houseNameText.Text = "N/A";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
-            this.pictureBox1.Location = new System.Drawing.Point(658, 170);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(199, 392);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 47;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label3.Location = new System.Drawing.Point(670, 183);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 20);
-            this.label3.TabIndex = 49;
-            this.label3.Text = "Account Analytics:";
-            // 
             // addressLabel
             // 
             this.addressLabel.BackColor = System.Drawing.Color.White;
@@ -527,7 +480,7 @@
             this.boardingAddText.Location = new System.Drawing.Point(440, 344);
             this.boardingAddText.Name = "boardingAddText";
             this.boardingAddText.ReadOnly = true;
-            this.boardingAddText.Size = new System.Drawing.Size(167, 35);
+            this.boardingAddText.Size = new System.Drawing.Size(123, 35);
             this.boardingAddText.TabIndex = 51;
             this.boardingAddText.Text = "";
             // 
@@ -603,15 +556,40 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(658, 206);
+            this.chart1.Location = new System.Drawing.Point(576, 206);
             this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))))};
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(199, 356);
+            this.chart1.Size = new System.Drawing.Size(281, 356);
             this.chart1.TabIndex = 58;
             this.chart1.Text = "chart1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::try_messaging.Properties.Resources.rounded_boxy_bg;
+            this.pictureBox1.Location = new System.Drawing.Point(576, 170);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(281, 392);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 47;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(600, 183);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 20);
+            this.label3.TabIndex = 49;
+            this.label3.Text = "Monthly Billing Statistics";
             // 
             // tenant_account_profile
             // 
@@ -640,8 +618,6 @@
             this.Controls.Add(this.phoneLabel);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.workLabel);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.addLabel);
             this.Controls.Add(this.label17);
@@ -672,13 +648,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -707,8 +682,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label addLabel;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label workLabel;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox8;
@@ -722,8 +695,6 @@
         private System.Windows.Forms.Label moveinLabel;
         private System.Windows.Forms.Label expirationLabel;
         private System.Windows.Forms.Label houseNameText;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox addressLabel;
         private System.Windows.Forms.RichTextBox boardingAddText;
         private System.Windows.Forms.Label label4;
@@ -733,5 +704,7 @@
         private System.Windows.Forms.Label parkingText;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

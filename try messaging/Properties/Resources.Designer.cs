@@ -283,6 +283,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap checklist {
+            get {
+                object obj = ResourceManager.GetObject("checklist", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap communication {
             get {
                 object obj = ResourceManager.GetObject("communication", resourceCulture);
@@ -376,6 +386,16 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap expiration_date_icon {
             get {
                 object obj = ResourceManager.GetObject("expiration_date_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file {
+            get {
+                object obj = ResourceManager.GetObject("file", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -623,6 +643,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap padlock__2_ {
+            get {
+                object obj = ResourceManager.GetObject("padlock__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap paid {
             get {
                 object obj = ResourceManager.GetObject("paid", resourceCulture);
@@ -686,6 +716,16 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap posangBoang {
             get {
                 object obj = ResourceManager.GetObject("posangBoang", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap processing_time {
+            get {
+                object obj = ResourceManager.GetObject("processing_time", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -773,6 +813,16 @@ namespace try_messaging.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap service {
+            get {
+                object obj = ResourceManager.GetObject("service", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap smart_budgeting_pic {
             get {
                 object obj = ResourceManager.GetObject("smart_budgeting_pic", resourceCulture);
@@ -806,6 +856,16 @@ namespace try_messaging.Properties {
         internal static System.Drawing.Bitmap super_big_welcome_tenant_bg {
             get {
                 object obj = ResourceManager.GetObject("super_big_welcome_tenant_bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unlock {
+            get {
+                object obj = ResourceManager.GetObject("unlock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

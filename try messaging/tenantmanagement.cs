@@ -12,6 +12,10 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using MySql.Data.MySqlClient;
 using System.Data.Common;
+using System.IO;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace try_messaging
 {
@@ -35,55 +39,7 @@ namespace try_messaging
 
 
 
-        }
-
-        private async Task SendEmail(string toAddress, string subject, string body)
-        {
-            sendingLabel.Text = "Sending email...";
-            sendingLabel.Visible = true;
-            progressBar.Visible = true;
-            progressBar.Style = ProgressBarStyle.Marquee; // Set to Marquee style for indefinite loading
-
-            try
-            {
-                // Set the security protocol
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Use TLS 1.2
-
-                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)) // Use port 587
-                {
-                    smtpClient.Credentials = new NetworkCredential("boardinghouse24@gmail.com", "cjzvmzmwrspxxkxh"); // Email and app password
-                    smtpClient.EnableSsl = true; // Enable SSL
-
-                    using (MailMessage mailMessage = new MailMessage())
-                    {
-                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com");
-                        mailMessage.Subject = subject;
-                        mailMessage.Body = body;
-                        mailMessage.IsBodyHtml = false; // HTML or plain text
-                        mailMessage.To.Add(toAddress); // Add recipient email
-
-                        // Send the email asynchronously
-                        await smtpClient.SendMailAsync(mailMessage);
-                    }
-                }
-
-                ClearFields();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error sending email: " + ex.ToString()); // Detailed error message
-            }
-            finally
-            {
-                // Hide the ProgressBar and label after sending email
-                progressBar.Visible = false;
-                progressBar.Style = ProgressBarStyle.Blocks; // Reset to default style
-                sendingLabel.Visible = false;
-                MessageBox.Show("Email sent successfully!");
-                ClearFields();
-                PopulateAvailableRooms();
-            }
-        }
+        }       
 
         // Method for generating a random password
         private string GenerateRandomPassword(int length)
@@ -167,6 +123,7 @@ namespace try_messaging
                 MessageBox.Show("The selected boarding house has reached its capacity. Please choose a different house.", "Capacity Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Stop execution if capacity is full
             }
+
             // Get data from text boxes
             string lastname = lnameText.Text.ToUpper();
             string firstname = fnameText.Text.ToUpper();
@@ -183,7 +140,7 @@ namespace try_messaging
             string emergency_contact1 = emergency_number1.Text;
             string emergency_contact2 = emergency_number2.Text;
             int pax_number = int.Parse(paxText.Text);
-            
+
             string wifi = wifii;
             string parking = parkingg;
             DateTime movein_date = movein_datapicker.Value;
@@ -204,29 +161,121 @@ namespace try_messaging
             // Insert tenant into the database
             db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, wifi, parking, movein_date, expiration_date, selectedBoardingHouse, birth_date, pax_number);
 
-
             db.UpdateCurrentOccupancy(selectedBoardingHouse);
-            // Email content
-            string tenantName = $"{firstname} {lastname}"; // Combine firstname and lastname for tenant's name
-            string subject = "Welcome to the Boarding House Community!";
-            string body = $"Dear {tenantName},\n\n" +
-                          $"Welcome to the Boarding House Community!\n\n" +
-                          $"We are pleased to inform you that your account has been successfully created. Below are your login credentials to access the Boarding House Management System:\n\n" +
-                          $"Account Details:\n" +
-                          $"Username: {username}\n" +
-                          $"Password: {password}\n\n" +
-                          $"**Notice:** These are temporary credentials. Please change your password after logging in.\n\n" +
-                          $"Thank you for joining our community!\n\n" +
-                          $"Best regards,\n" +
-                          $"Your Boarding House Management Team";
 
-            // Display the email content in emailgeneratorRich
-            emailgeneratorRich.Text = $"To: {email}\nSubject: {subject}\n\n{body}";
+            // Create the PDF with credentials
+            byte[] pdfData = CreatePdfWithCredentials(firstname, lastname, username, password);
 
-            // Send the email
-            await SendEmail(email, subject, body);
+            // Send the email with the PDF attachment
+            await SendEmailWithPdfAttachment(email, pdfData);
 
             PopulateAvailableRooms();
+        }
+        private byte[] CreatePdfWithCredentials(string firstname, string lastname, string username, string password)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Create a new PDF document
+                PdfDocument document = new PdfDocument();
+                PdfPage page = document.AddPage();
+
+                // Create a graphics object to write on the PDF page
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                // Define fonts
+                XFont headerFont = new XFont("Verdana", 14, XFontStyleEx.Bold);
+                XFont bodyFont = new XFont("Verdana", 12);
+
+                // Write text to the document
+                gfx.DrawString("Welcome to the Boarding House Community!", headerFont, XBrushes.Black, new XPoint(40, 40));
+                gfx.DrawString($"Dear {firstname} {lastname},", bodyFont, XBrushes.Black, new XPoint(40, 80));
+                gfx.DrawString("We are pleased to inform you that your account has been successfully created.", bodyFont, XBrushes.Black, new XPoint(40, 120));
+                gfx.DrawString($"Below are your login credentials:", bodyFont, XBrushes.Black, new XPoint(40, 135));
+                gfx.DrawString($"Username: {username}", bodyFont, XBrushes.Black, new XPoint(40, 160));
+                gfx.DrawString($"Password: {password}", bodyFont, XBrushes.Black, new XPoint(40, 180));
+                gfx.DrawString("*Notice:* These are temporary credentials. Please change your password after logging", bodyFont, XBrushes.Black, new XPoint(40, 220));
+                gfx.DrawString("in.", bodyFont, XBrushes.Black, new XPoint(40, 235));
+                gfx.DrawString("Thank you for joining our community!", bodyFont, XBrushes.Black, new XPoint(40, 250));
+                gfx.DrawString("Best regards,", bodyFont, XBrushes.Black, new XPoint(40, 265));
+                gfx.DrawString("Your Boarding House Management Team", bodyFont, XBrushes.Black, new XPoint(40, 280));
+
+                // Save the document to the memory stream
+                document.Save(ms);
+
+                // Return the PDF as a byte array
+                return ms.ToArray();
+            }
+        }
+
+        private async Task SendEmailWithPdfAttachment(string toAddress, byte[] pdfData)
+        {
+            sendingLabel.Text = "Sending email...";
+            sendingLabel.Visible = true;
+            progressBar.Visible = true;
+            progressBar.Style = ProgressBarStyle.Marquee; // Set to Marquee style for indefinite loading
+            string firstname = fnameText.Text;
+            string lastname = lnameText.Text;
+
+            try
+            {
+                // Set the security protocol
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Use TLS 1.2
+
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)) // Use port 587
+                {
+                    smtpClient.Credentials = new NetworkCredential("boardinghouse24@gmail.com", "cjzvmzmwrspxxkxh"); // Email and app password
+                    smtpClient.EnableSsl = true; // Enable SSL
+
+                    using (MailMessage mailMessage = new MailMessage())
+                    {
+                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com");
+                        mailMessage.Subject = "Welcome to the Boarding House Community!";
+                        mailMessage.IsBodyHtml = true; // Enable HTML content for a more styled email body
+
+                        // Create a formal introduction without including credentials in the email body
+                        mailMessage.Body = @"
+                        <html>
+                        <body>
+                            <h2>Welcome to BoardMate!</h2>
+                            <p>Dear " + firstname + " " + lastname + @",</p>
+                            <p>We are pleased to welcome you to the BoardMate community. Your registration has been successfully completed, and your account credentials have been generated.</p>
+                            <p>Please find your temporary credentials in the attached PDF document. Kindly remember to change your password after your first login for security purposes.</p>
+                            <p>If you have any questions or need assistance, feel free to contact our support team.</p>
+                            <p>Thank you for choosing BoardMate, and we look forward to having you as part of our community!</p>
+                            <p><strong>Best regards,</strong><br />
+                            BoardMate Management Team</p>
+                        </body>
+                        </html>";
+
+                        // Send the email to the recipient
+                        mailMessage.To.Add(toAddress);
+
+                        // Create the attachment with the PDF data
+                        MemoryStream ms = new MemoryStream(pdfData);
+                        Attachment attachment = new Attachment(ms, "boarding_house_credentials.pdf", "application/pdf");
+                        mailMessage.Attachments.Add(attachment);
+
+                        // Send the email asynchronously
+                        await smtpClient.SendMailAsync(mailMessage);
+                    }
+                }
+
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error sending email: " + ex.ToString()); // Detailed error message
+            }
+            finally
+            {
+                // Hide the ProgressBar and label after sending email
+                progressBar.Visible = false;
+                progressBar.Style = ProgressBarStyle.Blocks; // Reset to default style
+                sendingLabel.Visible = false;
+                MessageBox.Show("Email sent successfully!");
+                ClearFields();
+                PopulateAvailableRooms();
+            }
         }
         private bool IsValidEmail(string email)
         {
@@ -400,18 +449,16 @@ namespace try_messaging
             passwordText.Text = password; // Set the generated password in the passwordText TextBox
 
             // Prepare email content to display in emailgeneratorRich
-            string subject = "Welcome to the Boarding House Community!";
+            string subject = "Welcome to BoardMate!";
             string body = $"Dear {firstname} {lastname},\n\n" +
                           $"Welcome to the Boarding House Community!\n\n" +
-                          $"We are pleased to inform you that your account has been successfully created. Below are your login credentials to access the Boarding House Management System:\n\n" +
-                          $"Account Details:\n" +
-                          $"Username: {username}\n" +
-                          $"Password: {password}\n\n" +
-                          $"**Notice:** These are temporary credentials. Please change your password after logging in.\n\n" +
+                          $"We are pleased to welcome you to the BoardMate community. Your registration has been successfully completed, and your account credentials have been generated.\n\n" +                       
+                          $"Please find your temporary credentials in the attached PDF document. Kindly remember to change your password after your first login for security purposes.\n\n" +                          
                           $"Login Instructions:\n" +
                           $"Visit the Boarding House Management System login Application:\n" +
                           $"Click on \"Login\" to access your account\n\n" +
-                          $"Thank you for joining our community! We look forward to having you with us.\n\n" +
+                          $"If you have any questions or need assistance, feel free to contact our support team.\n\n" +
+                          $"Thank you for joining our community! We look forward to having you with us.\n\n" +                       
                           $"Best regards,\n" +
                           $"Your Boarding House Management Team";
 
@@ -570,6 +617,115 @@ namespace try_messaging
             if (birthDate.Date > today.AddYears(-age)) age--;
 
             return age;
+        }
+
+        private void generate_Btn1_Click(object sender, EventArgs e)
+        {
+            string firstname = fnameText.Text;
+            string lastname = lnameText.Text;
+
+            // Generate the username based on nameText and roomText
+            string username = $"{lastname}_{roomText.Text}";
+            usernameText.Text = username;
+
+            // Generate a random password
+            string password = GenerateRandomPassword(12);
+            passwordText.Text = password; // Set the generated password in the passwordText TextBox
+
+            // Prepare email content to display in emailgeneratorRich
+            string subject = "Welcome to BoardMate!";
+            string body = $"Dear {firstname} {lastname},\n\n" +
+                          $"Welcome to the Boarding House Community!\n\n" +
+                          $"We are pleased to welcome you to the BoardMate community. Your registration has been successfully completed, and your account credentials have been generated.\n\n" +
+                          $"Please find your temporary credentials in the attached PDF document. Kindly remember to change your password after your first login for security purposes.\n\n" +
+                          $"Login Instructions:\n" +
+                          $"Visit the Boarding House Management System login Application:\n" +
+                          $"Click on \"Login\" to access your account\n\n" +
+                          $"If you have any questions or need assistance, feel free to contact our support team.\n\n" +
+                          $"Thank you for joining our community! We look forward to having you with us.\n\n" +
+                          $"Best regards,\n" +
+                          $"Your Boarding House Management Team";
+
+            // Display the email content in emailgeneratorRich
+            emailgeneratorRich.Text = $"To: {textBox1.Text}\nSubject: {subject}\n\n{body}";
+        }
+
+        private void cancel_Btn1_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private async void encode_Btn1_Click(object sender, EventArgs e)
+        {
+            if (!ValidateFields()) // Check if validation fails
+            {
+                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Prevent the email from being sent if validation fails
+            }
+            string email = textBox1.Text;
+
+            // Validate email format
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if email is invalid
+            }
+            string selectedBoardingHouse = boardingCombo.Text;
+
+            // Check boarding house availability
+            DatabaseConnection db = new DatabaseConnection();
+            if (!db.IsBoardingHouseAvailable(selectedBoardingHouse))
+            {
+                MessageBox.Show("The selected boarding house has reached its capacity. Please choose a different house.", "Capacity Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if capacity is full
+            }
+
+            // Get data from text boxes
+            string lastname = lnameText.Text.ToUpper();
+            string firstname = fnameText.Text.ToUpper();
+            int age = int.Parse(ageText.Text);
+            int roomnumber = int.Parse(roomText.Text);
+            email = textBox1.Text;
+            string username = usernameText.Text;
+            string password = passwordText.Text;
+            string contact = contactText.Text;
+            string gender = genderCombo.SelectedItem.ToString().ToUpper();
+            string address = addText.Text.ToUpper();
+            string emergency_name1 = emergency_contactt1.Text.ToUpper();
+            string emergency_name2 = emergency_contactt2.Text.ToUpper();
+            string emergency_contact1 = emergency_number1.Text;
+            string emergency_contact2 = emergency_number2.Text;
+            int pax_number = int.Parse(paxText.Text);
+
+            string wifi = wifii;
+            string parking = parkingg;
+            DateTime movein_date = movein_datapicker.Value;
+            DateTime expiration_date = expiration_datapicker.Value;
+            DateTime birth_date = birthDatePicker.Value;
+
+            // Create a database connection
+            DatabaseConnection dbase = new DatabaseConnection();
+
+            // Check if email or contact already exists
+            if (db.IsEmailOrContactExists(email, contact))
+            {
+                MessageBox.Show("The email or contact number is already in use. Please use different values.",
+                                "Duplicate Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if duplicate data is found
+            }
+
+            // Insert tenant into the database
+            db.InsertTenant(lastname, firstname, age, roomnumber, email, username, password, contact, gender, address, emergency_name1, emergency_name2, emergency_contact1, emergency_contact2, wifi, parking, movein_date, expiration_date, selectedBoardingHouse, birth_date, pax_number);
+
+            db.UpdateCurrentOccupancy(selectedBoardingHouse);
+
+            // Create the PDF with credentials
+            byte[] pdfData = CreatePdfWithCredentials(firstname, lastname, username, password);
+
+            // Send the email with the PDF attachment
+            await SendEmailWithPdfAttachment(email, pdfData);
+
+            PopulateAvailableRooms();
         }
     }
 }
