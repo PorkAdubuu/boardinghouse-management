@@ -106,6 +106,10 @@ namespace try_messaging
             }
         }
 
-        
+        private void ForgotPassword_Click(object sender, EventArgs e)
+        {
+            forgotPass_window forgotPass_Window = new forgotPass_window();
+            forgotPass_Window.Show();
+        }
     }
 }

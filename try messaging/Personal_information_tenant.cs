@@ -41,7 +41,7 @@ namespace try_messaging
         private void Personal_information_tenant_Load(object sender, EventArgs e)
         {
             LoadTenantInformation();
-            updateBtn.Visible = false;
+            update_Btn2.Visible = false;
         }
 
         private void LoadTenantInformation()
@@ -124,7 +124,7 @@ namespace try_messaging
                     MessageBox.Show("Error updating emergency contacts: " + ex.Message);
                 }
 
-                edit_Btn.Image = Properties.Resources.edit;
+                edit_Btn1.Image = Properties.Resources.edit;
                 name1Text.BorderStyle = BorderStyle.None;
                 name2Text.BorderStyle = BorderStyle.None;
                 emergencyNo1Text.BorderStyle = BorderStyle.None;
@@ -135,7 +135,7 @@ namespace try_messaging
                 emergencyNo1Text.ReadOnly = true;
                 emergencyNo2Text.ReadOnly = true;
 
-                updateBtn.Visible = false;
+                update_Btn2.Visible = false;
 
             }
         }
@@ -283,17 +283,166 @@ namespace try_messaging
 
         private void edit_Btn_Click(object sender, EventArgs e)
         {
-            updateBtn.Visible = !updateBtn.Visible;
+            update_Btn2.Visible = !update_Btn2.Visible;
             name1Text.BorderStyle = BorderStyle.FixedSingle;
             name2Text.BorderStyle = BorderStyle.FixedSingle;
             emergencyNo1Text.BorderStyle = BorderStyle.FixedSingle;
             emergencyNo2Text.BorderStyle = BorderStyle.FixedSingle;
-            edit_Btn.Image = Properties.Resources.done;
+            edit_Btn1.Image = Properties.Resources.done;
 
             name1Text.ReadOnly = false;
             name2Text.ReadOnly = false;
             emergencyNo1Text.ReadOnly = false;
             emergencyNo2Text.ReadOnly = false;
+        }
+
+        private void upload_Btn1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+            openFileDialog1.Title = "Select Profile Picture";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // Display selected image in PictureBox for preview
+                    profilePicture.Image = Image.FromFile(openFileDialog1.FileName);
+
+                    // Load image file into byte array
+                    using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            fs.CopyTo(ms);
+                            profilePictureData = ms.ToArray();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading image file: " + ex.Message);
+                    profilePictureData = null;
+                }
+            }
+        }
+
+        private void update_Btn1_Click(object sender, EventArgs e)
+        {
+            if (profilePictureData == null)
+            {
+                MessageBox.Show("Please upload a profile picture first.");
+                return;
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "UPDATE tenants_details SET profile_picture = @profilePicture WHERE tenid = @tenantId";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@profilePicture", profilePictureData);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Profile picture updated successfully.");
+
+                        // Close the current tenant_dashboard form
+                        foreach (Form openForm in Application.OpenForms)
+                        {
+                            if (openForm is tenant_dashboard)
+                            {
+                                openForm.Close();
+                                break;
+                            }
+                        }
+
+                        // Reopen tenant_dashboard and center it on the screen
+                        tenant_dashboard newDashboard = new tenant_dashboard(tenantId); // Pass any required parameters like tenantId                      
+                        newDashboard.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update profile picture.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating profile picture: " + ex.Message);
+                }
+            }
+        }
+
+        private void remove_Btn1_Click(object sender, EventArgs e)
+        {
+            profilePicture.Image = null;
+            profilePictureData = null;
+        }
+
+        private void edit_Btn1_Click(object sender, EventArgs e)
+        {
+            update_Btn2.Visible = !update_Btn2.Visible;
+            name1Text.BorderStyle = BorderStyle.FixedSingle;
+            name2Text.BorderStyle = BorderStyle.FixedSingle;
+            emergencyNo1Text.BorderStyle = BorderStyle.FixedSingle;
+            emergencyNo2Text.BorderStyle = BorderStyle.FixedSingle;
+            edit_Btn1.Image = Properties.Resources.done;
+
+            name1Text.ReadOnly = false;
+            name2Text.ReadOnly = false;
+            emergencyNo1Text.ReadOnly = false;
+            emergencyNo2Text.ReadOnly = false;
+        }
+
+        private void update_Btn2_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "UPDATE tenants_details SET emergency_contact1 = @emergencyContact1, emergency_contact2 = @emergencyContact2, emergency_name1 = @name1Textt, emergency_name2 = @name2Textt WHERE tenid = @tenantId";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                    // Set the parameters
+                    cmd.Parameters.AddWithValue("@emergencyContact1", emergencyNo1Text.Text);
+                    cmd.Parameters.AddWithValue("@emergencyContact2", emergencyNo2Text.Text);
+                    cmd.Parameters.AddWithValue("@name1Textt", name1Text.Text);
+                    cmd.Parameters.AddWithValue("@name2Textt", name2Text.Text);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    // Execute the update command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Emergency contacts updated successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No changes were made.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating emergency contacts: " + ex.Message);
+                }
+
+                edit_Btn1.Image = Properties.Resources.edit;
+                name1Text.BorderStyle = BorderStyle.None;
+                name2Text.BorderStyle = BorderStyle.None;
+                emergencyNo1Text.BorderStyle = BorderStyle.None;
+                emergencyNo2Text.BorderStyle = BorderStyle.None;
+
+                name1Text.ReadOnly = true;
+                name2Text.ReadOnly = true;
+                emergencyNo1Text.ReadOnly = true;
+                emergencyNo2Text.ReadOnly = true;
+
+                update_Btn2.Visible = false;
+
+            }
         }
     }
 }

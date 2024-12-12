@@ -15,14 +15,19 @@ namespace try_messaging
 {
     public partial class tenant_paymentMODE : Form
     {
+
+        public event Action tenant_paymentMODEClosed;
+        private int selectedBillingId;
         private int tenantId;  // Tenant ID (logged in tenant's ID)
         private DatabaseConnection dbConnection;
-        public tenant_paymentMODE(int tenantId)
+        
+        public tenant_paymentMODE(int tenantId, int selectedBillingId)
         {
             InitializeComponent();
             this.CenterToParent();
             this.tenantId = tenantId;
             dbConnection = new DatabaseConnection();
+            this.selectedBillingId = selectedBillingId; // Assigned here
         }
 
         private void tenant_paymentMODE_Load(object sender, EventArgs e)
@@ -71,20 +76,18 @@ namespace try_messaging
                     string query = @"
                     SELECT remaining_balance
                     FROM billing_table
-                    WHERE tenant_id = @tenantId
-                    ORDER BY billing_id DESC LIMIT 1";  // Fetch the latest bill for the tenant
+                    WHERE tenant_id = @tenantId AND billing_id = @selectedBillingId";  // Use selectedBillingId here
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Pass only tenant_id
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);  // Pass tenant_id
+                    cmd.Parameters.AddWithValue("@selectedBillingId", selectedBillingId);  // Pass selectedBillingId
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            // Set the bill values for the labels, formatted with thousand separators and 2 decimal points                          
+                            // Set the bill values for the labels, formatted with thousand separators and 2 decimal points
                             totalBill.Text = Convert.ToDecimal(reader["remaining_balance"]).ToString("N2");
-
-                            
                         }
                         else
                         {
@@ -130,14 +133,14 @@ namespace try_messaging
                     {
                         try
                         {
-                            // Step 1: Get the latest billing details
+                            // Step 1: Get the billing details using selectedBillingId
                             string getBillingQuery = @"
                             SELECT billing_id, total_bill 
                             FROM billing_table 
-                            WHERE tenant_id = @tenantId AND status IN ('No payment', 'Declined')
-                            ORDER BY billing_id DESC LIMIT 1";
+                            WHERE tenant_id = @tenantId AND billing_id = @selectedBillingId AND status IN ('No payment', 'Declined')";
                             MySqlCommand cmdGetBilling = new MySqlCommand(getBillingQuery, conn, transaction);
                             cmdGetBilling.Parameters.AddWithValue("@tenantId", tenantId);
+                            cmdGetBilling.Parameters.AddWithValue("@selectedBillingId", selectedBillingId);  // Use selectedBillingId here
 
                             int billingId;
                             decimal totalBill;
@@ -201,10 +204,22 @@ namespace try_messaging
 
                             cmdInsertNotif.ExecuteNonQuery();
 
+                            // Step 6: Insert notification into admin_notif table
+                            string insertAdminNotifQuery = @"
+                            INSERT INTO admin_notif (notif_type, description, tenant_id, is_read)
+                            VALUES (@notifType, @description, @tenantId, 0)";
+                            MySqlCommand cmdInsertAdminNotif = new MySqlCommand(insertAdminNotifQuery, conn, transaction);
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@notifType", "Payment Alert");
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@description", $"Tenant from room {roomNumber} has submitted a payment. Please review their payment details.");
+                            cmdInsertAdminNotif.Parameters.AddWithValue("@tenantId", tenantId);
+
+                            cmdInsertAdminNotif.ExecuteNonQuery();
+
                             // Commit the transaction
                             transaction.Commit();
 
                             MessageBox.Show("Payment successfully processed and logged.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            tenant_paymentMODEClosed?.Invoke();
                             this.Close();
                         }
                         catch (Exception ex)
@@ -220,6 +235,12 @@ namespace try_messaging
             {
                 MessageBox.Show("Error confirming payment: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tenant_paymentMODE_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Trigger the event when the form is closed
+            tenant_paymentMODEClosed?.Invoke();
         }
     }
 }

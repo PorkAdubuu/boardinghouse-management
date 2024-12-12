@@ -29,9 +29,94 @@ namespace try_messaging
 
         private void tenant_account_profile_Load(object sender, EventArgs e)
         {
+            chart1.Series.Clear();
+
             LoadTenantInformation();
             LoadHOuseInformation();
+            LoadBillingStatistics();
         }
+
+        private void LoadBillingStatistics()
+        {
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to get total bills per month for the given tenant in the current year
+                    string query = @"
+                SELECT 
+                    MONTH(start_date) AS BillMonth, 
+                    SUM(total_bill) AS TotalBill
+                FROM billing_table
+                WHERE 
+                    tenant_id = @tenantId 
+                    AND YEAR(start_date) = YEAR(CURDATE())
+                GROUP BY MONTH(start_date)
+                ORDER BY MONTH(start_date)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId);
+
+                    // Dictionary to store monthly totals
+                    Dictionary<int, decimal> monthlyBills = new Dictionary<int, decimal>();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int month = reader.GetInt32("BillMonth");
+                            decimal total = reader.GetDecimal("TotalBill");
+                            monthlyBills[month] = total;
+                        }
+                    }
+
+                    // Populate the chart
+                    PopulateChart(monthlyBills);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading billing statistics: " + ex.Message);
+                }
+            }
+        }
+
+        private void PopulateChart(Dictionary<int, decimal> monthlyBills)
+        {
+            // Clear existing data
+            chart1.Series.Clear();
+            chart1.Legends.Clear();
+
+
+            // Create a new series for the chart
+            var series = new System.Windows.Forms.DataVisualization.Charting.Series
+            {
+                Name = "Total Bills",
+                ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+            };
+
+            // Add data points for each month (January to December)
+            for (int month = 1; month <= 12; month++)
+            {
+                decimal totalBill = monthlyBills.ContainsKey(month) ? monthlyBills[month] : 0;
+                series.Points.AddXY(System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month), totalBill);
+            }
+
+            // Add the series to the chart
+            chart1.Series.Add(series);
+
+            // Set chart title (optional)
+            chart1.Titles.Clear();
+            
+
+            // Customize the chart (optional)
+            
+            chart1.ChartAreas[0].AxisX.Interval = 1;
+        }
+
+
+
 
         private void LoadTenantInformation()
         {

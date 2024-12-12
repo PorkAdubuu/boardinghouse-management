@@ -71,6 +71,7 @@
             this.ForgotPassword.Size = new System.Drawing.Size(116, 16);
             this.ForgotPassword.TabIndex = 35;
             this.ForgotPassword.Text = "Forgot Password?";
+            this.ForgotPassword.Click += new System.EventHandler(this.ForgotPassword_Click);
             // 
             // pictureBox3
             // 

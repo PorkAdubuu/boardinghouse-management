@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace try_messaging
@@ -18,7 +19,7 @@ namespace try_messaging
             InitializeComponent();
             currentTenantId = tenantId;
             dbConnection = new DatabaseConnection();
-            MarkMessagesAsRead();
+            MarkMessagesAsRead(tenantId);
             LoadMessages();
             InitializeTimer();
             this.CenterToParent();
@@ -26,15 +27,18 @@ namespace try_messaging
             //this.BackColor = ColorTranslator.FromHtml("#f7f7f7");
         }
 
-        private void MarkMessagesAsRead()
+        private void MarkMessagesAsRead(int tenantId)
         {
             using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
             {
                 try
                 {
                     conn.Open();
+
+                    // Update command with parameterized query
                     MySqlCommand cmd = new MySqlCommand(
-                        "UPDATE combined_messages SET is_read = 1 WHERE sender_type = 'admin' AND is_read = 0", conn);
+                        "UPDATE combined_messages SET is_read = 1 WHERE sender_type = 'admin' AND is_read = 0 AND recipient_id = @tenantId", conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId); // Add the parameter before execution
                     cmd.ExecuteNonQuery(); // Execute the update command
                 }
                 catch (Exception ex)
@@ -182,7 +186,82 @@ namespace try_messaging
         private void tenantcomform_Load(object sender, EventArgs e)
         {
             // Code to execute on form load if needed
+            LoadAdminProfilePicture();
+            AddPlaceholder();
         }
+        private void AddPlaceholder()
+        {
+            // Set the initial placeholder text
+            typeMessage.Text = "Type your message here...";
+            typeMessage.ForeColor = Color.Gray;
+
+            // Handle GotFocus event to remove the placeholder
+            typeMessage.GotFocus += (sender, e) =>
+            {
+                if (typeMessage.Text == "Type your message here...")
+                {
+                    typeMessage.Text = string.Empty;
+                    typeMessage.ForeColor = Color.Black;
+                }
+            };
+
+            // Handle LostFocus event to restore the placeholder
+            typeMessage.LostFocus += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(typeMessage.Text))
+                {
+                    typeMessage.Text = "Type your message here...";
+                    typeMessage.ForeColor = Color.Gray;
+                }
+            };
+        }
+
+        private void LoadAdminProfilePicture()
+        {
+            try
+            {
+                // Connection string to your database
+                
+
+                // SQL query to get the profile picture
+                string query = "SELECT profile_picture FROM admin_details WHERE admin_details_id = 1";
+
+                using (MySqlConnection connection = new MySqlConnection(dbConnection.GetConnectionString()))
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Check if the profile_picture column is not null
+                                if (!reader.IsDBNull(0))
+                                {
+                                    byte[] imageBytes = (byte[])reader["profile_picture"];
+
+                                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                                    {
+                                        adminprofile.Image = Image.FromStream(ms); // Display the image in the PictureBox
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No profile picture found for the selected admin.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    adminprofile.Image = null; // Clear PictureBox if no image is found
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading profile picture: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void typeMessage_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && !e.Shift)

@@ -48,9 +48,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.emailgeneratorRich = new System.Windows.Forms.RichTextBox();
-            this.clearBtn = new System.Windows.Forms.PictureBox();
-            this.sendbutton = new System.Windows.Forms.PictureBox();
-            this.generateBtn = new System.Windows.Forms.PictureBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.sendingLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -79,9 +76,11 @@
             this.amenities3 = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.birthDatePicker = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sendbutton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.generateBtn)).BeginInit();
+            this.label25 = new System.Windows.Forms.Label();
+            this.paxText = new System.Windows.Forms.TextBox();
+            this.generate_Btn1 = new System.Windows.Forms.Button();
+            this.cancel_Btn1 = new System.Windows.Forms.Button();
+            this.encode_Btn1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // fnameText
@@ -185,7 +184,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label5.Location = new System.Drawing.Point(308, 110);
+            this.label5.Location = new System.Drawing.Point(308, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 18);
             this.label5.TabIndex = 48;
@@ -279,47 +278,11 @@
             this.emailgeneratorRich.Text = "";
             this.emailgeneratorRich.TextChanged += new System.EventHandler(this.emailgeneratorRich_TextChanged);
             // 
-            // clearBtn
-            // 
-            this.clearBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.clearBtn.Image = global::try_messaging.Properties.Resources.CANCEL_BUTT;
-            this.clearBtn.Location = new System.Drawing.Point(456, 436);
-            this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(119, 34);
-            this.clearBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.clearBtn.TabIndex = 58;
-            this.clearBtn.TabStop = false;
-            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
-            // 
-            // sendbutton
-            // 
-            this.sendbutton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sendbutton.Image = global::try_messaging.Properties.Resources.GENERATE_AND_SEND_BUTT;
-            this.sendbutton.Location = new System.Drawing.Point(331, 476);
-            this.sendbutton.Name = "sendbutton";
-            this.sendbutton.Size = new System.Drawing.Size(244, 34);
-            this.sendbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.sendbutton.TabIndex = 59;
-            this.sendbutton.TabStop = false;
-            this.sendbutton.Click += new System.EventHandler(this.sendbutton_Click);
-            // 
-            // generateBtn
-            // 
-            this.generateBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.generateBtn.Image = global::try_messaging.Properties.Resources.GENERATE_BUTT;
-            this.generateBtn.Location = new System.Drawing.Point(331, 436);
-            this.generateBtn.Name = "generateBtn";
-            this.generateBtn.Size = new System.Drawing.Size(119, 34);
-            this.generateBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.generateBtn.TabIndex = 61;
-            this.generateBtn.TabStop = false;
-            this.generateBtn.Click += new System.EventHandler(this.generateBtn_Click);
-            // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(348, 529);
+            this.progressBar.Location = new System.Drawing.Point(352, 534);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(200, 10);
+            this.progressBar.Size = new System.Drawing.Size(188, 10);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 62;
             this.progressBar.Visible = false;
@@ -327,7 +290,7 @@
             // sendingLabel
             // 
             this.sendingLabel.AutoSize = true;
-            this.sendingLabel.Location = new System.Drawing.Point(428, 513);
+            this.sendingLabel.Location = new System.Drawing.Point(422, 518);
             this.sendingLabel.Name = "sendingLabel";
             this.sendingLabel.Size = new System.Drawing.Size(67, 13);
             this.sendingLabel.TabIndex = 63;
@@ -360,7 +323,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(308, 140);
+            this.label3.Location = new System.Drawing.Point(308, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 18);
             this.label3.TabIndex = 67;
@@ -368,7 +331,7 @@
             // 
             // movein_datapicker
             // 
-            this.movein_datapicker.Location = new System.Drawing.Point(410, 141);
+            this.movein_datapicker.Location = new System.Drawing.Point(410, 174);
             this.movein_datapicker.Name = "movein_datapicker";
             this.movein_datapicker.Size = new System.Drawing.Size(201, 20);
             this.movein_datapicker.TabIndex = 68;
@@ -378,7 +341,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label8.Location = new System.Drawing.Point(308, 170);
+            this.label8.Location = new System.Drawing.Point(308, 203);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 18);
             this.label8.TabIndex = 69;
@@ -386,7 +349,7 @@
             // 
             // expiration_datapicker
             // 
-            this.expiration_datapicker.Location = new System.Drawing.Point(410, 174);
+            this.expiration_datapicker.Location = new System.Drawing.Point(410, 207);
             this.expiration_datapicker.Name = "expiration_datapicker";
             this.expiration_datapicker.Size = new System.Drawing.Size(201, 20);
             this.expiration_datapicker.TabIndex = 70;
@@ -519,7 +482,7 @@
             // roomText
             // 
             this.roomText.FormattingEnabled = true;
-            this.roomText.Location = new System.Drawing.Point(410, 111);
+            this.roomText.Location = new System.Drawing.Point(410, 144);
             this.roomText.Name = "roomText";
             this.roomText.Size = new System.Drawing.Size(201, 21);
             this.roomText.TabIndex = 83;
@@ -529,7 +492,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label22.Location = new System.Drawing.Point(310, 200);
+            this.label22.Location = new System.Drawing.Point(310, 233);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(76, 18);
             this.label22.TabIndex = 84;
@@ -538,7 +501,7 @@
             // amenities2
             // 
             this.amenities2.AutoSize = true;
-            this.amenities2.Location = new System.Drawing.Point(410, 205);
+            this.amenities2.Location = new System.Drawing.Point(410, 238);
             this.amenities2.Name = "amenities2";
             this.amenities2.Size = new System.Drawing.Size(50, 17);
             this.amenities2.TabIndex = 86;
@@ -569,7 +532,7 @@
             // amenities3
             // 
             this.amenities3.AutoSize = true;
-            this.amenities3.Location = new System.Drawing.Point(410, 228);
+            this.amenities3.Location = new System.Drawing.Point(410, 261);
             this.amenities3.Name = "amenities3";
             this.amenities3.Size = new System.Drawing.Size(94, 17);
             this.amenities3.TabIndex = 89;
@@ -596,6 +559,67 @@
             this.birthDatePicker.TabIndex = 91;
             this.birthDatePicker.ValueChanged += new System.EventHandler(this.birthDatePicker_ValueChanged);
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label25.Location = new System.Drawing.Point(308, 114);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(91, 18);
+            this.label25.TabIndex = 93;
+            this.label25.Text = "PAX number";
+            // 
+            // paxText
+            // 
+            this.paxText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paxText.Location = new System.Drawing.Point(410, 114);
+            this.paxText.Name = "paxText";
+            this.paxText.Size = new System.Drawing.Size(202, 24);
+            this.paxText.TabIndex = 92;
+            // 
+            // generate_Btn1
+            // 
+            this.generate_Btn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.generate_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.generate_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generate_Btn1.ForeColor = System.Drawing.Color.White;
+            this.generate_Btn1.Location = new System.Drawing.Point(352, 436);
+            this.generate_Btn1.Name = "generate_Btn1";
+            this.generate_Btn1.Size = new System.Drawing.Size(90, 32);
+            this.generate_Btn1.TabIndex = 94;
+            this.generate_Btn1.Text = "Generate";
+            this.generate_Btn1.UseVisualStyleBackColor = false;
+            this.generate_Btn1.Click += new System.EventHandler(this.generate_Btn1_Click);
+            // 
+            // cancel_Btn1
+            // 
+            this.cancel_Btn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.cancel_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cancel_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancel_Btn1.ForeColor = System.Drawing.Color.White;
+            this.cancel_Btn1.Location = new System.Drawing.Point(455, 436);
+            this.cancel_Btn1.Name = "cancel_Btn1";
+            this.cancel_Btn1.Size = new System.Drawing.Size(90, 32);
+            this.cancel_Btn1.TabIndex = 95;
+            this.cancel_Btn1.Text = "Cancel";
+            this.cancel_Btn1.UseVisualStyleBackColor = false;
+            this.cancel_Btn1.Click += new System.EventHandler(this.cancel_Btn1_Click);
+            // 
+            // encode_Btn1
+            // 
+            this.encode_Btn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.encode_Btn1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.encode_Btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.encode_Btn1.ForeColor = System.Drawing.Color.White;
+            this.encode_Btn1.Location = new System.Drawing.Point(352, 474);
+            this.encode_Btn1.Name = "encode_Btn1";
+            this.encode_Btn1.Size = new System.Drawing.Size(193, 32);
+            this.encode_Btn1.TabIndex = 96;
+            this.encode_Btn1.Text = "Encode and Send";
+            this.encode_Btn1.UseVisualStyleBackColor = false;
+            this.encode_Btn1.Click += new System.EventHandler(this.encode_Btn1_Click);
+            // 
             // tenantmanagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -603,6 +627,11 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 558);
+            this.Controls.Add(this.encode_Btn1);
+            this.Controls.Add(this.cancel_Btn1);
+            this.Controls.Add(this.generate_Btn1);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.paxText);
             this.Controls.Add(this.birthDatePicker);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.amenities3);
@@ -631,9 +660,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.sendingLabel);
             this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.generateBtn);
-            this.Controls.Add(this.sendbutton);
-            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.passwordText);
@@ -659,9 +685,6 @@
             this.Name = "tenantmanagement";
             this.Text = "BoardMate";
             this.Load += new System.EventHandler(this.tenantmanagement_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.clearBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sendbutton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.generateBtn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,9 +710,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RichTextBox emailgeneratorRich;
-        private System.Windows.Forms.PictureBox clearBtn;
-        private System.Windows.Forms.PictureBox sendbutton;
-        private System.Windows.Forms.PictureBox generateBtn;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label sendingLabel;
         private System.Windows.Forms.Label label1;
@@ -718,5 +738,10 @@
         private System.Windows.Forms.CheckBox amenities3;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.DateTimePicker birthDatePicker;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox paxText;
+        private System.Windows.Forms.Button generate_Btn1;
+        private System.Windows.Forms.Button cancel_Btn1;
+        private System.Windows.Forms.Button encode_Btn1;
     }
 }

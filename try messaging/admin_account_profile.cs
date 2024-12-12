@@ -36,6 +36,7 @@ namespace try_messaging
         {
             LoadAdminInformation();
             LoadAdminverificationcode();
+            LoadAdminDetails();
 
         }
         private void LoadAdminverificationcode()
@@ -110,6 +111,121 @@ namespace try_messaging
         {
             adminChangeProfile adminChangeProfile = new adminChangeProfile(adminId);
             adminChangeProfile.Show();
+        }
+
+
+
+        private void LoadAdminDetails()
+        {
+            // Here you can write code to load tenant data based on adminId
+            string query = "SELECT * FROM admin_details WHERE admin_details_id = @adminId";
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@adminId", adminId);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        // Populate your form fields with the tenant details
+                        fnameText.Text = reader["firstname"].ToString();
+                        lnameText.Text = reader["lastname"].ToString();
+                        
+                        ageText.Text = reader["age"].ToString();
+                        genderCombo.Text = reader["gender"].ToString();
+                        contactText.Text = reader["phone_number"].ToString();
+                        emailText.Text = reader["email"].ToString();
+                        addText.Text = reader["address"].ToString();                      
+
+                        if (reader["birth_date"] != DBNull.Value)
+                        {
+                            DateTime birthDate = Convert.ToDateTime(reader["birth_date"]);
+                            birthdatePicker.Value = birthDate;
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("Birth date is not available.");
+                        }
+                        
+
+                        
+
+                        
+
+                     
+                    }
+                    else
+                    {
+                        MessageBox.Show("Admin not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while loading tenant details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void save_Btn_Click(object sender, EventArgs e)
+        {
+            string query = @"
+                UPDATE admin_details
+                SET firstname = @firstname,
+                    lastname = @lastname,
+                    age = @age,
+                    gender = @gender,
+                    phone_number = @phone,
+                    email = @email,
+                    address = @address,
+                    birth_date = @birthDate
+                WHERE admin_details_id = @adminId";
+
+            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@adminId", adminId);
+                    cmd.Parameters.AddWithValue("@firstname", fnameText.Text);
+                    cmd.Parameters.AddWithValue("@lastname", lnameText.Text);
+                    cmd.Parameters.AddWithValue("@age", ageText.Text);
+                    cmd.Parameters.AddWithValue("@gender", genderCombo.Text);
+                    cmd.Parameters.AddWithValue("@phone", contactText.Text);
+                    cmd.Parameters.AddWithValue("@email", emailText.Text);
+                    cmd.Parameters.AddWithValue("@address", addText.Text);
+                    cmd.Parameters.AddWithValue("@birthDate", birthdatePicker.Value);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Admin details updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadAdminDetails(); // Refresh the details
+                        LoadAdminInformation();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No changes were made.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating admin details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void birthdatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = birthdatePicker.Value;
+            DateTime today = DateTime.Today;
+            int age = today.Year - selectedDate.Year;
+            if (selectedDate > today.AddYears(-age)) age--; // Adjust if the birthday hasn't occurred this year yet
+            ageText.Text = age.ToString();
         }
     } 
 }

@@ -27,7 +27,7 @@ namespace try_messaging
             this.tenantId = tenantId; // Store the tenant's ID
             InitializeMessageCheckTimer(); // Initialize the timer
             dbConnection = new DatabaseConnection();
-            CheckForNewMessages();
+            CheckForNewMessages(tenantId);
             CheckNewNotifications();
             LoadTenantName(); // Load the tenant's name when the form is created
             LoadTenantProfilePicture(tenantId);
@@ -222,9 +222,9 @@ namespace try_messaging
         }
         private void MessageCheckTimer_Tick(object sender, EventArgs e)
         {
-            CheckForNewMessages(); // Check for new messages every tick
+            CheckForNewMessages(tenantId); // Check for new messages every tick
         }
-        private void CheckForNewMessages()
+        private void CheckForNewMessages(int tenantId)
         {
             bool hasNewMessages = false;
 
@@ -233,9 +233,10 @@ namespace try_messaging
                 try
                 {
                     conn.Open();
-                    // Check for unread messages
+                    // Check for unread messages from the specific tenant
                     MySqlCommand cmd = new MySqlCommand(
-                        "SELECT COUNT(*) FROM combined_messages WHERE sender_type = 'admin' AND is_read =0", conn);
+                        "SELECT COUNT(*) FROM combined_messages WHERE sender_type = 'admin' AND is_read = 0 AND recipient_id = @tenantId", conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId); // Use parameterized query to prevent SQL injection
 
                     int unreadCount = Convert.ToInt32(cmd.ExecuteScalar());
                     hasNewMessages = unreadCount > 0; // Set to true if there are unread messages
@@ -256,6 +257,7 @@ namespace try_messaging
                 mail_icon.Image = Properties.Resources.mail; // Set to the default icon
             }
         }
+
 
         private void LoadFormInPanel(Form childForm)
         {
@@ -323,16 +325,18 @@ namespace try_messaging
 
         private void mail_icon_Click(object sender, EventArgs e)
         {
-            
-            
+
+
+            // Mark messages as read first
+            MarkMessagesAsRead(tenantId);
+
+            // Now show the tenant form
             tenantcomform tenantcomform = new tenantcomform(tenantId);
-            tenantcomform.Show();
+            tenantcomform.ShowDialog();
 
-            MarkMessagesAsRead();
 
-            
         }
-        private void MarkMessagesAsRead()
+        private void MarkMessagesAsRead(int tenantId)
         {
             using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
             {
@@ -340,9 +344,10 @@ namespace try_messaging
                 {
                     conn.Open();
 
-                    
+                    // Update command with parameterized query
                     MySqlCommand cmd = new MySqlCommand(
-                        "UPDATE combined_messages SET is_read = 1 WHERE sender_type = 'admin' AND is_read = 0", conn);
+                        "UPDATE combined_messages SET is_read = 1 WHERE sender_type = 'admin' AND is_read = 0 AND recipient_id = @tenantId", conn);
+                    cmd.Parameters.AddWithValue("@tenantId", tenantId); // Add the parameter before execution
                     cmd.ExecuteNonQuery(); // Execute the update command
                 }
                 catch (Exception ex)
@@ -351,6 +356,12 @@ namespace try_messaging
                 }
             }
         }
+
+
+
+
+
+
 
         private void profilePic_Click(object sender, EventArgs e)
         {
@@ -444,7 +455,8 @@ namespace try_messaging
         private void maintenance_Btn_Click(object sender, EventArgs e)
         {
             // Clear the panel and load the profile form
-            
+            tenant_maintenance tenant_Maintenance = new tenant_maintenance(tenantId);
+            LoadFormInPanel(tenant_Maintenance);
 
             //code here the target form
 
@@ -644,6 +656,38 @@ namespace try_messaging
                 if (!notifPanel.Bounds.Contains(e.Location))
                 {
                     notifPanel.Visible = false;
+                }
+            }
+        }
+
+        private void clear_Btn_Click(object sender, EventArgs e)
+        {
+            // Create a new database connection
+            string connectionString = dbConnection.GetConnectionString(); // Replace with your actual connection string
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Query to delete all records from the admin_notif table
+                    string query = "DELETE FROM tenant_notif";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        // Execute the DELETE query
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Notify the user of successful clearing
+                        MessageBox.Show($"{rowsAffected} notifications cleared successfully.", "Notifications Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        notifPanel.Visible = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any errors
+                    MessageBox.Show("An error occurred while clearing notifications: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

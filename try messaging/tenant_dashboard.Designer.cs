@@ -46,7 +46,7 @@
             this.notification_Btn = new System.Windows.Forms.PictureBox();
             this.notificationsTable = new System.Windows.Forms.DataGridView();
             this.notifPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.clear_Btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mail_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
@@ -234,22 +234,24 @@
             // notifPanel
             // 
             this.notifPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.notifPanel.Controls.Add(this.button1);
+            this.notifPanel.Controls.Add(this.clear_Btn);
             this.notifPanel.Controls.Add(this.notificationsTable);
             this.notifPanel.Location = new System.Drawing.Point(744, 43);
             this.notifPanel.Name = "notifPanel";
             this.notifPanel.Size = new System.Drawing.Size(200, 265);
             this.notifPanel.TabIndex = 64;
             // 
-            // button1
+            // clear_Btn
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(62, 239);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 66;
-            this.button1.Text = "Clear";
-            this.button1.UseVisualStyleBackColor = false;
+            this.clear_Btn.BackColor = System.Drawing.Color.White;
+            this.clear_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.clear_Btn.Location = new System.Drawing.Point(61, 239);
+            this.clear_Btn.Name = "clear_Btn";
+            this.clear_Btn.Size = new System.Drawing.Size(75, 23);
+            this.clear_Btn.TabIndex = 66;
+            this.clear_Btn.Text = "Clear";
+            this.clear_Btn.UseVisualStyleBackColor = false;
+            this.clear_Btn.Click += new System.EventHandler(this.clear_Btn_Click);
             // 
             // tenant_dashboard
             // 
@@ -313,6 +315,6 @@
         private System.Windows.Forms.PictureBox notification_Btn;
         private System.Windows.Forms.DataGridView notificationsTable;
         private System.Windows.Forms.Panel notifPanel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button clear_Btn;
     }
 }

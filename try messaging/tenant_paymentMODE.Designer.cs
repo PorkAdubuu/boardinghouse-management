@@ -217,6 +217,7 @@
             this.MinimizeBox = false;
             this.Name = "tenant_paymentMODE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.tenant_paymentMODE_FormClosed);
             this.Load += new System.EventHandler(this.tenant_paymentMODE_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
