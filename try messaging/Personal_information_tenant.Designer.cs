@@ -30,12 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Personal_information_tenant));
             this.contactText = new System.Windows.Forms.TextBox();
-            this.addressText = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.emailText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ageText = new System.Windows.Forms.TextBox();
@@ -44,10 +42,8 @@
             this.emergencyNo2Text = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.nameText = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.profilePicture = new System.Windows.Forms.PictureBox();
-            this.name2Text = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.roomText = new System.Windows.Forms.TextBox();
@@ -57,12 +53,16 @@
             this.expirationText = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.name1Text = new System.Windows.Forms.TextBox();
             this.upload_Btn1 = new System.Windows.Forms.Button();
             this.remove_Btn1 = new System.Windows.Forms.Button();
             this.update_Btn1 = new System.Windows.Forms.Button();
             this.edit_Btn1 = new System.Windows.Forms.Button();
             this.update_Btn2 = new System.Windows.Forms.Button();
+            this.name1Text = new System.Windows.Forms.RichTextBox();
+            this.name2Text = new System.Windows.Forms.RichTextBox();
+            this.addressText = new System.Windows.Forms.RichTextBox();
+            this.emailText = new System.Windows.Forms.RichTextBox();
+            this.nameText = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,17 +76,6 @@
             this.contactText.Size = new System.Drawing.Size(204, 24);
             this.contactText.TabIndex = 11;
             this.contactText.TextChanged += new System.EventHandler(this.contactText_TextChanged);
-            // 
-            // addressText
-            // 
-            this.addressText.BackColor = System.Drawing.Color.White;
-            this.addressText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressText.Location = new System.Drawing.Point(89, 190);
-            this.addressText.Name = "addressText";
-            this.addressText.ReadOnly = true;
-            this.addressText.Size = new System.Drawing.Size(699, 24);
-            this.addressText.TabIndex = 12;
-            this.addressText.TextChanged += new System.EventHandler(this.addressText_TextChanged);
             // 
             // label7
             // 
@@ -128,16 +117,6 @@
             this.label4.Size = new System.Drawing.Size(120, 18);
             this.label4.TabIndex = 6;
             this.label4.Text = "Profile Picture:";
-            // 
-            // emailText
-            // 
-            this.emailText.BackColor = System.Drawing.Color.White;
-            this.emailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailText.Location = new System.Drawing.Point(70, 250);
-            this.emailText.Name = "emailText";
-            this.emailText.ReadOnly = true;
-            this.emailText.Size = new System.Drawing.Size(204, 24);
-            this.emailText.TabIndex = 15;
             // 
             // label1
             // 
@@ -183,7 +162,7 @@
             // 
             this.emergencyNo1Text.BackColor = System.Drawing.Color.White;
             this.emergencyNo1Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergencyNo1Text.Location = new System.Drawing.Point(131, 436);
+            this.emergencyNo1Text.Location = new System.Drawing.Point(148, 436);
             this.emergencyNo1Text.Name = "emergencyNo1Text";
             this.emergencyNo1Text.ReadOnly = true;
             this.emergencyNo1Text.Size = new System.Drawing.Size(101, 24);
@@ -193,7 +172,7 @@
             // 
             this.emergencyNo2Text.BackColor = System.Drawing.Color.White;
             this.emergencyNo2Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergencyNo2Text.Location = new System.Drawing.Point(131, 469);
+            this.emergencyNo2Text.Location = new System.Drawing.Point(148, 469);
             this.emergencyNo2Text.Name = "emergencyNo2Text";
             this.emergencyNo2Text.ReadOnly = true;
             this.emergencyNo2Text.Size = new System.Drawing.Size(101, 24);
@@ -212,17 +191,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // nameText
-            // 
-            this.nameText.BackColor = System.Drawing.Color.White;
-            this.nameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameText.Location = new System.Drawing.Point(70, 160);
-            this.nameText.Name = "nameText";
-            this.nameText.ReadOnly = true;
-            this.nameText.Size = new System.Drawing.Size(204, 24);
-            this.nameText.TabIndex = 13;
-            this.nameText.TextChanged += new System.EventHandler(this.nameText_TextChanged);
             // 
             // label10
             // 
@@ -243,17 +211,6 @@
             this.profilePicture.TabIndex = 29;
             this.profilePicture.TabStop = false;
             this.profilePicture.Click += new System.EventHandler(this.profilePicture_Click);
-            // 
-            // name2Text
-            // 
-            this.name2Text.BackColor = System.Drawing.Color.White;
-            this.name2Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name2Text.Location = new System.Drawing.Point(24, 469);
-            this.name2Text.Name = "name2Text";
-            this.name2Text.ReadOnly = true;
-            this.name2Text.Size = new System.Drawing.Size(101, 24);
-            this.name2Text.TabIndex = 32;
-            this.name2Text.MouseClick += new System.Windows.Forms.MouseEventHandler(this.name2Text_MouseClick);
             // 
             // label8
             // 
@@ -344,16 +301,6 @@
             this.label15.TabIndex = 42;
             this.label15.Text = resources.GetString("label15.Text");
             // 
-            // name1Text
-            // 
-            this.name1Text.BackColor = System.Drawing.Color.White;
-            this.name1Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name1Text.Location = new System.Drawing.Point(24, 436);
-            this.name1Text.Name = "name1Text";
-            this.name1Text.ReadOnly = true;
-            this.name1Text.Size = new System.Drawing.Size(101, 24);
-            this.name1Text.TabIndex = 43;
-            // 
             // upload_Btn1
             // 
             this.upload_Btn1.BackColor = System.Drawing.Color.White;
@@ -424,6 +371,61 @@
             this.update_Btn2.UseVisualStyleBackColor = false;
             this.update_Btn2.Click += new System.EventHandler(this.update_Btn2_Click);
             // 
+            // name1Text
+            // 
+            this.name1Text.BackColor = System.Drawing.Color.White;
+            this.name1Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name1Text.Location = new System.Drawing.Point(23, 436);
+            this.name1Text.Name = "name1Text";
+            this.name1Text.ReadOnly = true;
+            this.name1Text.Size = new System.Drawing.Size(122, 24);
+            this.name1Text.TabIndex = 130;
+            this.name1Text.Text = "";
+            // 
+            // name2Text
+            // 
+            this.name2Text.BackColor = System.Drawing.Color.White;
+            this.name2Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name2Text.Location = new System.Drawing.Point(23, 466);
+            this.name2Text.Name = "name2Text";
+            this.name2Text.ReadOnly = true;
+            this.name2Text.Size = new System.Drawing.Size(122, 24);
+            this.name2Text.TabIndex = 131;
+            this.name2Text.Text = "";
+            // 
+            // addressText
+            // 
+            this.addressText.BackColor = System.Drawing.Color.White;
+            this.addressText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addressText.Location = new System.Drawing.Point(89, 190);
+            this.addressText.Name = "addressText";
+            this.addressText.ReadOnly = true;
+            this.addressText.Size = new System.Drawing.Size(699, 24);
+            this.addressText.TabIndex = 132;
+            this.addressText.Text = "";
+            // 
+            // emailText
+            // 
+            this.emailText.BackColor = System.Drawing.Color.White;
+            this.emailText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailText.Location = new System.Drawing.Point(70, 250);
+            this.emailText.Name = "emailText";
+            this.emailText.ReadOnly = true;
+            this.emailText.Size = new System.Drawing.Size(204, 24);
+            this.emailText.TabIndex = 133;
+            this.emailText.Text = "";
+            // 
+            // nameText
+            // 
+            this.nameText.BackColor = System.Drawing.Color.White;
+            this.nameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameText.Location = new System.Drawing.Point(70, 160);
+            this.nameText.Name = "nameText";
+            this.nameText.ReadOnly = true;
+            this.nameText.Size = new System.Drawing.Size(204, 24);
+            this.nameText.TabIndex = 134;
+            this.nameText.Text = "";
+            // 
             // Personal_information_tenant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,12 +433,16 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(830, 580);
+            this.Controls.Add(this.nameText);
+            this.Controls.Add(this.emailText);
+            this.Controls.Add(this.addressText);
+            this.Controls.Add(this.name2Text);
+            this.Controls.Add(this.name1Text);
             this.Controls.Add(this.edit_Btn1);
             this.Controls.Add(this.update_Btn2);
             this.Controls.Add(this.update_Btn1);
             this.Controls.Add(this.remove_Btn1);
             this.Controls.Add(this.upload_Btn1);
-            this.Controls.Add(this.name1Text);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.expirationText);
             this.Controls.Add(this.label14);
@@ -444,7 +450,6 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.roomText);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.name2Text);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.profilePicture);
@@ -455,11 +460,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ageText);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.emailText);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.contactText);
-            this.Controls.Add(this.addressText);
-            this.Controls.Add(this.nameText);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -476,12 +478,10 @@
         #endregion
 
         private System.Windows.Forms.TextBox contactText;
-        private System.Windows.Forms.TextBox addressText;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox emailText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox ageText;
@@ -490,10 +490,8 @@
         private System.Windows.Forms.TextBox emergencyNo2Text;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox nameText;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox profilePicture;
-        private System.Windows.Forms.TextBox name2Text;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox roomText;
@@ -503,11 +501,15 @@
         private System.Windows.Forms.TextBox expirationText;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox name1Text;
         private System.Windows.Forms.Button upload_Btn1;
         private System.Windows.Forms.Button remove_Btn1;
         private System.Windows.Forms.Button update_Btn1;
         private System.Windows.Forms.Button edit_Btn1;
         private System.Windows.Forms.Button update_Btn2;
+        private System.Windows.Forms.RichTextBox name1Text;
+        private System.Windows.Forms.RichTextBox name2Text;
+        private System.Windows.Forms.RichTextBox addressText;
+        private System.Windows.Forms.RichTextBox emailText;
+        private System.Windows.Forms.RichTextBox nameText;
     }
 }

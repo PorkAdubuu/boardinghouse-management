@@ -16,5 +16,18 @@ namespace try_messaging
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // Open the provided PDF link in the default web browser
+            string url = "https://www.tenancy.govt.nz/assets/Uploads/Tenancy/boarding-house-know-your-rights-english.pdf";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {       
+            string url = "https://newmillsproperties.com/smart-budgeting-for-tenants-a-comprehensive-guide/";
+            System.Diagnostics.Process.Start(url);
+        }
     }
 }

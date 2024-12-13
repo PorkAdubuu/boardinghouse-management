@@ -57,13 +57,13 @@
             this.moveinText = new System.Windows.Forms.Label();
             this.expirationText = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.houseNameText = new System.Windows.Forms.Label();
             this.totalBill = new System.Windows.Forms.Label();
             this.dueDate = new System.Windows.Forms.Label();
             this.amount = new System.Windows.Forms.Label();
             this.datePaid = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.paymentStatus = new System.Windows.Forms.Label();
+            this.houseNameText = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -377,17 +377,6 @@
             this.pictureBox4.TabIndex = 8;
             this.pictureBox4.TabStop = false;
             // 
-            // houseNameText
-            // 
-            this.houseNameText.AutoSize = true;
-            this.houseNameText.BackColor = System.Drawing.Color.White;
-            this.houseNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.houseNameText.Location = new System.Drawing.Point(365, 222);
-            this.houseNameText.Name = "houseNameText";
-            this.houseNameText.Size = new System.Drawing.Size(32, 18);
-            this.houseNameText.TabIndex = 38;
-            this.houseNameText.Text = "N/A";
-            // 
             // totalBill
             // 
             this.totalBill.AutoSize = true;
@@ -454,17 +443,27 @@
             this.paymentStatus.TabIndex = 43;
             this.paymentStatus.Text = "N/A";
             // 
+            // houseNameText
+            // 
+            this.houseNameText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.houseNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.houseNameText.Location = new System.Drawing.Point(368, 223);
+            this.houseNameText.Name = "houseNameText";
+            this.houseNameText.Size = new System.Drawing.Size(192, 23);
+            this.houseNameText.TabIndex = 44;
+            this.houseNameText.Text = "";
+            // 
             // tenant_dashboard_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 539);
+            this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.paymentStatus);
             this.Controls.Add(this.datePaid);
             this.Controls.Add(this.amount);
             this.Controls.Add(this.dueDate);
             this.Controls.Add(this.totalBill);
-            this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.expirationText);
             this.Controls.Add(this.moveinText);
             this.Controls.Add(this.announcementLog);
@@ -545,12 +544,12 @@
         private System.Windows.Forms.Label moveinText;
         private System.Windows.Forms.Label expirationText;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label houseNameText;
         private System.Windows.Forms.Label totalBill;
         private System.Windows.Forms.Label dueDate;
         private System.Windows.Forms.Label amount;
         private System.Windows.Forms.Label datePaid;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label paymentStatus;
+        private System.Windows.Forms.RichTextBox houseNameText;
     }
 }

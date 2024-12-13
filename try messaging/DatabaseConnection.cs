@@ -3,10 +3,12 @@ using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Wordprocessing;
 using MySql.Data.MySqlClient; // Make sure to include this namespace
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace try_messaging
@@ -410,8 +412,44 @@ namespace try_messaging
                 MessageBox.Show($"Error updating boarding house occupancy: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
 
+        public async Task<List<Dictionary<string, object>>> ExecuteQueryAsync(string query)
+        {
+            List<Dictionary<string, object>> resultList = new List<Dictionary<string, object>>();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(GetConnectionString()))
+                {
+                    await conn.OpenAsync();
+
+                    using (MySqlCommand command = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                Dictionary<string, object> row = new Dictionary<string, object>();
+
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    row[reader.GetName(i)] = reader.GetValue(i);
+                                }
+
+                                resultList.Add(row);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Database query error: " + ex.Message);
+                throw;
+            }
+
+            return resultList;
+        }
 
     }
 }

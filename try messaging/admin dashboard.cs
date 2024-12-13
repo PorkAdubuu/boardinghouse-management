@@ -31,6 +31,7 @@ namespace try_messaging
             CheckForNewMessages();
             LoadAdminName();
 
+            
 
             adminNameLabel.BorderStyle = BorderStyle.None;
             adminNameLabel.BackColor = System.Drawing.ColorTranslator.FromHtml("#f7f7f7");
@@ -193,6 +194,8 @@ namespace try_messaging
 
             CheckNewNotifications();
             LoadNotifications();
+            
+
         }
 
         private void LoadAdminProfilePicture(int adminId)

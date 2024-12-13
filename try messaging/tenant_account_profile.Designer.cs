@@ -57,14 +57,11 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
-            this.name1Label = new System.Windows.Forms.Label();
             this.phone1Label = new System.Windows.Forms.Label();
-            this.name2Label = new System.Windows.Forms.Label();
             this.phone2Label = new System.Windows.Forms.Label();
             this.roomLabel = new System.Windows.Forms.Label();
             this.moveinLabel = new System.Windows.Forms.Label();
             this.expirationLabel = new System.Windows.Forms.Label();
-            this.houseNameText = new System.Windows.Forms.Label();
             this.addressLabel = new System.Windows.Forms.RichTextBox();
             this.boardingAddText = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,6 +73,9 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.houseNameText = new System.Windows.Forms.RichTextBox();
+            this.name1Label = new System.Windows.Forms.RichTextBox();
+            this.name2Label = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -374,17 +374,6 @@
             this.phoneLabel.TabIndex = 35;
             this.phoneLabel.Text = "N/A";
             // 
-            // name1Label
-            // 
-            this.name1Label.AutoSize = true;
-            this.name1Label.BackColor = System.Drawing.Color.White;
-            this.name1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name1Label.Location = new System.Drawing.Point(75, 422);
-            this.name1Label.Name = "name1Label";
-            this.name1Label.Size = new System.Drawing.Size(30, 16);
-            this.name1Label.TabIndex = 37;
-            this.name1Label.Text = "N/A";
-            // 
             // phone1Label
             // 
             this.phone1Label.AutoSize = true;
@@ -395,17 +384,6 @@
             this.phone1Label.Size = new System.Drawing.Size(30, 16);
             this.phone1Label.TabIndex = 38;
             this.phone1Label.Text = "N/A";
-            // 
-            // name2Label
-            // 
-            this.name2Label.AutoSize = true;
-            this.name2Label.BackColor = System.Drawing.Color.White;
-            this.name2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name2Label.Location = new System.Drawing.Point(75, 488);
-            this.name2Label.Name = "name2Label";
-            this.name2Label.Size = new System.Drawing.Size(30, 16);
-            this.name2Label.TabIndex = 39;
-            this.name2Label.Text = "N/A";
             // 
             // phone2Label
             // 
@@ -445,22 +423,11 @@
             this.expirationLabel.AutoSize = true;
             this.expirationLabel.BackColor = System.Drawing.Color.White;
             this.expirationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.expirationLabel.Location = new System.Drawing.Point(414, 284);
+            this.expirationLabel.Location = new System.Drawing.Point(413, 284);
             this.expirationLabel.Name = "expirationLabel";
             this.expirationLabel.Size = new System.Drawing.Size(30, 16);
             this.expirationLabel.TabIndex = 43;
             this.expirationLabel.Text = "N/A";
-            // 
-            // houseNameText
-            // 
-            this.houseNameText.AutoSize = true;
-            this.houseNameText.BackColor = System.Drawing.Color.White;
-            this.houseNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.houseNameText.Location = new System.Drawing.Point(412, 314);
-            this.houseNameText.Name = "houseNameText";
-            this.houseNameText.Size = new System.Drawing.Size(30, 16);
-            this.houseNameText.TabIndex = 44;
-            this.houseNameText.Text = "N/A";
             // 
             // addressLabel
             // 
@@ -591,12 +558,51 @@
             this.label3.TabIndex = 49;
             this.label3.Text = "Monthly Billing Statistics";
             // 
+            // houseNameText
+            // 
+            this.houseNameText.BackColor = System.Drawing.Color.White;
+            this.houseNameText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.houseNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.houseNameText.Location = new System.Drawing.Point(416, 314);
+            this.houseNameText.Name = "houseNameText";
+            this.houseNameText.ReadOnly = true;
+            this.houseNameText.Size = new System.Drawing.Size(147, 24);
+            this.houseNameText.TabIndex = 59;
+            this.houseNameText.Text = "";
+            // 
+            // name1Label
+            // 
+            this.name1Label.BackColor = System.Drawing.Color.White;
+            this.name1Label.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.name1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name1Label.Location = new System.Drawing.Point(75, 422);
+            this.name1Label.Name = "name1Label";
+            this.name1Label.ReadOnly = true;
+            this.name1Label.Size = new System.Drawing.Size(147, 24);
+            this.name1Label.TabIndex = 60;
+            this.name1Label.Text = "";
+            // 
+            // name2Label
+            // 
+            this.name2Label.BackColor = System.Drawing.Color.White;
+            this.name2Label.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.name2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.name2Label.Location = new System.Drawing.Point(75, 488);
+            this.name2Label.Name = "name2Label";
+            this.name2Label.ReadOnly = true;
+            this.name2Label.Size = new System.Drawing.Size(147, 24);
+            this.name2Label.TabIndex = 61;
+            this.name2Label.Text = "";
+            // 
             // tenant_account_profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 574);
+            this.Controls.Add(this.name2Label);
+            this.Controls.Add(this.name1Label);
+            this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.parkingText);
             this.Controls.Add(this.wifiText);
@@ -607,14 +613,11 @@
             this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.houseNameText);
             this.Controls.Add(this.expirationLabel);
             this.Controls.Add(this.moveinLabel);
             this.Controls.Add(this.roomLabel);
             this.Controls.Add(this.phone2Label);
-            this.Controls.Add(this.name2Label);
             this.Controls.Add(this.phone1Label);
-            this.Controls.Add(this.name1Label);
             this.Controls.Add(this.phoneLabel);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.pictureBox5);
@@ -687,14 +690,11 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label phoneLabel;
-        private System.Windows.Forms.Label name1Label;
         private System.Windows.Forms.Label phone1Label;
-        private System.Windows.Forms.Label name2Label;
         private System.Windows.Forms.Label phone2Label;
         private System.Windows.Forms.Label roomLabel;
         private System.Windows.Forms.Label moveinLabel;
         private System.Windows.Forms.Label expirationLabel;
-        private System.Windows.Forms.Label houseNameText;
         private System.Windows.Forms.RichTextBox addressLabel;
         private System.Windows.Forms.RichTextBox boardingAddText;
         private System.Windows.Forms.Label label4;
@@ -706,5 +706,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox houseNameText;
+        private System.Windows.Forms.RichTextBox name1Label;
+        private System.Windows.Forms.RichTextBox name2Label;
     }
 }
