@@ -72,6 +72,7 @@
             this.showPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.showPassword.TabIndex = 40;
             this.showPassword.TabStop = false;
+            this.showPassword.Click += new System.EventHandler(this.showPassword_Click);
             // 
             // label1
             // 

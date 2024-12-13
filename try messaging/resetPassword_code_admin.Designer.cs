@@ -74,7 +74,6 @@
             this.Controls.Add(this.codeText);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "resetPassword_code_admin";
-            this.Text = "Admin";
             this.Load += new System.EventHandler(this.resetPassword_code_admin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

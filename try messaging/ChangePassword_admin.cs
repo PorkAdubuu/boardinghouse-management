@@ -82,5 +82,19 @@ namespace try_messaging
         {
 
         }
+
+        private void showPassword_Click(object sender, EventArgs e)
+        {
+            if (newpasswordText.PasswordChar == '*' || confirmPassText.PasswordChar == '*')
+            {
+                newpasswordText.PasswordChar = '\0';
+                confirmPassText.PasswordChar = '\0';    
+            }
+            else
+            {
+                newpasswordText.PasswordChar = '*';
+                confirmPassText.PasswordChar = '*';
+            }
+        }
     }
 }
