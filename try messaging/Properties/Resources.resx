@@ -338,7 +338,7 @@
     <value>..\Resources\profile pink butt (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="profile_plain_butt__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\profile plain butt (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\profile_plain_butt__1_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="property__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\property (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
