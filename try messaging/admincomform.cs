@@ -232,6 +232,7 @@ namespace try_messaging
             conversationBox.ScrollToCaret();
         }
 
+
         private void sendBtn_Click(object sender, EventArgs e)
         {
             if (selectedTenantId.HasValue) // Check if a tenant has been selected

@@ -260,7 +260,7 @@ namespace try_messaging
             {
                 // Constructing the file path by combining the folder path and the file name
                 string filePath = Path.Combine(
-                    @"C:\Users\Dokaebi\source\repos\OOP Final project\boardinghouse-management-jamecerPC\billgenereatedPDFs",
+                    @"C:\Users\jamri\source\repos\OOP Final project\boardinghouse-management-MY-LAPTOP-BANE\billgenereatedPDFs",
                     $"Bill_{roomNumber}_{start.ToString("yyyyMMdd")}.pdf"
                 );
 

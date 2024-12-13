@@ -60,11 +60,11 @@ namespace try_messaging
 
                     // Query to fetch all payment data from payments_table, along with the remaining balance from billing_table
                     string query = @"
-            SELECT p.payment_id, p.reference_number, p.date_of_payment, p.tenant_id, 
-            p.room_number, p.billing_id, b.total_bill, b.remaining_balance
-            FROM payments_table p
-            INNER JOIN billing_table b ON p.billing_id = b.billing_id
-            ORDER BY p.date_of_payment DESC";  // Fetch all payments, ordered by date
+    SELECT p.payment_id, p.reference_number, p.date_of_payment, p.tenant_id, 
+    p.room_number, p.billing_id, b.total_bill, b.remaining_balance
+    FROM payments_table p
+    INNER JOIN billing_table b ON p.billing_id = b.billing_id
+    ORDER BY p.date_of_payment DESC";  // Fetch all payments, ordered by date
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
 
@@ -102,6 +102,7 @@ namespace try_messaging
                 MessageBox.Show("Error loading payments data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
