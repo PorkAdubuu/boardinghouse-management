@@ -16,6 +16,7 @@ namespace try_messaging
         {
             InitializeComponent();
             LoadMaintenanceRequests(); // Load all requests initially
+            dbConnection = new DatabaseConnection();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -101,7 +102,7 @@ namespace try_messaging
             dateTimePicker1.Value = DateTime.Now; // Default to today
 
             // Configure DataGridView
-            maintenanceRequestList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
             maintenanceRequestList.MultiSelect = false;
 
             // Load all requests
@@ -486,66 +487,88 @@ namespace try_messaging
 
         private void markAsDone_Btn_Click(object sender, EventArgs e)
         {
-            if (selectedRequestId <= 0)
+            string connectionString = "server=localhost;user=root;database=boardinghouse_practice_db;port=3306;password=;";
+            try
             {
-                MessageBox.Show("No request selected. Please select a request first.");
-                return;
+                // Ensure a row is selected in the DataGridView
+                if (maintenanceRequestList.SelectedRows.Count > 0)
+                {
+                    // Get the selected row
+                    DataGridViewRow selectedRow = maintenanceRequestList.SelectedRows[0];
+
+                    // Get the Request ID of the selected row
+                    selectedRequestId = Convert.ToInt32(selectedRow.Cells["Request ID"].Value);
+
+                    // Check if a request ID is selected
+                    if (selectedRequestId <= 0)
+                    {
+                        MessageBox.Show("No request selected. Please select a request first.");
+                        return;
+                    }
+
+                    if (dbConnection == null)
+                    {
+                        MessageBox.Show("Database connection is not initialized.");
+                        return; // Exit the method if dbConnection is null
+                    }
+
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        // Check the current status of the request
+                        string checkStatusQuery = "SELECT status FROM maintenance_requests WHERE request_id = @requestId";
+                        using (MySqlCommand checkCmd = new MySqlCommand(checkStatusQuery, connection))
+                        {
+                            checkCmd.Parameters.AddWithValue("@requestId", selectedRequestId);
+                            string status = checkCmd.ExecuteScalar()?.ToString();
+
+                            // Validate the status
+                            if (status == "Done")
+                            {
+                                MessageBox.Show("This request is already marked as Done.");
+                                return;
+                            }
+
+                            if (status == "Declined")
+                            {
+                                MessageBox.Show("This request has been Declined and cannot be marked as Done.");
+                                return;
+                            }
+
+                            if (status != "In Progress")
+                            {
+                                MessageBox.Show("Only requests with status 'In Progress' can be marked as Done.");
+                                return;
+                            }
+                        }
+
+                        // Update the status to 'Done' and set the completion date
+                        string updateQuery = "UPDATE maintenance_requests SET status = 'Done', completion_date = CURDATE() WHERE request_id = @requestId";
+                        using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection))
+                        {
+                            updateCmd.Parameters.AddWithValue("@requestId", selectedRequestId);
+                            int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Request successfully marked as Done.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to update the request. Please try again.");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No row selected. Please select a maintenance request first.");
+                }
             }
-
-            using (MySqlConnection conn = new MySqlConnection(dbConnection.GetConnectionString()))
+            catch (Exception ex)
             {
-                try
-                {
-                    conn.Open();
-
-                    // Check the current status of the request
-                    string checkStatusQuery = "SELECT status FROM maintenance_requests WHERE request_id = @requestId";
-                    using (MySqlCommand checkCmd = new MySqlCommand(checkStatusQuery, conn))
-                    {
-                        checkCmd.Parameters.AddWithValue("@requestId", selectedRequestId);
-                        string status = checkCmd.ExecuteScalar()?.ToString();
-
-                        // Validate the status
-                        if (status == "Done")
-                        {
-                            MessageBox.Show("This request is already marked as Done.");
-                            return;
-                        }
-
-                        if (status == "Declined")
-                        {
-                            MessageBox.Show("This request has been Declined and cannot be marked as Done.");
-                            return;
-                        }
-
-                        if (status != "In Progress")
-                        {
-                            MessageBox.Show("Only requests with status 'In Progress' can be marked as Done.");
-                            return;
-                        }
-                    }
-
-                    // Update the status to 'Done' and set the completion date
-                    string updateQuery = "UPDATE maintenance_requests SET status = 'Done', completion_date = CURDATE() WHERE request_id = @requestId";
-                    using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
-                    {
-                        updateCmd.Parameters.AddWithValue("@requestId", selectedRequestId);
-                        int rowsAffected = updateCmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Request successfully marked as Done.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to update the request. Please try again.");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
+                MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
 

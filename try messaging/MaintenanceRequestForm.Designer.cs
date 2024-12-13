@@ -59,6 +59,8 @@
             this.acceptPanel = new System.Windows.Forms.Panel();
             this.declinePanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.loading1 = new System.Windows.Forms.Label();
+            this.loading2 = new System.Windows.Forms.Label();
             this.acceptPanel.SuspendLayout();
             this.declinePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -363,6 +365,7 @@
             // acceptPanel
             // 
             this.acceptPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.acceptPanel.Controls.Add(this.loading1);
             this.acceptPanel.Controls.Add(this.label14);
             this.acceptPanel.Controls.Add(this.acceptButton);
             this.acceptPanel.Controls.Add(this.label10);
@@ -370,19 +373,20 @@
             this.acceptPanel.Controls.Add(this.label15);
             this.acceptPanel.Location = new System.Drawing.Point(21, 384);
             this.acceptPanel.Name = "acceptPanel";
-            this.acceptPanel.Size = new System.Drawing.Size(409, 162);
+            this.acceptPanel.Size = new System.Drawing.Size(409, 171);
             this.acceptPanel.TabIndex = 130;
             // 
             // declinePanel
             // 
             this.declinePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.declinePanel.Controls.Add(this.loading2);
             this.declinePanel.Controls.Add(this.label12);
             this.declinePanel.Controls.Add(this.label11);
             this.declinePanel.Controls.Add(this.reasonDecline);
             this.declinePanel.Controls.Add(this.decline_Button);
             this.declinePanel.Location = new System.Drawing.Point(436, 384);
             this.declinePanel.Name = "declinePanel";
-            this.declinePanel.Size = new System.Drawing.Size(409, 162);
+            this.declinePanel.Size = new System.Drawing.Size(409, 171);
             this.declinePanel.TabIndex = 131;
             // 
             // pictureBox1
@@ -393,6 +397,26 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 132;
             this.pictureBox1.TabStop = false;
+            // 
+            // loading1
+            // 
+            this.loading1.AutoSize = true;
+            this.loading1.Location = new System.Drawing.Point(24, 151);
+            this.loading1.Name = "loading1";
+            this.loading1.Size = new System.Drawing.Size(85, 13);
+            this.loading1.TabIndex = 130;
+            this.loading1.Text = "Sending email ...";
+            this.loading1.Visible = false;
+            // 
+            // loading2
+            // 
+            this.loading2.AutoSize = true;
+            this.loading2.Location = new System.Drawing.Point(28, 151);
+            this.loading2.Name = "loading2";
+            this.loading2.Size = new System.Drawing.Size(85, 13);
+            this.loading2.TabIndex = 131;
+            this.loading2.Text = "Sending email ...";
+            this.loading2.Visible = false;
             // 
             // MaintenanceRequestForm
             // 
@@ -466,5 +490,7 @@
         private System.Windows.Forms.Panel acceptPanel;
         private System.Windows.Forms.Panel declinePanel;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label loading1;
+        private System.Windows.Forms.Label loading2;
     }
 }

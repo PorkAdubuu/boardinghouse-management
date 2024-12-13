@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.adminMaintenancePanel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.statusCombo = new System.Windows.Forms.ComboBox();
@@ -277,6 +278,9 @@
             this.maintenanceRequestList.Location = new System.Drawing.Point(12, 372);
             this.maintenanceRequestList.Name = "maintenanceRequestList";
             this.maintenanceRequestList.RowHeadersVisible = false;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.maintenanceRequestList.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.maintenanceRequestList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.maintenanceRequestList.Size = new System.Drawing.Size(845, 133);
             this.maintenanceRequestList.TabIndex = 89;
             this.maintenanceRequestList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.maintenanceRequestList_CellContentClick);

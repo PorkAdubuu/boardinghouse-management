@@ -195,6 +195,7 @@ namespace try_messaging
 
         private async void acceptButton_Click(object sender, EventArgs e)
         {
+            loading1.Visible = true;
             string requestNumber = requestNumberForm.Text;
             // Prevent acceptance if status is 'In Progress'
             if (statusForm.Text == "In Progress")
@@ -264,8 +265,8 @@ namespace try_messaging
                 SetRequestStatusPending(requestId);
 
                 // Update request status in the database
-                UpdateRequestStatus("In progress");
-
+                UpdateRequestStatus("In Progress");
+                loading1.Visible = false;
                 MessageBox.Show("Maintenance request accepted and email sent.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadMaintenanceRequestDetails();
             }
@@ -313,6 +314,7 @@ namespace try_messaging
 
         private async void decline_Button_Click(object sender, EventArgs e)
         {
+            loading2.Visible = true;
             string requestNumber = requestNumberForm.Text;
             string declineReason = reasonDecline.Text;
             // Prevent decline if status is 'In Progress'
@@ -374,7 +376,7 @@ namespace try_messaging
 
             // Update request status in the database
             SetStatusToDeclined(requestId);
-
+            loading2.Visible = false;
             MessageBox.Show("Maintenance request declined and email sent.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadMaintenanceRequestDetails();
         }

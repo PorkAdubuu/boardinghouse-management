@@ -210,19 +210,20 @@ namespace try_messaging
         private void LoadTenantRequests(int tenantId)
         {
             string query = @"
-        SELECT 
-            request_id, 
-            request_number,
-            maintenance_type, 
-            description, 
-            request_date, 
-            CASE 
-                WHEN status = 'Declined' THEN NULL 
-                ELSE dateInspection 
-            END AS dateInspection, 
-            status 
-        FROM maintenance_requests 
-        WHERE tenant_id = @tenantId";
+SELECT 
+    request_id, 
+    request_number,
+    maintenance_type, 
+    description, 
+    request_date, 
+    CASE 
+        WHEN status = 'Declined' THEN NULL 
+        ELSE dateInspection 
+    END AS dateInspection, 
+    status,
+    completion_date -- Added completion_date field
+FROM maintenance_requests 
+WHERE tenant_id = @tenantId";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -245,12 +246,13 @@ namespace try_messaging
 
                     // Rename or adjust columns for clarity
                     trackRequests.Columns["request_id"].HeaderText = "Request ID";
-                    trackRequests.Columns["request_number"].HeaderText = "Request Number"; // New column header
+                    trackRequests.Columns["request_number"].HeaderText = "Request Number";
                     trackRequests.Columns["maintenance_type"].HeaderText = "Type";
                     trackRequests.Columns["description"].HeaderText = "Description";
                     trackRequests.Columns["request_date"].HeaderText = "Request Date";
-                    trackRequests.Columns["dateInspection"].HeaderText = "Inspection Date"; // This will display empty if status is Declined
+                    trackRequests.Columns["dateInspection"].HeaderText = "Inspection Date";
                     trackRequests.Columns["status"].HeaderText = "Status";
+                    trackRequests.Columns["completion_date"].HeaderText = "Completion Date"; // Display completion date
                 }
                 catch (Exception ex)
                 {
@@ -258,6 +260,7 @@ namespace try_messaging
                 }
             }
         }
+
 
         private void LoadRequests()
         {
