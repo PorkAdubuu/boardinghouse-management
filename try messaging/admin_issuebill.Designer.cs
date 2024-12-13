@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(admin_issuebill));
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendingLabel = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
@@ -112,11 +113,19 @@
             // sendingLabel
             // 
             this.sendingLabel.AutoSize = true;
+<<<<<<< HEAD
             this.sendingLabel.Location = new System.Drawing.Point(210, 361);
             this.sendingLabel.Name = "sendingLabel";
             this.sendingLabel.Size = new System.Drawing.Size(67, 13);
             this.sendingLabel.TabIndex = 125;
             this.sendingLabel.Text = "Sending.......";
+=======
+            this.sendingLabel.Location = new System.Drawing.Point(195, 361);
+            this.sendingLabel.Name = "sendingLabel";
+            this.sendingLabel.Size = new System.Drawing.Size(82, 13);
+            this.sendingLabel.TabIndex = 125;
+            this.sendingLabel.Text = "Sending email...";
+>>>>>>> e61a15bf9b98800c600631e2bcb44cca1402cf4a
             this.sendingLabel.Visible = false;
             // 
             // progressBar
@@ -436,8 +445,8 @@
             this.ClientSize = new System.Drawing.Size(521, 433);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "admin_issuebill";
-            this.Text = "admin_issuebill";
             this.Load += new System.EventHandler(this.admin_issuebill_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

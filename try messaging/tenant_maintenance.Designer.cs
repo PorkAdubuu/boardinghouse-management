@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.trackRequests = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,6 +59,8 @@
             this.trackRequests.Location = new System.Drawing.Point(4, 397);
             this.trackRequests.Name = "trackRequests";
             this.trackRequests.RowHeadersVisible = false;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.trackRequests.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.trackRequests.Size = new System.Drawing.Size(865, 149);
             this.trackRequests.TabIndex = 75;
             this.trackRequests.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.trackRequests_CellContentClick);
