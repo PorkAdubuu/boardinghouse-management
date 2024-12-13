@@ -113,19 +113,12 @@
             // sendingLabel
             // 
             this.sendingLabel.AutoSize = true;
-<<<<<<< HEAD
-            this.sendingLabel.Location = new System.Drawing.Point(210, 361);
-            this.sendingLabel.Name = "sendingLabel";
-            this.sendingLabel.Size = new System.Drawing.Size(67, 13);
-            this.sendingLabel.TabIndex = 125;
-            this.sendingLabel.Text = "Sending.......";
-=======
+
             this.sendingLabel.Location = new System.Drawing.Point(195, 361);
             this.sendingLabel.Name = "sendingLabel";
             this.sendingLabel.Size = new System.Drawing.Size(82, 13);
             this.sendingLabel.TabIndex = 125;
             this.sendingLabel.Text = "Sending email...";
->>>>>>> e61a15bf9b98800c600631e2bcb44cca1402cf4a
             this.sendingLabel.Visible = false;
             // 
             // progressBar
