@@ -273,9 +273,9 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(287, 183);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(189, 20);
+            this.label15.Size = new System.Drawing.Size(203, 20);
             this.label15.TabIndex = 22;
-            this.label15.Text = "Accomodation Details:";
+            this.label15.Text = "Accommodation Details:";
             // 
             // label16
             // 
