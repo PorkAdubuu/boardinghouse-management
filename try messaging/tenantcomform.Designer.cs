@@ -71,7 +71,7 @@
             this.sendBtn.Name = "sendBtn";
             this.sendBtn.Size = new System.Drawing.Size(57, 78);
             this.sendBtn.TabIndex = 10;
-            this.sendBtn.Text = "send";
+            this.sendBtn.Text = "Send";
             this.sendBtn.UseVisualStyleBackColor = false;
             this.sendBtn.Click += new System.EventHandler(this.sendBtn_Click);
             // 

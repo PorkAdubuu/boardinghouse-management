@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -185,9 +185,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(262, 175);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(179, 20);
+            this.label9.Size = new System.Drawing.Size(181, 20);
             this.label9.TabIndex = 35;
-            this.label9.Text = "Maintenance reports:";
+            this.label9.Text = "Maintenance Reports";
             // 
             // label2
             // 
@@ -201,20 +201,20 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(276, 384);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116))))),
         System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(30)))), ((int)(((byte)(147)))))};
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(290, 148);
             this.chart1.TabIndex = 61;
             this.chart1.Text = "chart1";
@@ -226,9 +226,9 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(1, 357);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 20);
+            this.label1.Size = new System.Drawing.Size(136, 20);
             this.label1.TabIndex = 62;
-            this.label1.Text = "Payment status";
+            this.label1.Text = "Payment Status";
             // 
             // pictureBox7
             // 
@@ -294,7 +294,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(111, 18);
             this.label7.TabIndex = 68;
-            this.label7.Text = "Total income:";
+            this.label7.Text = "Total Income:";
             // 
             // label5
             // 
@@ -304,9 +304,9 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label5.Location = new System.Drawing.Point(596, 208);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 18);
+            this.label5.Size = new System.Drawing.Size(148, 18);
             this.label5.TabIndex = 50;
-            this.label5.Text = "Annoucement log";
+            this.label5.Text = "Annoucement Log:";
             // 
             // announcementLog
             // 
@@ -337,7 +337,7 @@
             this.announcement_Btn.Name = "announcement_Btn";
             this.announcement_Btn.Size = new System.Drawing.Size(122, 27);
             this.announcement_Btn.TabIndex = 71;
-            this.announcement_Btn.Text = "Make announcement";
+            this.announcement_Btn.Text = "Make Announcement";
             this.announcement_Btn.UseVisualStyleBackColor = false;
             this.announcement_Btn.Click += new System.EventHandler(this.announcement_Btn_Click);
             // 
@@ -425,9 +425,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(48, 432);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 18);
+            this.label10.Size = new System.Drawing.Size(105, 18);
             this.label10.TabIndex = 79;
-            this.label10.Text = "No payment:";
+            this.label10.Text = "No Payment:";
             // 
             // label11
             // 
@@ -523,9 +523,9 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(262, 357);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(179, 20);
+            this.label13.Size = new System.Drawing.Size(185, 20);
             this.label13.TabIndex = 88;
-            this.label13.Text = "Payment status chart";
+            this.label13.Text = "Payment Status Chart";
             // 
             // doneCount
             // 

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.sendingLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.confrimRate_Btn = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.rateKwhText = new System.Windows.Forms.TextBox();
@@ -62,8 +64,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.roomCombo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.sendingLabel = new System.Windows.Forms.Label();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +108,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(508, 401);
             this.panel1.TabIndex = 91;
+            // 
+            // sendingLabel
+            // 
+            this.sendingLabel.AutoSize = true;
+            this.sendingLabel.Location = new System.Drawing.Point(208, 361);
+            this.sendingLabel.Name = "sendingLabel";
+            this.sendingLabel.Size = new System.Drawing.Size(67, 13);
+            this.sendingLabel.TabIndex = 125;
+            this.sendingLabel.Text = "Sending.......";
+            this.sendingLabel.Visible = false;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(159, 380);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(153, 10);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 124;
+            this.progressBar.Visible = false;
             // 
             // confrimRate_Btn
             // 
@@ -270,9 +289,9 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(288, 177);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(87, 18);
+            this.label12.Size = new System.Drawing.Size(90, 18);
             this.label12.TabIndex = 105;
-            this.label12.Text = "Water cubic";
+            this.label12.Text = "Water Cubic";
             // 
             // label13
             // 
@@ -386,9 +405,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(10, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 18);
+            this.label2.Size = new System.Drawing.Size(118, 18);
             this.label2.TabIndex = 90;
-            this.label2.Text = "Room number";
+            this.label2.Text = "Room Number";
             // 
             // roomCombo
             // 
@@ -408,25 +427,6 @@
             this.label1.Size = new System.Drawing.Size(146, 20);
             this.label1.TabIndex = 90;
             this.label1.Text = "Billing Statement";
-            // 
-            // sendingLabel
-            // 
-            this.sendingLabel.AutoSize = true;
-            this.sendingLabel.Location = new System.Drawing.Point(208, 361);
-            this.sendingLabel.Name = "sendingLabel";
-            this.sendingLabel.Size = new System.Drawing.Size(67, 13);
-            this.sendingLabel.TabIndex = 125;
-            this.sendingLabel.Text = "Sending.......";
-            this.sendingLabel.Visible = false;
-            // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(159, 380);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(153, 10);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 124;
-            this.progressBar.Visible = false;
             // 
             // admin_issuebill
             // 

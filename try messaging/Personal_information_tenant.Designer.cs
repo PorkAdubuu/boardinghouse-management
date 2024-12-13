@@ -136,7 +136,7 @@
             this.emailText.Location = new System.Drawing.Point(70, 250);
             this.emailText.Name = "emailText";
             this.emailText.ReadOnly = true;
-            this.emailText.Size = new System.Drawing.Size(204, 24);
+            this.emailText.Size = new System.Drawing.Size(335, 24);
             this.emailText.TabIndex = 15;
             // 
             // label1
@@ -183,20 +183,20 @@
             // 
             this.emergencyNo1Text.BackColor = System.Drawing.Color.White;
             this.emergencyNo1Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergencyNo1Text.Location = new System.Drawing.Point(131, 436);
+            this.emergencyNo1Text.Location = new System.Drawing.Point(231, 436);
             this.emergencyNo1Text.Name = "emergencyNo1Text";
             this.emergencyNo1Text.ReadOnly = true;
-            this.emergencyNo1Text.Size = new System.Drawing.Size(101, 24);
+            this.emergencyNo1Text.Size = new System.Drawing.Size(202, 24);
             this.emergencyNo1Text.TabIndex = 19;
             // 
             // emergencyNo2Text
             // 
             this.emergencyNo2Text.BackColor = System.Drawing.Color.White;
             this.emergencyNo2Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emergencyNo2Text.Location = new System.Drawing.Point(131, 469);
+            this.emergencyNo2Text.Location = new System.Drawing.Point(231, 469);
             this.emergencyNo2Text.Name = "emergencyNo2Text";
             this.emergencyNo2Text.ReadOnly = true;
-            this.emergencyNo2Text.Size = new System.Drawing.Size(101, 24);
+            this.emergencyNo2Text.Size = new System.Drawing.Size(202, 24);
             this.emergencyNo2Text.TabIndex = 21;
             // 
             // label9
@@ -220,7 +220,7 @@
             this.nameText.Location = new System.Drawing.Point(70, 160);
             this.nameText.Name = "nameText";
             this.nameText.ReadOnly = true;
-            this.nameText.Size = new System.Drawing.Size(204, 24);
+            this.nameText.Size = new System.Drawing.Size(238, 24);
             this.nameText.TabIndex = 13;
             this.nameText.TextChanged += new System.EventHandler(this.nameText_TextChanged);
             // 
@@ -251,7 +251,7 @@
             this.name2Text.Location = new System.Drawing.Point(24, 469);
             this.name2Text.Name = "name2Text";
             this.name2Text.ReadOnly = true;
-            this.name2Text.Size = new System.Drawing.Size(101, 24);
+            this.name2Text.Size = new System.Drawing.Size(201, 24);
             this.name2Text.TabIndex = 32;
             this.name2Text.MouseClick += new System.Windows.Forms.MouseEventHandler(this.name2Text_MouseClick);
             // 
@@ -291,9 +291,9 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(9, 313);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 18);
+            this.label12.Size = new System.Drawing.Size(123, 18);
             this.label12.TabIndex = 35;
-            this.label12.Text = "Room number:";
+            this.label12.Text = "Room Number:";
             // 
             // moveinText
             // 
@@ -331,9 +331,9 @@
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(9, 374);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(136, 18);
+            this.label14.Size = new System.Drawing.Size(138, 18);
             this.label14.TabIndex = 39;
-            this.label14.Text = "Lease expiration:";
+            this.label14.Text = "Lease Expiration:";
             // 
             // label15
             // 
@@ -351,7 +351,7 @@
             this.name1Text.Location = new System.Drawing.Point(24, 436);
             this.name1Text.Name = "name1Text";
             this.name1Text.ReadOnly = true;
-            this.name1Text.Size = new System.Drawing.Size(101, 24);
+            this.name1Text.Size = new System.Drawing.Size(201, 24);
             this.name1Text.TabIndex = 43;
             // 
             // upload_Btn1

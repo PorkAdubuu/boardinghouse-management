@@ -117,9 +117,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
             this.label4.Location = new System.Drawing.Point(159, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(262, 40);
+            this.label4.Size = new System.Drawing.Size(224, 40);
             this.label4.TabIndex = 31;
-            this.label4.Text = "Welcome back! Please login to your \r\naccount.\r\n";
+            this.label4.Text = "Welcome! Please login to your \r\naccount.\r\n";
             // 
             // label3
             // 
