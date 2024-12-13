@@ -154,6 +154,21 @@
   <data name="admin_tenant_payment_plain_butt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\admin_tenant payment plain butt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="a_electric" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a-electric.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_garage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a-garage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a-key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_water_tap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a-water tap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_wifi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a-wifi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

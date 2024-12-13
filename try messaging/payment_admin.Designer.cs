@@ -49,6 +49,7 @@
             this.billStatusTable = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.refresh_Btn = new System.Windows.Forms.Button();
+            this.notifoverdue_Btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tenantpaymentsTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billStatusTable)).BeginInit();
@@ -259,12 +260,27 @@
             this.refresh_Btn.UseVisualStyleBackColor = false;
             this.refresh_Btn.Click += new System.EventHandler(this.refresh_Btn_Click);
             // 
+            // notifoverdue_Btn
+            // 
+            this.notifoverdue_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(33)))), ((int)(((byte)(116)))));
+            this.notifoverdue_Btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.notifoverdue_Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notifoverdue_Btn.ForeColor = System.Drawing.Color.White;
+            this.notifoverdue_Btn.Location = new System.Drawing.Point(748, 525);
+            this.notifoverdue_Btn.Name = "notifoverdue_Btn";
+            this.notifoverdue_Btn.Size = new System.Drawing.Size(117, 26);
+            this.notifoverdue_Btn.TabIndex = 128;
+            this.notifoverdue_Btn.Text = "Notify Overdue";
+            this.notifoverdue_Btn.UseVisualStyleBackColor = false;
+            this.notifoverdue_Btn.Click += new System.EventHandler(this.notifoverdue_Btn_Click);
+            // 
             // payment_admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(869, 556);
+            this.Controls.Add(this.notifoverdue_Btn);
             this.Controls.Add(this.refresh_Btn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.billStatusTable);
@@ -303,5 +319,6 @@
         private System.Windows.Forms.DataGridView billStatusTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button refresh_Btn;
+        private System.Windows.Forms.Button notifoverdue_Btn;
     }
 }

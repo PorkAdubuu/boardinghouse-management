@@ -6,6 +6,8 @@ using System.Data;
 using System.Data.Common;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -582,7 +584,6 @@ namespace try_messaging
             room_number, 
             start_date, 
             end_date, 
-            aircon_bill, 
             wifi_bill, 
             parking_bill, 
             water_bill, 
@@ -638,7 +639,6 @@ namespace try_messaging
             room_number AS 'Room Number', 
             start_date AS 'Start Date', 
             end_date AS 'End Date', 
-            aircon_bill AS 'Aircon Bill', 
             wifi_bill AS 'WiFi Bill', 
             parking_bill AS 'Parking Bill', 
             water_bill AS 'Water Bill', 
@@ -703,5 +703,109 @@ namespace try_messaging
                 }
             }
         }
+
+        private async void notifoverdue_Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string query = @"
+        SELECT b.due_date, t.email, CONCAT(t.firstname, ' ', t.lastname) AS tenantName
+        FROM billing_table b
+        JOIN tenants_details t ON b.tenant_id = t.tenid
+        WHERE b.due_date < CURRENT_TIMESTAMP
+        AND b.status IN ('No payment', 'Pending', 'Declined')";
+
+                var overdueTenants = await dbConnection.ExecuteQueryAsync(query);
+
+                int totalOverdue = overdueTenants.Count;
+                if (totalOverdue > 0)
+                {
+                    // Inform the user if there are multiple overdue notifications
+                    MessageBox.Show($"There are {totalOverdue} overdue tenants. Notifications will be sent one by one. This may take some time.",
+                                    "Notification Process",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+
+                    // Display the loading dialog
+                    using (var loadingDialog = new LoadingDialog()) // Replace with your custom loading dialog
+                    {
+                        loadingDialog.Show();
+                        foreach (var tenant in overdueTenants)
+                        {
+                            string tenantEmail = tenant["email"].ToString();
+                            string tenantName = tenant["tenantName"].ToString();
+
+                            // Send email and update loading status
+                            loadingDialog.UpdateStatus($"Notifying: {tenantName}");
+                            bool emailSent = await SendOverdueEmail(tenantEmail, tenantName);
+
+                            if (emailSent)
+                            {
+                                MessageBox.Show($"Overdue notice sent to {tenantName} ({tenantEmail})",
+                                                "Notification Sent",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Information);
+                            }
+                        }
+                        loadingDialog.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No overdue payments found.", "No Notifications", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking overdue tenants: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task<bool> SendOverdueEmail(string tenantEmail, string tenantName)
+        {
+            try
+            {
+                // Email subject and body
+                string subject = "Important Notice: Payment Overdue";
+                string body = $@"
+                Dear {tenantName},
+
+                We hope this message finds you well. This is a courteous reminder that your payment for your stay at BoardMate is currently overdue. We kindly request you to settle the outstanding amount at your earliest convenience.
+
+                If you have already completed the payment, please disregard this notice.
+
+                Should you have any questions or need assistance, feel free to reach out to us.
+
+                Best regards,
+                BoardMate Management";
+
+                // Set up the SMTP client and send the email
+                using (SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtpClient.Credentials = new NetworkCredential("boardinghouse24@gmail.com", "cjzvmzmwrspxxkxh");
+                    smtpClient.EnableSsl = true;
+
+                    using (MailMessage mailMessage = new MailMessage())
+                    {
+                        mailMessage.From = new MailAddress("boardinghouse24@gmail.com", "BoardMate Management");
+                        mailMessage.Subject = subject;
+                        mailMessage.Body = body;
+                        mailMessage.IsBodyHtml = false; // Plain text email
+                        mailMessage.To.Add(tenantEmail);
+
+                        await smtpClient.SendMailAsync(mailMessage);
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to send email: " + ex.Message, "Email Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
     }
 }

@@ -31,7 +31,6 @@
             this.addressLabel = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
-            this.emailLabel = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.addLabel = new System.Windows.Forms.Label();
@@ -65,6 +64,7 @@
             this.birthdatePicker = new System.Windows.Forms.DateTimePicker();
             this.genderCombo = new System.Windows.Forms.ComboBox();
             this.save_Btn = new System.Windows.Forms.Button();
+            this.emailLabel = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profilePic)).BeginInit();
@@ -107,17 +107,6 @@
             this.phoneLabel.Size = new System.Drawing.Size(30, 16);
             this.phoneLabel.TabIndex = 87;
             this.phoneLabel.Text = "N/A";
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.BackColor = System.Drawing.Color.White;
-            this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.Location = new System.Drawing.Point(76, 231);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(30, 16);
-            this.emailLabel.TabIndex = 86;
-            this.emailLabel.Text = "N/A";
             // 
             // pictureBox5
             // 
@@ -445,6 +434,10 @@
             // 
             this.genderCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.genderCombo.FormattingEnabled = true;
+            this.genderCombo.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Other"});
             this.genderCombo.Location = new System.Drawing.Point(359, 339);
             this.genderCombo.Name = "genderCombo";
             this.genderCombo.Size = new System.Drawing.Size(131, 24);
@@ -463,11 +456,23 @@
             this.save_Btn.UseVisualStyleBackColor = false;
             this.save_Btn.Click += new System.EventHandler(this.save_Btn_Click);
             // 
+            // emailLabel
+            // 
+            this.emailLabel.BackColor = System.Drawing.Color.White;
+            this.emailLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailLabel.Location = new System.Drawing.Point(76, 231);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(176, 26);
+            this.emailLabel.TabIndex = 125;
+            this.emailLabel.Text = "";
+            // 
             // admin_account_profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 574);
+            this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.save_Btn);
             this.Controls.Add(this.genderCombo);
             this.Controls.Add(this.birthdatePicker);
@@ -490,7 +495,6 @@
             this.Controls.Add(this.addressLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.phoneLabel);
-            this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.addLabel);
@@ -524,7 +528,6 @@
         private System.Windows.Forms.RichTextBox addressLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label phoneLabel;
-        private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label addLabel;
@@ -558,5 +561,6 @@
         private System.Windows.Forms.DateTimePicker birthdatePicker;
         private System.Windows.Forms.ComboBox genderCombo;
         private System.Windows.Forms.Button save_Btn;
+        private System.Windows.Forms.RichTextBox emailLabel;
     }
 }
