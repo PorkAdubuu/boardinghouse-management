@@ -1,0 +1,13 @@
+
+
+
+192.168.3.194
+
+http://192.168.3.194/phpmyadmin/
+
+
+github
+git config --global user.name "porkAdubuu"
+git config --global user.email "jamrie0305@gmail.com"
+
+cd C:\Users\Dokaebi\source\repos\try messaging

@@ -1,0 +1,24 @@
+github 
+
+git config --global user.name "porkAdubuu"
+git config --global user.email "jamrie0305@gmail.com"
+
+pushing
+
+cd path of the repo
+
+git add . 
+
+git commit -m "message"
+
+git push origin branchname
+
+
+pulling
+
+cd path of the repo
+
+git pull origin branchname
+
+
+git config --global --add safe.directory "C:/Users/Dokaebi/source/repos/OOP Final project/boardinghouse-management-MASTER"

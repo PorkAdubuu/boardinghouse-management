@@ -1,0 +1,8 @@
+flow: 
+
+if tenant input is in billing table then i should not be able to select them in billing 
+statement, i need to have a checker if the tenant roomnumber/tenid is present in the table 
+of billing_table. 
+
+if the tenant paid the bill then it will disappear in the billing_table so then i will
+now be able to select the tenants room again for the next billing period
